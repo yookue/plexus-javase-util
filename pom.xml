@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Copyright (c) 2016 Yookue Ltd. All rights reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+-->
+
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.yookue.commonplexus</groupId>
+    <artifactId>plexus-javase-util</artifactId>
+    <version>1.0.0</version>
+
+    <name>${project.artifactId}</name>
+    <description>Plexus JavaSE Util</description>
+    <url>https://github.com/yookue/plexus-javase-util</url>
+    <inceptionYear>2016</inceptionYear>
+
+    <organization>
+        <name>Yookue Ltd</name>
+        <url>https://yookue.com</url>
+    </organization>
+
+    <properties>
+        <java.version>1.8</java.version>
+        <file.encoding>UTF-8</file.encoding>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <maven.compiler.testSource>${java.version}</maven.compiler.testSource>
+        <maven.compiler.testTarget>${java.version}</maven.compiler.testTarget>
+        <maven.build.timestamp.format>yyyy-MM-dd HH:mm:ss</maven.build.timestamp.format>
+        <maven.test.skip>true</maven.test.skip>
+        <project.build.sourceEncoding>${file.encoding}</project.build.sourceEncoding>
+        <project.build.resourceEncoding>${file.encoding}</project.build.resourceEncoding>
+        <project.reporting.outputEncoding>${file.encoding}</project.reporting.outputEncoding>
+
+        <commons-beanutils2.version>2.0.0</commons-beanutils2.version>
+        <commons-codec.version>1.15</commons-codec.version>
+        <commons-collections4.version>4.4</commons-collections4.version>
+        <commons-io.version>2.16.1</commons-io.version>
+        <commons-lang3.version>3.12.0</commons-lang3.version>
+        <commons-text.version>1.12.0</commons-text.version>
+        <lombok.version>1.18.30</lombok.version>
+        <javax-persistence.version>2.2</javax-persistence.version>
+        <jsoup.version>1.17.2</jsoup.version>
+        <jsqlparser.version>4.9</jsqlparser.version>
+        <jsr305.version>3.0.2</jsr305.version>
+        <pinyin4j.version>2.5.2</pinyin4j.version>
+        <slf4j.version>1.7.36</slf4j.version>
+
+        <junit-jupiter.version>5.8.2</junit-jupiter.version>
+
+        <javadoc-docent-maven-plugin.version>1.8.2</javadoc-docent-maven-plugin.version>
+        <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
+        <maven-install-plugin.version>2.5.2</maven-install-plugin.version>
+        <maven-jar-plugin.version>3.2.2</maven-jar-plugin.version>
+        <maven-javadoc-plugin.version>3.6.2</maven-javadoc-plugin.version>
+        <maven-resources-plugin.version>3.2.0</maven-resources-plugin.version>
+        <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
+        <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
+        <maven-gpg-plugin.version>3.1.0</maven-gpg-plugin.version>
+        <central-publishing-maven-plugin.version>0.5.0</central-publishing-maven-plugin.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.junit</groupId>
+                <artifactId>junit-bom</artifactId>
+                <version>${junit-jupiter.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.yookue.forkextension.apache</groupId>
+            <artifactId>commons-beanutils2</artifactId>
+            <version>${commons-beanutils2.version}</version>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>${commons-codec.version}</version>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-collections4</artifactId>
+            <version>${commons-collections4.version}</version>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commons-io.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons-lang3.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-text</artifactId>
+            <version>${commons-text.version}</version>
+            <optional>true</optional>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.commons</groupId>
+                    <artifactId>commons-lang3</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>javax.persistence</groupId>
+            <artifactId>javax.persistence-api</artifactId>
+            <version>${javax-persistence.version}</version>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>${jsoup.version}</version>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>com.github.jsqlparser</groupId>
+            <artifactId>jsqlparser</artifactId>
+            <version>${jsqlparser.version}</version>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.findbugs</groupId>
+            <artifactId>jsr305</artifactId>
+            <version>${jsr305.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>com.yookue.forkextension.pinyin4j</groupId>
+            <artifactId>pinyin4j</artifactId>
+            <version>${pinyin4j.version}</version>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+
+        <!-- test dependencies -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>${slf4j.version}</version>
+            <scope>test</scope>
+            <optional>true</optional>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-install-plugin</artifactId>
+                <version>${maven-install-plugin.version}</version>
+                <configuration>
+                    <createChecksum>true</createChecksum>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>${maven-jar-plugin.version}</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                            <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                        </manifest>
+                        <manifestEntries>
+                            <GroupId>${project.groupId}</GroupId>
+                            <ArtifactId>${project.artifactId}</ArtifactId>
+                            <Version>${project.version}</Version>
+                            <Url>${project.url}</Url>
+                            <Organization-Name>${project.organization.name}</Organization-Name>
+                            <Organization-Url>${project.organization.url}</Organization-Url>
+                            <Build-Time>${maven.build.timestamp}</Build-Time>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>${maven-javadoc-plugin.version}</version>
+                <configuration>
+                    <detectLinks>false</detectLinks>
+                    <detectOfflineLinks>false</detectOfflineLinks>
+                    <doclint>none</doclint>
+                    <locale>en_US</locale>
+                    <notimestamp>true</notimestamp>
+                    <quiet>true</quiet>
+                    <skip>false</skip>
+                    <archive>
+                        <manifest>
+                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                            <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                        </manifest>
+                    </archive>
+                    <links>
+                        <link>https://commons.apache.org/proper/commons-beanutils/apidocs/</link>
+                        <link>https://commons.apache.org/proper/commons-codec/apidocs/</link>
+                        <link>https://commons.apache.org/proper/commons-collections/apidocs/</link>
+                        <link>https://commons.apache.org/proper/commons-io/apidocs/</link>
+                        <link>https://commons.apache.org/proper/commons-lang/apidocs/</link>
+                        <link>https://commons.apache.org/proper/commons-text/javadocs/api-release/</link>
+                        <link>https://javadoc.io/doc/com.google.code.findbugs/jsr305/latest/</link>
+                    </links>
+                    <taglets>
+                        <taglet>
+                            <tagletClass>com.yookue.mavenplugin.javadocdocent.taglet.ReferenceTaglet</tagletClass>
+                        </taglet>
+                        <taglet>
+                            <tagletClass>com.yookue.mavenplugin.javadocdocent.taglet.WarningTaglet</tagletClass>
+                        </taglet>
+                    </taglets>
+                    <tagletArtifact>
+                        <groupId>com.yookue.mavenplugin</groupId>
+                        <artifactId>javadoc-docent-maven-plugin</artifactId>
+                        <version>${javadoc-docent-maven-plugin.version}</version>
+                    </tagletArtifact>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>javadoc</goal>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>${maven-resources-plugin.version}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>${maven-source-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven-surefire-plugin.version}</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.apache.maven.surefire</groupId>
+                        <artifactId>surefire-junit47</artifactId>
+                        <version>${maven-surefire-plugin.version}</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <excludes>
+                        <exclude>**/Abstract*.java</exclude>
+                    </excludes>
+                    <forkMode>always</forkMode>
+                    <useFile>false</useFile>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>${maven-gpg-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.sonatype.central</groupId>
+                <artifactId>central-publishing-maven-plugin</artifactId>
+                <version>${central-publishing-maven-plugin.version}</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <deploymentName>${project.artifactId}</deploymentName>
+                    <autoPublish>true</autoPublish>
+                    <checksums>required</checksums>
+                    <publishingServerId>central</publishingServerId>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <scm>
+        <url>https://github.com/yookue/plexus-javase-util</url>
+        <connection>scm:git:https://github.com/yookue/plexus-javase-util.git</connection>
+        <developerConnection>scm:git:https://github.com/yookue/plexus-javase-util.git</developerConnection>
+    </scm>
+
+    <issueManagement>
+        <system>Github</system>
+        <url>https://github.com/yookue/plexus-javase-util/issues</url>
+    </issueManagement>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Yookue Ltd</name>
+        </developer>
+        <developer>
+            <id>davidhsing</id>
+            <name>David Hsing</name>
+            <email>davidhsing@163.com</email>
+            <properties>
+                <realName>Xin Binghong</realName>
+            </properties>
+            <roles>
+                <role>developer</role>
+            </roles>
+            <organization>Yookue Ltd</organization>
+            <organizationUrl>https://yookue.com</organizationUrl>
+            <timezone>China/Beijing</timezone>
+        </developer>
+    </developers>
+</project>
