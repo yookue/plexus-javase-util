@@ -19,8 +19,8 @@ package com.yookue.commonplexus.javaseutil.util;
 
 import java.nio.charset.Charset;
 import java.util.Collection;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import org.apache.commons.io.Charsets;
 import org.apache.commons.lang3.StringUtils;
 

@@ -21,7 +21,7 @@ import java.lang.reflect.Field;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import javax.annotation.Nullable;
+import jakarta.annotation.Nullable;
 import javax.persistence.Column;
 import javax.persistence.Table;
 import javax.persistence.Temporal;

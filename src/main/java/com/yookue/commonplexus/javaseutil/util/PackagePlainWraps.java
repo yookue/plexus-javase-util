@@ -18,7 +18,7 @@ package com.yookue.commonplexus.javaseutil.util;
 
 
 import java.util.Collection;
-import javax.annotation.Nullable;
+import jakarta.annotation.Nullable;
 import org.apache.commons.lang3.StringUtils;
 
 

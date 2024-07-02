@@ -26,7 +26,7 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 import java.util.stream.Stream;
-import javax.annotation.Nonnull;
+import jakarta.annotation.Nonnull;
 import org.apache.commons.beanutils2.BeanIntrospector;
 import org.apache.commons.beanutils2.IntrospectionContext;
 import org.apache.commons.lang3.ArrayUtils;

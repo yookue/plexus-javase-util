@@ -2,7 +2,7 @@ package com.yookue.commonplexus.javaseutil.xml;
 
 
 import java.io.ByteArrayInputStream;
-import javax.annotation.Nullable;
+import jakarta.annotation.Nullable;
 import org.apache.commons.lang3.ArrayUtils;
 import org.xml.sax.EntityResolver;
 import org.xml.sax.InputSource;

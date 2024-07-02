@@ -18,7 +18,7 @@ package com.yookue.commonplexus.javaseutil.exception;
 
 
 import java.nio.file.FileSystemException;
-import javax.annotation.Nullable;
+import jakarta.annotation.Nullable;
 
 
 /**

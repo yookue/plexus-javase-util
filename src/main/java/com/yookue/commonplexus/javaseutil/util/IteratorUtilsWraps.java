@@ -19,7 +19,7 @@ package com.yookue.commonplexus.javaseutil.util;
 
 import java.util.Iterator;
 import java.util.List;
-import javax.annotation.Nullable;
+import jakarta.annotation.Nullable;
 import org.apache.commons.collections4.IteratorUtils;
 import org.apache.commons.lang3.ObjectUtils;
 

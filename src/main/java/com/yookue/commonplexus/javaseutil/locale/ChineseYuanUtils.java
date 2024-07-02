@@ -19,8 +19,8 @@ package com.yookue.commonplexus.javaseutil.locale;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.RegExUtils;
 import org.apache.commons.lang3.StringUtils;

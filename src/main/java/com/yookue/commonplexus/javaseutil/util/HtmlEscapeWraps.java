@@ -17,9 +17,9 @@
 package com.yookue.commonplexus.javaseutil.util;
 
 
-import javax.annotation.Nonnull;
 import javax.swing.text.html.HTML.Tag;
 import com.yookue.commonplexus.javaseutil.structure.HtmlTagStruct;
+import jakarta.annotation.Nonnull;
 
 
 /**
@@ -28,7 +28,7 @@ import com.yookue.commonplexus.javaseutil.structure.HtmlTagStruct;
  * @author David Hsing
  * @see org.apache.commons.text.StringEscapeUtils
  * @see "org.springframework.web.util.HtmlUtils"
- * @see "com.sun.tools.doclets.formats.html.markup.HtmlTree"
+ * @see "jdk.javadoc.internal.doclets.formats.html.markup.HtmlTree"
  */
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})
 public abstract class HtmlEscapeWraps {

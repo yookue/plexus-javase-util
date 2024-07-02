@@ -18,7 +18,7 @@ package com.yookue.commonplexus.javaseutil.structure;
 
 
 import java.util.List;
-import javax.annotation.Nullable;
+import jakarta.annotation.Nullable;
 import javax.swing.text.html.HTML;
 
 

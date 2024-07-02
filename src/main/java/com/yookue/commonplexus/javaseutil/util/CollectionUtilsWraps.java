@@ -19,7 +19,7 @@ package com.yookue.commonplexus.javaseutil.util;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import javax.annotation.Nullable;
+import jakarta.annotation.Nullable;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.IterableUtils;
 import org.apache.commons.lang3.ArrayUtils;

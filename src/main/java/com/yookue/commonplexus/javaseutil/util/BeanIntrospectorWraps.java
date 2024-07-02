@@ -19,7 +19,7 @@ package com.yookue.commonplexus.javaseutil.util;
 
 import java.util.List;
 import java.util.Objects;
-import javax.annotation.Nullable;
+import jakarta.annotation.Nullable;
 import org.apache.commons.beanutils2.BeanIntrospector;
 import org.apache.commons.beanutils2.BeanUtilsBean;
 import org.apache.commons.beanutils2.FluentPropertyBeanIntrospector;

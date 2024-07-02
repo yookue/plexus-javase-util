@@ -33,7 +33,7 @@ import java.nio.channels.ReadableByteChannel;
 import java.nio.charset.Charset;
 import java.util.Collection;
 import java.util.List;
-import javax.annotation.Nullable;
+import jakarta.annotation.Nullable;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.function.IOConsumer;
 import org.apache.commons.lang3.ArrayUtils;

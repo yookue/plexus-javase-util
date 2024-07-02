@@ -18,7 +18,7 @@ package com.yookue.commonplexus.javaseutil.util;
 
 
 import java.sql.Date;
-import javax.annotation.Nullable;
+import jakarta.annotation.Nullable;
 
 
 /**

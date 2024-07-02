@@ -22,7 +22,7 @@ import java.math.BigInteger;
 import java.math.RoundingMode;
 import java.util.Arrays;
 import java.util.function.Consumer;
-import javax.annotation.Nullable;
+import jakarta.annotation.Nullable;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;

@@ -17,7 +17,7 @@
 package com.yookue.commonplexus.javaseutil.structure;
 
 
-import javax.annotation.Nonnull;
+import jakarta.annotation.Nonnull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

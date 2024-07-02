@@ -23,7 +23,7 @@ import java.util.Set;
 import java.util.StringTokenizer;
 import java.util.function.BiPredicate;
 import java.util.function.Predicate;
-import javax.annotation.Nullable;
+import jakarta.annotation.Nullable;
 import org.apache.commons.collections4.EnumerationUtils;
 import org.apache.commons.collections4.IteratorUtils;
 import org.apache.commons.collections4.iterators.EnumerationIterator;

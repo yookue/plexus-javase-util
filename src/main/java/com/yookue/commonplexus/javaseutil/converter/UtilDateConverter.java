@@ -18,8 +18,8 @@ package com.yookue.commonplexus.javaseutil.converter;
 
 
 import java.util.Date;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import org.apache.commons.beanutils2.converters.DateTimeConverter;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.ClassUtils;

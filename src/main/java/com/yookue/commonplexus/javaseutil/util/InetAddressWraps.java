@@ -26,7 +26,7 @@ import java.util.Enumeration;
 import java.util.List;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-import javax.annotation.Nullable;
+import jakarta.annotation.Nullable;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import com.yookue.commonplexus.javaseutil.constant.CharVariantConst;

@@ -19,7 +19,7 @@ package com.yookue.commonplexus.javaseutil.util;
 
 import java.net.InetSocketAddress;
 import java.net.Proxy;
-import javax.annotation.Nullable;
+import jakarta.annotation.Nullable;
 import com.yookue.commonplexus.javaseutil.enumeration.InetProxyType;
 
 

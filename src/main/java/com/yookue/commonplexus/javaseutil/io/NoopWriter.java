@@ -18,7 +18,7 @@ package com.yookue.commonplexus.javaseutil.io;
 
 
 import java.io.Writer;
-import javax.annotation.Nullable;
+import jakarta.annotation.Nullable;
 
 
 /**

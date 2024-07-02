@@ -20,7 +20,7 @@ package com.yookue.commonplexus.javaseutil.util;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
-import javax.annotation.Nullable;
+import jakarta.annotation.Nullable;
 import org.apache.commons.lang3.LocaleUtils;
 import org.apache.commons.lang3.StringUtils;
 

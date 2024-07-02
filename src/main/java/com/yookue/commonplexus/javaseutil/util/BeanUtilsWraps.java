@@ -24,7 +24,7 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.function.BiFunction;
 import java.util.function.BiPredicate;
-import javax.annotation.Nullable;
+import jakarta.annotation.Nullable;
 import org.apache.commons.beanutils2.BeanMap;
 import org.apache.commons.beanutils2.BeanUtils;
 import org.apache.commons.collections4.MapUtils;

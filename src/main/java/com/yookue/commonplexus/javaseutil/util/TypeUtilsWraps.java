@@ -19,7 +19,7 @@ package com.yookue.commonplexus.javaseutil.util;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
-import javax.annotation.Nullable;
+import jakarta.annotation.Nullable;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.ClassUtils;
 import org.apache.commons.lang3.ObjectUtils;

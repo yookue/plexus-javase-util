@@ -20,7 +20,7 @@ package com.yookue.commonplexus.javaseutil.util;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
-import javax.annotation.Nullable;
+import jakarta.annotation.Nullable;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.SerializationUtils;
 

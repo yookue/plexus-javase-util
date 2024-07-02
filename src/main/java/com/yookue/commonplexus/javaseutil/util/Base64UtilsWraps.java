@@ -25,7 +25,7 @@ import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import javax.annotation.Nullable;
+import jakarta.annotation.Nullable;
 import javax.imageio.ImageIO;
 import javax.imageio.stream.ImageOutputStream;
 import org.apache.commons.codec.Charsets;

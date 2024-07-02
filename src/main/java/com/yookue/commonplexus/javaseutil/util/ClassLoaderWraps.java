@@ -19,7 +19,7 @@ package com.yookue.commonplexus.javaseutil.util;
 
 import java.util.Arrays;
 import java.util.Vector;
-import javax.annotation.Nullable;
+import jakarta.annotation.Nullable;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.ClassLoaderUtils;

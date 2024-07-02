@@ -18,7 +18,7 @@ package com.yookue.commonplexus.javaseutil.identity;
 
 
 import java.util.UUID;
-import javax.annotation.Nonnull;
+import jakarta.annotation.Nonnull;
 import org.apache.commons.lang3.StringUtils;
 import com.yookue.commonplexus.javaseutil.constant.CharVariantConst;
 

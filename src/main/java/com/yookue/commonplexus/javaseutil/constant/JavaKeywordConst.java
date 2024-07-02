@@ -79,4 +79,7 @@ public abstract class JavaKeywordConst {
     public static final String NULL = "null";    // $NON-NLS-1$
     public static final String TRUE = "true";    // $NON-NLS-1$
     public static final String FALSE = "false";    // $NON-NLS-1$
+    public static final String RECORD = "record";    // $NON-NLS-1$
+    public static final String SEALED = "sealed";    // $NON-NLS-1$
+    public static final String YIELD = "yield";    // $NON-NLS-1$
 }

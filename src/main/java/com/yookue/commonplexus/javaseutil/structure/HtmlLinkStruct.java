@@ -17,7 +17,7 @@
 package com.yookue.commonplexus.javaseutil.structure;
 
 
-import javax.annotation.Nullable;
+import jakarta.annotation.Nullable;
 import javax.swing.text.html.HTML;
 import lombok.Getter;
 

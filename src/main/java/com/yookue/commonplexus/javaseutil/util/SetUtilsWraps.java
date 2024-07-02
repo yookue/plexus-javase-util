@@ -20,7 +20,7 @@ package com.yookue.commonplexus.javaseutil.util;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
-import javax.annotation.Nullable;
+import jakarta.annotation.Nullable;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.IterableUtils;
 import org.apache.commons.collections4.SetUtils;
