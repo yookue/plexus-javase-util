@@ -21,10 +21,8 @@ package com.yookue.commonplexus.javaseutil.constant;
  * Constants for java keywords
  *
  * @author David Hsing
- * @see javax.lang.model.SourceVersion#keywords
- * @see "com.sun.codemodel.internal.ClassType"
  */
-@SuppressWarnings({"unused", "JavadocReference"})
+@SuppressWarnings("unused")
 public abstract class JavaKeywordConst {
     public static final String ABSTRACT = "abstract";    // $NON-NLS-1$
     public static final String ASSERT = "assert";    // $NON-NLS-1$

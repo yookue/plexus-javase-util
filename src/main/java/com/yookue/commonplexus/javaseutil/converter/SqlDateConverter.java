@@ -50,13 +50,12 @@ public class SqlDateConverter extends DateTimeConverter<Date> {
         if (!ClassUtils.isAssignable(type, getDefaultType())) {
             throw super.conversionException(type, value);
         }
-        if (!(value instanceof String) || ArrayUtils.isEmpty(super.getPatterns())) {
+        if (!(value instanceof String instance) || ArrayUtils.isEmpty(super.getPatterns())) {
             return null;
         }
-        String dateTime = (String) value;
         for (String pattern : super.getPatterns()) {
-            if (UtilDateWraps.matchFormat(dateTime, pattern)) {
-                return type.cast(SqlDateWraps.castFromUtilDate(UtilDateWraps.parseDateTime(dateTime, pattern)));
+            if (UtilDateWraps.matchFormat(instance, pattern)) {
+                return type.cast(SqlDateWraps.castFromUtilDate(UtilDateWraps.parseDateTime(instance, pattern)));
             }
         }
         return null;

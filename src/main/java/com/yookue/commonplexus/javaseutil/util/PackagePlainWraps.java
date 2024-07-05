@@ -30,7 +30,14 @@ import org.apache.commons.lang3.StringUtils;
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})
 public abstract class PackagePlainWraps {
     public static boolean existsPackage(@Nullable CharSequence name) {
-        return StringUtils.isNotBlank(name) && Package.getPackage(CharSequenceWraps.toStringIgnoreNull(name)) != null;
+        if (StringUtils.isBlank(name)) {
+            return false;
+        }
+        ClassLoader loader = ClassLoaderWraps.getTreadContextClassLoader();
+        if (loader == null) {
+            return false;
+        }
+        return StringUtils.isNotBlank(name) && loader.getDefinedPackage(CharSequenceWraps.toStringIgnoreNull(name)) != null;
     }
 
     public static boolean existsAllPackages(@Nullable CharSequence... packages) {

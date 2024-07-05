@@ -35,7 +35,7 @@ import lombok.extern.slf4j.Slf4j;
 
 
 /**
- * Allows {@link org.apache.commons.beanutils.BeanUtils#copyProperties(Object, Object)} to copy properties across beans whose
+ * Allows "org.apache.commons.beanutils.BeanUtils#copyProperties" to copy properties across beans whose
  * properties have been made <b>fluent</b> through <a href="https://projectlombok.org/">Lombok</a>
  * {@link lombok.experimental.Accessors}, {@link lombok.Setter} and {@link lombok.Getter} annotations
  * <p>
@@ -48,7 +48,7 @@ import lombok.extern.slf4j.Slf4j;
  * @reference "https://stackoverflow.com/questions/22743765/beanutils-not-works-for-chain-setter"
  */
 @Slf4j
-@SuppressWarnings({"unused", "JavadocDeclaration", "JavadocLinkAsPlainText", "JavadocReference"})
+@SuppressWarnings({"unused", "JavadocDeclaration", "JavadocLinkAsPlainText"})
 public class LombokPropertyBeanIntrospector implements BeanIntrospector {
     /**
      * Performs introspection

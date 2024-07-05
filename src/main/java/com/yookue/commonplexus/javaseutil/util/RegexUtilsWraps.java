@@ -42,7 +42,7 @@ import com.yookue.commonplexus.javaseutil.constant.SymbolVariantConst;
  * @reference "https://www3.ntu.edu.sg/home/ehchua/programming/howto/Regexe.html"
  * @reference "https://regexr.com/"
  * @reference "http://www.regexlab.com/zh/regref.htm"
- * @see org.apache.commons.lang3.RegExUtils
+ * @see "org.apache.commons.lang3.RegExUtils"
  */
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue", "JavadocDeclaration", "JavadocLinkAsPlainText"})
 public abstract class RegexUtilsWraps {
@@ -399,7 +399,7 @@ public abstract class RegexUtilsWraps {
      * Returns a list that containing the result that matched any of the patterns to the input sequence
      *
      * @param sequence the input sequence
-     * @param flags pattern match flags, a bit mask such as {@link java.util.regex.Pattern.CASE_INSENSITIVE}
+     * @param flags pattern match flags, a bit mask such as {@code Pattern.CASE_INSENSITIVE}
      * @param regexes the regex patterns
      *
      * @return a list that containing the result that matched any of the patterns to the input sequence

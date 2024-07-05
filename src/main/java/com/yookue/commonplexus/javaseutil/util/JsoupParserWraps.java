@@ -44,22 +44,15 @@ public abstract class JsoupParserWraps {
         if (type == null) {
             return null;
         }
-        switch (type) {
-            case SIMPLE_TEXT:
-                return Safelist.simpleText();
-            case BASIC:
-                return Safelist.basic();
-            case BASIC_WITH_IMAGE:
-                return Safelist.basicWithImages();
-            case RELAXED:
-                return Safelist.relaxed();
-            case RELAXED_WITH_FLASH:
-                return relaxedFlashSafelist();
-            case RELAXED_WITH_HTML5:
-                return relaxedHtml5Safelist();
-            default:
-                return Safelist.none();
-        }
+        return switch (type) {
+            case SIMPLE_TEXT -> Safelist.simpleText();
+            case BASIC -> Safelist.basic();
+            case BASIC_WITH_IMAGE -> Safelist.basicWithImages();
+            case RELAXED -> Safelist.relaxed();
+            case RELAXED_WITH_FLASH -> relaxedFlashSafelist();
+            case RELAXED_WITH_HTML5 -> relaxedHtml5Safelist();
+            default -> Safelist.none();
+        };
     }
 
     /**

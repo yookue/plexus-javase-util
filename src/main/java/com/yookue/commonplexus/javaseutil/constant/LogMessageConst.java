@@ -21,8 +21,8 @@ package com.yookue.commonplexus.javaseutil.constant;
  * Constants for logging messages
  *
  * @author David Hsing
- * @see javax.annotation.PostConstruct
- * @see javax.annotation.PreDestroy
+ * @see jakarta.annotation.PostConstruct
+ * @see jakarta.annotation.PreDestroy
  * @see "org.springframework.core.log.LogMessage"
  * @see "org.springframework.beans.factory.InitializingBean"
  * @see "org.springframework.beans.factory.DisposableBean"

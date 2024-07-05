@@ -71,23 +71,15 @@ public abstract class TemporalUnitWraps {
         if (unit == null) {
             return null;
         }
-        switch (unit) {
-            case NANOS:
-                return TimeUnit.NANOSECONDS;
-            case MICROS:
-                return TimeUnit.MICROSECONDS;
-            case MILLIS:
-                return TimeUnit.MILLISECONDS;
-            case SECONDS:
-                return TimeUnit.SECONDS;
-            case MINUTES:
-                return TimeUnit.MINUTES;
-            case HOURS:
-                return TimeUnit.HOURS;
-            case DAYS:
-                return TimeUnit.DAYS;
-            default:
-                return null;
-        }
+        return switch (unit) {
+            case NANOS -> TimeUnit.NANOSECONDS;
+            case MICROS -> TimeUnit.MICROSECONDS;
+            case MILLIS -> TimeUnit.MILLISECONDS;
+            case SECONDS -> TimeUnit.SECONDS;
+            case MINUTES -> TimeUnit.MINUTES;
+            case HOURS -> TimeUnit.HOURS;
+            case DAYS -> TimeUnit.DAYS;
+            default -> null;
+        };
     }
 }

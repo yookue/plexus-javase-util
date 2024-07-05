@@ -50,13 +50,12 @@ public class LocalDateTimeConverter extends AbstractConverter<LocalDateTime> {
         if (!ClassUtils.isAssignable(type, getDefaultType())) {
             throw super.conversionException(type, value);
         }
-        if (!(value instanceof String) || CollectionPlainWraps.isEmpty(patterns)) {
+        if (!(value instanceof String instance) || CollectionPlainWraps.isEmpty(patterns)) {
             return null;
         }
-        String date = (String) value;
         for (String pattern : patterns) {
-            if (LocalDateWraps.matchDateTimeFormat(date, pattern)) {
-                return type.cast(LocalDateWraps.parseDateTime(date, pattern));
+            if (LocalDateWraps.matchDateTimeFormat(instance, pattern)) {
+                return type.cast(LocalDateWraps.parseDateTime(instance, pattern));
             }
         }
         return null;

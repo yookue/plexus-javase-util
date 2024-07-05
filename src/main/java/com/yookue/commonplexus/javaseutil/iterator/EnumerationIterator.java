@@ -19,8 +19,6 @@ package com.yookue.commonplexus.javaseutil.iterator;
 
 import java.util.Enumeration;
 import java.util.Iterator;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 
 
 /**
@@ -29,12 +27,8 @@ import lombok.RequiredArgsConstructor;
  * @see org.apache.commons.collections4.iterators.EnumerationIterator
  * @see "org.apache.ibatis.ognl.EnumerationIterator"
  */
-@RequiredArgsConstructor
-@Getter
 @SuppressWarnings("unused")
-public class EnumerationIterator<E> implements Iterator<E> {
-    private final Enumeration<? extends E> enumeration;
-
+public record EnumerationIterator<E>(Enumeration<? extends E> enumeration) implements Iterator<E> {
     public boolean hasNext() {
         return enumeration.hasMoreElements();
     }

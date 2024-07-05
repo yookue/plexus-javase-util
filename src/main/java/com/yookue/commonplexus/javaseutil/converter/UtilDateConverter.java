@@ -50,13 +50,12 @@ public class UtilDateConverter extends DateTimeConverter<Date> {
         if (!ClassUtils.isAssignable(type, getDefaultType())) {
             throw super.conversionException(type, value);
         }
-        if (!(value instanceof String) || ArrayUtils.isEmpty(super.getPatterns())) {
+        if (!(value instanceof String instance) || ArrayUtils.isEmpty(super.getPatterns())) {
             return null;
         }
-        String dateTime = (String) value;
         for (String pattern : super.getPatterns()) {
-            if (UtilDateWraps.matchFormat(dateTime, pattern)) {
-                return type.cast(UtilDateWraps.parseDateTime(dateTime, pattern));
+            if (UtilDateWraps.matchFormat(instance, pattern)) {
+                return type.cast(UtilDateWraps.parseDateTime(instance, pattern));
             }
         }
         return null;

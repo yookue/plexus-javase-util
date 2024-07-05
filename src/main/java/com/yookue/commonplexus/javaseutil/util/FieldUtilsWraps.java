@@ -421,7 +421,7 @@ public abstract class FieldUtilsWraps {
         if (field == null) {
             return;
         }
-        if (!field.isAccessible() && (!Modifier.isPublic(field.getModifiers()) || !Modifier.isPublic(field.getDeclaringClass().getModifiers()) || Modifier.isFinal(field.getModifiers()))) {
+        if (!field.canAccess(null) && (!Modifier.isPublic(field.getModifiers()) || !Modifier.isPublic(field.getDeclaringClass().getModifiers()) || Modifier.isFinal(field.getModifiers()))) {
             field.setAccessible(true);
         }
     }

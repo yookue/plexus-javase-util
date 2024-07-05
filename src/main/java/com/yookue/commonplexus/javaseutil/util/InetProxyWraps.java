@@ -49,13 +49,9 @@ public abstract class InetProxyWraps {
         if (address == null) {
             return null;
         }
-        switch (type) {
-            case HTTP:
-                return new Proxy(Proxy.Type.HTTP, address);
-            case SOCKS:
-                return new Proxy(Proxy.Type.SOCKS, address);
-            default:
-                return null;
-        }
+        return switch (type) {
+            case HTTP -> new Proxy(Proxy.Type.HTTP, address);
+            case SOCKS -> new Proxy(Proxy.Type.SOCKS, address);
+        };
     }
 }

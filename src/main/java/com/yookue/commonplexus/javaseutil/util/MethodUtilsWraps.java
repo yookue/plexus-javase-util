@@ -688,7 +688,7 @@ public abstract class MethodUtilsWraps {
         if (method == null) {
             return;
         }
-        if (!method.isAccessible() && (!Modifier.isPublic(method.getModifiers()) || !Modifier.isPublic(method.getDeclaringClass().getModifiers()))) {
+        if (!method.canAccess(null) && (!Modifier.isPublic(method.getModifiers()) || !Modifier.isPublic(method.getDeclaringClass().getModifiers()))) {
             method.setAccessible(true);
         }
     }

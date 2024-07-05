@@ -94,8 +94,9 @@ public abstract class OptionalPlainWraps {
         }
     }
 
+    @SuppressWarnings("OptionalAssignedToNull")
     public static void ifNotPresent(@Nullable Optional<?> source, @Nullable Runnable action) {
-        if ((source == null || !source.isPresent()) && action != null) {
+        if ((source == null || source.isEmpty()) && action != null) {
             action.run();
         }
     }
@@ -111,8 +112,9 @@ public abstract class OptionalPlainWraps {
      * @see "org.springframework.util.ObjectUtils#unwrapOptional"
      */
     @Nullable
+    @SuppressWarnings("OptionalAssignedToNull")
     public static Object unwrap(@Nullable Optional<?> source) {
-        Object result = (source == null || !source.isPresent()) ? null : source.get();
+        Object result = (source == null || source.isEmpty()) ? null : source.get();
         return (result instanceof Optional) ? unwrap((Optional<?>) result) : result;
     }
 
