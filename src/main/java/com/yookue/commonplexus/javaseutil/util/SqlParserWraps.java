@@ -21,6 +21,7 @@ import java.io.InputStream;
 import java.io.Reader;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.util.Objects;
 import java.util.function.Consumer;
 import jakarta.annotation.Nullable;
 import org.apache.commons.lang3.StringUtils;
@@ -90,7 +91,7 @@ public abstract class SqlParserWraps {
             return null;
         }
         try {
-            return CCJSqlParserUtil.parse(input, StringUtils.defaultString(encoding, StandardCharsets.UTF_8.name()));
+            return CCJSqlParserUtil.parse(input, Objects.toString(encoding, StandardCharsets.UTF_8.name()));
         } catch (Exception ignored) {
         }
         return null;

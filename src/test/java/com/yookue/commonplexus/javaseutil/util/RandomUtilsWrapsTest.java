@@ -14,22 +14,29 @@
  * limitations under the License.
  */
 
-package com.yookue.commonplexus.javaseutil.constant;
+package com.yookue.commonplexus.javaseutil.util;
 
 
-import org.apache.commons.lang3.Range;
-import org.apache.commons.lang3.math.NumberUtils;
+import org.junit.jupiter.api.Test;
+import lombok.extern.slf4j.Slf4j;
 
 
 /**
- * Constants for range variants
+ * Tests for {@link com.yookue.commonplexus.javaseutil.util.RandomUtilsWraps}
  *
  * @author David Hsing
- * @see org.apache.commons.lang3.Range
  */
-@SuppressWarnings("unused")
-public abstract class RangeVariantConst {
-    public static final Range<Long> LONG_INTEGER = Range.of(NumberUtils.LONG_INT_MIN_VALUE, NumberUtils.LONG_INT_MAX_VALUE);
-    public static final Range<Character> LOWER_ALPHABETIC = Range.of('a', 'z');
-    public static final Range<Character> UPPER_ALPHABETIC = Range.of('A', 'Z');
+@Slf4j
+class RandomUtilsWrapsTest {
+    @Test
+    void randomUpperChar() {
+        String methodName = StackTraceWraps.getExecutingMethodName();
+        log.info("{}: {}", methodName, String.valueOf(RandomUtilsWraps.randomUpperChar()));
+    }
+
+    @Test
+    void randomLowerChar() {
+        String methodName = StackTraceWraps.getExecutingMethodName();
+        log.info("{}: {}", methodName, String.valueOf(RandomUtilsWraps.randomLowerChar()));
+    }
 }

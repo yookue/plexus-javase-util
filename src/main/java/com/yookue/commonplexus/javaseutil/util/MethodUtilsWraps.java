@@ -209,23 +209,6 @@ public abstract class MethodUtilsWraps {
     }
 
     @Nullable
-    public static Method getNestedMethodMatching(@Nullable Class<?> clazz, @Nullable String methodName) {
-        return getNestedMethodMatching(clazz, methodName, ArrayUtils.EMPTY_CLASS_ARRAY);
-    }
-
-    @Nullable
-    public static Method getNestedMethodMatching(@Nullable Class<?> clazz, @Nullable String methodName, @Nullable Class<?>... paramTypes) {
-        if (clazz == null || StringUtils.isBlank(methodName)) {
-            return null;
-        }
-        try {
-            return MethodUtils.getMatchingMethod(clazz, methodName, paramTypes);
-        } catch (Exception ignored) {
-        }
-        return null;
-    }
-
-    @Nullable
     public static String[] getNestedMethodNames(@Nullable Class<?> clazz) {
         return getNestedMethodNames(clazz, null);
     }
@@ -693,7 +676,7 @@ public abstract class MethodUtilsWraps {
         if (ObjectUtils.anyNull(superclass, subclass) || superclass == subclass || StringUtils.isBlank(methodName)) {
             return false;
         }
-        Method superMethod = getNestedMethodMatching(superclass, methodName, paramTypes), subMethod = getNestedMethodMatching(subclass, methodName, paramTypes);
+        Method superMethod = findMethod(superclass, methodName, paramTypes), subMethod = findMethod(subclass, methodName, paramTypes);
         return ObjectUtils.allNotNull(superclass, subclass) && superMethod.getDeclaringClass() != subMethod.getDeclaringClass();
     }
 

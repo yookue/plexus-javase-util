@@ -19,15 +19,16 @@ package com.yookue.commonplexus.javaseutil.util;
 
 import jakarta.annotation.Nullable;
 import org.apache.commons.lang3.RandomStringUtils;
-import org.apache.commons.lang3.RandomUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.rng.UniformRandomProvider;
+import org.apache.commons.rng.simple.RandomSource;
 
 
 /**
- * Utilities for {@link org.apache.commons.lang3.RandomUtils}
+ * Utilities for {@link org.apache.commons.rng.UniformRandomProvider}
  *
  * @author David Hsing
- * @see org.apache.commons.lang3.RandomUtils
+ * @see org.apache.commons.rng.UniformRandomProvider
  * @see org.apache.commons.lang3.RandomStringUtils
  */
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})
@@ -40,7 +41,8 @@ public abstract class RandomUtilsWraps {
         if (startInclusive > 'Z' || endInclusive < 'A' || startInclusive > endInclusive) {
             return 0;
         }
-        return (char) RandomUtils.nextInt(startInclusive, (int) endInclusive + 1);
+        UniformRandomProvider provider = RandomSource.XO_RO_SHI_RO_128_PP.create();
+        return (char) provider.nextInt(startInclusive, (int) endInclusive + 1);
     }
 
     public static char randomLowerChar() {
@@ -51,7 +53,8 @@ public abstract class RandomUtilsWraps {
         if (startInclusive > 'z' || endInclusive < 'a' || startInclusive > endInclusive) {
             return 0;
         }
-        return (char) RandomUtils.nextInt(startInclusive, (int) endInclusive + 1);
+        UniformRandomProvider provider = RandomSource.XO_RO_SHI_RO_128_PP.create();
+        return (char) provider.nextInt(startInclusive, (int) endInclusive + 1);
     }
 
     @Nullable

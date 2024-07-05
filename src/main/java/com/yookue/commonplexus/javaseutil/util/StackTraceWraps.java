@@ -17,11 +17,11 @@
 package com.yookue.commonplexus.javaseutil.util;
 
 
+import java.util.Objects;
 import jakarta.annotation.Nonnull;
 import jakarta.annotation.Nullable;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.Validate;
 import com.yookue.commonplexus.javaseutil.constant.CharVariantConst;
 
 
@@ -37,21 +37,21 @@ public abstract class StackTraceWraps {
     @Nonnull
     public static String getExecutingClassName() {
         StackTraceElement trace = ArrayUtils.get(Thread.currentThread().getStackTrace(), 2);
-        Validate.notNull(trace);
+        Objects.requireNonNull(trace);
         return trace.getClassName();
     }
 
     @Nonnull
     public static String getExecutingClassName(boolean shortName) {
         StackTraceElement trace = ArrayUtils.get(Thread.currentThread().getStackTrace(), 2);
-        Validate.notNull(trace);
+        Objects.requireNonNull(trace);
         return shortName ? StringUtils.substringAfterLast(trace.getClassName(), CharVariantConst.DOT) : trace.getClassName();
     }
 
     @Nonnull
     public static String getExecutingClassName(boolean shortName, boolean lineNumber) {
         StackTraceElement trace = ArrayUtils.get(Thread.currentThread().getStackTrace(), 2);
-        Validate.notNull(trace);
+        Objects.requireNonNull(trace);
         String className = shortName ? StringUtils.substringAfterLast(trace.getClassName(), CharVariantConst.DOT) : trace.getClassName();
         return lineNumber ? StringUtils.join(className, CharVariantConst.COLON, trace.getLineNumber()) : className;
     }
@@ -59,14 +59,14 @@ public abstract class StackTraceWraps {
     @Nonnull
     public static String getExecutingClassNameAndAppend(@Nullable String suffix) {
         StackTraceElement trace = ArrayUtils.get(Thread.currentThread().getStackTrace(), 2);
-        Validate.notNull(trace);
+        Objects.requireNonNull(trace);
         return StringUtils.join(trace.getClassName(), suffix);
     }
 
     @Nonnull
     public static String getExecutingClassNameAndAppend(boolean shortName, @Nullable String suffix) {
         StackTraceElement trace = ArrayUtils.get(Thread.currentThread().getStackTrace(), 2);
-        Validate.notNull(trace);
+        Objects.requireNonNull(trace);
         String className = shortName ? StringUtils.substringAfterLast(trace.getClassName(), CharVariantConst.DOT) : trace.getClassName();
         return StringUtils.join(className, suffix);
     }
@@ -74,14 +74,14 @@ public abstract class StackTraceWraps {
     @Nonnull
     public static String getExecutingClassNameAndPrepend(@Nullable String prefix) {
         StackTraceElement trace = ArrayUtils.get(Thread.currentThread().getStackTrace(), 2);
-        Validate.notNull(trace);
+        Objects.requireNonNull(trace);
         return StringUtils.join(prefix, trace.getClassName());
     }
 
     @Nonnull
     public static String getExecutingClassNameAndPrepend(boolean shortName, @Nullable String prefix) {
         StackTraceElement trace = ArrayUtils.get(Thread.currentThread().getStackTrace(), 2);
-        Validate.notNull(trace);
+        Objects.requireNonNull(trace);
         String className = shortName ? StringUtils.substringAfterLast(trace.getClassName(), CharVariantConst.DOT) : trace.getClassName();
         return StringUtils.join(prefix, className);
     }
@@ -89,14 +89,14 @@ public abstract class StackTraceWraps {
     @Nonnull
     public static String getExecutingClassMethodName() {
         StackTraceElement trace = ArrayUtils.get(Thread.currentThread().getStackTrace(), 2);
-        Validate.notNull(trace);
+        Objects.requireNonNull(trace);
         return StringUtils.join(trace.getClassName(), CharVariantConst.DOT, trace.getMethodName());
     }
 
     @Nonnull
     public static String getExecutingClassMethodName(boolean shortName) {
         StackTraceElement trace = ArrayUtils.get(Thread.currentThread().getStackTrace(), 2);
-        Validate.notNull(trace);
+        Objects.requireNonNull(trace);
         String className = shortName ? StringUtils.substringAfterLast(trace.getClassName(), CharVariantConst.DOT) : trace.getClassName();
         return StringUtils.join(className, CharVariantConst.DOT, trace.getMethodName());
     }
@@ -104,14 +104,14 @@ public abstract class StackTraceWraps {
     @Nonnull
     public static String getExecutingClassMethodNameAndAppend(@Nullable String suffix) {
         StackTraceElement trace = ArrayUtils.get(Thread.currentThread().getStackTrace(), 2);
-        Validate.notNull(trace);
+        Objects.requireNonNull(trace);
         return StringUtils.join(trace.getClassName(), CharVariantConst.DOT, trace.getMethodName(), suffix);
     }
 
     @Nonnull
     public static String getExecutingClassMethodNameAndAppend(boolean shortName, @Nullable String suffix) {
         StackTraceElement trace = ArrayUtils.get(Thread.currentThread().getStackTrace(), 2);
-        Validate.notNull(trace);
+        Objects.requireNonNull(trace);
         String className = shortName ? StringUtils.substringAfterLast(trace.getClassName(), CharVariantConst.DOT) : trace.getClassName();
         return StringUtils.join(className, CharVariantConst.DOT, trace.getMethodName(), suffix);
     }
@@ -119,14 +119,14 @@ public abstract class StackTraceWraps {
     @Nonnull
     public static String getExecutingClassMethodNameAndPrepend(@Nullable String prefix) {
         StackTraceElement trace = ArrayUtils.get(Thread.currentThread().getStackTrace(), 2);
-        Validate.notNull(trace);
+        Objects.requireNonNull(trace);
         return StringUtils.join(prefix, trace.getClassName(), CharVariantConst.DOT, trace.getMethodName());
     }
 
     @Nonnull
     public static String getExecutingClassMethodNameAndPrepend(boolean shortName, @Nullable String prefix) {
         StackTraceElement trace = ArrayUtils.get(Thread.currentThread().getStackTrace(), 2);
-        Validate.notNull(trace);
+        Objects.requireNonNull(trace);
         String className = shortName ? StringUtils.substringAfterLast(trace.getClassName(), CharVariantConst.DOT) : trace.getClassName();
         return StringUtils.join(prefix, className, CharVariantConst.DOT, trace.getMethodName());
     }
@@ -134,21 +134,21 @@ public abstract class StackTraceWraps {
     @Nonnull
     public static String getExecutingMethodName() {
         StackTraceElement trace = ArrayUtils.get(Thread.currentThread().getStackTrace(), 2);
-        Validate.notNull(trace);
+        Objects.requireNonNull(trace);
         return trace.getMethodName();
     }
 
     @Nullable
     public static String getExecutingFileName() {
         StackTraceElement trace = ArrayUtils.get(Thread.currentThread().getStackTrace(), 2);
-        Validate.notNull(trace);
+        Objects.requireNonNull(trace);
         return trace.getFileName();
     }
 
     @Nullable
     public static String getExecutingFileName(boolean lineNumber) {
         StackTraceElement trace = ArrayUtils.get(Thread.currentThread().getStackTrace(), 2);
-        Validate.notNull(trace);
+        Objects.requireNonNull(trace);
         return lineNumber ? StringUtils.join(trace.getFileName(), CharVariantConst.COLON, trace.getLineNumber()) : trace.getFileName();
     }
 

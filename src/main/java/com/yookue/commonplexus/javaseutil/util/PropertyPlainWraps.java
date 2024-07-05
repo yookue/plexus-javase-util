@@ -54,10 +54,7 @@ public abstract class PropertyPlainWraps {
 
     @Nonnull
     public static Properties newPropertiesWithin(@Nullable Object key1, @Nullable Object value1, @Nullable Object key2, @Nullable Object value2) {
-        Properties result = new Properties();
-        if (ObjectUtils.allNotNull(key1, value1)) {
-            result.put(key1, value1);
-        }
+        Properties result = newPropertiesWithin(key1, value1);
         if (ObjectUtils.allNotNull(key2, value2)) {
             result.put(key2, value2);
         }
@@ -66,13 +63,7 @@ public abstract class PropertyPlainWraps {
 
     @Nonnull
     public static Properties newPropertiesWithin(@Nullable Object key1, @Nullable Object value1, @Nullable Object key2, @Nullable Object value2, @Nullable Object key3, @Nullable Object value3) {
-        Properties result = new Properties();
-        if (ObjectUtils.allNotNull(key1, value1)) {
-            result.put(key1, value1);
-        }
-        if (ObjectUtils.allNotNull(key2, value2)) {
-            result.put(key2, value2);
-        }
+        Properties result = newPropertiesWithin(key1, value1, key2, value2);
         if (ObjectUtils.allNotNull(key3, value3)) {
             result.put(key3, value3);
         }

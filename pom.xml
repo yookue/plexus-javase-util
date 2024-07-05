@@ -22,7 +22,7 @@
 
     <groupId>com.yookue.commonplexus</groupId>
     <artifactId>plexus-javase-util</artifactId>
-    <version>1.1.0</version>
+    <version>1.1.1</version>
 
     <name>${project.artifactId}</name>
     <description>Plexus JavaSE Util</description>
@@ -52,6 +52,7 @@
         <commons-collections4.version>4.4</commons-collections4.version>
         <commons-io.version>2.16.1</commons-io.version>
         <commons-lang3.version>3.14.0</commons-lang3.version>
+        <commons-rng.version>1.5</commons-rng.version>
         <commons-text.version>1.12.0</commons-text.version>
         <lombok.version>1.18.32</lombok.version>
         <jakarta-annotation.version>2.1.1</jakarta-annotation.version>
@@ -63,7 +64,7 @@
 
         <junit-jupiter.version>5.10.2</junit-jupiter.version>
 
-        <javadoc-docent-maven-plugin.version>1.8.2</javadoc-docent-maven-plugin.version>
+        <javadoc-docent-maven-plugin.version>1.8.3</javadoc-docent-maven-plugin.version>
         <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
         <maven-install-plugin.version>3.1.2</maven-install-plugin.version>
         <maven-jar-plugin.version>3.4.2</maven-jar-plugin.version>
@@ -121,6 +122,12 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>${commons-lang3.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-rng-simple</artifactId>
+            <version>${commons-rng.version}</version>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
