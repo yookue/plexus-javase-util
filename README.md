@@ -37,7 +37,7 @@ Yookue plexus-javase-util is a package of utility classes for the Java SE's hier
 
 ## Requirement
 
-- jdk 1.8+
+- jdk 17+
 
 ## License
 
