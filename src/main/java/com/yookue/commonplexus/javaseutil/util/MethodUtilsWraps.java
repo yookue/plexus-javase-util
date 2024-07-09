@@ -516,14 +516,6 @@ public abstract class MethodUtilsWraps {
     }
 
     @Nullable
-    public static <T> T invokeStaticMethodAs(@Nullable Class<?> clazz, @Nullable String methodName, @Nullable Object[] args, @Nullable Class<T> expectedType) {
-        if (ObjectUtils.anyNull(clazz, expectedType) || StringUtils.isBlank(methodName)) {
-            return null;
-        }
-        return ObjectUtilsWraps.castAs(invokeStaticMethod(clazz, methodName, args), expectedType);
-    }
-
-    @Nullable
     public static Object invokeStaticMethod(@Nullable Class<?> clazz, @Nullable String methodName, @Nullable Object[] args, @Nullable Class<?>[] paramTypes) {
         if (clazz == null || StringUtils.isBlank(methodName)) {
             return null;
@@ -533,6 +525,14 @@ public abstract class MethodUtilsWraps {
         } catch (Exception ignored) {
         }
         return null;
+    }
+
+    @Nullable
+    public static <T> T invokeStaticMethodAs(@Nullable Class<?> clazz, @Nullable String methodName, @Nullable Object[] args, @Nullable Class<T> expectedType) {
+        if (ObjectUtils.anyNull(clazz, expectedType) || StringUtils.isBlank(methodName)) {
+            return null;
+        }
+        return ObjectUtilsWraps.castAs(invokeStaticMethod(clazz, methodName, args), expectedType);
     }
 
     @Nullable
