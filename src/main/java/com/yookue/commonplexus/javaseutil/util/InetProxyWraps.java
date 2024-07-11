@@ -19,6 +19,7 @@ package com.yookue.commonplexus.javaseutil.util;
 
 import java.net.InetSocketAddress;
 import java.net.Proxy;
+import java.net.ProxySelector;
 import jakarta.annotation.Nullable;
 import com.yookue.commonplexus.javaseutil.enumeration.InetProxyType;
 
@@ -53,5 +54,11 @@ public abstract class InetProxyWraps {
             case HTTP -> new Proxy(Proxy.Type.HTTP, address);
             case SOCKS -> new Proxy(Proxy.Type.SOCKS, address);
         };
+    }
+
+    @Nullable
+    public static ProxySelector newProxySelector(@Nullable String host, int port) {
+        InetSocketAddress address = InetSocketWraps.newInetSocketAddress(host, port);
+        return (address == null) ? null : ProxySelector.of(address);
     }
 }
