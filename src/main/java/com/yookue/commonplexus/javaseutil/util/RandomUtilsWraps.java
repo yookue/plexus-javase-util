@@ -41,7 +41,7 @@ public abstract class RandomUtilsWraps {
         if (startInclusive > 'Z' || endInclusive < 'A' || startInclusive > endInclusive) {
             return 0;
         }
-        UniformRandomProvider provider = RandomSource.XO_RO_SHI_RO_128_PP.create();
+        UniformRandomProvider provider = RandomSource.JDK.create();
         return (char) provider.nextInt(startInclusive, (int) endInclusive + 1);
     }
 
@@ -53,7 +53,7 @@ public abstract class RandomUtilsWraps {
         if (startInclusive > 'z' || endInclusive < 'a' || startInclusive > endInclusive) {
             return 0;
         }
-        UniformRandomProvider provider = RandomSource.XO_RO_SHI_RO_128_PP.create();
+        UniformRandomProvider provider = RandomSource.JDK.create();
         return (char) provider.nextInt(startInclusive, (int) endInclusive + 1);
     }
 

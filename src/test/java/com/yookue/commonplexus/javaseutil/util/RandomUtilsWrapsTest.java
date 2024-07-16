@@ -31,12 +31,12 @@ class RandomUtilsWrapsTest {
     @Test
     void randomUpperChar() {
         String methodName = StackTraceWraps.getExecutingMethodName();
-        log.info("{}: {}", methodName, String.valueOf(RandomUtilsWraps.randomUpperChar()));
+        log.info("{}: {}", methodName, RandomUtilsWraps.randomUpperChar());
     }
 
     @Test
     void randomLowerChar() {
         String methodName = StackTraceWraps.getExecutingMethodName();
-        log.info("{}: {}", methodName, String.valueOf(RandomUtilsWraps.randomLowerChar()));
+        log.info("{}: {}", methodName, RandomUtilsWraps.randomLowerChar());
     }
 }
