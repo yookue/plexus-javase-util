@@ -405,7 +405,6 @@ public abstract class RegexUtilsWraps {
      * @return a list that containing the result that matched any of the patterns to the input sequence
      */
     @Nullable
-    @SuppressWarnings("JavadocReference")
     public static List<String> extractMatchedWithFlags(@Nullable CharSequence sequence, int flags, @Nullable Collection<String> regexes) {
         if (StringUtils.isEmpty(sequence) || CollectionPlainWraps.isEmpty(regexes)) {
             return null;
