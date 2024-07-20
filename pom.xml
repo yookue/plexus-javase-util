@@ -48,21 +48,21 @@
         <project.reporting.outputEncoding>${file.encoding}</project.reporting.outputEncoding>
 
         <commons-beanutils2.version>2.0.0</commons-beanutils2.version>
-        <commons-codec.version>1.16.1</commons-codec.version>
+        <commons-codec.version>1.17.1</commons-codec.version>
         <commons-collections4.version>4.4</commons-collections4.version>
         <commons-io.version>2.16.1</commons-io.version>
         <commons-lang3.version>3.14.0</commons-lang3.version>
-        <commons-rng.version>1.5</commons-rng.version>
+        <commons-rng.version>1.6</commons-rng.version>
         <commons-text.version>1.12.0</commons-text.version>
-        <lombok.version>1.18.32</lombok.version>
+        <lombok.version>1.18.34</lombok.version>
         <jakarta-annotation.version>2.1.1</jakarta-annotation.version>
         <javax-persistence.version>2.2</javax-persistence.version>
-        <jsoup.version>1.17.2</jsoup.version>
-        <jsqlparser.version>4.9</jsqlparser.version>
+        <jsoup.version>1.18.1</jsoup.version>
+        <jsqlparser.version>5.0</jsqlparser.version>
         <pinyin4j.version>2.5.3</pinyin4j.version>
         <slf4j.version>2.0.13</slf4j.version>
 
-        <junit-jupiter.version>5.10.2</junit-jupiter.version>
+        <junit-jupiter.version>5.10.3</junit-jupiter.version>
 
         <javadoc-docent-maven-plugin.version>2.0.0</javadoc-docent-maven-plugin.version>
         <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
