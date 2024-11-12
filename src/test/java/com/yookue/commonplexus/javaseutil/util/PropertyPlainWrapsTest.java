@@ -37,7 +37,7 @@ class PropertyPlainWrapsTest {
             properties = PropertyPlainWraps.newPropertiesWithin(null, null);
         } catch (Exception ignored) {
         }
-        boolean result = (properties == null);
+        boolean result = (properties != null && properties.isEmpty());
         log.info("{}: {}", StackTraceWraps.getExecutingMethodName(), result);
         Assertions.assertTrue(result);
     }
@@ -49,7 +49,7 @@ class PropertyPlainWrapsTest {
             properties = PropertyPlainWraps.newPropertiesWithin(null, String.valueOf(1));
         } catch (Exception ignored) {
         }
-        boolean result = (properties == null);
+        boolean result = (properties != null && properties.isEmpty());
         log.info("{}: {}", StackTraceWraps.getExecutingMethodName(), result);
         Assertions.assertTrue(result);
     }
@@ -61,7 +61,7 @@ class PropertyPlainWrapsTest {
             properties = PropertyPlainWraps.newPropertiesWithin(String.valueOf(1), null);
         } catch (Exception ignored) {
         }
-        boolean result = (properties == null);
+        boolean result = (properties != null && properties.isEmpty());
         log.info("{}: {}", StackTraceWraps.getExecutingMethodName(), result);
         Assertions.assertTrue(result);
     }
