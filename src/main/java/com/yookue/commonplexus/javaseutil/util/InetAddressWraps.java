@@ -118,7 +118,7 @@ public abstract class InetAddressWraps {
             }
             StringBuilder builder = new StringBuilder();
             for (int i = 0; i < address.length; i++) {
-                builder.append(String.format("%02X%s", address[i], (i < address.length - 1) ? CharVariantConst.MINUS : StringUtils.EMPTY));    // $NON-NLS-1$
+                builder.append(String.format("%02X%s", address[i], (i < address.length - 1) ? CharVariantConst.HYPHEN : StringUtils.EMPTY));    // $NON-NLS-1$
             }
             result.add(builder.toString());
         }

@@ -36,21 +36,22 @@ public abstract class CharVariantConst {
     public static final char CARET = '^';
     public static final char COLON = ':';
     public static final char COMMA = ',';
+    public static final char CROSS = '+';
     public static final char CURLY_BRACKET_LEFT = '{';
     public static final char CURLY_BRACKET_RIGHT = '}';
     public static final char DOLLAR = '$';
     public static final char DOT = '.';
     public static final char DOUBLE_QUOTE = '\"';
-    public static final char EQUALS = '=';
+    public static final char EQUAL = '=';
     public static final char EXCLAMATION = '!';
-    public static final char MINUS = '-';
+    public static final char HYPHEN = '-';
     public static final char PARENTHESIS_LEFT = '(';
     public static final char PARENTHESIS_RIGHT = ')';
     public static final char PERCENT = '%';
-    public static final char PLUS = '+';
+    public static final char POUND = '#';
     public static final char QUESTION = '?';
     public static final char SEMICOLON = ';';
-    public static final char SEPARATION_DOT = '·';
+    public static final char SEPARATE_DOT = '·';
     public static final char SINGLE_QUOTE = '\'';
     public static final char SLASH = '/';
     public static final char STAR = '*';
@@ -59,6 +60,5 @@ public abstract class CharVariantConst {
     public static final char SQUARE_BRACKET_RIGHT = ']';
     public static final char TILDE = '~';
     public static final char VERTICAL = '|';
-    public static final char UNDERLINE = '_';
-    public static final char WELL = '#';
+    public static final char UNDERSCORE = '_';
 }

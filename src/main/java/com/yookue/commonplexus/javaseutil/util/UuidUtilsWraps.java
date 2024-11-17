@@ -73,7 +73,7 @@ public abstract class UuidUtilsWraps {
 
     @Nullable
     public static String toPlainUuid(@Nullable String uuid) {
-        return (StringUtils.length(uuid) == 36) ? StringUtils.remove(uuid, CharVariantConst.MINUS) : uuid;
+        return (StringUtils.length(uuid) == 36) ? StringUtils.remove(uuid, CharVariantConst.HYPHEN) : uuid;
     }
 
     /**

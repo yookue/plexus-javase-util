@@ -65,6 +65,6 @@ public abstract class UtilUuidGenerator {
     public static String getRandomUuid(boolean uppercase, boolean hyphen) {
         String result = UUID.randomUUID().toString();
         result = uppercase ? StringUtils.upperCase(result) : StringUtils.lowerCase(result);
-        return hyphen ? result : StringUtils.remove(result, CharVariantConst.MINUS);
+        return hyphen ? result : StringUtils.remove(result, CharVariantConst.HYPHEN);
     }
 }

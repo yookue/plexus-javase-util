@@ -534,7 +534,7 @@ public abstract class RegexUtilsWraps {
         if (StringUtils.isEmpty(text)) {
             return text;
         }
-        String regex = StringUtils.join(CharVariantConst.CARET, (isEscapeChar(character) ? SymbolVariantConst.DOUBLE_BACKSLASHES : null), character, CharVariantConst.PLUS);
+        String regex = StringUtils.join(CharVariantConst.CARET, (isEscapeChar(character) ? SymbolVariantConst.DOUBLE_BACKSLASHES : null), character, CharVariantConst.CROSS);
         return RegExUtils.removeAll(text, regex);
     }
 
@@ -552,7 +552,7 @@ public abstract class RegexUtilsWraps {
     }
 
     public static String removeStartIgnoreCase(@Nullable String text, char character) {
-        String regex = StringUtils.join(CharVariantConst.CARET, (isEscapeChar(character) ? SymbolVariantConst.DOUBLE_BACKSLASHES : null), character, CharVariantConst.PLUS);
+        String regex = StringUtils.join(CharVariantConst.CARET, (isEscapeChar(character) ? SymbolVariantConst.DOUBLE_BACKSLASHES : null), character, CharVariantConst.CROSS);
         return removeStartIgnoreCase(text, Collections.singleton(regex));
     }
 
@@ -574,7 +574,7 @@ public abstract class RegexUtilsWraps {
         if (StringUtils.isEmpty(text)) {
             return text;
         }
-        String regex = StringUtils.join((isEscapeChar(character) ? SymbolVariantConst.DOUBLE_BACKSLASHES : null), character, CharVariantConst.PLUS, CharVariantConst.DOLLAR);
+        String regex = StringUtils.join((isEscapeChar(character) ? SymbolVariantConst.DOUBLE_BACKSLASHES : null), character, CharVariantConst.CROSS, CharVariantConst.DOLLAR);
         return RegExUtils.removeAll(text, regex);
     }
 
@@ -592,7 +592,7 @@ public abstract class RegexUtilsWraps {
     }
 
     public static String removeEndIgnoreCase(@Nullable String text, char character) {
-        String regex = StringUtils.join((isEscapeChar(character) ? SymbolVariantConst.DOUBLE_BACKSLASHES : null), character, CharVariantConst.PLUS, CharVariantConst.DOLLAR);
+        String regex = StringUtils.join((isEscapeChar(character) ? SymbolVariantConst.DOUBLE_BACKSLASHES : null), character, CharVariantConst.CROSS, CharVariantConst.DOLLAR);
         return removeEndIgnoreCase(text, Collections.singleton(regex));
     }
 

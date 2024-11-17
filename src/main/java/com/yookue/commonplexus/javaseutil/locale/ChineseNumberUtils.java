@@ -203,8 +203,8 @@ public abstract class ChineseNumberUtils {
         }
         ChineseNumberType numberType = ObjectUtils.defaultIfNull(type, ChineseNumberType.ZH_CN_GENERAL);
         String plainAmount = amount.toPlainString();
-        boolean negative = StringUtilsWraps.startsWith(plainAmount, CharVariantConst.MINUS);
-        String integerText = negative ? StringUtilsWraps.substringBetween(plainAmount, CharVariantConst.MINUS, CharVariantConst.DOT) : StringUtils.substringBefore(plainAmount, CharVariantConst.DOT);
+        boolean negative = StringUtilsWraps.startsWith(plainAmount, CharVariantConst.HYPHEN);
+        String integerText = negative ? StringUtilsWraps.substringBetween(plainAmount, CharVariantConst.HYPHEN, CharVariantConst.DOT) : StringUtils.substringBefore(plainAmount, CharVariantConst.DOT);
         String decimalText = (fraction == 0) ? null : RegExUtils.removeAll(StringUtils.substring(StringUtils.substringAfter(plainAmount, CharVariantConst.DOT), 0, fraction), "0+$");    // $NON-NLS-1$
         // Integer part
         StringBuilder integerBuilder = new StringBuilder();
