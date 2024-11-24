@@ -167,6 +167,7 @@ public abstract class StackTraceWraps {
     }
 
     @Nullable
+    @SuppressWarnings("ConstantValue")
     public static String getTracingClassMethodName(int index) {
         if (index < 0) {
             return null;
@@ -176,7 +177,7 @@ public abstract class StackTraceWraps {
     }
 
     @Nullable
-    @SuppressWarnings("DuplicatedCode")
+    @SuppressWarnings({"ConstantValue", "DuplicatedCode"})
     public static String getTracingClassMethodName(int index, boolean shortName) {
         if (index < 0) {
             return null;
@@ -190,6 +191,7 @@ public abstract class StackTraceWraps {
     }
 
     @Nullable
+    @SuppressWarnings("ConstantValue")
     public static String getTracingClassMethodNameAndAppend(int index, @Nullable String suffix) {
         if (index < 0) {
             return null;
@@ -199,7 +201,7 @@ public abstract class StackTraceWraps {
     }
 
     @Nullable
-    @SuppressWarnings("DuplicatedCode")
+    @SuppressWarnings({"ConstantValue", "DuplicatedCode"})
     public static String getTracingClassMethodNameAndAppend(int index, boolean shortName, @Nullable String suffix) {
         if (index < 0) {
             return null;
@@ -213,6 +215,7 @@ public abstract class StackTraceWraps {
     }
 
     @Nullable
+    @SuppressWarnings("ConstantValue")
     public static String getTracingClassMethodNameAndPrepend(int index, @Nullable String prefix) {
         if (index < 0) {
             return null;
@@ -222,7 +225,7 @@ public abstract class StackTraceWraps {
     }
 
     @Nullable
-    @SuppressWarnings("DuplicatedCode")
+    @SuppressWarnings({"ConstantValue", "DuplicatedCode"})
     public static String getTracingClassMethodNameAndPrepend(int index, boolean shortName, @Nullable String prefix) {
         if (index < 0) {
             return null;
@@ -236,6 +239,7 @@ public abstract class StackTraceWraps {
     }
 
     @Nullable
+    @SuppressWarnings("ConstantValue")
     public static String getTracingClassName(int index) {
         if (index < 0) {
             return null;
@@ -245,6 +249,7 @@ public abstract class StackTraceWraps {
     }
 
     @Nullable
+    @SuppressWarnings("ConstantValue")
     public static String getTracingClassName(int index, boolean shortName) {
         if (index < 0) {
             return null;
@@ -257,7 +262,7 @@ public abstract class StackTraceWraps {
     }
 
     @Nullable
-    @SuppressWarnings("DuplicatedCode")
+    @SuppressWarnings({"ConstantValue", "DuplicatedCode"})
     public static String getTracingClassName(int index, boolean shortName, boolean lineNumber) {
         if (index < 0) {
             return null;
@@ -271,6 +276,7 @@ public abstract class StackTraceWraps {
     }
 
     @Nullable
+    @SuppressWarnings("ConstantValue")
     public static String getTracingMethodName(int index) {
         if (index < 0) {
             return null;
@@ -280,6 +286,7 @@ public abstract class StackTraceWraps {
     }
 
     @Nullable
+    @SuppressWarnings("ConstantValue")
     public static String getTracingFileName(int index) {
         if (index < 0) {
             return null;
@@ -289,6 +296,7 @@ public abstract class StackTraceWraps {
     }
 
     @Nullable
+    @SuppressWarnings("ConstantValue")
     public static String getTracingFileName(int index, boolean lineNumber) {
         if (index < 0) {
             return null;

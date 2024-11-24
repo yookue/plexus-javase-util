@@ -390,13 +390,13 @@ public abstract class UtilDateWraps {
     }
 
     /**
-     * Add to a date returning a new object
+     * Returns a date that plus amount with the given data field
      *
      * @param date the date, not null
-     * @param calendarField the calendar field type to add to
+     * @param field the calendar field type to add to
      * @param amount the amount to add, may be negative
      *
-     * @return the new {@code Date} with the amount added
+     * @return a date that plus amount with the given data field
      *
      * @see org.apache.commons.lang3.time.DateUtils#addYears
      * @see org.apache.commons.lang3.time.DateUtils#addMonths
@@ -406,13 +406,14 @@ public abstract class UtilDateWraps {
      * @see org.apache.commons.lang3.time.DateUtils#addSeconds
      * @see org.apache.commons.lang3.time.DateUtils#addMilliseconds
      */
-    public static Date plusDateTime(@Nullable Date date, int calendarField, int amount) {
-        if (date == null || calendarField < 0 || amount == 0) {
+    @SuppressWarnings("MagicConstant")
+    public static Date plusDateTime(@Nullable Date date, int field, int amount) {
+        if (date == null || field < 0 || amount == 0) {
             return date;
         }
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
-        calendar.add(calendarField, amount);
+        calendar.add(field, amount);
         return calendar.getTime();
     }
 

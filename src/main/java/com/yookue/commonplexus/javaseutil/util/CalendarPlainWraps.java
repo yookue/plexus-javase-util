@@ -61,6 +61,7 @@ public abstract class CalendarPlainWraps {
      * @return the value of the given calendar field
      */
     @Nullable
+    @SuppressWarnings("MagicConstant")
     public static Integer getCalendarField(@Nullable Date date, int field, @Nullable TimeZone zone, @Nullable Locale locale) {
         if (date == null || field < 0) {
             return null;

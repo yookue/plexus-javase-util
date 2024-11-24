@@ -58,6 +58,7 @@ public class LombokPropertyBeanIntrospector implements BeanIntrospector {
      * @param context the introspection context
      */
     @Override
+    @SuppressWarnings("StringConcatenationArgumentToLogCall")
     public void introspect(@Nonnull IntrospectionContext context) {
         getLombokMethods(context).forEach((property, methods) -> {
             if (ArrayUtils.getLength(methods) < 2) {
@@ -72,7 +73,7 @@ public class LombokPropertyBeanIntrospector implements BeanIntrospector {
                 context.addPropertyDescriptor(descriptor);
             } catch (IntrospectionException ex) {
                 if (log.isWarnEnabled()) {
-                    log.warn(String.format("Error creating PropertyDescriptor, ignored property '%s'", property), ex);
+                    log.warn("Error creating PropertyDescriptor, ignored property '" + property + "'", ex);
                 }
             }
         });

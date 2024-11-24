@@ -71,7 +71,7 @@ public abstract class RandomUtilsWraps {
         for (char i = startInclusive; i <= endInclusive; i++) {
             builder.append(i);
         }
-        return RandomStringUtils.random(count, builder.toString());
+        return RandomStringUtils.secure().next(count, builder.toString());
     }
 
     @Nullable
@@ -88,7 +88,7 @@ public abstract class RandomUtilsWraps {
         for (char i = startInclusive; i <= endInclusive; i++) {
             builder.append(i);
         }
-        return RandomStringUtils.random(count, builder.toString());
+        return RandomStringUtils.secure().next(count, builder.toString());
     }
 
     @Nullable

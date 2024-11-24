@@ -404,7 +404,7 @@ public abstract class ObjectUtilsWraps {
     /**
      * Returns the size of the specified object
      * <p>
-     * This method can handles objects as follows
+     * This method can handle objects as follows
      * </p>
      * <ul>
      * <li>Collection - the collection size

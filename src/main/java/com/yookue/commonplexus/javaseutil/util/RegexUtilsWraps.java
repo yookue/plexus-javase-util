@@ -264,6 +264,7 @@ public abstract class RegexUtilsWraps {
         return matchAllPatternsWithFlags(sequence, flags, ArrayUtilsWraps.asList(regexes));
     }
 
+    @SuppressWarnings("MagicConstant")
     public static boolean matchAllPatternsWithFlags(@Nullable CharSequence sequence, int flags, @Nullable Collection<String> regexes) {
         return StringUtils.isNotEmpty(sequence) && CollectionPlainWraps.isNotEmpty(regexes) && regexes.stream().allMatch(regex -> StringUtils.isNotEmpty(regex) && Pattern.compile(regex, flags).matcher(sequence).matches());
     }
@@ -288,6 +289,7 @@ public abstract class RegexUtilsWraps {
         return matchAnyPatternsWithFlags(sequence, flags, ArrayUtilsWraps.asList(regexes));
     }
 
+    @SuppressWarnings("MagicConstant")
     public static boolean matchAnyPatternsWithFlags(@Nullable CharSequence sequence, int flags, @Nullable Collection<String> regexes) {
         return StringUtils.isNotEmpty(sequence) && CollectionPlainWraps.isNotEmpty(regexes) && regexes.stream().filter(StringUtils::isNotEmpty).anyMatch(regex -> Pattern.compile(regex, flags).matcher(sequence).matches());
     }
@@ -312,6 +314,7 @@ public abstract class RegexUtilsWraps {
         return matchAllSequencesWithFlags(regex, flags, ArrayUtilsWraps.asList(sequences));
     }
 
+    @SuppressWarnings("MagicConstant")
     public static boolean matchAllSequencesWithFlags(@Nullable String regex, int flags, @Nullable Collection<? extends CharSequence> sequences) {
         if (StringUtils.isEmpty(regex) || CollectionPlainWraps.isEmpty(sequences)) {
             return false;
@@ -340,6 +343,7 @@ public abstract class RegexUtilsWraps {
         return matchAnySequencesWithFlags(regex, flags, ArrayUtilsWraps.asList(sequences));
     }
 
+    @SuppressWarnings("MagicConstant")
     public static boolean matchAnySequencesWithFlags(@Nullable String regex, int flags, @Nullable Collection<? extends CharSequence> sequences) {
         if (StringUtils.isEmpty(regex) || CollectionPlainWraps.isEmpty(sequences)) {
             return false;
@@ -364,6 +368,7 @@ public abstract class RegexUtilsWraps {
      * @see java.util.regex.Pattern#compile(java.lang.String, int)
      */
     @Nullable
+    @SuppressWarnings("MagicConstant")
     public static Pattern compilePattern(@Nullable String regex, int flags) {
         if (StringUtils.isBlank(regex)) {
             return null;
@@ -405,6 +410,7 @@ public abstract class RegexUtilsWraps {
      * @return a list that containing the result that matched any of the patterns to the input sequence
      */
     @Nullable
+    @SuppressWarnings("MagicConstant")
     public static List<String> extractMatchedWithFlags(@Nullable CharSequence sequence, int flags, @Nullable Collection<String> regexes) {
         if (StringUtils.isEmpty(sequence) || CollectionPlainWraps.isEmpty(regexes)) {
             return null;
@@ -640,9 +646,6 @@ public abstract class RegexUtilsWraps {
         return RegExUtils.replaceFirst(text, pattern, StringUtils.defaultString(replacement));
     }
 
-    /**
-     * @see org.apache.commons.lang3.RandomStringUtils#randomAlphabetic(int)
-     */
     public static String reserveAlphabetic(@Nullable String text) {
         return StringUtils.isEmpty(text) ? text : RegExUtils.removeAll(text, "[^A-Za-z]");    // $NON-NLS-1$
     }
@@ -758,7 +761,7 @@ public abstract class RegexUtilsWraps {
      *
      * @throws {@link java.util.regex.PatternSyntaxException} if the expression's syntax is invalid
      */
-    @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
+    @SuppressWarnings({"DataFlowIssue", "MagicConstant"})
     public static boolean findWithFlags(@Nullable CharSequence sequence, @Nullable String regex, int flags) {
         return StringUtils.isNoneEmpty(sequence, regex) && Pattern.compile(regex, flags).matcher(sequence).find();
     }
@@ -815,7 +818,7 @@ public abstract class RegexUtilsWraps {
      *
      * @throws {@link java.util.regex.PatternSyntaxException} if the expression's syntax is invalid
      */
-    @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
+    @SuppressWarnings({"DataFlowIssue", "MagicConstant"})
     public static boolean matchesWithFlags(@Nullable CharSequence sequence, @Nullable String regex, int flags) {
         return StringUtils.isNoneEmpty(sequence, regex) && Pattern.compile(regex, flags).matcher(sequence).matches();
     }
