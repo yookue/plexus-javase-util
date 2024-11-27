@@ -216,32 +216,32 @@ public abstract class ObjectUtilsWraps {
             return true;
         }
         if (target.getClass().isArray() && comparison.getClass().isArray()) {
-            if (target instanceof Object[] && comparison instanceof Object[]) {
-                return Arrays.equals((Object[]) target, (Object[]) comparison);
+            if (target instanceof Object[] targetAlias && comparison instanceof Object[] comparisonAlias) {
+                return Arrays.equals(targetAlias, comparisonAlias);
             }
-            if (target instanceof boolean[] && comparison instanceof boolean[]) {
-                return Arrays.equals((boolean[]) target, (boolean[]) comparison);
+            if (target instanceof boolean[] targetAlias && comparison instanceof boolean[] comparisonAlias) {
+                return Arrays.equals(targetAlias, comparisonAlias);
             }
-            if (target instanceof byte[] && comparison instanceof byte[]) {
-                return Arrays.equals((byte[]) target, (byte[]) comparison);
+            if (target instanceof byte[] targetAlias && comparison instanceof byte[] comparisonAlias) {
+                return Arrays.equals(targetAlias, comparisonAlias);
             }
-            if (target instanceof char[] && comparison instanceof char[]) {
-                return Arrays.equals((char[]) target, (char[]) comparison);
+            if (target instanceof char[] targetAlias && comparison instanceof char[] comparisonAlias) {
+                return Arrays.equals(targetAlias, comparisonAlias);
             }
-            if (target instanceof double[] && comparison instanceof double[]) {
-                return Arrays.equals((double[]) target, (double[]) comparison);
+            if (target instanceof double[] targetAlias && comparison instanceof double[] comparisonAlias) {
+                return Arrays.equals(targetAlias, comparisonAlias);
             }
-            if (target instanceof float[] && comparison instanceof float[]) {
-                return Arrays.equals((float[]) target, (float[]) comparison);
+            if (target instanceof float[] targetAlias && comparison instanceof float[] comparisonAlias) {
+                return Arrays.equals(targetAlias, comparisonAlias);
             }
-            if (target instanceof int[] && comparison instanceof int[]) {
-                return Arrays.equals((int[]) target, (int[]) comparison);
+            if (target instanceof int[] targetAlias && comparison instanceof int[] comparisonAlias) {
+                return Arrays.equals(targetAlias, comparisonAlias);
             }
-            if (target instanceof long[] && comparison instanceof long[]) {
-                return Arrays.equals((long[]) target, (long[]) comparison);
+            if (target instanceof long[] targetAlias && comparison instanceof long[] comparisonAlias) {
+                return Arrays.equals(targetAlias, comparisonAlias);
             }
-            if (target instanceof short[] && comparison instanceof short[]) {
-                return Arrays.equals((short[]) target, (short[]) comparison);
+            if (target instanceof short[] targetAlias && comparison instanceof short[] comparisonAlias) {
+                return Arrays.equals(targetAlias, comparisonAlias);
             }
         }
         return false;
@@ -266,14 +266,14 @@ public abstract class ObjectUtilsWraps {
         if (source == null) {
             return null;
         }
-        if (source instanceof Object[]) {
-            return ArrayUtilsWraps.getComponentType((Object[]) source);
-        } else if (source instanceof Iterable) {
-            return IterablePlainWraps.getComponentType((Iterable<?>) source, deepScan);
-        } else if (source instanceof Iterator) {
-            return IteratorPlainWraps.getComponentType((Iterator<?>) source, deepScan);
-        } else if (source instanceof Enumeration) {
-            return EnumerationPlainWraps.getComponentType((Enumeration<?>) source, deepScan);
+        if (source instanceof Object[] alias) {
+            return ArrayUtilsWraps.getComponentType(alias);
+        } else if (source instanceof Iterable<?> alias) {
+            return IterablePlainWraps.getComponentType(alias, deepScan);
+        } else if (source instanceof Iterator<?> alias) {
+            return IteratorPlainWraps.getComponentType(alias, deepScan);
+        } else if (source instanceof Enumeration<?> alias) {
+            return EnumerationPlainWraps.getComponentType(alias, deepScan);
         }
         if (isArray(source)) {
             return ArrayUtilsWraps.getComponentType(source);
@@ -424,18 +424,18 @@ public abstract class ObjectUtilsWraps {
         if (object == null) {
             return 0;
         }
-        if (object instanceof Map<?, ?>) {
-            return ((Map<?, ?>) object).size();
-        } else if (object instanceof Collection<?>) {
-            return ((Collection<?>) object).size();
-        } else if (object instanceof Iterable<?>) {
-            return IterablePlainWraps.size((Iterable<?>) object);
-        } else if (object instanceof Object[]) {
-            return ((Object[]) object).length;
-        } else if (object instanceof Iterator<?>) {
-            return IteratorPlainWraps.size((Iterator<?>) object);
-        } else if (object instanceof Enumeration<?>) {
-            return EnumerationPlainWraps.size((Enumeration<?>) object);
+        if (object instanceof Map<?, ?> alias) {
+            return alias.size();
+        } else if (object instanceof Collection<?> alias) {
+            return alias.size();
+        } else if (object instanceof Iterable<?> alias) {
+            return IterablePlainWraps.size(alias);
+        } else if (object instanceof Object[] alias) {
+            return alias.length;
+        } else if (object instanceof Iterator<?> alias) {
+            return IteratorPlainWraps.size(alias);
+        } else if (object instanceof Enumeration<?> alias) {
+            return EnumerationPlainWraps.size(alias);
         } else if (isArray(object)) {
             return Array.getLength(object);
         }
@@ -478,8 +478,8 @@ public abstract class ObjectUtilsWraps {
         if (source == null) {
             return null;
         }
-        if (source instanceof Object[]) {
-            return (Object[]) source;
+        if (source instanceof Object[] alias) {
+            return alias;
         }
         if (isArray(source)) {
             Class<?> clazz = ArrayUtilsWraps.getComponentType(source);
@@ -494,12 +494,12 @@ public abstract class ObjectUtilsWraps {
         if (!transform) {
             return null;
         }
-        if (source instanceof Iterable) {
-            return IterablePlainWraps.toObjectArray((Iterable<?>) source);
-        } else if (source instanceof Iterator) {
-            return IteratorPlainWraps.toObjectArray((Iterator<?>) source);
-        } else if (source instanceof Enumeration) {
-            return EnumerationPlainWraps.toObjectArray((Enumeration<?>) source);
+        if (source instanceof Iterable<?> alias) {
+            return IterablePlainWraps.toObjectArray(alias);
+        } else if (source instanceof Iterator<?> alias) {
+            return IteratorPlainWraps.toObjectArray(alias);
+        } else if (source instanceof Enumeration<?> alias) {
+            return EnumerationPlainWraps.toObjectArray(alias);
         }
         return null;
     }
@@ -514,8 +514,8 @@ public abstract class ObjectUtilsWraps {
         if (source == null) {
             return null;
         }
-        if (source instanceof List) {
-            return (List<?>) source;
+        if (source instanceof List alias) {
+            return alias;
         }
         if (!transform) {
             return null;
@@ -523,12 +523,12 @@ public abstract class ObjectUtilsWraps {
         if (isArray(source)) {
             return ArrayUtilsWraps.asList(true, toObjectArray(source, true));
         }
-        if (source instanceof Iterable) {
-            return IterablePlainWraps.toObjectList((Iterable<?>) source);
-        } else if (source instanceof Iterator) {
-            return IteratorPlainWraps.toObjectList((Iterator<?>) source);
-        } else if (source instanceof Enumeration) {
-            return EnumerationPlainWraps.toObjectList((Enumeration<?>) source);
+        if (source instanceof Iterable<?> alias) {
+            return IterablePlainWraps.toObjectList(alias);
+        } else if (source instanceof Iterator<?> alias) {
+            return IteratorPlainWraps.toObjectList(alias);
+        } else if (source instanceof Enumeration<?> alias) {
+            return EnumerationPlainWraps.toObjectList(alias);
         }
         return null;
     }
@@ -552,39 +552,39 @@ public abstract class ObjectUtilsWraps {
         if (source == null) {
             return nullString;
         }
-        if (source instanceof String) {
-            return (String) source;
+        if (source instanceof String alias) {
+            return alias;
         }
-        if (source instanceof CharSequence) {
-            return ((CharSequence) source).toString();
+        if (source instanceof CharSequence alias) {
+            return alias.toString();
         }
         if (isArray(source)) {
-            if (source instanceof Object[]) {
-                return Arrays.toString((Object[]) source);
+            if (source instanceof Object[] alias) {
+                return Arrays.toString(alias);
             }
-            if (source instanceof boolean[]) {
-                return Arrays.toString((boolean[]) source);
+            if (source instanceof boolean[] alias) {
+                return Arrays.toString(alias);
             }
-            if (source instanceof byte[]) {
-                return Arrays.toString((byte[]) source);
+            if (source instanceof byte[] alias) {
+                return Arrays.toString(alias);
             }
-            if (source instanceof char[]) {
-                return Arrays.toString((char[]) source);
+            if (source instanceof char[] alias) {
+                return Arrays.toString(alias);
             }
-            if (source instanceof double[]) {
-                return Arrays.toString((double[]) source);
+            if (source instanceof double[] alias) {
+                return Arrays.toString(alias);
             }
-            if (source instanceof float[]) {
-                return Arrays.toString((float[]) source);
+            if (source instanceof float[] alias) {
+                return Arrays.toString(alias);
             }
-            if (source instanceof int[]) {
-                return Arrays.toString((int[]) source);
+            if (source instanceof int[] alias) {
+                return Arrays.toString(alias);
             }
-            if (source instanceof long[]) {
-                return Arrays.toString((long[]) source);
+            if (source instanceof long[] alias) {
+                return Arrays.toString(alias);
             }
-            if (source instanceof short[]) {
-                return Arrays.toString((short[]) source);
+            if (source instanceof short[] alias) {
+                return Arrays.toString(alias);
             }
         }
         return Objects.toString(source, nullString);

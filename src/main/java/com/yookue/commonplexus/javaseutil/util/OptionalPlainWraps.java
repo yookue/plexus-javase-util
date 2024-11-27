@@ -115,7 +115,7 @@ public abstract class OptionalPlainWraps {
     @SuppressWarnings("OptionalAssignedToNull")
     public static Object unwrap(@Nullable Optional<?> source) {
         Object result = (source == null || source.isEmpty()) ? null : source.get();
-        return (result instanceof Optional) ? unwrap((Optional<?>) result) : result;
+        return (result instanceof Optional<?> alias) ? unwrap(alias) : result;
     }
 
     @Nullable

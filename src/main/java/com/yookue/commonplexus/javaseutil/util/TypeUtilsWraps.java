@@ -45,15 +45,10 @@ public abstract class TypeUtilsWraps {
 
     @Nullable
     public static Type getGenericParameterType(@Nullable Class<?> clazz, int index) {
-        if (clazz == null || index < 0) {
+        if (clazz == null || index < 0 || !(clazz.getGenericSuperclass() instanceof ParameterizedType alias)) {
             return null;
         }
-        Type superclass = clazz.getGenericSuperclass();
-        if (!(superclass instanceof ParameterizedType)) {
-            return null;
-        }
-        Type[] argTypes = ((ParameterizedType) superclass).getActualTypeArguments();
-        return ArrayUtils.get(argTypes, index);
+        return ArrayUtils.get(alias.getActualTypeArguments(), index);
     }
 
     @Nullable
@@ -64,7 +59,7 @@ public abstract class TypeUtilsWraps {
     @Nullable
     public static Class<?> getGenericParameterClass(@Nullable Class<?> clazz, int index) {
         Type result = getGenericParameterType(clazz, index);
-        return (result instanceof Class) ? (Class<?>) result : null;
+        return (result instanceof Class<?> alias) ? alias : null;
     }
 
     @Nullable
@@ -83,7 +78,7 @@ public abstract class TypeUtilsWraps {
     }
 
     public static boolean isPrimitive(@Nullable Type type) {
-        return type instanceof Class<?> && ((Class<?>) type).isPrimitive();
+        return (type instanceof Class<?> alias) && alias.isPrimitive();
     }
 
     public static boolean isNotPrimitive(@Nullable Type type) {
@@ -91,6 +86,6 @@ public abstract class TypeUtilsWraps {
     }
 
     public static boolean isPrimitiveArray(@Nullable Type type) {
-        return type instanceof Class<?> && ((Class<?>) type).isArray() && ((Class<?>) type).getComponentType().isPrimitive();
+        return (type instanceof Class<?> alias) && alias.isArray() && alias.getComponentType().isPrimitive();
     }
 }

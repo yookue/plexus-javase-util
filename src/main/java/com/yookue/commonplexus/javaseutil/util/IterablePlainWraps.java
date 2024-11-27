@@ -137,8 +137,8 @@ public abstract class IterablePlainWraps {
         if (iterable == null || index < 0) {
             return null;
         }
-        if (iterable instanceof List) {
-            return ListPlainWraps.get((List<E>) iterable, index);
+        if (iterable instanceof List<E> alias) {
+            return ListPlainWraps.get(alias, index);
         }
         return IteratorPlainWraps.get(iterable.iterator(), index);
     }
@@ -155,10 +155,10 @@ public abstract class IterablePlainWraps {
         if (iterable == null) {
             return null;
         }
-        if (iterable instanceof List) {
-            return ((List<E>) iterable).get(0);
-        } else if (iterable instanceof SortedSet) {
-            return ((SortedSet<E>) iterable).first();
+        if (iterable instanceof List<E> alias) {
+            return alias.get(0);
+        } else if (iterable instanceof SortedSet<E> alias) {
+            return alias.first();
         }
         Iterator<E> iterator = iterable.iterator();
         return iterator.hasNext() ? iterator.next() : null;
@@ -178,10 +178,10 @@ public abstract class IterablePlainWraps {
         if (iterable == null) {
             return null;
         }
-        if (iterable instanceof List) {
-            return ListPlainWraps.getLast((List<E>) iterable);
-        } else if (iterable instanceof SortedSet) {
-            return ((SortedSet<E>) iterable).last();
+        if (iterable instanceof List<E> alias) {
+            return ListPlainWraps.getLast(alias);
+        } else if (iterable instanceof SortedSet<E> alias) {
+            return alias.last();
         }
         // Full iteration necessary...
         Iterator<E> iterator = iterable.iterator();
@@ -284,8 +284,8 @@ public abstract class IterablePlainWraps {
         if (iterable == null) {
             return true;
         }
-        if (iterable instanceof Collection<?>) {
-            return ((Collection<?>) iterable).isEmpty();
+        if (iterable instanceof Collection<?> alias) {
+            return alias.isEmpty();
         }
         return IteratorPlainWraps.isEmpty(iterable.iterator());
     }
@@ -349,8 +349,8 @@ public abstract class IterablePlainWraps {
         if (iterable == null) {
             return 0;
         }
-        if (iterable instanceof Collection<?>) {
-            return ((Collection<?>) iterable).size();
+        if (iterable instanceof Collection<?> alias) {
+            return alias.size();
         }
         return IteratorPlainWraps.size(iterable.iterator());
     }

@@ -916,7 +916,7 @@ public abstract class CollectionPlainWraps {
 
     @Nonnull
     public static <E> ArrayList<E> newArrayListIfNull(@Nullable Collection<E> collection) {
-        return (collection instanceof ArrayList) ? (ArrayList<E>) collection : (collection == null ? new ArrayList<>() : new ArrayList<>(collection));
+        return (collection instanceof ArrayList<E> alias) ? alias : (collection == null ? new ArrayList<>() : new ArrayList<>(collection));
     }
 
     @Nonnull
@@ -954,7 +954,7 @@ public abstract class CollectionPlainWraps {
 
     @Nonnull
     public static <E> CopyOnWriteArrayList<E> newCopyOnWriteArrayListIfNull(@Nullable Collection<E> collection) {
-        return (collection instanceof CopyOnWriteArrayList) ? (CopyOnWriteArrayList<E>) collection : (collection == null ? new CopyOnWriteArrayList<>() : new CopyOnWriteArrayList<>(collection));
+        return (collection instanceof CopyOnWriteArrayList<E> alias) ? alias : (collection == null ? new CopyOnWriteArrayList<>() : new CopyOnWriteArrayList<>(collection));
     }
 
     @Nonnull
@@ -987,7 +987,7 @@ public abstract class CollectionPlainWraps {
 
     @Nonnull
     public static <E> HashSet<E> newHashSetIfNull(@Nullable Collection<E> collection) {
-        return (collection instanceof HashSet) ? (HashSet<E>) collection : (collection == null ? new HashSet<>() : new HashSet<>(collection));
+        return (collection instanceof HashSet<E> alias) ? alias : (collection == null ? new HashSet<>() : new HashSet<>(collection));
     }
 
     @Nonnull
@@ -1025,7 +1025,7 @@ public abstract class CollectionPlainWraps {
 
     @Nonnull
     public static <E> LinkedHashSet<E> newLinkedHashSetIfNull(@Nullable Collection<E> collection) {
-        return (collection instanceof LinkedHashSet) ? (LinkedHashSet<E>) collection : (collection == null ? new LinkedHashSet<>() : new LinkedHashSet<>(collection));
+        return (collection instanceof LinkedHashSet<E> alias) ? alias : (collection == null ? new LinkedHashSet<>() : new LinkedHashSet<>(collection));
     }
 
     @Nonnull
@@ -1063,7 +1063,7 @@ public abstract class CollectionPlainWraps {
 
     @Nonnull
     public static <E> LinkedList<E> newLinkedListIfNull(@Nullable Collection<E> collection) {
-        return (collection instanceof LinkedList) ? (LinkedList<E>) collection : (collection == null ? new LinkedList<>() : new LinkedList<>(collection));
+        return (collection instanceof LinkedList<E> alias) ? alias : (collection == null ? new LinkedList<>() : new LinkedList<>(collection));
     }
 
     @Nonnull

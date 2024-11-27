@@ -552,10 +552,10 @@ public abstract class MapPlainWraps {
         }
         LocalDate result = null;
         Object value = map.get(key);
-        if (value instanceof LocalDate) {
-            result = (LocalDate) value;
-        } else if (value instanceof String) {
-            result = LocalDateWraps.parseDateGuessing((String) value);
+        if (value instanceof LocalDate alias) {
+            result = alias;
+        } else if (value instanceof String alias) {
+            result = LocalDateWraps.parseDateGuessing(alias);
         }
         return (result == null) ? defaultValue : result;
     }
@@ -571,10 +571,10 @@ public abstract class MapPlainWraps {
         }
         LocalDateTime result = null;
         Object value = map.get(key);
-        if (value instanceof LocalDateTime) {
-            result = (LocalDateTime) value;
-        } else if (value instanceof String) {
-            result = LocalDateWraps.parseDateTimeGuessing((String) value);
+        if (value instanceof LocalDateTime alias) {
+            result = alias;
+        } else if (value instanceof String alias) {
+            result = LocalDateWraps.parseDateTimeGuessing(alias);
         }
         return (result == null) ? defaultValue : result;
     }
@@ -590,10 +590,10 @@ public abstract class MapPlainWraps {
         }
         LocalTime result = null;
         Object value = map.get(key);
-        if (value instanceof LocalTime) {
-            result = (LocalTime) value;
-        } else if (value instanceof String) {
-            result = LocalDateWraps.parseTimeGuessing((String) value);
+        if (value instanceof LocalTime alias) {
+            result = alias;
+        } else if (value instanceof String alias) {
+            result = LocalDateWraps.parseTimeGuessing(alias);
         }
         return (result == null) ? defaultValue : result;
     }
@@ -647,11 +647,11 @@ public abstract class MapPlainWraps {
     public static <K> java.util.Date getUtilDate(@Nullable Map<? super K, ?> map, @Nullable K key, @Nullable java.util.Date defaultValue, @Nullable Collection<String> formats) {
         java.util.Date result = null;
         Object value = map.get(key);
-        if (value instanceof java.util.Date) {
-            result = (java.util.Date) value;
-        } else if (value instanceof String) {
+        if (value instanceof java.util.Date alias) {
+            result = alias;
+        } else if (value instanceof String alias) {
             if (CollectionPlainWraps.isEmpty(formats)) {
-                result = ObjectUtils.defaultIfNull(UtilDateWraps.parseDateTimeGuessing((String) value), UtilDateWraps.parseDateGuessing((String) value));
+                result = ObjectUtils.defaultIfNull(UtilDateWraps.parseDateTimeGuessing(alias), UtilDateWraps.parseDateGuessing((String) value));
             } else {
                 result = UtilDateWraps.parseDateTimeWithFormats((String) value, formats);
             }
@@ -913,7 +913,7 @@ public abstract class MapPlainWraps {
 
     @Nonnull
     public static <K, V> HashMap<K, V> newHashMapIfNull(@Nullable Map<K, V> map) {
-        return (map instanceof HashMap) ? (HashMap<K, V>) map : (map == null ? new HashMap<>() : new HashMap<>(map));
+        return (map instanceof HashMap<K, V> alias) ? alias : (map == null ? new HashMap<>() : new HashMap<>(map));
     }
 
     /**
@@ -977,7 +977,7 @@ public abstract class MapPlainWraps {
 
     @Nonnull
     public static <K, V> ConcurrentHashMap<K, V> newConcurrentHashMapIfNull(@Nullable Map<K, V> map) {
-        return (map instanceof ConcurrentHashMap) ? (ConcurrentHashMap<K, V>) map : (map == null ? new ConcurrentHashMap<>() : new ConcurrentHashMap<>(map));
+        return (map instanceof ConcurrentHashMap<K, V> alias) ? alias : (map == null ? new ConcurrentHashMap<>() : new ConcurrentHashMap<>(map));
     }
 
     @Nonnull
@@ -1052,7 +1052,7 @@ public abstract class MapPlainWraps {
 
     @Nonnull
     public static <K, V> LinkedHashMap<K, V> newLinkedHashMapIfNull(@Nullable Map<K, V> map) {
-        return (map instanceof LinkedHashMap) ? (LinkedHashMap<K, V>) map : (map == null ? new LinkedHashMap<>() : new LinkedHashMap<>(map));
+        return (map instanceof LinkedHashMap<K, V> alias) ? alias : (map == null ? new LinkedHashMap<>() : new LinkedHashMap<>(map));
     }
 
     /**
@@ -1116,7 +1116,7 @@ public abstract class MapPlainWraps {
 
     @Nonnull
     public static <K extends Comparable<?>, V> TreeMap<K, V> newTreeMapIfNull(@Nullable Map<K, V> map) {
-        return (map instanceof TreeMap) ? (TreeMap<K, V>) map : (map == null ? new TreeMap<>() : new TreeMap<>(map));
+        return (map instanceof TreeMap<K, V> alias) ? alias : (map == null ? new TreeMap<>() : new TreeMap<>(map));
     }
 
     /**
@@ -1186,7 +1186,7 @@ public abstract class MapPlainWraps {
 
     @Nonnull
     public static <K, V> Hashtable<K, V> newHashtableIfNull(@Nullable Map<K, V> map) {
-        return (map instanceof Hashtable) ? (Hashtable<K, V>) map : (map == null ? new Hashtable<>() : new Hashtable<>(map));
+        return (map instanceof Hashtable<K, V> alias) ? alias : (map == null ? new Hashtable<>() : new Hashtable<>(map));
     }
 
     @Nonnull

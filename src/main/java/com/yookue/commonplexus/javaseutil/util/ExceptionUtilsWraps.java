@@ -42,11 +42,11 @@ public abstract class ExceptionUtilsWraps {
      */
     public static Exception getRootCauseAsException(@Nullable Throwable throwable, @Nullable Exception defaultValue) {
         Throwable cause = ExceptionUtils.getRootCause(throwable);
-        return (cause instanceof Exception) ? (Exception) cause : defaultValue;
+        return (cause instanceof Exception alias) ? alias: defaultValue;
     }
 
-    public static String getStackTrace(@Nullable Throwable throwable) {
-        return (throwable == null) ? null : ExceptionUtils.getStackTrace(throwable);
+    public static String getRootCauseMessage(@Nullable Throwable throwable) {
+        return (throwable == null) ? null : ExceptionUtils.getRootCauseMessage(throwable);
     }
 
     public static String getRootCauseStackTrace(@Nullable Throwable throwable) {
@@ -57,11 +57,15 @@ public abstract class ExceptionUtilsWraps {
         return (throwable == null) ? null : ExceptionUtils.getRootCauseStackTrace(throwable);
     }
 
+    public static String[] getRootCauseStackFrames(@Nullable Throwable throwable) {
+        return getStackFrames(getRootCause(throwable));
+    }
+
     public static String[] getStackFrames(@Nullable Throwable throwable) {
         return (throwable == null) ? null : ExceptionUtils.getStackFrames(throwable);
     }
 
-    public static String[] getRootCauseStackFrames(@Nullable Throwable throwable) {
-        return getStackFrames(getRootCause(throwable));
+    public static String getStackTrace(@Nullable Throwable throwable) {
+        return (throwable == null) ? null : ExceptionUtils.getStackTrace(throwable);
     }
 }

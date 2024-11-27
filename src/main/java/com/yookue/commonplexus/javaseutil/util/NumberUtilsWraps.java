@@ -288,24 +288,24 @@ public abstract class NumberUtilsWraps {
         if (value == null) {
             return false;
         }
-        if (value instanceof Integer) {
-            return ObjectUtils.compare((Integer) value, NumberUtils.INTEGER_ZERO) < 0;
-        } else if (value instanceof Long) {
-            return ObjectUtils.compare((Long) value, NumberUtils.LONG_ZERO) < 0;
-        } else if (value instanceof Short) {
-            return ObjectUtils.compare((Short) value, NumberUtils.SHORT_ZERO) < 0;
-        } else if (value instanceof Byte) {
-            return ObjectUtils.compare((Byte) value, NumberUtils.BYTE_ZERO) < 0;
-        } else if (value instanceof Double) {
-            return ObjectUtils.compare((Double) value, NumberUtils.DOUBLE_ZERO) < 0;
-        } else if (value instanceof Float) {
-            return ObjectUtils.compare((Float) value, NumberUtils.FLOAT_ZERO) < 0;
-        } else if (value instanceof Fraction) {
-            return ObjectUtils.compare(value.floatValue(), NumberUtils.FLOAT_ZERO) < 0;
-        } else if (value instanceof BigDecimal) {
-            return ObjectUtils.compare((BigDecimal) value, BigDecimal.ZERO) < 0;
-        } else if (value instanceof BigInteger) {
-            return ObjectUtils.compare((BigInteger) value, BigInteger.ZERO) < 0;
+        if (value instanceof Integer alias) {
+            return ObjectUtils.compare(alias, NumberUtils.INTEGER_ZERO) < 0;
+        } else if (value instanceof Long alias) {
+            return ObjectUtils.compare(alias, NumberUtils.LONG_ZERO) < 0;
+        } else if (value instanceof Short alias) {
+            return ObjectUtils.compare(alias, NumberUtils.SHORT_ZERO) < 0;
+        } else if (value instanceof Byte alias) {
+            return ObjectUtils.compare(alias, NumberUtils.BYTE_ZERO) < 0;
+        } else if (value instanceof Double alias) {
+            return ObjectUtils.compare(alias, NumberUtils.DOUBLE_ZERO) < 0;
+        } else if (value instanceof Float alias) {
+            return ObjectUtils.compare(alias, NumberUtils.FLOAT_ZERO) < 0;
+        } else if (value instanceof Fraction alias) {
+            return ObjectUtils.compare(alias.floatValue(), NumberUtils.FLOAT_ZERO) < 0;
+        } else if (value instanceof BigDecimal alias) {
+            return ObjectUtils.compare(alias, BigDecimal.ZERO) < 0;
+        } else if (value instanceof BigInteger alias) {
+            return ObjectUtils.compare(alias, BigInteger.ZERO) < 0;
         }
         return value.longValue() < 0L;
     }
@@ -321,24 +321,24 @@ public abstract class NumberUtilsWraps {
         if (value == null) {
             return false;
         }
-        if (value instanceof Integer) {
-            return ObjectUtils.compare((Integer) value, NumberUtils.INTEGER_ZERO) > 0;
-        } else if (value instanceof Long) {
-            return ObjectUtils.compare((Long) value, NumberUtils.LONG_ZERO) > 0;
-        } else if (value instanceof Short) {
-            return ObjectUtils.compare((Short) value, NumberUtils.SHORT_ZERO) > 0;
-        } else if (value instanceof Byte) {
-            return ObjectUtils.compare((Byte) value, NumberUtils.BYTE_ZERO) > 0;
-        } else if (value instanceof Double) {
-            return ObjectUtils.compare((Double) value, NumberUtils.DOUBLE_ZERO) > 0;
-        } else if (value instanceof Float) {
-            return ObjectUtils.compare((Float) value, NumberUtils.FLOAT_ZERO) > 0;
-        } else if (value instanceof Fraction) {
-            return ObjectUtils.compare(value.floatValue(), NumberUtils.FLOAT_ZERO) > 0;
-        } else if (value instanceof BigDecimal) {
-            return ObjectUtils.compare((BigDecimal) value, BigDecimal.ZERO) > 0;
-        } else if (value instanceof BigInteger) {
-            return ObjectUtils.compare((BigInteger) value, BigInteger.ZERO) > 0;
+        if (value instanceof Integer alias) {
+            return ObjectUtils.compare(alias, NumberUtils.INTEGER_ZERO) > 0;
+        } else if (value instanceof Long alias) {
+            return ObjectUtils.compare(alias, NumberUtils.LONG_ZERO) > 0;
+        } else if (value instanceof Short alias) {
+            return ObjectUtils.compare(alias, NumberUtils.SHORT_ZERO) > 0;
+        } else if (value instanceof Byte alias) {
+            return ObjectUtils.compare(alias, NumberUtils.BYTE_ZERO) > 0;
+        } else if (value instanceof Double alias) {
+            return ObjectUtils.compare(alias, NumberUtils.DOUBLE_ZERO) > 0;
+        } else if (value instanceof Float alias) {
+            return ObjectUtils.compare(alias, NumberUtils.FLOAT_ZERO) > 0;
+        } else if (value instanceof Fraction alias) {
+            return ObjectUtils.compare(alias.floatValue(), NumberUtils.FLOAT_ZERO) > 0;
+        } else if (value instanceof BigDecimal alias) {
+            return ObjectUtils.compare(alias, BigDecimal.ZERO) > 0;
+        } else if (value instanceof BigInteger alias) {
+            return ObjectUtils.compare(alias, BigInteger.ZERO) > 0;
         }
         return value.longValue() > 0L;
     }
@@ -351,22 +351,24 @@ public abstract class NumberUtilsWraps {
         if (value == null) {
             return false;
         }
-        if (value instanceof BigInteger) {
-            return ObjectUtils.compare((BigInteger) value, BigInteger.ZERO) == 0;
-        } else if (value instanceof Long) {
-            return ObjectUtils.compare((Long) value, NumberUtils.LONG_ZERO) == 0;
-        } else if (value instanceof Integer) {
-            return ObjectUtils.compare((Integer) value, NumberUtils.INTEGER_ZERO) == 0;
-        } else if (value instanceof Short) {
-            return ObjectUtils.compare((Short) value, NumberUtils.SHORT_ZERO) == 0;
-        } else if (value instanceof Byte) {
-            return ObjectUtils.compare((Byte) value, NumberUtils.BYTE_ZERO) == 0;
-        } else if (value instanceof BigDecimal) {
-            return ObjectUtils.compare((BigDecimal) value, BigDecimal.ZERO) == 0;
-        } else if (value instanceof Double) {
-            return ObjectUtils.compare((Double) value, NumberUtils.DOUBLE_ZERO) == 0;
-        } else if (value instanceof Float) {
-            return ObjectUtils.compare((Float) value, NumberUtils.FLOAT_ZERO) == 0;
+        if (value instanceof Integer alias) {
+            return ObjectUtils.compare(alias, NumberUtils.INTEGER_ZERO) == 0;
+        } else if (value instanceof Long alias) {
+            return ObjectUtils.compare(alias, NumberUtils.LONG_ZERO) == 0;
+        } else if (value instanceof Short alias) {
+            return ObjectUtils.compare(alias, NumberUtils.SHORT_ZERO) == 0;
+        } else if (value instanceof Byte alias) {
+            return ObjectUtils.compare(alias, NumberUtils.BYTE_ZERO) == 0;
+        } else if (value instanceof Double alias) {
+            return ObjectUtils.compare(alias, NumberUtils.DOUBLE_ZERO) == 0;
+        } else if (value instanceof Float alias) {
+            return ObjectUtils.compare(alias, NumberUtils.FLOAT_ZERO) == 0;
+        } else if (value instanceof Fraction alias) {
+            return ObjectUtils.compare(alias.floatValue(), NumberUtils.FLOAT_ZERO) == 0;
+        } else if (value instanceof BigDecimal alias) {
+            return ObjectUtils.compare(alias, BigDecimal.ZERO) == 0;
+        } else if (value instanceof BigInteger alias) {
+            return ObjectUtils.compare(alias, BigInteger.ZERO) == 0;
         }
         return false;
     }
@@ -568,8 +570,8 @@ public abstract class NumberUtilsWraps {
         }
         if (value instanceof Integer || value instanceof Byte || value instanceof Short) {
             return StringUtils.join(SymbolVariantConst.HEX_PREFIX, Integer.toHexString(value.intValue()));
-        } else if (value instanceof Double) {
-            return StringUtils.join(SymbolVariantConst.HEX_PREFIX, Double.toHexString((Double) value));
+        } else if (value instanceof Double alias) {
+            return StringUtils.join(SymbolVariantConst.HEX_PREFIX, Double.toHexString(alias));
         }
         return StringUtils.join(SymbolVariantConst.HEX_PREFIX, Long.toHexString(value.longValue()));
     }
