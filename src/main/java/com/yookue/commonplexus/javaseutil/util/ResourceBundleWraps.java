@@ -39,8 +39,8 @@ public abstract class ResourceBundleWraps {
     }
 
     @Nullable
-    public static String getLocaleLookupMessage(@Nullable String baseName, @Nullable Locale locale, @Nullable String key, @Nullable String defaults) {
-        return getLocaleLookupMessage(baseName, locale, null, key, defaults);
+    public static String getLocaleLookupMessage(@Nullable String baseName, @Nullable Locale locale, @Nullable String key, @Nullable String defaultValue) {
+        return getLocaleLookupMessage(baseName, locale, null, key, defaultValue);
     }
 
     /**
@@ -50,9 +50,9 @@ public abstract class ResourceBundleWraps {
      */
     @Nullable
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
-    public static String getLocaleLookupMessage(@Nullable String baseName, @Nullable Locale locale, @Nullable ClassLoader loader, @Nullable String key, @Nullable String defaults) {
+    public static String getLocaleLookupMessage(@Nullable String baseName, @Nullable Locale locale, @Nullable ClassLoader loader, @Nullable String key, @Nullable String defaultValue) {
         if (StringUtils.isAnyBlank(baseName, key) || locale == null) {
-            return defaults;
+            return defaultValue;
         }
         List<Locale> lookups = LocaleUtils.localeLookupList(locale);
         for (Locale lookup : lookups) {
@@ -65,6 +65,6 @@ public abstract class ResourceBundleWraps {
             } catch (Exception ignored) {
             }
         }
-        return defaults;
+        return defaultValue;
     }
 }
