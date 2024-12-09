@@ -514,7 +514,7 @@ public abstract class ObjectUtilsWraps {
         if (source == null) {
             return null;
         }
-        if (source instanceof List alias) {
+        if (source instanceof List<?> alias) {
             return alias;
         }
         if (!transform) {
