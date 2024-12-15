@@ -37,8 +37,8 @@ public abstract class UtilUuidGenerator {
      * @return an uuid string with uppercase and none hyphens
      */
     @Nonnull
-    public static String getCapitalUuid() {
-        return getRandomUuid(true, false);
+    public static String getCapitalId() {
+        return getRandomId(true, false);
     }
 
     /**
@@ -47,22 +47,22 @@ public abstract class UtilUuidGenerator {
      * @return an uuid string with lowercase and none hyphens
      */
     @Nonnull
-    public static String getPopularUuid() {
-        return getRandomUuid(false, false);
+    public static String getPopularId() {
+        return getRandomId(false, false);
     }
 
     @Nonnull
-    public static String getRandomUuid() {
-        return getRandomUuid(false, true);
+    public static String getRandomId() {
+        return getRandomId(false, true);
     }
 
     @Nonnull
-    public static String getRandomUuid(boolean uppercase) {
-        return getRandomUuid(uppercase, true);
+    public static String getRandomId(boolean uppercase) {
+        return getRandomId(uppercase, true);
     }
 
     @Nonnull
-    public static String getRandomUuid(boolean uppercase, boolean hyphen) {
+    public static String getRandomId(boolean uppercase, boolean hyphen) {
         String result = UUID.randomUUID().toString();
         result = uppercase ? StringUtils.upperCase(result) : StringUtils.lowerCase(result);
         return hyphen ? result : StringUtils.remove(result, CharVariantConst.HYPHEN);
