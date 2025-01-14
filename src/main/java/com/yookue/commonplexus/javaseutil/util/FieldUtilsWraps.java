@@ -22,14 +22,17 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import jakarta.annotation.Nullable;
 import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.ClassUtils;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.reflect.FieldUtils;
@@ -124,6 +127,16 @@ public abstract class FieldUtilsWraps {
     }
 
     @Nullable
+    public static Map<String, ?> getDeclaredFieldsToMap(@Nullable Object object, @Nullable Predicate<Field> filter) {
+        if (object == null || ClassUtils.isPrimitiveOrWrapper(object.getClass())) {
+            return null;
+        }
+        Map<String, Object> result = new LinkedHashMap<>();
+        doWithDeclaredFields(object.getClass(), (field) -> result.put(field.getName(), readField(field, object, true)), filter);
+        return result.isEmpty() ? null : result;
+    }
+
+    @Nullable
     public static Set<Field> getDeclaredFieldsToSet(@Nullable Class<?> clazz) {
         return getDeclaredFieldsToSet(clazz, null);
     }
@@ -189,6 +202,16 @@ public abstract class FieldUtilsWraps {
         List<Field> result = new ArrayList<>();
         doWithNestedFields(clazz, result::add, filter);
         return CollectionPlainWraps.isEmpty(result) ? null : result;
+    }
+
+    @Nullable
+    public static Map<String, ?> getNestedFieldsToMap(@Nullable Object object, @Nullable Predicate<Field> filter) {
+        if (object == null || ClassUtils.isPrimitiveOrWrapper(object.getClass())) {
+            return null;
+        }
+        Map<String, Object> result = new LinkedHashMap<>();
+        doWithNestedFields(object.getClass(), (field) -> result.put(field.getName(), readField(field, object, true)), filter);
+        return result.isEmpty() ? null : result;
     }
 
     @Nullable
