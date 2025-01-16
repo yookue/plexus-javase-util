@@ -24,6 +24,7 @@ package com.yookue.commonplexus.javaseutil.constant;
  */
 @SuppressWarnings("unused")
 public abstract class IdentityVariantConst {
+    public static final String ZERO_PLACEHOLDER = "000000";    // $NON-NLS-1$
     public static final String ZERO_HYPHEN_UUID = "00000000-0000-0000-0000-000000000000";    // $NON-NLS-1$
     public static final String ZERO_PLAIN_UUID = "00000000000000000000000000000000";    // $NON-NLS-1$
 }
