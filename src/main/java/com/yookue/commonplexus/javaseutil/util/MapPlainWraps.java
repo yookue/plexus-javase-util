@@ -792,123 +792,12 @@ public abstract class MapPlainWraps {
         return isEmpty(map) || StringUtils.isBlank(map.get(key));
     }
 
-    public static <K, V> void putAll(@Nullable Map<K, V> target, @Nullable Map<? extends K, ? extends V> source) {
-        if (target != null && isNotEmpty(source)) {
-            target.putAll(source);
-        }
+    public static int maxSize(@Nullable Map<?, ?>... maps) {
+        return maxSize(ArrayUtilsWraps.asList(maps));
     }
 
-    @SafeVarargs
-    public static <K, V> void putAll(@Nullable Map<K, V> target, @Nullable Map<? extends K, ? extends V>... sources) {
-        putAll(target, ArrayUtilsWraps.asList(sources));
-    }
-
-    public static <K, V> void putAll(@Nullable Map<K, V> target, @Nullable Collection<Map<? extends K, ? extends V>> sources) {
-        if (target != null && CollectionPlainWraps.isNotEmpty(sources)) {
-            sources.stream().filter(MapPlainWraps::isNotEmpty).forEach(Failable.asConsumer(target::putAll));
-        }
-    }
-
-    public static <K extends CharSequence, V extends CharSequence> void putAllIfAllNotBlank(@Nullable Map<K, V> target, @Nullable Map<? extends K, ? extends V> source) {
-        if (target != null && isNotEmpty(source)) {
-            source.forEach(Failable.asBiConsumer((key, value) -> putIfAllNotBlank(target, key, value)));
-        }
-    }
-
-    public static <K, V> void putAllIfAllNotEmpty(@Nullable Map<K, V> target, @Nullable Map<? extends K, ? extends V> source) {
-        if (target != null && isNotEmpty(source)) {
-            source.forEach(Failable.asBiConsumer((key, value) -> putIfAllNotEmpty(target, key, value)));
-        }
-    }
-
-    public static <K, V> void putAllIfAllNotNull(@Nullable Map<K, V> target, @Nullable Map<? extends K, ? extends V> source) {
-        if (target != null && isNotEmpty(source)) {
-            source.forEach(Failable.asBiConsumer((key, value) -> putIfAllNotNull(target, key, value)));
-        }
-    }
-
-    public static <K, V> void putAllIfKeyNotNull(@Nullable Map<K, V> target, @Nullable Map<? extends K, ? extends V> source) {
-        if (target != null && isNotEmpty(source)) {
-            source.forEach(Failable.asBiConsumer((key, value) -> putIfKeyNotNull(target, key, value)));
-        }
-    }
-
-    public static <K extends CharSequence, V> void putAllIfKeyNotBlank(@Nullable Map<K, V> target, @Nullable Map<? extends K, ? extends V> source) {
-        if (target != null && isNotEmpty(source)) {
-            source.forEach(Failable.asBiConsumer((key, value) -> putIfKeyNotBlank(target, key, value)));
-        }
-    }
-
-    public static <K, V> void putAllIfKeyNotEmpty(@Nullable Map<K, V> target, @Nullable Map<? extends K, ? extends V> source) {
-        if (target != null && isNotEmpty(source)) {
-            source.forEach(Failable.asBiConsumer((key, value) -> putIfKeyNotEmpty(target, key, value)));
-        }
-    }
-
-    public static <K, V> void putAllIfValueNotNull(@Nullable Map<K, V> target, @Nullable Map<? extends K, ? extends V> source) {
-        if (target != null && isNotEmpty(source)) {
-            source.forEach(Failable.asBiConsumer((key, value) -> putIfValueNotNull(target, key, value)));
-        }
-    }
-
-    public static <K, V extends CharSequence> void putAllIfValueNotBlank(@Nullable Map<K, V> target, @Nullable Map<? extends K, ? extends V> source) {
-        if (target != null && isNotEmpty(source)) {
-            source.forEach(Failable.asBiConsumer((key, value) -> putIfValueNotBlank(target, key, value)));
-        }
-    }
-
-    public static <K, V> void putAllIfValueNotEmpty(@Nullable Map<K, V> target, @Nullable Map<? extends K, ? extends V> source) {
-        if (target != null && isNotEmpty(source)) {
-            source.forEach(Failable.asBiConsumer((key, value) -> putIfValueNotEmpty(target, key, value)));
-        }
-    }
-
-    @Nullable
-    public static <K extends CharSequence, V extends CharSequence> V putIfAllNotBlank(@Nullable Map<K, V> map, @Nullable K key, @Nullable V value) {
-        return (map == null || StringUtils.isAnyBlank(key, value)) ? null : map.put(key, value);
-    }
-
-    @Nullable
-    public static <K, V> V putIfAllNotEmpty(@Nullable Map<K, V> map, @Nullable K key, @Nullable V value) {
-        return (map == null || ObjectUtilsWraps.anyEmpty(key, value)) ? null : map.put(key, value);
-    }
-
-    @Nullable
-    @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
-    public static <K, V> V putIfAllNotNull(@Nullable Map<K, V> target, @Nullable K key, @Nullable V value) {
-        return ObjectUtils.anyNull(target, key, value) ? null : target.put(key, value);
-    }
-
-    @Nullable
-    @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
-    public static <K, V> V putIfKeyNotNull(@Nullable Map<K, V> target, @Nullable K key, @Nullable V value) {
-        return ObjectUtils.anyNull(target, key) ? null : target.put(key, value);
-    }
-
-    @Nullable
-    public static <K extends CharSequence, V> V putIfKeyNotBlank(@Nullable Map<K, V> target, @Nullable K key, @Nullable V value) {
-        return (target == null || StringUtils.isBlank(key)) ? null : target.put(key, value);
-    }
-
-    @Nullable
-    public static <K, V> V putIfKeyNotEmpty(@Nullable Map<K, V> target, @Nullable K key, @Nullable V value) {
-        return (target == null || ObjectUtils.isEmpty(key)) ? null : target.put(key, value);
-    }
-
-    @Nullable
-    @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
-    public static <K, V> V putIfValueNotNull(@Nullable Map<K, V> target, @Nullable K key, @Nullable V value) {
-        return ObjectUtils.anyNull(target, value) ? null : target.put(key, value);
-    }
-
-    @Nullable
-    public static <K, V extends CharSequence> V putIfValueNotBlank(@Nullable Map<K, V> target, @Nullable K key, @Nullable V value) {
-        return (target == null || StringUtils.isBlank(value)) ? null : target.put(key, value);
-    }
-
-    @Nullable
-    public static <K, V> V putIfValueNotEmpty(@Nullable Map<K, V> target, @Nullable K key, @Nullable V value) {
-        return (target == null || ObjectUtils.isEmpty(value)) ? null : target.put(key, value);
+    public static int maxSize(@Nullable Collection<Map<?, ?>> maps) {
+        return CollectionPlainWraps.isEmpty(maps) ? 0 : maps.stream().mapToInt(MapPlainWraps::size).max().orElse(0);
     }
 
     @Nonnull
@@ -1262,6 +1151,125 @@ public abstract class MapPlainWraps {
         return isEmpty(map) ? null : map;
     }
 
+    public static <K, V> void putAll(@Nullable Map<K, V> target, @Nullable Map<? extends K, ? extends V> source) {
+        if (target != null && isNotEmpty(source)) {
+            target.putAll(source);
+        }
+    }
+
+    @SafeVarargs
+    public static <K, V> void putAll(@Nullable Map<K, V> target, @Nullable Map<? extends K, ? extends V>... sources) {
+        putAll(target, ArrayUtilsWraps.asList(sources));
+    }
+
+    public static <K, V> void putAll(@Nullable Map<K, V> target, @Nullable Collection<Map<? extends K, ? extends V>> sources) {
+        if (target != null && CollectionPlainWraps.isNotEmpty(sources)) {
+            sources.stream().filter(MapPlainWraps::isNotEmpty).forEach(Failable.asConsumer(target::putAll));
+        }
+    }
+
+    public static <K extends CharSequence, V extends CharSequence> void putAllIfAllNotBlank(@Nullable Map<K, V> target, @Nullable Map<? extends K, ? extends V> source) {
+        if (target != null && isNotEmpty(source)) {
+            source.forEach(Failable.asBiConsumer((key, value) -> putIfAllNotBlank(target, key, value)));
+        }
+    }
+
+    public static <K, V> void putAllIfAllNotEmpty(@Nullable Map<K, V> target, @Nullable Map<? extends K, ? extends V> source) {
+        if (target != null && isNotEmpty(source)) {
+            source.forEach(Failable.asBiConsumer((key, value) -> putIfAllNotEmpty(target, key, value)));
+        }
+    }
+
+    public static <K, V> void putAllIfAllNotNull(@Nullable Map<K, V> target, @Nullable Map<? extends K, ? extends V> source) {
+        if (target != null && isNotEmpty(source)) {
+            source.forEach(Failable.asBiConsumer((key, value) -> putIfAllNotNull(target, key, value)));
+        }
+    }
+
+    public static <K, V> void putAllIfKeyNotNull(@Nullable Map<K, V> target, @Nullable Map<? extends K, ? extends V> source) {
+        if (target != null && isNotEmpty(source)) {
+            source.forEach(Failable.asBiConsumer((key, value) -> putIfKeyNotNull(target, key, value)));
+        }
+    }
+
+    public static <K extends CharSequence, V> void putAllIfKeyNotBlank(@Nullable Map<K, V> target, @Nullable Map<? extends K, ? extends V> source) {
+        if (target != null && isNotEmpty(source)) {
+            source.forEach(Failable.asBiConsumer((key, value) -> putIfKeyNotBlank(target, key, value)));
+        }
+    }
+
+    public static <K, V> void putAllIfKeyNotEmpty(@Nullable Map<K, V> target, @Nullable Map<? extends K, ? extends V> source) {
+        if (target != null && isNotEmpty(source)) {
+            source.forEach(Failable.asBiConsumer((key, value) -> putIfKeyNotEmpty(target, key, value)));
+        }
+    }
+
+    public static <K, V> void putAllIfValueNotNull(@Nullable Map<K, V> target, @Nullable Map<? extends K, ? extends V> source) {
+        if (target != null && isNotEmpty(source)) {
+            source.forEach(Failable.asBiConsumer((key, value) -> putIfValueNotNull(target, key, value)));
+        }
+    }
+
+    public static <K, V extends CharSequence> void putAllIfValueNotBlank(@Nullable Map<K, V> target, @Nullable Map<? extends K, ? extends V> source) {
+        if (target != null && isNotEmpty(source)) {
+            source.forEach(Failable.asBiConsumer((key, value) -> putIfValueNotBlank(target, key, value)));
+        }
+    }
+
+    public static <K, V> void putAllIfValueNotEmpty(@Nullable Map<K, V> target, @Nullable Map<? extends K, ? extends V> source) {
+        if (target != null && isNotEmpty(source)) {
+            source.forEach(Failable.asBiConsumer((key, value) -> putIfValueNotEmpty(target, key, value)));
+        }
+    }
+
+    @Nullable
+    public static <K extends CharSequence, V extends CharSequence> V putIfAllNotBlank(@Nullable Map<K, V> map, @Nullable K key, @Nullable V value) {
+        return (map == null || StringUtils.isAnyBlank(key, value)) ? null : map.put(key, value);
+    }
+
+    @Nullable
+    public static <K, V> V putIfAllNotEmpty(@Nullable Map<K, V> map, @Nullable K key, @Nullable V value) {
+        return (map == null || ObjectUtilsWraps.anyEmpty(key, value)) ? null : map.put(key, value);
+    }
+
+    @Nullable
+    @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
+    public static <K, V> V putIfAllNotNull(@Nullable Map<K, V> target, @Nullable K key, @Nullable V value) {
+        return ObjectUtils.anyNull(target, key, value) ? null : target.put(key, value);
+    }
+
+    @Nullable
+    @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
+    public static <K, V> V putIfKeyNotNull(@Nullable Map<K, V> target, @Nullable K key, @Nullable V value) {
+        return ObjectUtils.anyNull(target, key) ? null : target.put(key, value);
+    }
+
+    @Nullable
+    public static <K extends CharSequence, V> V putIfKeyNotBlank(@Nullable Map<K, V> target, @Nullable K key, @Nullable V value) {
+        return (target == null || StringUtils.isBlank(key)) ? null : target.put(key, value);
+    }
+
+    @Nullable
+    public static <K, V> V putIfKeyNotEmpty(@Nullable Map<K, V> target, @Nullable K key, @Nullable V value) {
+        return (target == null || ObjectUtils.isEmpty(key)) ? null : target.put(key, value);
+    }
+
+    @Nullable
+    @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
+    public static <K, V> V putIfValueNotNull(@Nullable Map<K, V> target, @Nullable K key, @Nullable V value) {
+        return ObjectUtils.anyNull(target, value) ? null : target.put(key, value);
+    }
+
+    @Nullable
+    public static <K, V extends CharSequence> V putIfValueNotBlank(@Nullable Map<K, V> target, @Nullable K key, @Nullable V value) {
+        return (target == null || StringUtils.isBlank(value)) ? null : target.put(key, value);
+    }
+
+    @Nullable
+    public static <K, V> V putIfValueNotEmpty(@Nullable Map<K, V> target, @Nullable K key, @Nullable V value) {
+        return (target == null || ObjectUtils.isEmpty(value)) ? null : target.put(key, value);
+    }
+
     public static <K, V> void recompute(@Nullable Map<K, V> map, @Nullable BiFunction<? super K, ? super V, V> action) {
         recompute(map, action, null);
     }
@@ -1516,12 +1524,56 @@ public abstract class MapPlainWraps {
         return (map == null) ? 0 : map.size();
     }
 
-    public static int maxSize(@Nullable Map<?, ?>... maps) {
-        return maxSize(ArrayUtilsWraps.asList(maps));
-    }
-
-    public static int maxSize(@Nullable Collection<Map<?, ?>> maps) {
-        return CollectionPlainWraps.isEmpty(maps) ? 0 : maps.stream().mapToInt(MapPlainWraps::size).max().orElse(0);
+    /**
+     * Returns the sorted map which converts the plain list to tree list, joining with the children prop
+     *
+     * @param maps the source maps to inspect
+     * @param idKey the id key to identify each record, such as "id"
+     * @param pidKey the parent key to identify the parent record of current, such as "pid"
+     * @param childrenKey the children key to organize children records, such as "children"
+     *
+     * @return the sorted map which converts the plain list to tree list, joining with the children prop
+     */
+    @Nullable
+    public static List<Map<String, Object>> sortChildrenTree(@Nullable Collection<Map<String, Object>> maps, @Nullable String idKey, @Nullable String pidKey, @Nullable String childrenKey) {
+        if (CollectionPlainWraps.isEmpty(maps) || StringUtils.isAnyBlank(idKey, pidKey, childrenKey)) {
+            return null;
+        }
+        Map<String, Map<String, Object>> indexes = new HashMap<>(maps.size());
+        for (Map<String, Object> map : maps) {
+            String idValue = getString(map, idKey);
+            if (StringUtils.isNotBlank(idValue)) {
+                indexes.put(idValue, map);
+            }
+        }
+        if (isEmpty(indexes)) {
+            return null;
+        }
+        List<Map<String, Object>> roots = new ArrayList<>(maps.size());
+        for (Map<String, Object> map : maps) {
+            String pidValue = getString(map, pidKey);
+            if (StringUtils.isBlank(pidValue)) {
+                roots.add(map);
+            } else {
+                Map<String, Object> parent = indexes.get(pidValue);
+                if (parent != null) {
+                    Object children = getObject(parent, childrenKey);
+                    if (children == null) {
+                        parent.put(childrenKey, CollectionPlainWraps.newArrayListWithin(map));
+                    } else if (children instanceof Collection<?> alias) {
+                        List<Object> clone = new ArrayList<>(alias);
+                        clone.add(map);
+                        parent.put(childrenKey, clone);
+                    } else if (children.getClass().isArray()) {
+                        Object[] alias = (Object[]) children;
+                        List<Object> clone = new ArrayList<>(Arrays.asList(alias));
+                        clone.add(map);
+                        parent.put(childrenKey, clone);
+                    }
+                }
+            }
+        }
+        return roots.isEmpty() ? null : roots;
     }
 
     public static int sumSize(@Nullable Map<?, ?>... maps) {

@@ -17,6 +17,8 @@
 package com.yookue.commonplexus.javaseutil.util;
 
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -29,6 +31,7 @@ import lombok.extern.slf4j.Slf4j;
  * @author David Hsing
  */
 @Slf4j
+@SuppressWarnings("LoggingSimilarMessage")
 class MapPlainWrapsTest {
     @Test
     void forEachIndexingTailing() {
@@ -54,5 +57,17 @@ class MapPlainWrapsTest {
         Map<String, Integer> map = MapPlainWraps.newLinkedHashMapWithin("first", 1, "second", 2, "third", 3);
         Map.Entry<String, Integer> head = MapPlainWraps.reverseForEachIndexingHeading(map, (index, key, value) -> log.info("{}: index = {}, key = {}, value= {}", methodName, index, key, value));
         Assertions.assertTrue(head != null && head.getValue() == 1);
+    }
+
+    @Test
+    void sortChildrenTree() {
+        List<Map<String, Object>> income = new ArrayList<>();
+        income.add(MapPlainWraps.newHashMapWithin("id", "1"));
+        income.add(MapPlainWraps.newHashMapWithin("id", "2", "pid", "1"));
+        income.add(MapPlainWraps.newHashMapWithin("id", "3", "pid", "1"));
+        income.add(MapPlainWraps.newHashMapWithin("id", "4", "pid", "2"));
+        income.add(MapPlainWraps.newHashMapWithin("id", "5", "pid", "2"));
+        List<Map<String, Object>> outcome = MapPlainWraps.sortChildrenTree(income, "id", "pid", "children");
+        Assertions.assertTrue(outcome != null && outcome.size() == 1);
     }
 }
