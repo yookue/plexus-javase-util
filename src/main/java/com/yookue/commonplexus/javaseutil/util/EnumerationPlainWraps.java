@@ -58,6 +58,16 @@ public abstract class EnumerationPlainWraps {
         return enumeration != null && IteratorPlainWraps.contains(new EnumerationIterator<>(enumeration), comparison);
     }
 
+    @Nullable
+    public static <E> E firstNonNull(@Nullable Enumeration<E> enumeration) {
+        return (enumeration == null) ? null : IteratorPlainWraps.firstNonNull(new EnumerationIterator<>(enumeration));
+    }
+
+    @Nullable
+    public static <E> E firstNonEmpty(@Nullable Enumeration<E> enumeration) {
+        return (enumeration == null) ? null : IteratorPlainWraps.firstNonEmpty(new EnumerationIterator<>(enumeration));
+    }
+
     public static <E> void forEach(@Nullable Enumeration<E> enumeration, @Nullable Consumer<? super E> action) {
         forEach(enumeration, action, null);
     }

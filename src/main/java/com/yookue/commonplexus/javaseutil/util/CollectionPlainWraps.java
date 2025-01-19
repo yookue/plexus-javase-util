@@ -642,20 +642,6 @@ public abstract class CollectionPlainWraps {
         return isNotEmpty(collection) && collection.stream().anyMatch(element -> StringUtils.containsIgnoreCase(element, sequence));
     }
 
-    @Nullable
-    @SafeVarargs
-    @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
-    public static <E extends Collection<?>> E firstEmpty(@Nullable E... collections) {
-        return ArrayUtils.isEmpty(collections) ? null : Arrays.stream(collections).filter(CollectionPlainWraps::isEmpty).findFirst().orElse(null);
-    }
-
-    @Nullable
-    @SafeVarargs
-    @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
-    public static <E extends Collection<?>> E firstNonEmpty(@Nullable E... collections) {
-        return ArrayUtils.isEmpty(collections) ? null : Arrays.stream(collections).filter(CollectionPlainWraps::isNotEmpty).findFirst().orElse(null);
-    }
-
     public static <E> void forEach(@Nullable Collection<E> collection, @Nullable Consumer<? super E> action) {
         forEach(collection, action, null);
     }

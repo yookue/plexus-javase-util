@@ -19,6 +19,7 @@ package com.yookue.commonplexus.javaseutil.util;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.util.Arrays;
 import jakarta.annotation.Nullable;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.ClassUtils;
@@ -52,6 +53,14 @@ public abstract class TypeUtilsWraps {
     }
 
     @Nullable
+    public static Type[] getGenericParameterTypes(@Nullable Class<?> clazz) {
+        if (clazz == null || !(clazz.getGenericSuperclass() instanceof ParameterizedType alias)) {
+            return null;
+        }
+        return alias.getActualTypeArguments();
+    }
+
+    @Nullable
     public static Class<?> getGenericParameterClass(@Nullable Class<?> clazz) {
         return getGenericParameterClass(clazz, 0);
     }
@@ -75,6 +84,14 @@ public abstract class TypeUtilsWraps {
         }
         Class<?> result = getGenericParameterClass(clazz, index);
         return ClassUtils.isAssignable(result, expectedType) ? (T) result : null;
+    }
+
+    public boolean isGenericParameterizedWrapper(@Nullable Class<?> wrapper, @Nullable Type... parameters) {
+        if (wrapper == null || ArrayUtils.isEmpty(parameters)) {
+            return false;
+        }
+        Type[] actualTypes = getGenericParameterTypes(wrapper);
+        return ArrayUtils.isNotEmpty(actualTypes) && Arrays.equals(actualTypes, parameters);
     }
 
     public static boolean isPrimitive(@Nullable Type type) {

@@ -55,17 +55,13 @@ public abstract class IterablePlainWraps {
     }
 
     @Nullable
-    @SafeVarargs
-    @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
-    public static <E extends Iterable<?>> E firstEmpty(@Nullable E... iterables) {
-        return ArrayUtils.isEmpty(iterables) ? null : Arrays.stream(iterables).filter(IterablePlainWraps::isEmpty).findFirst().orElse(null);
+    public static <E> E firstNonNull(@Nullable Iterable<E> iterable) {
+        return (iterable == null) ? null : IteratorPlainWraps.firstNonNull(iterable.iterator());
     }
 
     @Nullable
-    @SafeVarargs
-    @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
-    public static <E extends Iterable<?>> E firstNonEmpty(@Nullable E... iterables) {
-        return ArrayUtils.isEmpty(iterables) ? null : Arrays.stream(iterables).filter(IterablePlainWraps::isNotEmpty).findFirst().orElse(null);
+    public static <E> E firstNonEmpty(@Nullable Iterable<E> iterable) {
+        return (iterable == null) ? null : IteratorPlainWraps.firstNonEmpty(iterable.iterator());
     }
 
     public static <E> void forEach(@Nullable Iterable<E> iterable, @Nullable Consumer<? super E> action) {

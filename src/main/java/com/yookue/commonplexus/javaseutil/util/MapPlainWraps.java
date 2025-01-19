@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Hashtable;
@@ -1536,6 +1537,38 @@ public abstract class MapPlainWraps {
      */
     @Nullable
     public static List<Map<String, Object>> sortChildrenTree(@Nullable Collection<Map<String, Object>> maps, @Nullable String idKey, @Nullable String pidKey, @Nullable String childrenKey) {
+        return sortChildrenTree(maps, idKey, pidKey, childrenKey, (Comparator<Map<String, Object>>) null);
+    }
+
+    /**
+     * Returns the sorted map which converts the plain list to tree list, joining with the children prop
+     *
+     * @param maps the source maps to inspect
+     * @param idKey the id key to identify each record, such as "id"
+     * @param pidKey the parent key to identify the parent record of current, such as "pid"
+     * @param childrenKey the children key to organize children records, such as "children"
+     * @param orderKey the order key to sort records, such as "order", note the value must implement {@link java.lang.Comparable}
+     *
+     * @return the sorted map which converts the plain list to tree list, joining with the children prop
+     */
+    @Nullable
+    public static List<Map<String, Object>> sortChildrenTree(@Nullable Collection<Map<String, Object>> maps, @Nullable String idKey, @Nullable String pidKey, @Nullable String childrenKey, @Nullable String orderKey) {
+        return sortChildrenTree(maps, idKey, pidKey, childrenKey, (m1, m2) -> ObjectUtils.compare(MapPlainWraps.getObjectAs(m1, orderKey, Comparable.class), MapPlainWraps.getObjectAs(m2, orderKey, Comparable.class), true));
+    }
+
+    /**
+     * Returns the sorted map which converts the plain list to tree list, joining with the children prop
+     *
+     * @param maps the source maps to inspect
+     * @param idKey the id key to identify each record, such as "id"
+     * @param pidKey the parent key to identify the parent record of current, such as "pid"
+     * @param childrenKey the children key to organize children records, such as "children"
+     * @param comparator comparator to sort records
+     *
+     * @return the sorted map which converts the plain list to tree list, joining with the children prop
+     */
+    @Nullable
+    public static List<Map<String, Object>> sortChildrenTree(@Nullable Collection<Map<String, Object>> maps, @Nullable String idKey, @Nullable String pidKey, @Nullable String childrenKey, @Nullable Comparator<Map<String, Object>> comparator) {
         if (CollectionPlainWraps.isEmpty(maps) || StringUtils.isAnyBlank(idKey, pidKey, childrenKey)) {
             return null;
         }
@@ -1543,7 +1576,9 @@ public abstract class MapPlainWraps {
         for (Map<String, Object> map : maps) {
             String idValue = getString(map, idKey);
             if (StringUtils.isNotBlank(idValue)) {
-                indexes.put(idValue, map);
+                Map<String, Object> alias = new LinkedHashMap<>(map);
+                alias.remove(childrenKey);
+                indexes.put(idValue, alias);
             }
         }
         if (isEmpty(indexes)) {
@@ -1561,13 +1596,12 @@ public abstract class MapPlainWraps {
                     if (children == null) {
                         parent.put(childrenKey, CollectionPlainWraps.newArrayListWithin(map));
                     } else if (children instanceof Collection<?> alias) {
-                        List<Object> clone = new ArrayList<>(alias);
+                        @SuppressWarnings("unchecked")
+                        List<Map<String, Object>> clone = new ArrayList<>((Collection<? extends Map<String, Object>>) alias);
                         clone.add(map);
-                        parent.put(childrenKey, clone);
-                    } else if (children.getClass().isArray()) {
-                        Object[] alias = (Object[]) children;
-                        List<Object> clone = new ArrayList<>(Arrays.asList(alias));
-                        clone.add(map);
+                        if (comparator != null) {
+                            clone.sort(comparator);
+                        }
                         parent.put(childrenKey, clone);
                     }
                 }

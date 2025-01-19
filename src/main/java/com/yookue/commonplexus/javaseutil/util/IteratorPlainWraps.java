@@ -69,6 +69,34 @@ public abstract class IteratorPlainWraps {
         return false;
     }
 
+    @Nullable
+    public static <E> E firstNonNull(@Nullable Iterator<E> iterator) {
+        if (iterator == null) {
+            return null;
+        }
+        while (iterator.hasNext()) {
+            E element = iterator.next();
+            if (element != null) {
+                return element;
+            }
+        }
+        return null;
+    }
+
+    @Nullable
+    public static <E> E firstNonEmpty(@Nullable Iterator<E> iterator) {
+        if (iterator == null) {
+            return null;
+        }
+        while (iterator.hasNext()) {
+            E element = iterator.next();
+            if (ObjectUtils.isNotEmpty(element)) {
+                return element;
+            }
+        }
+        return null;
+    }
+
     public static <E> void forEach(@Nullable Iterator<E> iterator, @Nullable Consumer<? super E> action) {
         forEach(iterator, action, null);
     }
