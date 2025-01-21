@@ -32,6 +32,8 @@ import jakarta.json.JsonNumber;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonReader;
 import jakarta.json.JsonString;
+import jakarta.json.JsonStructure;
+import jakarta.json.JsonValue;
 import jakarta.json.bind.Jsonb;
 import jakarta.json.bind.JsonbBuilder;
 import jakarta.json.bind.JsonbConfig;
@@ -187,12 +189,48 @@ public abstract class JakartaJsonWraps {
     }
 
     @Nullable
+    public static JsonStructure readStructure(@Nullable JsonReader reader) {
+        if (reader == null) {
+            return null;
+        }
+        try {
+            return reader.read();
+        } catch (Exception ignored) {
+        }
+        return null;
+    }
+
+    @Nullable
+    public static JsonArray readArray(@Nullable JsonReader reader) {
+        if (reader == null) {
+            return null;
+        }
+        try {
+            return reader.readArray();
+        } catch (Exception ignored) {
+        }
+        return null;
+    }
+
+    @Nullable
     public static JsonObject readObject(@Nullable JsonReader reader) {
         if (reader == null) {
             return null;
         }
         try {
             return reader.readObject();
+        } catch (Exception ignored) {
+        }
+        return null;
+    }
+
+    @Nullable
+    public static JsonValue readValue(@Nullable JsonReader reader) {
+        if (reader == null) {
+            return null;
+        }
+        try {
+            return reader.readValue();
         } catch (Exception ignored) {
         }
         return null;
