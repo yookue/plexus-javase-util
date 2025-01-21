@@ -32,7 +32,6 @@ import jakarta.json.JsonNumber;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonReader;
 import jakarta.json.JsonString;
-import jakarta.json.JsonStructure;
 import jakarta.json.bind.Jsonb;
 import jakarta.json.bind.JsonbBuilder;
 import jakarta.json.bind.JsonbConfig;
@@ -87,9 +86,10 @@ public abstract class JakartaJsonWraps {
             return null;
         }
         try (JsonReader jsonReader = Json.createReader(reader)) {
-            JsonStructure structure = jsonReader.read();
-            return (structure instanceof JsonObject alias) ? alias : null;
+            return jsonReader.readObject();
+        } catch (Exception ignored) {
         }
+        return null;
     }
 
     @Nullable
