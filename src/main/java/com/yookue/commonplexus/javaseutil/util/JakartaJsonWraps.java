@@ -186,11 +186,23 @@ public abstract class JakartaJsonWraps {
         return null;
     }
 
-    public Boolean getBoolean(@Nullable JsonObject instance, @Nullable String name) {
+    @Nullable
+    public static JsonObject readObject(@Nullable JsonReader reader) {
+        if (reader == null) {
+            return null;
+        }
+        try {
+            return reader.readObject();
+        } catch (Exception ignored) {
+        }
+        return null;
+    }
+
+    public static Boolean getBoolean(@Nullable JsonObject instance, @Nullable String name) {
         return getBoolean(instance, name, null);
     }
 
-    public Boolean getBoolean(@Nullable JsonObject instance, @Nullable String name, Boolean defaultValue) {
+    public static Boolean getBoolean(@Nullable JsonObject instance, @Nullable String name, Boolean defaultValue) {
         if (instance == null || StringUtils.isBlank(name)) {
             return null;
         }
@@ -201,11 +213,11 @@ public abstract class JakartaJsonWraps {
         return null;
     }
 
-    public Integer getInt(@Nullable JsonObject instance, @Nullable String name) {
+    public static Integer getInt(@Nullable JsonObject instance, @Nullable String name) {
         return getInt(instance, name, null);
     }
 
-    public Integer getInt(@Nullable JsonObject instance, @Nullable String name, Integer defaultValue) {
+    public static Integer getInt(@Nullable JsonObject instance, @Nullable String name, Integer defaultValue) {
         if (instance == null || StringUtils.isBlank(name)) {
             return null;
         }
@@ -216,7 +228,7 @@ public abstract class JakartaJsonWraps {
         return null;
     }
 
-    public Boolean isNull(@Nullable JsonObject instance, @Nullable String name) {
+    public static Boolean isNull(@Nullable JsonObject instance, @Nullable String name) {
         if (instance == null || StringUtils.isBlank(name)) {
             return null;
         }
@@ -228,12 +240,12 @@ public abstract class JakartaJsonWraps {
     }
 
     @Nullable
-    public String getString(@Nullable JsonObject instance, @Nullable String name) {
+    public static String getString(@Nullable JsonObject instance, @Nullable String name) {
         return getString(instance, name, null);
     }
 
     @Nullable
-    public String getString(@Nullable JsonObject instance, @Nullable String name, @Nullable String defaultValue) {
+    public static String getString(@Nullable JsonObject instance, @Nullable String name, @Nullable String defaultValue) {
         if (instance == null || StringUtils.isBlank(name)) {
             return null;
         }
@@ -245,7 +257,7 @@ public abstract class JakartaJsonWraps {
     }
 
     @Nullable
-    public JsonNumber getJsonNumber(@Nullable JsonObject instance, @Nullable String name) {
+    public static JsonNumber getJsonNumber(@Nullable JsonObject instance, @Nullable String name) {
         if (instance == null || StringUtils.isBlank(name)) {
             return null;
         }
@@ -257,7 +269,7 @@ public abstract class JakartaJsonWraps {
     }
 
     @Nullable
-    public JsonString getJsonString(@Nullable JsonObject instance, @Nullable String name) {
+    public static JsonString getJsonString(@Nullable JsonObject instance, @Nullable String name) {
         if (instance == null || StringUtils.isBlank(name)) {
             return null;
         }
@@ -269,7 +281,7 @@ public abstract class JakartaJsonWraps {
     }
 
     @Nullable
-    public JsonArray getJsonArray(@Nullable JsonObject instance, @Nullable String name) {
+    public static JsonArray getJsonArray(@Nullable JsonObject instance, @Nullable String name) {
         if (instance == null || StringUtils.isBlank(name)) {
             return null;
         }
@@ -281,7 +293,7 @@ public abstract class JakartaJsonWraps {
     }
 
     @Nullable
-    public JsonObject getJsonObject(@Nullable JsonObject instance, @Nullable String name) {
+    public static JsonObject getJsonObject(@Nullable JsonObject instance, @Nullable String name) {
         if (instance == null || StringUtils.isBlank(name)) {
             return null;
         }
