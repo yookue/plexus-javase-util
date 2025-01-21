@@ -429,6 +429,11 @@ public abstract class JakartaJsonWraps {
     }
 
     @Nullable
+    public static JsonValue getJsonValue(@Nullable JsonStructure structure, @Nullable String name) {
+        return (structure == null || StringUtils.isBlank(name)) ? null : structure.getValue(name);
+    }
+
+    @Nullable
     @SuppressWarnings("DataFlowIssue")
     public static <T extends JsonValue> List<T> getValuesAs(@Nullable JsonArray instance, @Nullable Class<T> clazz) {
         return ObjectUtils.anyNull(instance, clazz) ? null : instance.getValuesAs(clazz);
