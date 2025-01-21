@@ -268,11 +268,11 @@ public abstract class JakartaJsonWraps {
         return null;
     }
 
-    public static Integer getInt(@Nullable JsonArray instance, int index) {
-        return getInt(instance, index, null);
+    public static Integer getInteger(@Nullable JsonArray instance, int index) {
+        return getInteger(instance, index, null);
     }
 
-    public static Integer getInt(@Nullable JsonArray instance, int index, Integer defaultValue) {
+    public static Integer getInteger(@Nullable JsonArray instance, int index, Integer defaultValue) {
         if (instance == null || index < 0) {
             return null;
         }
@@ -283,11 +283,11 @@ public abstract class JakartaJsonWraps {
         return null;
     }
 
-    public static Integer getInt(@Nullable JsonObject instance, @Nullable String name) {
-        return getInt(instance, name, null);
+    public static Integer getInteger(@Nullable JsonObject instance, @Nullable String name) {
+        return getInteger(instance, name, null);
     }
 
-    public static Integer getInt(@Nullable JsonObject instance, @Nullable String name, Integer defaultValue) {
+    public static Integer getInteger(@Nullable JsonObject instance, @Nullable String name, Integer defaultValue) {
         if (instance == null || StringUtils.isBlank(name)) {
             return null;
         }
@@ -448,6 +448,16 @@ public abstract class JakartaJsonWraps {
     @SuppressWarnings("DataFlowIssue")
     public static <T, K extends JsonValue> List<T> getValuesAs(@Nullable JsonArray instance, @Nullable Function<K, T> func) {
         return ObjectUtils.anyNull(instance, func) ? null : instance.getValuesAs(func);
+    }
+
+    @Nullable
+    public static List<String> getValuesAsString(@Nullable JsonArray instance) {
+        return (instance == null) ? null : instance.getValuesAs(JsonString::getString);
+    }
+
+    @Nullable
+    public static List<Integer> getValuesAsInteger(@Nullable JsonArray instance) {
+        return (instance == null) ? null : instance.getValuesAs(JsonNumber::intValue);
     }
 
     public static Boolean isNull(@Nullable JsonArray instance, int index) {
