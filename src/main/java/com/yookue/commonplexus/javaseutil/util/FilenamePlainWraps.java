@@ -64,35 +64,35 @@ public abstract class FilenamePlainWraps {
         Arrays.stream(array).map(element -> StringUtils.isBlank(element) ? element : FilenamePlainWraps.appendSlash(element)).forEach(collection::add);
     }
 
-    public static String appendBackSlash(@Nullable CharSequence sequence) {
+    public static String appendBackslash(@Nullable CharSequence sequence) {
         return StringUtilsWraps.appendIfMissing(sequence, CharVariantConst.BACKSLASH);
     }
 
-    public static void appendBackSlash(@Nullable Collection<String> collection) {
+    public static void appendBackslash(@Nullable Collection<String> collection) {
         if (CollectionPlainWraps.isEmpty(collection)) {
             return;
         }
         String[] array = collection.toArray(ArrayUtils.EMPTY_STRING_ARRAY);
         collection.clear();
-        Arrays.stream(array).map(FilenamePlainWraps::appendBackSlash).forEach(collection::add);
+        Arrays.stream(array).map(FilenamePlainWraps::appendBackslash).forEach(collection::add);
     }
 
-    public static void appendBackSlashIgnoreEmpty(@Nullable Collection<String> collection) {
+    public static void appendBackslashIgnoreEmpty(@Nullable Collection<String> collection) {
         if (CollectionPlainWraps.isEmpty(collection)) {
             return;
         }
         String[] array = collection.toArray(ArrayUtils.EMPTY_STRING_ARRAY);
         collection.clear();
-        Arrays.stream(array).map(element -> StringUtils.isEmpty(element) ? element : FilenamePlainWraps.appendBackSlash(element)).forEach(collection::add);
+        Arrays.stream(array).map(element -> StringUtils.isEmpty(element) ? element : FilenamePlainWraps.appendBackslash(element)).forEach(collection::add);
     }
 
-    public static void appendBackSlashIgnoreBlank(@Nullable Collection<String> collection) {
+    public static void appendBackslashIgnoreBlank(@Nullable Collection<String> collection) {
         if (CollectionPlainWraps.isEmpty(collection)) {
             return;
         }
         String[] array = collection.toArray(ArrayUtils.EMPTY_STRING_ARRAY);
         collection.clear();
-        Arrays.stream(array).map(element -> StringUtils.isBlank(element) ? element : FilenamePlainWraps.appendBackSlash(element)).forEach(collection::add);
+        Arrays.stream(array).map(element -> StringUtils.isBlank(element) ? element : FilenamePlainWraps.appendBackslash(element)).forEach(collection::add);
     }
 
     public static String prependSlash(@Nullable CharSequence sequence) {
@@ -126,35 +126,35 @@ public abstract class FilenamePlainWraps {
         Arrays.stream(array).map(element -> StringUtils.isBlank(element) ? element : FilenamePlainWraps.prependSlash(element)).forEach(collection::add);
     }
 
-    public static String prependBackSlash(@Nullable CharSequence sequence) {
+    public static String prependBackslash(@Nullable CharSequence sequence) {
         return StringUtilsWraps.prependIfMissing(sequence, CharVariantConst.BACKSLASH);
     }
 
-    public static void prependBackSlash(@Nullable Collection<String> collection) {
+    public static void prependBackslash(@Nullable Collection<String> collection) {
         if (CollectionPlainWraps.isEmpty(collection)) {
             return;
         }
         String[] array = collection.toArray(ArrayUtils.EMPTY_STRING_ARRAY);
         collection.clear();
-        Arrays.stream(array).map(FilenamePlainWraps::prependBackSlash).forEach(collection::add);
+        Arrays.stream(array).map(FilenamePlainWraps::prependBackslash).forEach(collection::add);
     }
 
-    public static void prependBackSlashIgnoreEmpty(@Nullable Collection<String> collection) {
+    public static void prependBackslashIgnoreEmpty(@Nullable Collection<String> collection) {
         if (CollectionPlainWraps.isEmpty(collection)) {
             return;
         }
         String[] array = collection.toArray(ArrayUtils.EMPTY_STRING_ARRAY);
         collection.clear();
-        Arrays.stream(array).map(element -> StringUtils.isEmpty(element) ? element : FilenamePlainWraps.prependBackSlash(element)).forEach(collection::add);
+        Arrays.stream(array).map(element -> StringUtils.isEmpty(element) ? element : FilenamePlainWraps.prependBackslash(element)).forEach(collection::add);
     }
 
-    public static void prependBackSlashIgnoreBlank(@Nullable Collection<String> collection) {
+    public static void prependBackslashIgnoreBlank(@Nullable Collection<String> collection) {
         if (CollectionPlainWraps.isEmpty(collection)) {
             return;
         }
         String[] array = collection.toArray(ArrayUtils.EMPTY_STRING_ARRAY);
         collection.clear();
-        Arrays.stream(array).map(element -> StringUtils.isBlank(element) ? element : FilenamePlainWraps.prependBackSlash(element)).forEach(collection::add);
+        Arrays.stream(array).map(element -> StringUtils.isBlank(element) ? element : FilenamePlainWraps.prependBackslash(element)).forEach(collection::add);
     }
 
     public static String removeStartSlash(@Nullable CharSequence sequence) {
@@ -170,17 +170,17 @@ public abstract class FilenamePlainWraps {
         Arrays.stream(array).map(FilenamePlainWraps::removeStartSlash).forEach(collection::add);
     }
 
-    public static String removeStartBackSlash(@Nullable CharSequence sequence) {
+    public static String removeStartBackslash(@Nullable CharSequence sequence) {
         return RegExUtils.removeAll(CharSequenceWraps.toStringIgnoreNull(sequence), "^\\\\+");    // $NON-NLS-1$
     }
 
-    public static void removeStartBackSlash(@Nullable Collection<String> collection) {
+    public static void removeStartBackslash(@Nullable Collection<String> collection) {
         if (CollectionPlainWraps.isEmpty(collection)) {
             return;
         }
         String[] array = collection.toArray(ArrayUtils.EMPTY_STRING_ARRAY);
         collection.clear();
-        Arrays.stream(array).map(FilenamePlainWraps::removeStartBackSlash).forEach(collection::add);
+        Arrays.stream(array).map(FilenamePlainWraps::removeStartBackslash).forEach(collection::add);
     }
 
     /**
@@ -216,17 +216,17 @@ public abstract class FilenamePlainWraps {
         Arrays.stream(array).map(FilenamePlainWraps::removeEndSlash).forEach(collection::add);
     }
 
-    public static String removeEndBackSlash(@Nullable CharSequence sequence) {
+    public static String removeEndBackslash(@Nullable CharSequence sequence) {
         return RegExUtils.removeAll(CharSequenceWraps.toStringIgnoreNull(sequence), "\\\\+$");    // $NON-NLS-1$
     }
 
-    public static void removeEndBackSlash(@Nullable Collection<String> collection) {
+    public static void removeEndBackslash(@Nullable Collection<String> collection) {
         if (CollectionPlainWraps.isEmpty(collection)) {
             return;
         }
         String[] array = collection.toArray(ArrayUtils.EMPTY_STRING_ARRAY);
         collection.clear();
-        Arrays.stream(array).map(FilenamePlainWraps::removeEndBackSlash).forEach(collection::add);
+        Arrays.stream(array).map(FilenamePlainWraps::removeEndBackslash).forEach(collection::add);
     }
 
     /**
