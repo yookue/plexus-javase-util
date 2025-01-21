@@ -25,6 +25,8 @@ import java.io.Reader;
 import java.io.StringReader;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
+import java.util.function.Function;
 import jakarta.annotation.Nullable;
 import jakarta.json.Json;
 import jakarta.json.JsonArray;
@@ -42,25 +44,25 @@ import org.apache.commons.lang3.StringUtils;
 
 
 /**
- * Utilities for {@link jakarta.json.JsonObject}
+ * Utilities for {@link jakarta.json.JsonStructure}
  *
  * @author David Hsing
- * @see jakarta.json.JsonObject
+ * @see jakarta.json.JsonStructure
  */
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})
 public abstract class JakartaJsonWraps {
     @Nullable
-    public static JsonObject fromJson(@Nullable String content) {
+    public static JsonStructure fromJson(@Nullable String content) {
         return StringUtils.isBlank(content) ? null : fromJson(new StringReader(content));
     }
 
     @Nullable
-    public static JsonObject fromJson(@Nullable File file) {
+    public static JsonStructure fromJson(@Nullable File file) {
         return fromJson(file, null);
     }
 
     @Nullable
-    public static JsonObject fromJson(@Nullable File file, @Nullable Charset charset) {
+    public static JsonStructure fromJson(@Nullable File file, @Nullable Charset charset) {
         try {
             return (file == null) ? null : fromJson(new FileReader(file, ObjectUtils.defaultIfNull(charset, StandardCharsets.UTF_8)));
         } catch (Exception ignored) {
@@ -69,12 +71,12 @@ public abstract class JakartaJsonWraps {
     }
 
     @Nullable
-    public static JsonObject fromJson(@Nullable InputStream stream) {
+    public static JsonStructure fromJson(@Nullable InputStream stream) {
         return fromJson(stream, null);
     }
 
     @Nullable
-    public static JsonObject fromJson(@Nullable InputStream stream, @Nullable Charset charset) {
+    public static JsonStructure fromJson(@Nullable InputStream stream, @Nullable Charset charset) {
         try {
             return (stream == null) ? null : fromJson(new InputStreamReader(stream, ObjectUtils.defaultIfNull(charset, StandardCharsets.UTF_8)));
         } catch (Exception ignored) {
@@ -83,12 +85,12 @@ public abstract class JakartaJsonWraps {
     }
 
     @Nullable
-    public static JsonObject fromJson(@Nullable Reader reader) {
+    public static JsonStructure fromJson(@Nullable Reader reader) {
         if (reader == null) {
             return null;
         }
         try (JsonReader jsonReader = Json.createReader(reader)) {
-            return jsonReader.readObject();
+            return jsonReader.read();
         } catch (Exception ignored) {
         }
         return null;
@@ -236,6 +238,21 @@ public abstract class JakartaJsonWraps {
         return null;
     }
 
+    public static Boolean getBoolean(@Nullable JsonArray instance, int index) {
+        return getBoolean(instance, index, null);
+    }
+
+    public static Boolean getBoolean(@Nullable JsonArray instance, int index, Boolean defaultValue) {
+        if (instance == null || index < 0) {
+            return null;
+        }
+        try {
+            return instance.getBoolean(index, defaultValue);
+        } catch (Exception ignored) {
+        }
+        return null;
+    }
+
     public static Boolean getBoolean(@Nullable JsonObject instance, @Nullable String name) {
         return getBoolean(instance, name, null);
     }
@@ -246,6 +263,21 @@ public abstract class JakartaJsonWraps {
         }
         try {
             return instance.getBoolean(name, defaultValue);
+        } catch (Exception ignored) {
+        }
+        return null;
+    }
+
+    public static Integer getInt(@Nullable JsonArray instance, int index) {
+        return getInt(instance, index, null);
+    }
+
+    public static Integer getInt(@Nullable JsonArray instance, int index, Integer defaultValue) {
+        if (instance == null || index < 0) {
+            return null;
+        }
+        try {
+            return instance.getInt(index, defaultValue);
         } catch (Exception ignored) {
         }
         return null;
@@ -266,12 +298,18 @@ public abstract class JakartaJsonWraps {
         return null;
     }
 
-    public static Boolean isNull(@Nullable JsonObject instance, @Nullable String name) {
-        if (instance == null || StringUtils.isBlank(name)) {
+    @Nullable
+    public static String getString(@Nullable JsonArray instance, int index) {
+        return getString(instance, index, null);
+    }
+
+    @Nullable
+    public static String getString(@Nullable JsonArray instance, int index, @Nullable String defaultValue) {
+        if (instance == null || index < 0) {
             return null;
         }
         try {
-            return instance.isNull(name);
+            return instance.getString(index, defaultValue);
         } catch (Exception ignored) {
         }
         return null;
@@ -295,24 +333,12 @@ public abstract class JakartaJsonWraps {
     }
 
     @Nullable
-    public static JsonNumber getJsonNumber(@Nullable JsonObject instance, @Nullable String name) {
-        if (instance == null || StringUtils.isBlank(name)) {
+    public static JsonArray getJsonArray(@Nullable JsonArray instance, int index) {
+        if (instance == null || index < 0) {
             return null;
         }
         try {
-            return instance.getJsonNumber(name);
-        } catch (Exception ignored) {
-        }
-        return null;
-    }
-
-    @Nullable
-    public static JsonString getJsonString(@Nullable JsonObject instance, @Nullable String name) {
-        if (instance == null || StringUtils.isBlank(name)) {
-            return null;
-        }
-        try {
-            return instance.getJsonString(name);
+            return instance.getJsonArray(index);
         } catch (Exception ignored) {
         }
         return null;
@@ -331,6 +357,42 @@ public abstract class JakartaJsonWraps {
     }
 
     @Nullable
+    public static JsonNumber getJsonNumber(@Nullable JsonArray instance, int index) {
+        if (instance == null || index < 0) {
+            return null;
+        }
+        try {
+            return instance.getJsonNumber(index);
+        } catch (Exception ignored) {
+        }
+        return null;
+    }
+
+    @Nullable
+    public static JsonNumber getJsonNumber(@Nullable JsonObject instance, @Nullable String name) {
+        if (instance == null || StringUtils.isBlank(name)) {
+            return null;
+        }
+        try {
+            return instance.getJsonNumber(name);
+        } catch (Exception ignored) {
+        }
+        return null;
+    }
+
+    @Nullable
+    public static JsonObject getJsonObject(@Nullable JsonArray instance, int index) {
+        if (instance == null || index < 0) {
+            return null;
+        }
+        try {
+            return instance.getJsonObject(index);
+        } catch (Exception ignored) {
+        }
+        return null;
+    }
+
+    @Nullable
     public static JsonObject getJsonObject(@Nullable JsonObject instance, @Nullable String name) {
         if (instance == null || StringUtils.isBlank(name)) {
             return null;
@@ -340,5 +402,75 @@ public abstract class JakartaJsonWraps {
         } catch (Exception ignored) {
         }
         return null;
+    }
+
+    @Nullable
+    public static JsonString getJsonString(@Nullable JsonArray instance, int index) {
+        if (instance == null || index < 0) {
+            return null;
+        }
+        try {
+            return instance.getJsonString(index);
+        } catch (Exception ignored) {
+        }
+        return null;
+    }
+
+    @Nullable
+    public static JsonString getJsonString(@Nullable JsonObject instance, @Nullable String name) {
+        if (instance == null || StringUtils.isBlank(name)) {
+            return null;
+        }
+        try {
+            return instance.getJsonString(name);
+        } catch (Exception ignored) {
+        }
+        return null;
+    }
+
+    @Nullable
+    @SuppressWarnings("DataFlowIssue")
+    public static <T extends JsonValue> List<T> getValuesAs(@Nullable JsonArray instance, @Nullable Class<T> clazz) {
+        return ObjectUtils.anyNull(instance, clazz) ? null : instance.getValuesAs(clazz);
+    }
+
+    @Nullable
+    @SuppressWarnings("DataFlowIssue")
+    public static <T, K extends JsonValue> List<T> getValuesAs(@Nullable JsonArray instance, @Nullable Function<K, T> func) {
+        return ObjectUtils.anyNull(instance, func) ? null : instance.getValuesAs(func);
+    }
+
+    public static Boolean isNull(@Nullable JsonArray instance, int index) {
+        if (instance == null || index < 0) {
+            return null;
+        }
+        try {
+            return instance.isNull(index);
+        } catch (Exception ignored) {
+        }
+        return null;
+    }
+
+    public static Boolean isNull(@Nullable JsonObject instance, @Nullable String name) {
+        if (instance == null || StringUtils.isBlank(name)) {
+            return null;
+        }
+        try {
+            return instance.isNull(name);
+        } catch (Exception ignored) {
+        }
+        return null;
+    }
+
+    public static boolean isArrayType(@Nullable JsonValue value) {
+        return value != null && value.getValueType() == JsonValue.ValueType.ARRAY;
+    }
+
+    public static boolean isObjectType(@Nullable JsonValue value) {
+        return value != null && value.getValueType() == JsonValue.ValueType.OBJECT;
+    }
+
+    public static boolean isNullType(@Nullable JsonValue value) {
+        return value != null && value.getValueType() == JsonValue.ValueType.NULL;
     }
 }
