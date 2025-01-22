@@ -18,8 +18,8 @@ package com.yookue.commonplexus.javaseutil.util;
 
 
 import javax.swing.text.html.HTML.Tag;
-import com.yookue.commonplexus.javaseutil.structure.HtmlTagStruct;
 import jakarta.annotation.Nonnull;
+import com.yookue.commonplexus.javaseutil.structure.HtmlTagStruct;
 
 
 /**

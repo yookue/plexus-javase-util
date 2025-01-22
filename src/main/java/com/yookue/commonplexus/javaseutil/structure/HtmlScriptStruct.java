@@ -18,8 +18,8 @@ package com.yookue.commonplexus.javaseutil.structure;
 
 
 import java.util.List;
-import jakarta.annotation.Nullable;
 import javax.swing.text.html.HTML;
+import jakarta.annotation.Nullable;
 
 
 /**
