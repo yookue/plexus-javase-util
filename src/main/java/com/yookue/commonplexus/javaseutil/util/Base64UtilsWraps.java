@@ -70,6 +70,22 @@ public abstract class Base64UtilsWraps {
         return encodeToBytes(text, StandardCharsets.UTF_8);
     }
 
+    public static boolean isBase64Word(@Nullable String text) {
+        return RegexUtilsWraps.isWordHyphen(decodeToUtf8String(text));
+    }
+
+    public static boolean isBase64Word(@Nullable String text, @Nullable Charset charset) {
+        return RegexUtilsWraps.isWordHyphen(decodeToString(text, charset));
+    }
+
+    public static boolean isBase64WordHyphen(@Nullable String text) {
+        return RegexUtilsWraps.isWordHyphen(decodeToUtf8String(text));
+    }
+
+    public static boolean isBase64WordHyphen(@Nullable String text, @Nullable Charset charset) {
+        return RegexUtilsWraps.isWordHyphen(decodeToString(text, charset));
+    }
+
     public static boolean saveBase64Image(@Nullable String base64, @Nullable File file) throws IOException {
         return saveBase64Image(base64, file, false, null, null);
     }

@@ -32,17 +32,14 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 class RegexUtilsWrapsTest {
     @Test
-    void isApplicationJson() {
-        boolean result = RegexUtilsWraps.findIgnoreCase("application/problem+json;charset=UTF-8", RegexVariantConst.APPLICATION_JSON);    // $NON-NLS-1$
-        log.info("{}: {}", StackTraceWraps.getExecutingMethodName(), result);
-        Assertions.assertTrue(result);
-    }
-
-    @Test
-    void isApplicationXml() {
-        boolean result = RegexUtilsWraps.findIgnoreCase("application/problem+xml;charset=UTF-8", RegexVariantConst.APPLICATION_XML);    // $NON-NLS-1$
-        log.info("{}: {}", StackTraceWraps.getExecutingMethodName(), result);
-        Assertions.assertTrue(result);
+    void findIgnoreCase() {
+        String methodName = StackTraceWraps.getExecutingMethodName();
+        boolean isJson = RegexUtilsWraps.findIgnoreCase("application/problem+json;charset=UTF-8", RegexVariantConst.APPLICATION_JSON);    // $NON-NLS-1$
+        log.info("{}: {}", methodName, isJson);
+        Assertions.assertTrue(isJson);
+        boolean isXml = RegexUtilsWraps.findIgnoreCase("application/problem+xml;charset=UTF-8", RegexVariantConst.APPLICATION_XML);    // $NON-NLS-1$
+        log.info("{}: {}", methodName, isXml);
+        Assertions.assertTrue(isXml);
     }
 
     @Test

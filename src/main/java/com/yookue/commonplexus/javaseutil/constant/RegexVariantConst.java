@@ -30,15 +30,12 @@ public abstract class RegexVariantConst {
 
     public static final String ANGLE_BRACKETS = "<[^>]+>";    // $NON-NLS-1$
     public static final String ARRAY_INDEX = "\\[\\d*\\]";    // $NON-NLS-1$
+    public static final String BASE64 = "^[A-Za-z0-9+/]*={0,2}$";    // $NON-NLS-1$
     public static final String BASE64_IMAGE = "data:image/\\w+;base64,";    // $NON-NLS-1$
     public static final String CURLY_BRACKETS = "\\{\\}";    // $NON-NLS-1$
     public static final String LINE_SEPARATOR = "\\r?\\n";    // $NON-NLS-1$
     public static final String LANGUAGE_TAG = "[a-zA-Z]{2,3}([_\\-]{1}[a-zA-Z]{2,3}){0,1}([_\\-]{1}[a-zA-Z]{2,4}){0,1}";    // $NON-NLS-1$
     public static final String MULTIPLE_SUFFIX = "{2,}";    // $NON-NLS-1$
-    public static final String MULTIPLE_SLASHES = "/" + MULTIPLE_SUFFIX;    // $NON-NLS-1$
-    public static final String MULTIPLE_BACKSLASHES = "\\" + MULTIPLE_SUFFIX;    // $NON-NLS-1$
-    public static final String MULTIPLE_SPACES = "\\s" + MULTIPLE_SUFFIX;    // $NON-NLS-1$
-    public static final String SINGLE_BACKSLASH = "\\\\";    // $NON-NLS-1$
 
     public static final String LAN_ADDRESS_IPV4 = "(127\\.0\\.0\\.1)|(localhost)|(10\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3})|(172\\.((1[6-9])|(2\\d)|(3[01]))\\.\\d{1,3}\\.\\d{1,3})|(192\\.168\\.\\d{1,3}\\.\\d{1,3})";    // $NON-NLS-1$
 }
