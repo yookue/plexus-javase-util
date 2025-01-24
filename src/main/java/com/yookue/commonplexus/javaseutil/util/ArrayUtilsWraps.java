@@ -1683,6 +1683,51 @@ public abstract class ArrayUtilsWraps {
         return null;
     }
 
+    @Nullable
+    public static boolean[] nullIfEmpty(@Nullable boolean[] array) {
+        return ArrayUtils.isEmpty(array) ? null : array;
+    }
+
+    @Nullable
+    public static byte[] nullIfEmpty(@Nullable byte[] array) {
+        return ArrayUtils.isEmpty(array) ? null : array;
+    }
+
+    @Nullable
+    public static char[] nullIfEmpty(@Nullable char[] array) {
+        return ArrayUtils.isEmpty(array) ? null : array;
+    }
+
+    @Nullable
+    public static double[] nullIfEmpty(@Nullable double[] array) {
+        return ArrayUtils.isEmpty(array) ? null : array;
+    }
+
+    @Nullable
+    public static float[] nullIfEmpty(@Nullable float[] array) {
+        return ArrayUtils.isEmpty(array) ? null : array;
+    }
+
+    @Nullable
+    public static int[] nullIfEmpty(@Nullable int[] array) {
+        return ArrayUtils.isEmpty(array) ? null : array;
+    }
+
+    @Nullable
+    public static long[] nullIfEmpty(@Nullable long[] array) {
+        return ArrayUtils.isEmpty(array) ? null : array;
+    }
+
+    @Nullable
+    public static short[] nullIfEmpty(@Nullable short[] array) {
+        return ArrayUtils.isEmpty(array) ? null : array;
+    }
+
+    @Nullable
+    public static <E> E[] nullIfEmpty(@Nullable E[] array) {
+        return ArrayUtils.isEmpty(array) ? null : array;
+    }
+
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
     public static <E> E[] removeIf(@Nullable E[] array, @Nullable Predicate<? super E> filter) {
         int[] indexes = getMatchedIndexes(array, filter);
