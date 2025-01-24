@@ -311,12 +311,12 @@ public abstract class ClassUtilsWraps {
         return ClassUtils.isAssignable(subclass, superclass);
     }
 
-    public static boolean isAssignable(@Nullable String superclassName, @Nullable String subclassName) {
-        return isAssignable(superclassName, subclassName, null);
+    public static boolean isAssignable(@Nullable String superclass, @Nullable String subclassName) {
+        return isAssignable(superclass, subclassName, null);
     }
 
-    public static boolean isAssignable(@Nullable String superclassName, @Nullable String subclassName, @Nullable ClassLoader classLoader) {
-        return StringUtils.isNoneBlank(superclassName, subclassName) && isAssignable(forNameQuietly(superclassName, classLoader), forNameQuietly(subclassName, classLoader));
+    public static boolean isAssignable(@Nullable String superclass, @Nullable String subclassName, @Nullable ClassLoader classLoader) {
+        return StringUtils.isNoneBlank(superclass, subclassName) && isAssignable(forNameQuietly(superclass, classLoader), forNameQuietly(subclassName, classLoader));
     }
 
     public static boolean isAssignableValue(@Nullable Class<?> superclass, @Nullable Object value) {
@@ -328,16 +328,16 @@ public abstract class ClassUtilsWraps {
         return superclass == null || ClassUtils.isAssignable(value.getClass(), superclass, autoboxing);
     }
 
-    public static boolean isAssignableValue(@Nullable String superclassName, @Nullable Object value) {
-        return isAssignableValue(superclassName, value, true, null);
+    public static boolean isAssignableValue(@Nullable String superclass, @Nullable Object value) {
+        return isAssignableValue(superclass, value, true, null);
     }
 
-    public static boolean isAssignableValue(@Nullable String superclassName, @Nullable Object value, boolean autoboxing) {
-        return isAssignableValue(superclassName, value, autoboxing, null);
+    public static boolean isAssignableValue(@Nullable String superclass, @Nullable Object value, boolean autoboxing) {
+        return isAssignableValue(superclass, value, autoboxing, null);
     }
 
-    public static boolean isAssignableValue(@Nullable String superclassName, @Nullable Object value, boolean autoboxing, @Nullable ClassLoader classLoader) {
-        return StringUtils.isNotBlank(superclassName) && ClassUtils.isAssignable(getObjectClass(value), forNameQuietly(superclassName, classLoader), autoboxing);
+    public static boolean isAssignableValue(@Nullable String superclass, @Nullable Object value, boolean autoboxing, @Nullable ClassLoader classLoader) {
+        return StringUtils.isNotBlank(superclass) && ClassUtils.isAssignable(getObjectClass(value), forNameQuietly(superclass, classLoader), autoboxing);
     }
 
     /**
@@ -373,6 +373,18 @@ public abstract class ClassUtilsWraps {
             return false;
         }
         return true;
+    }
+
+    public static boolean isInstanceOf(@Nullable Object source, @Nullable String superclass) {
+        return isInstanceOf(source, superclass, null);
+    }
+
+    public static boolean isInstanceOf(@Nullable Object source, @Nullable String superclass, @Nullable ClassLoader loader) {
+        if (source == null || StringUtils.isBlank(superclass)) {
+            return false;
+        }
+        Class<?> clazz = forNameQuietly(superclass, loader);
+        return clazz != null && clazz.isInstance(source);
     }
 
     public static boolean isNotPresent(@Nullable String className) {
