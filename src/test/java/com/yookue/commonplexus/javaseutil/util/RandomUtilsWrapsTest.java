@@ -29,14 +29,14 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 class RandomUtilsWrapsTest {
     @Test
-    void randomUpperChar() {
+    void randomCharUpper() {
         String methodName = StackTraceWraps.getExecutingMethodName();
-        log.info("{}: {}", methodName, RandomUtilsWraps.randomUpperChar());
+        log.info("{}: {}", methodName, RandomUtilsWraps.randomCharUpper());
     }
 
     @Test
-    void randomLowerChar() {
+    void randomCharLower() {
         String methodName = StackTraceWraps.getExecutingMethodName();
-        log.info("{}: {}", methodName, RandomUtilsWraps.randomLowerChar());
+        log.info("{}: {}", methodName, RandomUtilsWraps.randomCharLower());
     }
 }

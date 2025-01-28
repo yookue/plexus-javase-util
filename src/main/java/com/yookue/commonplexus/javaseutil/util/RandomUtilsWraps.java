@@ -17,96 +17,122 @@
 package com.yookue.commonplexus.javaseutil.util;
 
 
-import jakarta.annotation.Nullable;
 import org.apache.commons.lang3.RandomStringUtils;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.rng.UniformRandomProvider;
-import org.apache.commons.rng.simple.RandomSource;
+import org.apache.commons.lang3.RandomUtils;
 
 
 /**
- * Utilities for {@link org.apache.commons.rng.UniformRandomProvider}
+ * Utilities for {@link org.apache.commons.lang3.RandomUtils}
  *
  * @author David Hsing
- * @see org.apache.commons.rng.UniformRandomProvider
+ * @see org.apache.commons.lang3.RandomUtils
  * @see org.apache.commons.lang3.RandomStringUtils
  */
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})
 public abstract class RandomUtilsWraps {
-    public static char randomUpperChar() {
-        return randomUpperChar('A', 'Z');
+    /**
+     * Returns a random string whose length is the number of characters specified
+     *
+     * <p>
+     * Characters will be chosen from the set of Latin alphabetic characters (a-z, A-Z)
+     * </p>
+     *
+     * @param count the length of random string to create
+     *
+     * @return a random string whose length is the number of characters specified
+     */
+    public String randomAlphabetic(int count) {
+        return (count <= 0) ? null : RandomStringUtils.secure().nextAlphabetic(count);
     }
 
-    public static char randomUpperChar(char startInclusive, char endInclusive) {
-        if (startInclusive > 'Z' || endInclusive < 'A' || startInclusive > endInclusive) {
-            return 0;
-        }
-        UniformRandomProvider provider = RandomSource.JDK.create();
-        return (char) provider.nextInt(startInclusive, (int) endInclusive + 1);
+    /**
+     * Returns a random string whose length is between the inclusive minimum and the exclusive maximum
+     *
+     * <p>
+     * Characters will be chosen from the set of Latin alphabetic characters (a-z, A-Z)
+     * </p>
+     *
+     * @param minLengthInclusive the inclusive minimum length of the string to generate
+     * @param maxLengthExclusive the exclusive maximum length of the string to generate
+     *
+     * @return a random string whose length is between the inclusive minimum and the exclusive maximum
+     */
+    public String randomAlphabetic(int minLengthInclusive, int maxLengthExclusive) {
+        return (minLengthInclusive < 0 || minLengthInclusive > maxLengthExclusive) ? null : RandomStringUtils.secure().nextAlphabetic(minLengthInclusive, maxLengthExclusive);
     }
 
-    public static char randomLowerChar() {
-        return randomLowerChar('a', 'z');
+
+    /**
+     * Returns a random string whose length is the number of characters specified
+     *
+     * <p>
+     * Characters will be chosen from the set of Latin alphabetic characters (a-z, A-Z) and the digits 0-9
+     * </p>
+     *
+     * @param count the length of random string to create
+     *
+     * @return a random string whose length is the number of characters specified
+     */
+    public String randomAlphanumeric(final int count) {
+        return (count <= 0) ? null : RandomStringUtils.secure().nextAlphanumeric(count);
     }
 
-    public static char randomLowerChar(char startInclusive, char endInclusive) {
-        if (startInclusive > 'z' || endInclusive < 'a' || startInclusive > endInclusive) {
-            return 0;
-        }
-        UniformRandomProvider provider = RandomSource.JDK.create();
-        return (char) provider.nextInt(startInclusive, (int) endInclusive + 1);
+    /**
+     * Returns a random string whose length is between the inclusive minimum and the exclusive maximum
+     *
+     * <p>
+     * Characters will be chosen from the set of Latin alphabetic characters (a-z, A-Z) and the digits 0-9
+     * </p>
+     *
+     * @param minLengthInclusive the inclusive minimum length of the string to generate
+     * @param maxLengthExclusive the exclusive maximum length of the string to generate
+     *
+     * @return a random string whose length is between the inclusive minimum and the exclusive maximum
+     */
+    public String randomAlphanumeric(final int minLengthInclusive, final int maxLengthExclusive) {
+        return (minLengthInclusive < 0 || minLengthInclusive > maxLengthExclusive) ? null : RandomStringUtils.secure().nextAlphanumeric(minLengthInclusive, maxLengthExclusive);
     }
 
-    @Nullable
-    public static String randomUpperAlphabetic(int count) {
-        return randomUpperAlphabetic(count, 'A', 'Z');
+    public static char randomChar() {
+        return RandomUtils.secure().randomBoolean() ? randomCharUpper() : randomCharLower();
     }
 
-    @Nullable
-    public static String randomUpperAlphabetic(int count, char startInclusive, char endInclusive) {
-        if (count <= 0 || startInclusive > 'Z' || endInclusive < 'A' || startInclusive > endInclusive) {
-            return null;
-        }
-        StringBuilder builder = new StringBuilder();
-        for (char i = startInclusive; i <= endInclusive; i++) {
-            builder.append(i);
-        }
-        return RandomStringUtils.secure().next(count, builder.toString());
+    public static char randomCharLower() {
+        return (char) RandomUtils.secure().randomInt(97, 123);
     }
 
-    @Nullable
-    public static String randomLowerAlphabetic(int count) {
-        return randomLowerAlphabetic(count, 'a', 'z');
+    public static char randomCharUpper() {
+        return (char) RandomUtils.secure().randomInt(65, 91);
     }
 
-    @Nullable
-    public static String randomLowerAlphabetic(int count, char startInclusive, char endInclusive) {
-        if (count <= 0 || startInclusive > 'z' || endInclusive < 'a' || startInclusive > endInclusive) {
-            return null;
-        }
-        StringBuilder builder = new StringBuilder();
-        for (char i = startInclusive; i <= endInclusive; i++) {
-            builder.append(i);
-        }
-        return RandomStringUtils.secure().next(count, builder.toString());
+    /**
+     * Returns a random string whose length is the number of characters specified
+     *
+     * <p>
+     * Characters will be chosen from the set of numeric characters.
+     * </p>
+     *
+     * @param count the length of random string to create
+     *
+     * @return a random string whose length is the number of characters specified
+     */
+    public String randomNumeric(int count) {
+        return (count <= 0) ? null : RandomStringUtils.secure().nextNumeric(count);
     }
 
-    @Nullable
-    public static String randomCapitalizeAlphabetic(int count) {
-        return randomCapitalizeAlphabetic(count, 'a', 'z');
-    }
-
-    @Nullable
-    public static String randomCapitalizeAlphabetic(int count, char startInclusive, char endInclusive) {
-        if (count <= 0) {
-            return null;
-        }
-        // Ensure the set of characters is 'a' to 'z'
-        char start = (startInclusive >= 65 && startInclusive <= 90) ? (char) ((int) startInclusive + 32) : startInclusive;
-        char end = (endInclusive >= 65 && endInclusive <= 90) ? (char) ((int) endInclusive + 32) : endInclusive;
-        if (start > 'z' || end < 'a' || start > end) {
-            return null;
-        }
-        return StringUtils.capitalize(randomLowerAlphabetic(count, start, end));
+    /**
+     * Returns a random string whose length is between the inclusive minimum and the exclusive maximum
+     *
+     * <p>
+     * Characters will be chosen from the set of \p{Digit} characters.
+     * </p>
+     *
+     * @param minLengthInclusive the inclusive minimum length of the string to generate
+     * @param maxLengthExclusive the exclusive maximum length of the string to generate
+     *
+     * @return a random string whose length is between the inclusive minimum and the exclusive maximum
+     */
+    public String randomNumeric(int minLengthInclusive, int maxLengthExclusive) {
+        return (minLengthInclusive < 0 || minLengthInclusive > maxLengthExclusive) ? null : RandomStringUtils.secure().nextNumeric(minLengthInclusive, maxLengthExclusive);
     }
 }
