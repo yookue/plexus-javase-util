@@ -17,6 +17,7 @@
 package com.yookue.commonplexus.javaseutil.util;
 
 
+import jakarta.annotation.Nullable;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.RandomUtils;
 
@@ -41,7 +42,8 @@ public abstract class RandomUtilsWraps {
      *
      * @return a random string whose length is the number of characters specified
      */
-    public String randomAlphabetic(int count) {
+    @Nullable
+    public static String randomAlphabetic(int count) {
         return (count <= 0) ? null : RandomStringUtils.secure().nextAlphabetic(count);
     }
 
@@ -57,10 +59,10 @@ public abstract class RandomUtilsWraps {
      *
      * @return a random string whose length is between the inclusive minimum and the exclusive maximum
      */
-    public String randomAlphabetic(int minLengthInclusive, int maxLengthExclusive) {
+    @Nullable
+    public static String randomAlphabetic(int minLengthInclusive, int maxLengthExclusive) {
         return (minLengthInclusive < 0 || minLengthInclusive > maxLengthExclusive) ? null : RandomStringUtils.secure().nextAlphabetic(minLengthInclusive, maxLengthExclusive);
     }
-
 
     /**
      * Returns a random string whose length is the number of characters specified
@@ -89,7 +91,8 @@ public abstract class RandomUtilsWraps {
      *
      * @return a random string whose length is between the inclusive minimum and the exclusive maximum
      */
-    public String randomAlphanumeric(final int minLengthInclusive, final int maxLengthExclusive) {
+    @Nullable
+    public static String randomAlphanumeric(final int minLengthInclusive, final int maxLengthExclusive) {
         return (minLengthInclusive < 0 || minLengthInclusive > maxLengthExclusive) ? null : RandomStringUtils.secure().nextAlphanumeric(minLengthInclusive, maxLengthExclusive);
     }
 
@@ -116,7 +119,8 @@ public abstract class RandomUtilsWraps {
      *
      * @return a random string whose length is the number of characters specified
      */
-    public String randomNumeric(int count) {
+    @Nullable
+    public static String randomNumeric(int count) {
         return (count <= 0) ? null : RandomStringUtils.secure().nextNumeric(count);
     }
 
@@ -132,7 +136,8 @@ public abstract class RandomUtilsWraps {
      *
      * @return a random string whose length is between the inclusive minimum and the exclusive maximum
      */
-    public String randomNumeric(int minLengthInclusive, int maxLengthExclusive) {
+    @Nullable
+    public static String randomNumeric(int minLengthInclusive, int maxLengthExclusive) {
         return (minLengthInclusive < 0 || minLengthInclusive > maxLengthExclusive) ? null : RandomStringUtils.secure().nextNumeric(minLengthInclusive, maxLengthExclusive);
     }
 }
