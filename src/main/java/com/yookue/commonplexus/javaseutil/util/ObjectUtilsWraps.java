@@ -378,14 +378,38 @@ public abstract class ObjectUtilsWraps {
     }
 
     /**
-     * Determine whether the given object is an array
+     * Returns whether the given object is an array or not
      *
      * @param object the source object to check
+     *
+     * @return whether the given object is an array or not
      *
      * @see "org.springframework.util.ObjectUtils#isArray"
      */
     public static boolean isArray(@Nullable Object object) {
         return object != null && object.getClass().isArray();
+    }
+
+    /**
+     * Returns whether the given object is an enum or not
+     *
+     * @param object the source object to check
+     *
+     * @return whether the given object is an enum or not
+     */
+    public static boolean isEnum(@Nullable Object object) {
+        return object != null && object.getClass().isEnum();
+    }
+
+    /**
+     * Returns whether the given object is a record
+     *
+     * @param object the source object to check
+     *
+     * @return whether the given object is a record or not
+     */
+    public static boolean isRecord(@Nullable Object object) {
+        return object != null && object.getClass().isRecord();
     }
 
     public static boolean isPrimitive(@Nullable Object object) {
