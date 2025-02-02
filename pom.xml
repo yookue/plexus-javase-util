@@ -268,12 +268,12 @@
                         </manifest>
                     </archive>
                     <links>
-                        <link>https://commons.apache.org/proper/commons-beanutils/apidocs/</link>
-                        <link>https://commons.apache.org/proper/commons-codec/apidocs/</link>
-                        <link>https://commons.apache.org/proper/commons-collections/apidocs/</link>
-                        <link>https://commons.apache.org/proper/commons-io/apidocs/</link>
-                        <link>https://commons.apache.org/proper/commons-lang/apidocs/</link>
-                        <link>https://commons.apache.org/proper/commons-text/javadocs/api-release/</link>
+                        <link>https://commons.apache.org/proper/commons-beanutils/apidocs</link>
+                        <link>https://commons.apache.org/proper/commons-codec/apidocs</link>
+                        <link>https://commons.apache.org/proper/commons-collections/apidocs</link>
+                        <link>https://commons.apache.org/proper/commons-io/apidocs</link>
+                        <link>https://commons.apache.org/proper/commons-lang/apidocs</link>
+                        <link>https://commons.apache.org/proper/commons-text/javadocs/api-release</link>
                     </links>
                     <taglets>
                         <taglet>
