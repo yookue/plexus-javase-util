@@ -32,7 +32,6 @@ public abstract class SymbolVariantConst {
     public static final String DOUBLE_DOLLAR = "$$";    // $NON-NLS-1$
     public static final String DOUBLE_DOTS = "..";    // $NON-NLS-1$
     public static final String DOUBLE_SLASHES = "//";    // $NON-NLS-1$
-    public static final String DOUBLE_STARS = "**";    // $NON-NLS-1$
     public static final String HEX_PREFIX = "0x";    // $NON-NLS-1$
     public static final String JAVASCRIPT_COLON = "javascript:";    // $NON-NLS-1$
     public static final String JAVASCRIPT_VOID = JAVASCRIPT_COLON + "void(0);";    // $NON-NLS-1$
