@@ -427,7 +427,7 @@ public abstract class StringUtilsWraps {
     }
 
     public static boolean equalsAnyIgnoreCase(@Nullable CharSequence sequence, @Nullable CharSequence... comparisons) {
-        return equalsAnyIgnoreCase(sequence, ArrayUtilsWraps.asList(comparisons));
+        return StringUtils.equalsAnyIgnoreCase(sequence, comparisons);
     }
 
     public static boolean equalsAnyIgnoreCase(@Nullable CharSequence sequence, @Nullable Collection<? extends CharSequence> comparisons) {
