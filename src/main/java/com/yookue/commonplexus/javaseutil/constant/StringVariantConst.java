@@ -74,6 +74,7 @@ public abstract class StringVariantConst {
     public static final String TEST_CLASSES = "test_classes";    // $NON-NLS-1$
     public static final String THEME = "theme";    // $NON-NLS-1$
     public static final String TRACE_ID = "traceId";    // $NON-NLS-1$
+    public static final String UNDEFINED = "undefined";    // $NON-NLS-1$
     public static final String UNKNOWN = "unknown";    // $NON-NLS-1$
     public static final String URI = "URI";    // $NON-NLS-1$
     public static final String URL = "URL";    // $NON-NLS-1$
