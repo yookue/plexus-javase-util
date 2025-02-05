@@ -373,6 +373,10 @@ public abstract class NumberUtilsWraps {
         return false;
     }
 
+    public static <T extends Number & Comparable<? extends Number>> boolean isZeroOrNull(@Nullable T value) {
+        return value == null || isZero(value);
+    }
+
     public static <T extends Number & Comparable<? extends Number>> boolean isZeroOrNegative(@Nullable T value) {
         return isZero(value) || isNegative(value);
     }
