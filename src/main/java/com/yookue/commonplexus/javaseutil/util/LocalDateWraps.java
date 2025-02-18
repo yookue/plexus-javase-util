@@ -26,6 +26,8 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.format.TextStyle;
 import java.time.temporal.TemporalAdjusters;
+import java.time.temporal.TemporalAmount;
+import java.time.temporal.TemporalUnit;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Locale;
@@ -497,6 +499,78 @@ public abstract class LocalDateWraps {
             return null;
         }
         return formats.stream().map(format -> parseTimeQuietly(time, format)).filter(Objects::nonNull).findFirst().orElse(null);
+    }
+
+    @Nullable
+    @SuppressWarnings("DataFlowIssue")
+    public static LocalDate plusTemporal(@Nullable LocalDate source, @Nullable TemporalAmount amount) {
+        return ObjectUtils.anyNull(source, amount) ? source : source.plus(amount);
+    }
+
+    @Nullable
+    @SuppressWarnings("DataFlowIssue")
+    public static LocalDate plusTemporal(@Nullable LocalDate source, @Nullable Long amount, @Nullable TemporalUnit unit) {
+        return ObjectUtils.anyNull(source, amount, unit) ? source : source.plus(amount, unit);
+    }
+
+    @Nullable
+    @SuppressWarnings("DataFlowIssue")
+    public static LocalDateTime plusTemporal(@Nullable LocalDateTime source, @Nullable TemporalAmount amount) {
+        return ObjectUtils.anyNull(source, amount) ? source : source.plus(amount);
+    }
+
+    @Nullable
+    @SuppressWarnings("DataFlowIssue")
+    public static LocalDateTime plusTemporal(@Nullable LocalDateTime source, @Nullable Long amount, @Nullable TemporalUnit unit) {
+        return ObjectUtils.anyNull(source, amount, unit) ? source : source.plus(amount, unit);
+    }
+
+    @Nullable
+    @SuppressWarnings("DataFlowIssue")
+    public static LocalTime plusTemporal(@Nullable LocalTime source, @Nullable TemporalAmount amount) {
+        return ObjectUtils.anyNull(source, amount) ? source : source.plus(amount);
+    }
+
+    @Nullable
+    @SuppressWarnings("DataFlowIssue")
+    public static LocalTime plusTemporal(@Nullable LocalTime source, @Nullable Long amount, @Nullable TemporalUnit unit) {
+        return ObjectUtils.anyNull(source, amount, unit) ? source : source.plus(amount, unit);
+    }
+
+    @Nullable
+    @SuppressWarnings("DataFlowIssue")
+    public static LocalDate minusTemporal(@Nullable LocalDate source, @Nullable TemporalAmount amount) {
+        return ObjectUtils.anyNull(source, amount) ? source : source.minus(amount);
+    }
+
+    @Nullable
+    @SuppressWarnings("DataFlowIssue")
+    public static LocalDate minusTemporal(@Nullable LocalDate source, @Nullable Long amount, @Nullable TemporalUnit unit) {
+        return ObjectUtils.anyNull(source, amount, unit) ? source : source.minus(amount, unit);
+    }
+
+    @Nullable
+    @SuppressWarnings("DataFlowIssue")
+    public static LocalDateTime minusTemporal(@Nullable LocalDateTime source, @Nullable TemporalAmount amount) {
+        return ObjectUtils.anyNull(source, amount) ? source : source.minus(amount);
+    }
+
+    @Nullable
+    @SuppressWarnings("DataFlowIssue")
+    public static LocalDateTime minusTemporal(@Nullable LocalDateTime source, @Nullable Long amount, @Nullable TemporalUnit unit) {
+        return ObjectUtils.anyNull(source, amount, unit) ? source : source.minus(amount, unit);
+    }
+
+    @Nullable
+    @SuppressWarnings("DataFlowIssue")
+    public static LocalTime minusTemporal(@Nullable LocalTime source, @Nullable TemporalAmount amount) {
+        return ObjectUtils.anyNull(source, amount) ? source : source.minus(amount);
+    }
+
+    @Nullable
+    @SuppressWarnings("DataFlowIssue")
+    public static LocalTime minusTemporal(@Nullable LocalTime source, @Nullable Long amount, @Nullable TemporalUnit unit) {
+        return ObjectUtils.anyNull(source, amount, unit) ? source : source.minus(amount, unit);
     }
 
     @Nullable

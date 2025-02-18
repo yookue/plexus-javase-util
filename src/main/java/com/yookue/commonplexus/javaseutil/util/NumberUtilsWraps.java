@@ -508,62 +508,92 @@ public abstract class NumberUtilsWraps {
     }
 
     @Nullable
-    public static Byte toByteObject(@Nullable String value) {
-        return toByteObject(value, null);
+    public static Byte toByte(@Nullable String value) {
+        return toByte(value, null);
     }
 
     @Nullable
-    public static Byte toByteObject(@Nullable String value, @Nullable Byte defaultValue) {
+    public static Byte toByte(@Nullable String value, @Nullable Byte defaultValue) {
         return parseAsQuietly(value, Byte.class, defaultValue);
     }
 
     @Nullable
-    public static Double toDoubleObject(@Nullable String value) {
-        return toDoubleObject(value, null);
+    public static Double toDouble(@Nullable String value) {
+        return toDouble(value, null);
     }
 
     @Nullable
-    public static Double toDoubleObject(@Nullable String value, @Nullable Double defaultValue) {
+    public static Double toDouble(@Nullable String value, @Nullable Double defaultValue) {
         return parseAsQuietly(value, Double.class, defaultValue);
     }
 
     @Nullable
-    public static Float toFloatObject(@Nullable String value) {
-        return toFloatObject(value, null);
+    public static Float toFloat(@Nullable String value) {
+        return toFloat(value, null);
     }
 
     @Nullable
-    public static Float toFloatObject(@Nullable String value, @Nullable Float defaultValue) {
+    public static Float toFloat(@Nullable String value, @Nullable Float defaultValue) {
         return parseAsQuietly(value, Float.class, defaultValue);
     }
 
     @Nullable
-    public static Integer toIntegerObject(@Nullable String value) {
-        return toIntegerObject(value, null);
+    public static Integer toInteger(@Nullable String value) {
+        return toInteger(value, null);
     }
 
     @Nullable
-    public static Integer toIntegerObject(@Nullable String value, @Nullable Integer defaultValue) {
+    public static Integer toInteger(@Nullable String value, @Nullable Integer defaultValue) {
         return parseAsQuietly(value, Integer.class, defaultValue);
     }
 
     @Nullable
-    public static Long toLongObject(@Nullable String value) {
-        return toLongObject(value, null);
+    public static Integer toInteger(@Nullable Short value) {
+        return toInteger(value, null);
     }
 
     @Nullable
-    public static Long toLongObject(@Nullable String value, @Nullable Long defaultValue) {
+    public static Integer toInteger(@Nullable Short value, @Nullable Integer defaultValue) {
+        return (value == null) ? defaultValue : Integer.valueOf(value);
+    }
+
+    @Nullable
+    public static Long toLong(@Nullable String value) {
+        return toLong(value, null);
+    }
+
+    @Nullable
+    public static Long toLong(@Nullable String value, @Nullable Long defaultValue) {
         return parseAsQuietly(value, Long.class, defaultValue);
     }
 
     @Nullable
-    public static Short toShortObject(@Nullable String value) {
-        return toShortObject(value, null);
+    public static Long toLong(@Nullable Integer value) {
+        return toLong(value, null);
     }
 
     @Nullable
-    public static Short toShortObject(@Nullable String value, @Nullable Short defaultValue) {
+    public static Long toLong(@Nullable Integer value, @Nullable Long defaultValue) {
+        return (value == null) ? defaultValue : Long.valueOf(value);
+    }
+
+    @Nullable
+    public static Long toLong(@Nullable Short value) {
+        return toLong(value, null);
+    }
+
+    @Nullable
+    public static Long toLong(@Nullable Short value, @Nullable Long defaultValue) {
+        return (value == null) ? defaultValue : Long.valueOf(value);
+    }
+
+    @Nullable
+    public static Short toShort(@Nullable String value) {
+        return toShort(value, null);
+    }
+
+    @Nullable
+    public static Short toShort(@Nullable String value, @Nullable Short defaultValue) {
         return parseAsQuietly(value, Short.class, defaultValue);
     }
 
@@ -580,51 +610,51 @@ public abstract class NumberUtilsWraps {
         return StringUtils.join(SymbolVariantConst.HEX_PREFIX, Long.toHexString(value.longValue()));
     }
 
-    public static long unboxToPrimitive(@Nullable Long value) {
-        return unboxToPrimitive(value, NumberUtils.LONG_ZERO);
+    public static long toPrimitive(@Nullable Long value) {
+        return toPrimitive(value, NumberUtils.LONG_ZERO);
     }
 
-    public static long unboxToPrimitive(@Nullable Long value, long defaultValue) {
+    public static long toPrimitive(@Nullable Long value, long defaultValue) {
         return (value == null) ? defaultValue : value;
     }
 
-    public static int unboxToPrimitive(@Nullable Integer value) {
-        return unboxToPrimitive(value, NumberUtils.INTEGER_ZERO);
+    public static int toPrimitive(@Nullable Integer value) {
+        return toPrimitive(value, NumberUtils.INTEGER_ZERO);
     }
 
-    public static int unboxToPrimitive(@Nullable Integer value, int defaultValue) {
+    public static int toPrimitive(@Nullable Integer value, int defaultValue) {
         return (value == null) ? defaultValue : value;
     }
 
-    public static short unboxToPrimitive(@Nullable Short value) {
-        return unboxToPrimitive(value, NumberUtils.SHORT_ZERO);
+    public static short toPrimitive(@Nullable Short value) {
+        return toPrimitive(value, NumberUtils.SHORT_ZERO);
     }
 
-    public static short unboxToPrimitive(@Nullable Short value, short defaultValue) {
+    public static short toPrimitive(@Nullable Short value, short defaultValue) {
         return (value == null) ? defaultValue : value;
     }
 
-    public static byte unboxToPrimitive(@Nullable Byte value) {
-        return unboxToPrimitive(value, NumberUtils.BYTE_ZERO);
+    public static byte toPrimitive(@Nullable Byte value) {
+        return toPrimitive(value, NumberUtils.BYTE_ZERO);
     }
 
-    public static byte unboxToPrimitive(@Nullable Byte value, byte defaultValue) {
+    public static byte toPrimitive(@Nullable Byte value, byte defaultValue) {
         return (value == null) ? defaultValue : value;
     }
 
-    public static double unboxToPrimitive(@Nullable Double value) {
-        return unboxToPrimitive(value, NumberUtils.DOUBLE_ZERO);
+    public static double toPrimitive(@Nullable Double value) {
+        return toPrimitive(value, NumberUtils.DOUBLE_ZERO);
     }
 
-    public static double unboxToPrimitive(@Nullable Double value, double defaultValue) {
+    public static double toPrimitive(@Nullable Double value, double defaultValue) {
         return (value == null) ? defaultValue : value;
     }
 
-    public static float unboxToPrimitive(@Nullable Float value) {
-        return unboxToPrimitive(value, NumberUtils.FLOAT_ZERO);
+    public static float toPrimitive(@Nullable Float value) {
+        return toPrimitive(value, NumberUtils.FLOAT_ZERO);
     }
 
-    public static float unboxToPrimitive(@Nullable Float value, float defaultValue) {
+    public static float toPrimitive(@Nullable Float value, float defaultValue) {
         return (value == null) ? defaultValue : value;
     }
 }
