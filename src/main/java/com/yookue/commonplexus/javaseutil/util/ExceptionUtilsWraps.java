@@ -29,6 +29,9 @@ import org.apache.commons.lang3.exception.ExceptionUtils;
  */
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})
 public abstract class ExceptionUtilsWraps {
+    /**
+     * @see "org.springframework.core.NestedExceptionUtils#getMostSpecificCause"
+     */
     public static Throwable getRootCause(@Nullable Throwable throwable) {
         return (throwable == null) ? null : ExceptionUtils.getRootCause(throwable);
     }
