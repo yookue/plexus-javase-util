@@ -40,7 +40,7 @@ public abstract class TimePeriodWraps {
 
     @Nullable
     public static Period between(@Nullable Date startDateInclusive, @Nullable Date endDateExclusive, @Nullable ZoneId zoneId) {
-        return ObjectUtils.anyNull(startDateInclusive, endDateExclusive) ? null : between(LocalDateWraps.fromUtilDate(startDateInclusive, zoneId), LocalDateWraps.fromUtilDate(endDateExclusive, zoneId));
+        return ObjectUtils.anyNull(startDateInclusive, endDateExclusive) ? null : between(LocalDateWraps.ofUtilDate(startDateInclusive, zoneId), LocalDateWraps.ofUtilDate(endDateExclusive, zoneId));
     }
 
     @Nullable

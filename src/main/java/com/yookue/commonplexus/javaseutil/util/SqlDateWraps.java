@@ -29,7 +29,7 @@ import jakarta.annotation.Nullable;
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})
 public abstract class SqlDateWraps {
     @Nullable
-    public static Date castFromUtilDate(@Nullable java.util.Date date) {
+    public static Date castOfUtilDate(@Nullable java.util.Date date) {
         return (date == null) ? null : new Date(date.getTime());
     }
 }

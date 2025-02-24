@@ -50,34 +50,34 @@ public abstract class ValueEnumWraps extends EnumPlainWraps {
     }
 
     @Nullable
-    public static <K, E extends Enum<E> & KeyValueEnum<K, ?>> E fromKey(@Nullable Class<? extends E> enumClass, @Nullable K key) {
+    public static <K, E extends Enum<E> & KeyValueEnum<K, ?>> E ofKey(@Nullable Class<? extends E> enumClass, @Nullable K key) {
         return (enumClass == null || ArrayUtils.isEmpty(enumClass.getEnumConstants())) ? null : Arrays.stream(enumClass.getEnumConstants()).filter(element -> Objects.equals(element.getKey(), key)).findFirst().orElse(null);
     }
 
     @Nullable
-    public static <K extends CharSequence, E extends Enum<E> & KeyValueEnum<K, ?>> E fromKeyIgnoreCase(@Nullable Class<? extends E> enumClass, @Nullable K key) {
+    public static <K extends CharSequence, E extends Enum<E> & KeyValueEnum<K, ?>> E ofKeyIgnoreCase(@Nullable Class<? extends E> enumClass, @Nullable K key) {
         return (enumClass == null || ArrayUtils.isEmpty(enumClass.getEnumConstants())) ? null : Arrays.stream(enumClass.getEnumConstants()).filter(element -> StringUtils.equalsIgnoreCase(element.getKey(), key)).findFirst().orElse(null);
     }
 
     @Nullable
-    public static <V, E extends Enum<E> & ValueEnum<V>> E fromValue(@Nullable Class<? extends E> enumClass, @Nullable V value) {
+    public static <V, E extends Enum<E> & ValueEnum<V>> E ofValue(@Nullable Class<? extends E> enumClass, @Nullable V value) {
         return (enumClass == null || ArrayUtils.isEmpty(enumClass.getEnumConstants())) ? null : Arrays.stream(enumClass.getEnumConstants()).filter(element -> Objects.equals(element.getValue(), value)).findFirst().orElse(null);
     }
 
     @Nullable
-    public static <V extends CharSequence, E extends Enum<E> & ValueEnum<V>> E fromValueIgnoreCase(@Nullable Class<? extends E> enumClass, @Nullable V value) {
+    public static <V extends CharSequence, E extends Enum<E> & ValueEnum<V>> E ofValueIgnoreCase(@Nullable Class<? extends E> enumClass, @Nullable V value) {
         return (enumClass == null || ArrayUtils.isEmpty(enumClass.getEnumConstants())) ? null : Arrays.stream(enumClass.getEnumConstants()).filter(element -> StringUtils.equalsIgnoreCase(element.getValue(), value)).findFirst().orElse(null);
     }
 
     @Nullable
     public static <K, V, E extends Enum<E> & KeyValueEnum<K, V>> K getKeyByValue(@Nullable Class<? extends E> enumClass, @Nullable V value) {
-        KeyValueEnum<K, V> result = fromValue(enumClass, value);
+        KeyValueEnum<K, V> result = ofValue(enumClass, value);
         return (result == null) ? null : result.getKey();
     }
 
     @Nullable
     public static <K, V, E extends Enum<E> & KeyValueEnum<K, V>> V getValueByKey(@Nullable Class<? extends E> enumClass, @Nullable K key) {
-        KeyValueEnum<K, V> result = fromKey(enumClass, key);
+        KeyValueEnum<K, V> result = ofKey(enumClass, key);
         return (result == null) ? null : result.getValue();
     }
 }

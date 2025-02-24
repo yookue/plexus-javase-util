@@ -40,12 +40,12 @@ public abstract class EnumPlainWraps {
     }
 
     @Nullable
-    public static <E extends Enum<E>> E fromName(@Nullable Class<? extends E> enumClass, @Nullable String name) {
+    public static <E extends Enum<E>> E ofName(@Nullable Class<? extends E> enumClass, @Nullable String name) {
         return (enumClass == null || ArrayUtils.isEmpty(enumClass.getEnumConstants())) ? null : Arrays.stream(enumClass.getEnumConstants()).filter(element -> Objects.equals(element.name(), name)).findFirst().orElse(null);
     }
 
     @Nullable
-    public static <E extends Enum<E>> E fromNameIgnoreCase(@Nullable Class<? extends E> enumClass, @Nullable String name) {
+    public static <E extends Enum<E>> E ofNameIgnoreCase(@Nullable Class<? extends E> enumClass, @Nullable String name) {
         return (enumClass == null || ArrayUtils.isEmpty(enumClass.getEnumConstants())) ? null : Arrays.stream(enumClass.getEnumConstants()).filter(element -> StringUtils.equalsIgnoreCase(element.name(), name)).findFirst().orElse(null);
     }
 }

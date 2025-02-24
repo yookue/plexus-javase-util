@@ -34,7 +34,7 @@ import org.apache.commons.lang3.ObjectUtils;
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})
 public abstract class PropertyPlainWraps {
     @Nullable
-    public static Properties fromMap(@Nullable Map<?, ?> map) {
+    public static Properties ofMap(@Nullable Map<?, ?> map) {
         if (MapPlainWraps.isEmpty(map)) {
             return null;
         }

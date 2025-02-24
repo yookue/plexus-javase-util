@@ -52,23 +52,20 @@ class ValueEnumWrapsTest {
     }
 
     @Test
-    void fromValue() {
-        BootstrapColorType result = ValueEnumWraps.fromValue(BootstrapColorType.class, "primary");    // $NON-NLS-1$
-        log.info("{}: {}", StackTraceWraps.getExecutingMethodName(), result != null);
-        Assertions.assertNotNull(result);
+    void ofValue() {
+        String methodName = StackTraceWraps.getExecutingMethodName();
+        BootstrapColorType type1 = ValueEnumWraps.ofValue(BootstrapColorType.class, "primary");    // $NON-NLS-1$
+        log.info("{}: {}", methodName, type1 != null);
+        Assertions.assertNotNull(type1);
+        BootstrapColorType type2 = ValueEnumWraps.ofValueIgnoreCase(BootstrapColorType.class, "NOT_EXISTS");    // $NON-NLS-1$
+        log.info("{}: {}", StackTraceWraps.getExecutingMethodName(), type2 == null);
+        Assertions.assertNull(type2);
     }
 
     @Test
-    void fromValueIgnoreCase() {
-        BootstrapColorType result = ValueEnumWraps.fromValueIgnoreCase(BootstrapColorType.class, "PRIMARY");    // $NON-NLS-1$
+    void ofValueIgnoreCase() {
+        BootstrapColorType result = ValueEnumWraps.ofValueIgnoreCase(BootstrapColorType.class, "PRIMARY");    // $NON-NLS-1$
         log.info("{}: {}", StackTraceWraps.getExecutingMethodName(), result != null);
         Assertions.assertNotNull(result);
-    }
-
-    @Test
-    void notFromValue() {
-        BootstrapColorType result = ValueEnumWraps.fromValueIgnoreCase(BootstrapColorType.class, "NOT_EXISTS");    // $NON-NLS-1$
-        log.info("{}: {}", StackTraceWraps.getExecutingMethodName(), result == null);
-        Assertions.assertNull(result);
     }
 }

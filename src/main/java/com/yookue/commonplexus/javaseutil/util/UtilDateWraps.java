@@ -63,7 +63,7 @@ public abstract class UtilDateWraps {
     @Nullable
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
     public static Integer getYear(@Nullable Date date) {
-        return (date == null) ? null : LocalDateWraps.fromUtilDate(date).getYear();
+        return (date == null) ? null : LocalDateWraps.ofUtilDate(date).getYear();
     }
 
     /**
@@ -76,7 +76,7 @@ public abstract class UtilDateWraps {
     @Nullable
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
     public static Integer getMonth(@Nullable Date date) {
-        return (date == null) ? null : LocalDateWraps.fromUtilDate(date).getMonthValue();
+        return (date == null) ? null : LocalDateWraps.ofUtilDate(date).getMonthValue();
     }
 
     /**
@@ -89,7 +89,7 @@ public abstract class UtilDateWraps {
     @Nullable
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
     public static Integer getDayOfMonth(@Nullable Date date) {
-        return (date == null) ? null : LocalDateWraps.fromUtilDate(date).getDayOfMonth();
+        return (date == null) ? null : LocalDateWraps.ofUtilDate(date).getDayOfMonth();
     }
 
     @Nullable
@@ -197,7 +197,7 @@ public abstract class UtilDateWraps {
 
     @Nullable
     public static Integer getMonthDays(@Nullable Date date) {
-        return LocalDateWraps.getMonthDays(LocalDateWraps.fromUtilDateTime(date));
+        return LocalDateWraps.getMonthDays(LocalDateWraps.ofUtilDateTime(date));
     }
 
     @Nullable
@@ -218,7 +218,7 @@ public abstract class UtilDateWraps {
 
     @Nullable
     public static Date getMonthFirstDate(@Nullable Date date) {
-        return (date == null) ? null : LocalDateWraps.toUtilDate(LocalDateWraps.getMonthFirstDateTime(LocalDateWraps.fromUtilDateTime(date)));
+        return (date == null) ? null : LocalDateWraps.toUtilDate(LocalDateWraps.getMonthFirstDateTime(LocalDateWraps.ofUtilDateTime(date)));
     }
 
     @Nullable
@@ -228,7 +228,7 @@ public abstract class UtilDateWraps {
 
     @Nullable
     public static Date getMonthLastDate(@Nullable Date date) {
-        return (date == null) ? null : LocalDateWraps.toUtilDate(LocalDateWraps.getMonthLastDateTime(LocalDateWraps.fromUtilDateTime(date)));
+        return (date == null) ? null : LocalDateWraps.toUtilDate(LocalDateWraps.getMonthLastDateTime(LocalDateWraps.ofUtilDateTime(date)));
     }
 
     @Nullable
@@ -238,7 +238,7 @@ public abstract class UtilDateWraps {
 
     @Nullable
     public static Date getSeasonFirstDate(@Nullable Date date) {
-        return (date == null) ? null : LocalDateWraps.toUtilDate(LocalDateWraps.getSeasonFirstDateTime(LocalDateWraps.fromUtilDateTime(date)));
+        return (date == null) ? null : LocalDateWraps.toUtilDate(LocalDateWraps.getSeasonFirstDateTime(LocalDateWraps.ofUtilDateTime(date)));
     }
 
     @Nullable
@@ -248,7 +248,7 @@ public abstract class UtilDateWraps {
 
     @Nullable
     public static Date getSeasonLastDate(@Nullable Date date) {
-        return (date == null) ? null : LocalDateWraps.toUtilDate(LocalDateWraps.getSeasonLastDateTime(LocalDateWraps.fromUtilDateTime(date)));
+        return (date == null) ? null : LocalDateWraps.toUtilDate(LocalDateWraps.getSeasonLastDateTime(LocalDateWraps.ofUtilDateTime(date)));
     }
 
     public static String formatCurrentDate() {

@@ -621,7 +621,7 @@ public abstract class MapPlainWraps {
 
     public static <K> java.sql.Date getSqlDate(@Nullable Map<? super K, ?> map, @Nullable K key, @Nullable java.sql.Date defaultValue, @Nullable Collection<String> formats) {
         java.util.Date utilDate = getUtilDate(map, key, formats);
-        return (utilDate == null) ? defaultValue : SqlDateWraps.castFromUtilDate(utilDate);
+        return (utilDate == null) ? defaultValue : SqlDateWraps.castOfUtilDate(utilDate);
     }
 
     public static <K> java.util.Date getUtilDate(@Nullable Map<? super K, ?> map, @Nullable K key) {

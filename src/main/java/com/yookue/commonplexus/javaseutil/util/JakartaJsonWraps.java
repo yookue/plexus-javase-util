@@ -52,40 +52,40 @@ import org.apache.commons.lang3.StringUtils;
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})
 public abstract class JakartaJsonWraps {
     @Nullable
-    public static JsonStructure fromJson(@Nullable String content) {
-        return StringUtils.isBlank(content) ? null : fromJson(new StringReader(content));
+    public static JsonStructure ofJson(@Nullable String content) {
+        return StringUtils.isBlank(content) ? null : ofJson(new StringReader(content));
     }
 
     @Nullable
-    public static JsonStructure fromJson(@Nullable File file) {
-        return fromJson(file, null);
+    public static JsonStructure ofJson(@Nullable File file) {
+        return ofJson(file, null);
     }
 
     @Nullable
-    public static JsonStructure fromJson(@Nullable File file, @Nullable Charset charset) {
+    public static JsonStructure ofJson(@Nullable File file, @Nullable Charset charset) {
         try {
-            return (file == null) ? null : fromJson(new FileReader(file, ObjectUtils.defaultIfNull(charset, StandardCharsets.UTF_8)));
+            return (file == null) ? null : ofJson(new FileReader(file, ObjectUtils.defaultIfNull(charset, StandardCharsets.UTF_8)));
         } catch (Exception ignored) {
         }
         return null;
     }
 
     @Nullable
-    public static JsonStructure fromJson(@Nullable InputStream stream) {
-        return fromJson(stream, null);
+    public static JsonStructure ofJson(@Nullable InputStream stream) {
+        return ofJson(stream, null);
     }
 
     @Nullable
-    public static JsonStructure fromJson(@Nullable InputStream stream, @Nullable Charset charset) {
+    public static JsonStructure ofJson(@Nullable InputStream stream, @Nullable Charset charset) {
         try {
-            return (stream == null) ? null : fromJson(new InputStreamReader(stream, ObjectUtils.defaultIfNull(charset, StandardCharsets.UTF_8)));
+            return (stream == null) ? null : ofJson(new InputStreamReader(stream, ObjectUtils.defaultIfNull(charset, StandardCharsets.UTF_8)));
         } catch (Exception ignored) {
         }
         return null;
     }
 
     @Nullable
-    public static JsonStructure fromJson(@Nullable Reader reader) {
+    public static JsonStructure ofJson(@Nullable Reader reader) {
         if (reader == null) {
             return null;
         }
@@ -97,12 +97,12 @@ public abstract class JakartaJsonWraps {
     }
 
     @Nullable
-    public static <T> T fromJsonAs(@Nullable String content, @Nullable Class<T> expectedType) {
-        return fromJsonAs(content, expectedType, null);
+    public static <T> T ofJsonAs(@Nullable String content, @Nullable Class<T> expectedType) {
+        return ofJsonAs(content, expectedType, null);
     }
 
     @Nullable
-    public static <T> T fromJsonAs(@Nullable String content, @Nullable Class<T> expectedType, @Nullable JsonbConfig config) {
+    public static <T> T ofJsonAs(@Nullable String content, @Nullable Class<T> expectedType, @Nullable JsonbConfig config) {
         if (StringUtils.isBlank(content) || expectedType == null) {
             return null;
         }
@@ -114,17 +114,17 @@ public abstract class JakartaJsonWraps {
     }
 
     @Nullable
-    public static <T> T fromJsonAs(@Nullable File file, @Nullable Class<T> expectedType) {
-        return fromJsonAs(file, expectedType, null, null);
+    public static <T> T ofJsonAs(@Nullable File file, @Nullable Class<T> expectedType) {
+        return ofJsonAs(file, expectedType, null, null);
     }
 
     @Nullable
-    public static <T> T fromJsonAs(@Nullable File file, @Nullable Class<T> expectedType, @Nullable Charset charset) {
-        return fromJsonAs(file, expectedType, null, charset);
+    public static <T> T ofJsonAs(@Nullable File file, @Nullable Class<T> expectedType, @Nullable Charset charset) {
+        return ofJsonAs(file, expectedType, null, charset);
     }
 
     @Nullable
-    public static <T> T fromJsonAs(@Nullable File file, @Nullable Class<T> expectedType, @Nullable JsonbConfig config, @Nullable Charset charset) {
+    public static <T> T ofJsonAs(@Nullable File file, @Nullable Class<T> expectedType, @Nullable JsonbConfig config, @Nullable Charset charset) {
         if (ObjectUtils.anyNull(file, expectedType)) {
             return null;
         }
@@ -140,12 +140,12 @@ public abstract class JakartaJsonWraps {
     }
 
     @Nullable
-    public static <T> T fromJsonAs(@Nullable InputStream stream, @Nullable Class<T> expectedType) {
-        return fromJsonAs(stream, expectedType, null);
+    public static <T> T ofJsonAs(@Nullable InputStream stream, @Nullable Class<T> expectedType) {
+        return ofJsonAs(stream, expectedType, null);
     }
 
     @Nullable
-    public static <T> T fromJsonAs(@Nullable InputStream stream, @Nullable Class<T> expectedType, @Nullable JsonbConfig config) {
+    public static <T> T ofJsonAs(@Nullable InputStream stream, @Nullable Class<T> expectedType, @Nullable JsonbConfig config) {
         if (ObjectUtils.anyNull(stream, expectedType)) {
             return null;
         }
@@ -157,12 +157,12 @@ public abstract class JakartaJsonWraps {
     }
 
     @Nullable
-    public static <T> T fromJsonAs(@Nullable Reader reader, @Nullable Class<T> expectedType) {
-        return fromJsonAs(reader, expectedType, null);
+    public static <T> T ofJsonAs(@Nullable Reader reader, @Nullable Class<T> expectedType) {
+        return ofJsonAs(reader, expectedType, null);
     }
 
     @Nullable
-    public static <T> T fromJsonAs(@Nullable Reader reader, @Nullable Class<T> expectedType, @Nullable JsonbConfig config) {
+    public static <T> T ofJsonAs(@Nullable Reader reader, @Nullable Class<T> expectedType, @Nullable JsonbConfig config) {
         if (ObjectUtils.anyNull(reader, expectedType)) {
             return null;
         }

@@ -36,7 +36,7 @@ import com.yookue.commonplexus.javaseutil.constant.CharVariantConst;
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})
 public abstract class UuidUtilsWraps {
     @Nullable
-    public static UUID fromString(@Nullable String uuid) {
+    public static UUID ofString(@Nullable String uuid) {
         if (StringUtils.isBlank(uuid)) {
             return null;
         }

@@ -434,16 +434,17 @@ public abstract class StringUtilsWraps {
         return sequence != null && CollectionPlainWraps.isNotEmpty(comparisons) && comparisons.stream().anyMatch(element -> StringUtils.equalsIgnoreCase(sequence, element));
     }
 
-    public static String encodeToString(@Nullable String text, @Nonnull Charset fromCharset, @Nonnull Charset toCharset) {
-        return StringUtils.isEmpty(text) ? text : StringUtils.toEncodedString(text.getBytes(fromCharset), toCharset);
+    public static String encodeToString(@Nullable String text, @Nonnull Charset ofCharset, @Nonnull Charset toCharset) {
+        return StringUtils.isEmpty(text) ? text : StringUtils.toEncodedString(text.getBytes(ofCharset), toCharset);
     }
 
-    public static String encodeToString(@Nullable String text, @Nonnull CharSequence fromCharset, @Nonnull CharSequence toCharset) {
-        if (StringUtils.isEmpty(text) || CharsetPlainWraps.anyNotSupported(fromCharset, toCharset)) {
+    @Nullable
+    public static String encodeToString(@Nullable String text, @Nonnull CharSequence ofCharset, @Nonnull CharSequence toCharset) {
+        if (StringUtils.isEmpty(text) || CharsetPlainWraps.anyNotSupported(ofCharset, toCharset)) {
             return text;
         }
         try {
-            return StringUtils.toEncodedString(text.getBytes(fromCharset.toString()), Charset.forName(toCharset.toString()));
+            return StringUtils.toEncodedString(text.getBytes(ofCharset.toString()), Charset.forName(toCharset.toString()));
         } catch (UnsupportedEncodingException ignored) {
         }
         return null;
