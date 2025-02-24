@@ -29,6 +29,7 @@ public abstract class SymbolVariantConst {
     public static final String CURLY_BRACKETS = "{}";    // $NON-NLS-1$
     public static final String DOLLAR_CURLY_BRACKET = "${";    // $NON-NLS-1$
     public static final String DOUBLE_BACKSLASHES = "\\";    // $NON-NLS-1$
+    public static final String DOUBLE_COLON = "::";    // $NON-NLS-1$
     public static final String DOUBLE_DOLLAR = "$$";    // $NON-NLS-1$
     public static final String DOUBLE_DOTS = "..";    // $NON-NLS-1$
     public static final String DOUBLE_SLASHES = "//";    // $NON-NLS-1$
@@ -38,7 +39,7 @@ public abstract class SymbolVariantConst {
     public static final String JAVASCRIPT_VOID = JAVASCRIPT_COLON + "void(0);";    // $NON-NLS-1$
     public static final String ORDER_ANGLES = "<%d>";    // $NON-NLS-1$
     public static final String ORDER_ANGLES_SPACE = ORDER_ANGLES + CharVariantConst.SPACE;
-    public static final String ORDER_COLON = "%d";    // $NON-NLS-1$
+    public static final String ORDER_COLON = "%d:";    // $NON-NLS-1$
     public static final String ORDER_COLON_SPACE = ORDER_COLON + CharVariantConst.SPACE;
     public static final String ORDER_DOT = "%d.";    // $NON-NLS-1$
     public static final String ORDER_DOT_SPACE = ORDER_DOT + CharVariantConst.SPACE;
