@@ -867,16 +867,16 @@ public abstract class StringUtilsWraps {
         return CollectionPlainWraps.isEmpty(sequences) ? null : joinWith(removeEmptySequences(sequences), delimiter);
     }
 
-    public static String joinWithOnce(char delimiter, @Nullable CharSequence... sequences) {
-        return joinWithOnce(delimiter, ArrayUtilsWraps.asList(sequences));
+    public static String joinOnce(char delimiter, @Nullable CharSequence... sequences) {
+        return joinOnce(delimiter, ArrayUtilsWraps.asList(sequences));
     }
 
-    public static String joinWithOnce(char delimiter, @Nullable Collection<? extends CharSequence> sequences) {
-        return joinWithOnce(CharUtils.toString(delimiter), sequences);
+    public static String joinOnce(char delimiter, @Nullable Collection<? extends CharSequence> sequences) {
+        return joinOnce(CharUtils.toString(delimiter), sequences);
     }
 
-    public static String joinWithOnce(@Nullable CharSequence delimiter, @Nullable CharSequence... sequences) {
-        return joinWithOnce(delimiter, ArrayUtilsWraps.asList(sequences));
+    public static String joinOnce(@Nullable CharSequence delimiter, @Nullable CharSequence... sequences) {
+        return joinOnce(delimiter, ArrayUtilsWraps.asList(sequences));
     }
 
     /**
@@ -899,7 +899,7 @@ public abstract class StringUtilsWraps {
      * @see org.apache.commons.lang3.StringUtils#joinWith
      */
     @Nullable
-    public static String joinWithOnce(@Nullable CharSequence delimiter, @Nullable Collection<? extends CharSequence> sequences) {
+    public static String joinOnce(@Nullable CharSequence delimiter, @Nullable Collection<? extends CharSequence> sequences) {
         if (CollectionPlainWraps.isEmpty(sequences)) {
             return null;
         }
@@ -919,20 +919,20 @@ public abstract class StringUtilsWraps {
         return joiner.toString();
     }
 
-    public static String joinWithOnceIgnoreCase(char delimiter, @Nullable CharSequence... sequences) {
-        return joinWithOnceIgnoreCase(delimiter, ArrayUtilsWraps.asList(sequences));
+    public static String joinOnceIgnoreCase(char delimiter, @Nullable CharSequence... sequences) {
+        return joinOnceIgnoreCase(delimiter, ArrayUtilsWraps.asList(sequences));
     }
 
-    public static String joinWithOnceIgnoreCase(char delimiter, @Nullable Collection<? extends CharSequence> sequences) {
-        return joinWithOnceIgnoreCase(CharUtils.toString(delimiter), sequences);
+    public static String joinOnceIgnoreCase(char delimiter, @Nullable Collection<? extends CharSequence> sequences) {
+        return joinOnceIgnoreCase(CharUtils.toString(delimiter), sequences);
     }
 
-    public static String joinWithOnceIgnoreCase(@Nullable CharSequence delimiter, @Nullable CharSequence... sequences) {
-        return joinWithOnceIgnoreCase(delimiter, ArrayUtilsWraps.asList(sequences));
+    public static String joinOnceIgnoreCase(@Nullable CharSequence delimiter, @Nullable CharSequence... sequences) {
+        return joinOnceIgnoreCase(delimiter, ArrayUtilsWraps.asList(sequences));
     }
 
     @Nullable
-    public static String joinWithOnceIgnoreCase(@Nullable CharSequence delimiter, @Nullable Collection<? extends CharSequence> sequences) {
+    public static String joinOnceIgnoreCase(@Nullable CharSequence delimiter, @Nullable Collection<? extends CharSequence> sequences) {
         if (CollectionPlainWraps.isEmpty(sequences)) {
             return null;
         }
@@ -946,6 +946,80 @@ public abstract class StringUtilsWraps {
                 joiner.add(defaultString(size == 1 ? sequence : removeEndIgnoreCase(sequence, delimiter)));
             } else {
                 joiner.add(defaultString(removeStartIgnoreCase(sequence, delimiter)));
+            }
+            index++;
+        }
+        return joiner.toString();
+    }
+
+    public static String joinOnceIgnoreBlank(char delimiter, @Nullable CharSequence... sequences) {
+        return joinOnceIgnoreBlank(delimiter, ArrayUtilsWraps.asList(sequences));
+    }
+
+    public static String joinOnceIgnoreBlank(char delimiter, @Nullable Collection<? extends CharSequence> sequences) {
+        return joinOnceIgnoreBlank(CharUtils.toString(delimiter), sequences);
+    }
+
+    public static String joinOnceIgnoreBlank(@Nullable CharSequence delimiter, @Nullable CharSequence... sequences) {
+        return joinOnceIgnoreBlank(delimiter, ArrayUtilsWraps.asList(sequences));
+    }
+
+    @Nullable
+    public static String joinOnceIgnoreBlank(@Nullable CharSequence delimiter, @Nullable Collection<? extends CharSequence> sequences) {
+        if (CollectionPlainWraps.isEmpty(sequences)) {
+            return null;
+        }
+        if (StringUtils.isEmpty(delimiter)) {
+            return sequences.stream().map(StringUtilsWraps::defaultString).collect(Collectors.joining());
+        }
+        StringJoiner joiner = new StringJoiner(delimiter);
+        int index = 0, size = sequences.size();
+        for (CharSequence sequence : sequences) {
+            String alias;
+            if (index == 0) {
+                alias = defaultString(size == 1 ? sequence : removeEnd(sequence, delimiter));
+            } else {
+                alias = defaultString(removeStart(sequence, delimiter));
+            }
+            if (StringUtils.isNotBlank(alias)) {
+                joiner.add(alias);
+            }
+            index++;
+        }
+        return joiner.toString();
+    }
+
+    public static String joinOnceIgnoreEmpty(char delimiter, @Nullable CharSequence... sequences) {
+        return joinOnceIgnoreEmpty(delimiter, ArrayUtilsWraps.asList(sequences));
+    }
+
+    public static String joinOnceIgnoreEmpty(char delimiter, @Nullable Collection<? extends CharSequence> sequences) {
+        return joinOnceIgnoreEmpty(CharUtils.toString(delimiter), sequences);
+    }
+
+    public static String joinOnceIgnoreEmpty(@Nullable CharSequence delimiter, @Nullable CharSequence... sequences) {
+        return joinOnceIgnoreEmpty(delimiter, ArrayUtilsWraps.asList(sequences));
+    }
+
+    @Nullable
+    public static String joinOnceIgnoreEmpty(@Nullable CharSequence delimiter, @Nullable Collection<? extends CharSequence> sequences) {
+        if (CollectionPlainWraps.isEmpty(sequences)) {
+            return null;
+        }
+        if (StringUtils.isEmpty(delimiter)) {
+            return sequences.stream().map(StringUtilsWraps::defaultString).collect(Collectors.joining());
+        }
+        StringJoiner joiner = new StringJoiner(delimiter);
+        int index = 0, size = sequences.size();
+        for (CharSequence sequence : sequences) {
+            String alias;
+            if (index == 0) {
+                alias = defaultString(size == 1 ? sequence : removeEnd(sequence, delimiter));
+            } else {
+                alias = defaultString(removeStart(sequence, delimiter));
+            }
+            if (StringUtils.isNotEmpty(alias)) {
+                joiner.add(alias);
             }
             index++;
         }
