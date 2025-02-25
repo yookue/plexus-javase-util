@@ -510,7 +510,7 @@ public abstract class MapPlainWraps {
         if (isEmpty(map)) {
             return defaultValue;
         }
-        Object[] result = ObjectUtilsWraps.toObjectArray(map.get(key));
+        Object[] result = ObjectUtilsWraps.castAsArray(map.get(key));
         return (result == null) ? defaultValue : result;
     }
 
@@ -538,7 +538,7 @@ public abstract class MapPlainWraps {
         if (isEmpty(map)) {
             return defaultValue;
         }
-        List<?> result = ObjectUtilsWraps.toObjectList(map.get(key));
+        List<?> result = ObjectUtilsWraps.castAsList(map.get(key));
         return (result == null) ? defaultValue : result;
     }
 

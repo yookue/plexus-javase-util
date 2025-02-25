@@ -124,12 +124,105 @@ public abstract class ObjectUtilsWraps {
         return (ObjectUtils.anyNull(source, expectedType) || !expectedType.isInstance(source)) ? defaultValue : expectedType.cast(source);
     }
 
-    public static <T extends Iterable<E>, E> T castToIterable(@Nullable Object source, @Nullable Class<T> expectedType, @Nullable Class<E> componentType) {
-        return castToIterable(source, expectedType, componentType, null);
+    @Nullable
+    public static Object[] castAsArray(@Nullable Object source) {
+        return castAsArray(source, false);
+    }
+
+    /**
+     * Convert the given object (which may be a primitive array) to an object array (if necessary of primitive wrapper objects)
+     *
+     * @param source the (potentially primitive) array
+     * @param transform indicates whether to detect the source object type and try to convert it
+     *
+     * @return the corresponding object array
+     *
+     * @see "org.springframework.util.ObjectUtils#toObjectArray"
+     */
+    @Nullable
+    public static Object[] castAsArray(@Nullable Object source, boolean transform) {
+        if (source == null) {
+            return null;
+        }
+        if (source instanceof Object[] alias) {
+            return alias;
+        }
+        if (isArray(source)) {
+            Class<?> clazz = ArrayUtilsWraps.getComponentType(source);
+            if (clazz == null) {
+                return null;
+            }
+            int length = ArrayUtilsWraps.getLength(source);
+            Object[] result = (Object[]) Array.newInstance(clazz, length);
+            ArrayUtilsWraps.forEachObjectIndexing(source, (index, element) -> result[index] = element);
+            return result;
+        }
+        if (!transform) {
+            return null;
+        }
+        if (source instanceof Iterable<?> alias) {
+            return IterablePlainWraps.toObjectArray(alias);
+        } else if (source instanceof Iterator<?> alias) {
+            return IteratorPlainWraps.toObjectArray(alias);
+        } else if (source instanceof Enumeration<?> alias) {
+            return EnumerationPlainWraps.toObjectArray(alias);
+        }
+        return null;
+    }
+
+    public static <E> Collection<E> castAsCollection(@Nullable Object source, @Nullable Class<E> componentType) {
+        return castAsCollection(source, componentType, null);
+    }
+
+    @SuppressWarnings("unchecked")
+    public static <E> Collection<E> castAsCollection(@Nullable Object source, @Nullable Class<E> componentType, @Nullable Collection<E> defaultValue) {
+        return castAsIterable(source, Collection.class, componentType, defaultValue);
+    }
+
+    @Nullable
+    public static List<?> castAsList(@Nullable Object source) {
+        return castAsList(source, false);
+    }
+
+    @Nullable
+    public static List<?> castAsList(@Nullable Object source, boolean transform) {
+        if (source == null) {
+            return null;
+        }
+        if (source instanceof List<?> alias) {
+            return alias;
+        }
+        if (!transform) {
+            return null;
+        }
+        if (isArray(source)) {
+            return ArrayUtilsWraps.asList(true, castAsArray(source, true));
+        }
+        if (source instanceof Iterable<?> alias) {
+            return IterablePlainWraps.toObjectList(alias);
+        } else if (source instanceof Iterator<?> alias) {
+            return IteratorPlainWraps.toObjectList(alias);
+        } else if (source instanceof Enumeration<?> alias) {
+            return EnumerationPlainWraps.toObjectList(alias);
+        }
+        return null;
+    }
+
+    public static <E> List<E> castAsList(@Nullable Object source, @Nullable Class<E> componentType) {
+        return castAsList(source, componentType, null);
+    }
+
+    @SuppressWarnings("unchecked")
+    public static <E> List<E> castAsList(@Nullable Object source, @Nullable Class<E> componentType, @Nullable List<E> defaultValue) {
+        return castAsIterable(source, List.class, componentType, defaultValue);
+    }
+
+    public static <T extends Iterable<E>, E> T castAsIterable(@Nullable Object source, @Nullable Class<T> expectedType, @Nullable Class<E> componentType) {
+        return castAsIterable(source, expectedType, componentType, null);
     }
 
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
-    public static <T extends Iterable<E>, E> T castToIterable(@Nullable Object source, @Nullable Class<T> expectedType, @Nullable Class<E> componentType, @Nullable T defaultValue) {
+    public static <T extends Iterable<E>, E> T castAsIterable(@Nullable Object source, @Nullable Class<T> expectedType, @Nullable Class<E> componentType, @Nullable T defaultValue) {
         if (ObjectUtils.anyNull(source, expectedType, componentType) || !expectedType.isInstance(source)) {
             return defaultValue;
         }
@@ -141,12 +234,12 @@ public abstract class ObjectUtilsWraps {
         return result;
     }
 
-    public static <T extends Iterator<E>, E> T castToIterator(@Nullable Object source, @Nullable Class<T> expectedType, @Nullable Class<E> componentType) {
-        return castToIterator(source, expectedType, componentType, null);
+    public static <T extends Iterator<E>, E> T castAsIterator(@Nullable Object source, @Nullable Class<T> expectedType, @Nullable Class<E> componentType) {
+        return castAsIterator(source, expectedType, componentType, null);
     }
 
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
-    public static <T extends Iterator<E>, E> T castToIterator(@Nullable Object source, @Nullable Class<T> expectedType, @Nullable Class<E> componentType, @Nullable T defaultValue) {
+    public static <T extends Iterator<E>, E> T castAsIterator(@Nullable Object source, @Nullable Class<T> expectedType, @Nullable Class<E> componentType, @Nullable T defaultValue) {
         if (ObjectUtils.anyNull(source, expectedType, componentType) || !expectedType.isInstance(source)) {
             return defaultValue;
         }
@@ -158,31 +251,13 @@ public abstract class ObjectUtilsWraps {
         return result;
     }
 
-    public static <E> Collection<E> castToCollection(@Nullable Object source, @Nullable Class<E> componentType) {
-        return castToCollection(source, componentType, null);
+    public static <E> Set<E> castAsSet(@Nullable Object source, @Nullable Class<E> componentType) {
+        return castAsSet(source, componentType, null);
     }
 
     @SuppressWarnings("unchecked")
-    public static <E> Collection<E> castToCollection(@Nullable Object source, @Nullable Class<E> componentType, @Nullable Collection<E> defaultValue) {
-        return castToIterable(source, Collection.class, componentType, defaultValue);
-    }
-
-    public static <E> List<E> castToList(@Nullable Object source, @Nullable Class<E> componentType) {
-        return castToList(source, componentType, null);
-    }
-
-    @SuppressWarnings("unchecked")
-    public static <E> List<E> castToList(@Nullable Object source, @Nullable Class<E> componentType, @Nullable List<E> defaultValue) {
-        return castToIterable(source, List.class, componentType, defaultValue);
-    }
-
-    public static <E> Set<E> castToSet(@Nullable Object source, @Nullable Class<E> componentType) {
-        return castToSet(source, componentType, null);
-    }
-
-    @SuppressWarnings("unchecked")
-    public static <E> Set<E> castToSet(@Nullable Object source, @Nullable Class<E> componentType, @Nullable Set<E> defaultValue) {
-        return castToIterable(source, Set.class, componentType, defaultValue);
+    public static <E> Set<E> castAsSet(@Nullable Object source, @Nullable Class<E> componentType, @Nullable Set<E> defaultValue) {
+        return castAsIterable(source, Set.class, componentType, defaultValue);
     }
 
     /**
@@ -480,81 +555,6 @@ public abstract class ObjectUtilsWraps {
 
     public static int sumSize(@Nullable Collection<Object> objects) {
         return CollectionPlainWraps.isEmpty(objects) ? 0 : objects.stream().mapToInt(ObjectUtilsWraps::size).sum();
-    }
-
-    @Nullable
-    public static Object[] toObjectArray(@Nullable Object source) {
-        return toObjectArray(source, false);
-    }
-
-    /**
-     * Convert the given object (which may be a primitive array) to an object array (if necessary of primitive wrapper objects)
-     *
-     * @param source the (potentially primitive) array
-     * @param transform indicates whether to detect the source object type and try to convert it
-     *
-     * @return the corresponding object array
-     *
-     * @see "org.springframework.util.ObjectUtils#toObjectArray"
-     */
-    @Nullable
-    public static Object[] toObjectArray(@Nullable Object source, boolean transform) {
-        if (source == null) {
-            return null;
-        }
-        if (source instanceof Object[] alias) {
-            return alias;
-        }
-        if (isArray(source)) {
-            Class<?> clazz = ArrayUtilsWraps.getComponentType(source);
-            if (clazz == null) {
-                return null;
-            }
-            int length = ArrayUtilsWraps.getLength(source);
-            Object[] result = (Object[]) Array.newInstance(clazz, length);
-            ArrayUtilsWraps.forEachObjectIndexing(source, (index, element) -> result[index] = element);
-            return result;
-        }
-        if (!transform) {
-            return null;
-        }
-        if (source instanceof Iterable<?> alias) {
-            return IterablePlainWraps.toObjectArray(alias);
-        } else if (source instanceof Iterator<?> alias) {
-            return IteratorPlainWraps.toObjectArray(alias);
-        } else if (source instanceof Enumeration<?> alias) {
-            return EnumerationPlainWraps.toObjectArray(alias);
-        }
-        return null;
-    }
-
-    @Nullable
-    public static List<?> toObjectList(@Nullable Object source) {
-        return toObjectList(source, false);
-    }
-
-    @Nullable
-    public static List<?> toObjectList(@Nullable Object source, boolean transform) {
-        if (source == null) {
-            return null;
-        }
-        if (source instanceof List<?> alias) {
-            return alias;
-        }
-        if (!transform) {
-            return null;
-        }
-        if (isArray(source)) {
-            return ArrayUtilsWraps.asList(true, toObjectArray(source, true));
-        }
-        if (source instanceof Iterable<?> alias) {
-            return IterablePlainWraps.toObjectList(alias);
-        } else if (source instanceof Iterator<?> alias) {
-            return IteratorPlainWraps.toObjectList(alias);
-        } else if (source instanceof Enumeration<?> alias) {
-            return EnumerationPlainWraps.toObjectList(alias);
-        }
-        return null;
     }
 
     public static String toString(@Nullable Object source) {

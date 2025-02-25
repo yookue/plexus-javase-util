@@ -48,19 +48,17 @@ class ObjectUtilsWrapsTest {
     }
 
     @Test
-    @SuppressWarnings("unchecked")
     void castAsListString() {
         Object source = CollectionPlainWraps.newArrayListWithin("this", "is", "a", "test");
-        List<String> result = ObjectUtilsWraps.castToIterable(source, List.class, String.class);
+        List<String> result = ObjectUtilsWraps.castAsList(source, String.class);
         log.info("{}: {}", StackTraceWraps.getExecutingMethodName(), StringUtilsWraps.joinWithCommaSpace(result));
         Assertions.assertNotNull(result);
     }
 
     @Test
-    @SuppressWarnings("unchecked")
     void castAsListInteger() {
         Object source = CollectionPlainWraps.newArrayListWithin("this", "is", "a", "test");
-        List<Integer> result = ObjectUtilsWraps.castToIterable(source, List.class, Integer.class);
+        List<Integer> result = ObjectUtilsWraps.castAsList(source, Integer.class);
         log.info("{}: {}", StackTraceWraps.getExecutingMethodName(), StringUtilsWraps.joinWithCommaSpace(result));
         Assertions.assertNull(result);
     }
