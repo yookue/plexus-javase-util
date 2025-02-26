@@ -46,7 +46,7 @@ public abstract class InetProxyWraps {
         if (type == null) {
             return null;
         }
-        InetSocketAddress address = InetSocketWraps.newInetSocketAddress(host, port);
+        InetSocketAddress address = InetSocketWraps.ofSocketAddress(host, port);
         if (address == null) {
             return null;
         }
@@ -58,7 +58,7 @@ public abstract class InetProxyWraps {
 
     @Nullable
     public static ProxySelector ofProxySelector(@Nullable String host, int port) {
-        InetSocketAddress address = InetSocketWraps.newInetSocketAddress(host, port);
+        InetSocketAddress address = InetSocketWraps.ofSocketAddress(host, port);
         return (address == null) ? null : ProxySelector.of(address);
     }
 }

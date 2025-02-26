@@ -31,7 +31,7 @@ import org.apache.commons.lang3.StringUtils;
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})
 public abstract class InetSocketWraps {
     @Nullable
-    public static InetSocketAddress newInetSocketAddress(@Nullable String host, int port) {
+    public static InetSocketAddress ofSocketAddress(@Nullable String host, int port) {
         if (StringUtils.isBlank(host) || port <= 0) {
             return null;
         }
