@@ -32,17 +32,17 @@ import com.yookue.commonplexus.javaseutil.enumeration.InetProxyType;
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})
 public abstract class InetProxyWraps {
     @Nullable
-    public static Proxy newHttpProxy(@Nullable String host, int port) {
-        return newProxy(host, port, InetProxyType.HTTP);
+    public static Proxy ofHttpProxy(@Nullable String host, int port) {
+        return ofProxy(host, port, InetProxyType.HTTP);
     }
 
     @Nullable
-    public static Proxy newSocksProxy(@Nullable String host, int port) {
-        return newProxy(host, port, InetProxyType.SOCKS);
+    public static Proxy ofSocksProxy(@Nullable String host, int port) {
+        return ofProxy(host, port, InetProxyType.SOCKS);
     }
 
     @Nullable
-    public static Proxy newProxy(@Nullable String host, int port, @Nullable InetProxyType type) {
+    public static Proxy ofProxy(@Nullable String host, int port, @Nullable InetProxyType type) {
         if (type == null) {
             return null;
         }
@@ -57,7 +57,7 @@ public abstract class InetProxyWraps {
     }
 
     @Nullable
-    public static ProxySelector newProxySelector(@Nullable String host, int port) {
+    public static ProxySelector ofProxySelector(@Nullable String host, int port) {
         InetSocketAddress address = InetSocketWraps.newInetSocketAddress(host, port);
         return (address == null) ? null : ProxySelector.of(address);
     }

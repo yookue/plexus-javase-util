@@ -17,6 +17,7 @@
 package com.yookue.commonplexus.javaseutil.structure;
 
 
+import java.util.Collection;
 import jakarta.annotation.Nullable;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -42,6 +43,11 @@ public class DataTextStruct<T> extends PureTextStruct {
     private T data;
 
     public DataTextStruct(@Nullable T data, @Nullable String... texts) {
+        this.data = data;
+        super.addText(texts);
+    }
+
+    public DataTextStruct(@Nullable T data, @Nullable Collection<String> texts) {
         this.data = data;
         super.addText(texts);
     }

@@ -17,6 +17,7 @@
 package com.yookue.commonplexus.javaseutil.structure;
 
 
+import java.util.Collection;
 import jakarta.annotation.Nullable;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -47,6 +48,12 @@ public class StatusDataStruct<T> extends DataTextStruct<T> {
     }
 
     public StatusDataStruct(@Nullable Integer status, @Nullable T data, @Nullable String... texts) {
+        this.status = status;
+        super.setData(data);
+        super.addText(texts);
+    }
+
+    public StatusDataStruct(@Nullable Integer status, @Nullable T data, @Nullable Collection<String> texts) {
         this.status = status;
         super.setData(data);
         super.addText(texts);

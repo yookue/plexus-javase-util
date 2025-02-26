@@ -29,8 +29,6 @@ import com.yookue.commonplexus.javaseutil.util.ArrayUtilsWraps;
 import com.yookue.commonplexus.javaseutil.util.CharSequenceWraps;
 import com.yookue.commonplexus.javaseutil.util.CollectionPlainWraps;
 import com.yookue.commonplexus.javaseutil.util.ListPlainWraps;
-import com.yookue.commonplexus.javaseutil.util.StringUtilsWraps;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
@@ -43,12 +41,9 @@ import lombok.experimental.Accessors;
  */
 @Accessors(chain = true)
 @NoArgsConstructor
-@AllArgsConstructor
 @Data
 @SuppressWarnings({"unused", "WeakerAccess", "UnusedReturnValue"})
 public class PureTextStruct implements Serializable {
-    private String orderPrefix = SymbolVariantConst.ORDER_SQUARES_SPACE;
-
     private final List<String> texts = new ArrayList<>();
 
     public PureTextStruct(@Nullable String... texts) {
@@ -105,24 +100,29 @@ public class PureTextStruct implements Serializable {
     }
 
     public String getCompositeText(@Nullable String delimiter) {
-        return StringUtils.join(texts, delimiter);
+        return StringUtils.join(texts, StringUtils.defaultString(delimiter));
     }
 
     public String getCompositeTextOrdering() {
-        return getCompositeTextOrdering(null);
+        return getCompositeTextOrdering(null, SymbolVariantConst.ORDER_SQUARES_SPACE);
     }
 
     public String getCompositeTextOrdering(char delimiter) {
-        return getCompositeTextOrdering(CharUtils.toString(delimiter));
+        return getCompositeTextOrdering(CharUtils.toString(delimiter), SymbolVariantConst.ORDER_SQUARES_SPACE);
     }
 
-    public String getCompositeTextOrdering(@Nullable String delimiter) {
+    public String getCompositeTextOrdering(@Nullable String delimiter, @Nullable String orderPrefix) {
         if (CollectionPlainWraps.isEmpty(texts)) {
             return null;
         }
         StringBuilder builder = new StringBuilder();
         builder.append(CollectionPlainWraps.forEachIndexingTailing(texts, (index, text) -> {
-            StringUtilsWraps.ifNotBlank(orderPrefix, element -> builder.append(String.format(element, index + 1)));
+            if (StringUtils.isNotEmpty(orderPrefix)) {
+                try {
+                    builder.append(String.format(orderPrefix, index + 1));
+                } catch (Exception ignored) {
+                }
+            }
             builder.append(text).append(StringUtils.defaultString(delimiter));
         }));
         return CharSequenceWraps.toStringIgnoreEmpty(builder);

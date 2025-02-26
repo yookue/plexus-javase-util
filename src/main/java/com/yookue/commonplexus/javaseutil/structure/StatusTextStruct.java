@@ -17,6 +17,7 @@
 package com.yookue.commonplexus.javaseutil.structure;
 
 
+import java.util.Collection;
 import jakarta.annotation.Nullable;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -40,6 +41,11 @@ public class StatusTextStruct extends PureTextStruct {
     private Integer status;
 
     public StatusTextStruct(@Nullable Integer status, @Nullable String... texts) {
+        this.status = status;
+        super.addText(texts);
+    }
+
+    public StatusTextStruct(@Nullable Integer status, @Nullable Collection<String> texts) {
         this.status = status;
         super.addText(texts);
     }

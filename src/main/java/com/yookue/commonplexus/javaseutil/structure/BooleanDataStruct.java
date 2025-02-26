@@ -17,6 +17,7 @@
 package com.yookue.commonplexus.javaseutil.structure;
 
 
+import java.util.Collection;
 import jakarta.annotation.Nonnull;
 import jakarta.annotation.Nullable;
 import lombok.AllArgsConstructor;
@@ -42,23 +43,55 @@ import lombok.experimental.Accessors;
 public class BooleanDataStruct<T> extends DataTextStruct<T> {
     private boolean success = false;
 
-    public BooleanDataStruct(@Nullable String... texts) {
-        super.addText(texts);
-    }
-
     public BooleanDataStruct(boolean success, @Nullable T data, @Nullable String... texts) {
         this.success = success;
         super.setData(data);
         super.addText(texts);
     }
 
+    public BooleanDataStruct(boolean success, @Nullable T data, @Nullable Collection<String> texts) {
+        this.success = success;
+        super.setData(data);
+        super.addText(texts);
+    }
+
     @Nonnull
-    public static BooleanDataStruct<?> newSuccess() {
+    public static BooleanDataStruct<?> ofSuccess() {
         return new BooleanDataStruct<>(true);
     }
 
     @Nonnull
-    public static BooleanDataStruct<?> newFailure() {
+    public static <T> BooleanDataStruct<T> ofSuccess(@Nullable T data) {
+        return new BooleanDataStruct<>(true, data);
+    }
+
+    @Nonnull
+    public static <T> BooleanDataStruct<T> ofSuccess(@Nullable T data, @Nullable String... texts) {
+        return new BooleanDataStruct<>(true, data, texts);
+    }
+
+    @Nonnull
+    public static <T> BooleanDataStruct<T> ofSuccess(@Nullable T data, @Nullable Collection<String> texts) {
+        return new BooleanDataStruct<>(true, data, texts);
+    }
+
+    @Nonnull
+    public static BooleanDataStruct<?> ofFailure() {
         return new BooleanDataStruct<>(false);
+    }
+
+    @Nonnull
+    public static <T> BooleanDataStruct<T> ofFailure(@Nullable T data) {
+        return new BooleanDataStruct<>(false);
+    }
+
+    @Nonnull
+    public static <T> BooleanDataStruct<T> ofFailure(@Nullable T data, @Nullable String... texts) {
+        return new BooleanDataStruct<>(false, data, texts);
+    }
+
+    @Nonnull
+    public static <T> BooleanDataStruct<T> ofFailure(@Nullable T data, @Nullable Collection<String> texts) {
+        return new BooleanDataStruct<>(false, data, texts);
     }
 }

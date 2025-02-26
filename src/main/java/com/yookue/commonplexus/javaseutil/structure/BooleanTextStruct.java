@@ -17,7 +17,9 @@
 package com.yookue.commonplexus.javaseutil.structure;
 
 
+import java.util.Collection;
 import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -39,13 +41,43 @@ import lombok.experimental.Accessors;
 public class BooleanTextStruct extends PureTextStruct {
     private boolean success = false;
 
+    public BooleanTextStruct(boolean success, @Nullable String... texts) {
+        this.success = success;
+        super.addText(texts);
+    }
+
+    public BooleanTextStruct(boolean success, @Nullable Collection<String> texts) {
+        this.success = success;
+        super.addText(texts);
+    }
+
     @Nonnull
-    public static BooleanTextStruct newSuccess() {
+    public static BooleanTextStruct ofSuccess() {
         return new BooleanTextStruct(true);
     }
 
     @Nonnull
-    public static BooleanTextStruct newFailure() {
+    public static BooleanTextStruct ofSuccess(@Nullable String... texts) {
+        return new BooleanTextStruct(true, texts);
+    }
+
+    @Nonnull
+    public static BooleanTextStruct ofSuccess(@Nullable Collection<String> texts) {
+        return new BooleanTextStruct(true, texts);
+    }
+
+    @Nonnull
+    public static BooleanTextStruct ofFailure() {
         return new BooleanTextStruct(false);
+    }
+
+    @Nonnull
+    public static BooleanTextStruct ofFailure(@Nullable String... texts) {
+        return new BooleanTextStruct(false, texts);
+    }
+
+    @Nonnull
+    public static BooleanTextStruct ofFailure(@Nullable Collection<String> texts) {
+        return new BooleanTextStruct(false, texts);
     }
 }
