@@ -61,17 +61,27 @@ public class BooleanDataStruct<T> extends DataTextStruct<T> {
     }
 
     @Nonnull
-    public static <T> BooleanDataStruct<T> ofSuccess(@Nullable T data) {
+    public static <T> BooleanDataStruct<T> ofSuccess(@Nullable String... texts) {
+        return new BooleanDataStruct<>(true, null, texts);
+    }
+
+    @Nonnull
+    public static <T> BooleanDataStruct<T> ofSuccess(@Nullable Collection<String> texts) {
+        return new BooleanDataStruct<>(true, null, texts);
+    }
+
+    @Nonnull
+    public static <T> BooleanDataStruct<T> ofSuccessWithin(@Nullable T data) {
         return new BooleanDataStruct<>(true, data);
     }
 
     @Nonnull
-    public static <T> BooleanDataStruct<T> ofSuccess(@Nullable T data, @Nullable String... texts) {
+    public static <T> BooleanDataStruct<T> ofSuccessWithin(@Nullable T data, @Nullable String... texts) {
         return new BooleanDataStruct<>(true, data, texts);
     }
 
     @Nonnull
-    public static <T> BooleanDataStruct<T> ofSuccess(@Nullable T data, @Nullable Collection<String> texts) {
+    public static <T> BooleanDataStruct<T> ofSuccessWithin(@Nullable T data, @Nullable Collection<String> texts) {
         return new BooleanDataStruct<>(true, data, texts);
     }
 
@@ -81,17 +91,12 @@ public class BooleanDataStruct<T> extends DataTextStruct<T> {
     }
 
     @Nonnull
-    public static <T> BooleanDataStruct<T> ofFailure(@Nullable T data) {
-        return new BooleanDataStruct<>(false);
+    public static BooleanDataStruct<?> ofFailure(@Nullable String... texts) {
+        return new BooleanDataStruct<>(false, null, texts);
     }
 
     @Nonnull
-    public static <T> BooleanDataStruct<T> ofFailure(@Nullable T data, @Nullable String... texts) {
-        return new BooleanDataStruct<>(false, data, texts);
-    }
-
-    @Nonnull
-    public static <T> BooleanDataStruct<T> ofFailure(@Nullable T data, @Nullable Collection<String> texts) {
-        return new BooleanDataStruct<>(false, data, texts);
+    public static BooleanDataStruct<?> ofFailure(@Nullable Collection<String> texts) {
+        return new BooleanDataStruct<>(false, null, texts);
     }
 }
