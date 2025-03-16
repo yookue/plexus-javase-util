@@ -24,14 +24,16 @@ import java.util.List;
 import jakarta.annotation.Nullable;
 import org.apache.commons.lang3.CharUtils;
 import org.apache.commons.lang3.StringUtils;
+import com.yookue.commonplexus.javaseutil.constant.LogMessageConst;
 import com.yookue.commonplexus.javaseutil.constant.SymbolVariantConst;
 import com.yookue.commonplexus.javaseutil.util.ArrayUtilsWraps;
 import com.yookue.commonplexus.javaseutil.util.CharSequenceWraps;
 import com.yookue.commonplexus.javaseutil.util.CollectionPlainWraps;
 import com.yookue.commonplexus.javaseutil.util.ListPlainWraps;
+import lombok.experimental.Accessors;
+import lombok.extern.slf4j.Slf4j;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.experimental.Accessors;
 
 
 /**
@@ -42,6 +44,7 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 @NoArgsConstructor
 @Data
+@Slf4j
 @SuppressWarnings({"unused", "WeakerAccess", "UnusedReturnValue"})
 public class PureTextStruct implements Serializable {
     private final List<String> texts = new ArrayList<>();
@@ -108,19 +111,30 @@ public class PureTextStruct implements Serializable {
     }
 
     public String getCompositeTextOrdering(char delimiter) {
-        return getCompositeTextOrdering(CharUtils.toString(delimiter), SymbolVariantConst.ORDER_SQUARES_SPACE);
+        return getCompositeTextOrdering(delimiter, SymbolVariantConst.ORDER_SQUARES_SPACE);
     }
 
-    public String getCompositeTextOrdering(@Nullable String delimiter, @Nullable String orderPrefix) {
+    public String getCompositeTextOrdering(char delimiter, @Nullable String order) {
+        return getCompositeTextOrdering(CharUtils.toString(delimiter), order);
+    }
+
+    public String getCompositeTextOrdering(@Nullable String delimiter) {
+        return getCompositeTextOrdering(delimiter, SymbolVariantConst.ORDER_SQUARES_SPACE);
+    }
+
+    public String getCompositeTextOrdering(@Nullable String delimiter, @Nullable String order) {
         if (CollectionPlainWraps.isEmpty(texts)) {
             return null;
         }
         StringBuilder builder = new StringBuilder();
         builder.append(CollectionPlainWraps.forEachIndexingTailing(texts, (index, text) -> {
-            if (StringUtils.isNotEmpty(orderPrefix)) {
+            if (StringUtils.isNotEmpty(order)) {
                 try {
-                    builder.append(String.format(orderPrefix, index + 1));
-                } catch (Exception ignored) {
+                    builder.append(String.format(order, index + 1));
+                } catch (Exception ex) {
+                    if (log.isWarnEnabled()) {
+                        log.warn(LogMessageConst.EXCEPTION_OCCURRED_REASON, ex.getMessage());
+                    }
                 }
             }
             builder.append(text).append(StringUtils.defaultString(delimiter));

@@ -36,4 +36,5 @@ public abstract class LogMessageConst {
     public static final String PRE_DESTROYING = "Pre destroying instance";    // $NON-NLS-1$
     public static final String DESTROYING = "Destroying instance";    // $NON-NLS-1$
     public static final String EXCEPTION_OCCURRED = "Exception occurred during execution";    // $NON-NLS-1$
+    public static final String EXCEPTION_OCCURRED_REASON = EXCEPTION_OCCURRED + ": {}";    // $NON-NLS-1$
 }
