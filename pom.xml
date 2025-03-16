@@ -46,10 +46,9 @@
         <project.build.sourceEncoding>${file.encoding}</project.build.sourceEncoding>
         <project.build.resourceEncoding>${file.encoding}</project.build.resourceEncoding>
         <project.reporting.outputEncoding>${file.encoding}</project.reporting.outputEncoding>
-        <project.logo>https://yookue.github.io/assets/ico/logo-icon.svg</project.logo>
 
-        <commons-beanutils2.version>2.0.0</commons-beanutils2.version>
-        <commons-codec.version>1.17.2</commons-codec.version>
+        <commons-beanutils2.version>2.0.1</commons-beanutils2.version>
+        <commons-codec.version>1.18.0</commons-codec.version>
         <commons-collections4.version>4.5.0-M3</commons-collections4.version>
         <commons-io.version>2.18.0</commons-io.version>
         <commons-lang3.version>3.17.0</commons-lang3.version>
@@ -59,7 +58,7 @@
         <jakarta-json-bind.version>3.0.1</jakarta-json-bind.version>
         <jakarta-persistence.version>3.1.0</jakarta-persistence.version>
         <jnanoid.version>2.0.0</jnanoid.version>
-        <jsoup.version>1.18.3</jsoup.version>
+        <jsoup.version>1.19.1</jsoup.version>
         <jsqlparser.version>5.1</jsqlparser.version>
         <lombok.version>1.18.36</lombok.version>
         <pinyin4j.version>2.6.1</pinyin4j.version>
