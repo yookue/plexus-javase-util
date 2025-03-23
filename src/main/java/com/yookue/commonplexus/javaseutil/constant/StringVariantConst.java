@@ -68,7 +68,7 @@ public abstract class StringVariantConst {
     public static final String PROPERTIES = "properties";    // $NON-NLS-1$
     public static final String RANDOM = "random";    // $NON-NLS-1$
     public static final String REFERRER = "referrer";    // $NON-NLS-1$
-    public static final String REMEMBER_ME = "remember-me";    // $NON-NLS-1$
+    public static final String REMEMBER_ME = "rememberMe";    // $NON-NLS-1$
     public static final String SERIAL = "serial";    // $NON-NLS-1$
     public static final String SERIAL_VERSION_UID = "serialVersionUID";    // $NON-NLS-1$
     public static final String SESSION = "SESSION";    // $NON-NLS-1$
