@@ -27,7 +27,7 @@ import org.apache.commons.lang3.StringUtils;
 import com.yookue.commonplexus.javaseutil.constant.ChineseVariantConst;
 import com.yookue.commonplexus.javaseutil.enumeration.ChineseNumberType;
 import com.yookue.commonplexus.javaseutil.util.StringUtilsWraps;
-import com.yookue.commonplexus.javaseutil.util.UtilDateWraps;
+import com.yookue.commonplexus.javaseutil.util.JdkDateWraps;
 
 
 /**
@@ -59,7 +59,7 @@ public abstract class ChineseDateUtils {
     @Nullable
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
     public static String toDateString(@Nullable Date date, boolean prefixIfAd, @Nullable ChineseNumberType type) {
-        return (date == null) ? null : toDateString(UtilDateWraps.getYear(date), UtilDateWraps.getMonth(date), UtilDateWraps.getDayOfMonth(date), prefixIfAd, type);
+        return (date == null) ? null : toDateString(JdkDateWraps.getYear(date), JdkDateWraps.getMonth(date), JdkDateWraps.getDayOfMonth(date), prefixIfAd, type);
     }
 
     @Nullable

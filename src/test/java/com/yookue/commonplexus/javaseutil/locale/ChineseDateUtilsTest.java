@@ -20,7 +20,7 @@ package com.yookue.commonplexus.javaseutil.locale;
 import java.time.LocalDate;
 import org.junit.jupiter.api.Test;
 import com.yookue.commonplexus.javaseutil.enumeration.ChineseNumberType;
-import com.yookue.commonplexus.javaseutil.util.UtilDateWraps;
+import com.yookue.commonplexus.javaseutil.util.JdkDateWraps;
 import com.yookue.commonplexus.javaseutil.util.StackTraceWraps;
 import lombok.extern.slf4j.Slf4j;
 
@@ -34,17 +34,17 @@ import lombok.extern.slf4j.Slf4j;
 class ChineseDateUtilsTest {
     @Test
     void cnAdFinanceDate() {
-        log.info("{} = {}", StackTraceWraps.getExecutingMethodName(), ChineseDateUtils.toDateString(UtilDateWraps.getSpecificDate(2021, 1, 10), true, ChineseNumberType.ZH_CN_FINANCE));
+        log.info("{} = {}", StackTraceWraps.getExecutingMethodName(), ChineseDateUtils.toDateString(JdkDateWraps.getSpecificDate(2021, 1, 10), true, ChineseNumberType.ZH_CN_FINANCE));
     }
 
     @Test
     void cnGeneralDate() {
-        log.info("{} = {}", StackTraceWraps.getExecutingMethodName(), ChineseDateUtils.toDateString(UtilDateWraps.getSpecificDate(-726, 3, 31), false, ChineseNumberType.ZH_CN_GENERAL));
+        log.info("{} = {}", StackTraceWraps.getExecutingMethodName(), ChineseDateUtils.toDateString(JdkDateWraps.getSpecificDate(-726, 3, 31), false, ChineseNumberType.ZH_CN_GENERAL));
     }
 
     @Test
     void twGeneralDate() {
-        log.info("{} = {}", StackTraceWraps.getExecutingMethodName(), ChineseDateUtils.toDateString(UtilDateWraps.getSpecificDate(-2022, 10, 20), false, ChineseNumberType.ZH_TW_GENERAL));
+        log.info("{} = {}", StackTraceWraps.getExecutingMethodName(), ChineseDateUtils.toDateString(JdkDateWraps.getSpecificDate(-2022, 10, 20), false, ChineseNumberType.ZH_TW_GENERAL));
     }
 
     @Test

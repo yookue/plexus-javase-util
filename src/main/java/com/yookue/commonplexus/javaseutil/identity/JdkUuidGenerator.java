@@ -30,7 +30,7 @@ import com.yookue.commonplexus.javaseutil.constant.CharVariantConst;
  * @see "org.springframework.util.JdkIdGenerator"
  */
 @SuppressWarnings("unused")
-public abstract class UtilUuidGenerator {
+public abstract class JdkUuidGenerator {
     /**
      * Returns an uuid string with uppercase and none hyphens
      *

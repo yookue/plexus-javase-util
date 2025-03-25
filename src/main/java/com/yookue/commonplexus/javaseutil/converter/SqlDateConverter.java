@@ -25,7 +25,7 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.ClassUtils;
 import com.yookue.commonplexus.javaseutil.constant.TemporalFormatCombo;
 import com.yookue.commonplexus.javaseutil.util.SqlDateWraps;
-import com.yookue.commonplexus.javaseutil.util.UtilDateWraps;
+import com.yookue.commonplexus.javaseutil.util.JdkDateWraps;
 
 
 /**
@@ -54,8 +54,8 @@ public class SqlDateConverter extends DateTimeConverter<Date> {
             return null;
         }
         for (String pattern : super.getPatterns()) {
-            if (UtilDateWraps.matchFormat(alias, pattern)) {
-                return type.cast(SqlDateWraps.castOfUtilDate(UtilDateWraps.parseDateTime(alias, pattern)));
+            if (JdkDateWraps.matchFormat(alias, pattern)) {
+                return type.cast(SqlDateWraps.castOfUtilDate(JdkDateWraps.parseDateTime(alias, pattern)));
             }
         }
         return null;

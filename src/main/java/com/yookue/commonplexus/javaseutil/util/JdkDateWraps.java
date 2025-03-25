@@ -48,7 +48,7 @@ import com.yookue.commonplexus.javaseutil.constant.TemporalFormatConst;
  * @see org.apache.commons.lang3.time.DateFormatUtils
  */
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})
-public abstract class UtilDateWraps {
+public abstract class JdkDateWraps {
     public static boolean afterEpoch(@Nullable Date date) {
         return date != null && date.after(getEpochDate());
     }

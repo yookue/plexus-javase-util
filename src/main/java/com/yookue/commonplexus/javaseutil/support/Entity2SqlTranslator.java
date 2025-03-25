@@ -39,7 +39,7 @@ import com.yookue.commonplexus.javaseutil.util.AnnotationUtilsWraps;
 import com.yookue.commonplexus.javaseutil.util.FieldUtilsWraps;
 import com.yookue.commonplexus.javaseutil.util.MapPlainWraps;
 import com.yookue.commonplexus.javaseutil.util.StringUtilsWraps;
-import com.yookue.commonplexus.javaseutil.util.UtilDateWraps;
+import com.yookue.commonplexus.javaseutil.util.JdkDateWraps;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -138,22 +138,22 @@ public class Entity2SqlTranslator {
                     TemporalType temporalType = field.getAnnotation(Temporal.class).value();
                     switch (temporalType) {
                         case DATE:
-                            result.getColumnValues().put(columnName, UtilDateWraps.formatDateTime((java.util.Date) columnValue, dateFormat));
+                            result.getColumnValues().put(columnName, JdkDateWraps.formatDateTime((java.util.Date) columnValue, dateFormat));
                             break;
                         case TIME:
-                            result.getColumnValues().put(columnName, UtilDateWraps.formatDateTime((java.util.Date) columnValue, timeFormat));
+                            result.getColumnValues().put(columnName, JdkDateWraps.formatDateTime((java.util.Date) columnValue, timeFormat));
                             break;
                         case TIMESTAMP:
-                            result.getColumnValues().put(columnName, UtilDateWraps.formatDateTime((java.util.Date) columnValue, dateTimeFormat));
+                            result.getColumnValues().put(columnName, JdkDateWraps.formatDateTime((java.util.Date) columnValue, dateTimeFormat));
                             break;
                         default:
                             break;
                     }
                 } else {
-                    result.getColumnValues().put(columnName, UtilDateWraps.formatDateTime((java.util.Date) columnValue, dateFormat));
+                    result.getColumnValues().put(columnName, JdkDateWraps.formatDateTime((java.util.Date) columnValue, dateFormat));
                 }
             } else if (fieldType.equals(java.sql.Timestamp.class)) {
-                result.getColumnValues().put(columnName, UtilDateWraps.formatDateTime((java.util.Date) columnValue, dateTimeFormat));
+                result.getColumnValues().put(columnName, JdkDateWraps.formatDateTime((java.util.Date) columnValue, dateTimeFormat));
             } else if (fieldType.equals(Boolean.class)) {
                 result.getColumnValues().put(columnName, BooleanUtils.toInteger((Boolean) columnValue));
             }

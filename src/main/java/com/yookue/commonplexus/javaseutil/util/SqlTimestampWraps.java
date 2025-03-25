@@ -37,17 +37,17 @@ import com.yookue.commonplexus.javaseutil.constant.TemporalFormatCombo;
 public abstract class SqlTimestampWraps {
     @Nonnull
     public static Timestamp getYesterdayTimestamp() {
-        return Timestamp.from(UtilDateWraps.getYesterdayDateTime().toInstant());
+        return Timestamp.from(JdkDateWraps.getYesterdayDateTime().toInstant());
     }
 
     @Nonnull
     public static Timestamp getCurrentTimestamp() {
-        return Timestamp.from(UtilDateWraps.getCurrentDateTime().toInstant());
+        return Timestamp.from(JdkDateWraps.getCurrentDateTime().toInstant());
     }
 
     @Nonnull
     public static Timestamp getTomorrowTimestamp() {
-        return Timestamp.from(UtilDateWraps.getTomorrowDateTime().toInstant());
+        return Timestamp.from(JdkDateWraps.getTomorrowDateTime().toInstant());
     }
 
     @Nullable
@@ -57,7 +57,7 @@ public abstract class SqlTimestampWraps {
 
     @Nullable
     public static Timestamp parseTimestamp(@Nullable String timestamp, @Nullable String format, @Nullable TimeZone zone, @Nullable Locale locale) throws ParseException {
-        Date result = UtilDateWraps.parseDateTime(timestamp, format, zone, locale);
+        Date result = JdkDateWraps.parseDateTime(timestamp, format, zone, locale);
         return (result == null) ? null : Timestamp.from(result.toInstant());
     }
 
@@ -97,7 +97,7 @@ public abstract class SqlTimestampWraps {
 
     @Nullable
     public static Timestamp parseTimestampWithFormats(@Nullable String timestamp, @Nullable TimeZone zone, @Nullable Locale locale, @Nullable Collection<String> formats) {
-        Date result = UtilDateWraps.parseDateTimeWithFormats(timestamp, zone, locale, formats);
+        Date result = JdkDateWraps.parseDateTimeWithFormats(timestamp, zone, locale, formats);
         return (result == null) ? null : Timestamp.from(result.toInstant());
     }
 
@@ -118,7 +118,7 @@ public abstract class SqlTimestampWraps {
 
     @Nullable
     public static Timestamp getDayStartTimestamp(@Nullable Timestamp timestamp, @Nullable TimeZone zone, @Nullable Locale locale) {
-        Date result = UtilDateWraps.getDayStartDate(timestamp, zone, locale);
+        Date result = JdkDateWraps.getDayStartDate(timestamp, zone, locale);
         return (result == null) ? null : Timestamp.from(result.toInstant());
     }
 
@@ -139,7 +139,7 @@ public abstract class SqlTimestampWraps {
 
     @Nullable
     public static Timestamp getDayEndTimestamp(@Nullable Timestamp timestamp, @Nullable TimeZone zone, @Nullable Locale locale) {
-        Date result = UtilDateWraps.getDayEndDate(timestamp, zone, locale);
+        Date result = JdkDateWraps.getDayEndDate(timestamp, zone, locale);
         return (result == null) ? null : Timestamp.from(result.toInstant());
     }
 }
