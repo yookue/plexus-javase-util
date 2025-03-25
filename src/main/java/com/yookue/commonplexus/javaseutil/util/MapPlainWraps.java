@@ -599,6 +599,47 @@ public abstract class MapPlainWraps {
         return (result == null) ? defaultValue : result;
     }
 
+    public static <K> java.sql.Date getSqlDate(@Nullable Map<? super K, ?> map, @Nullable K key, @Nullable java.sql.Date defaultValue, @Nullable Collection<String> formats) {
+        java.util.Date utilDate = getJdkDate(map, key, formats);
+        return (utilDate == null) ? defaultValue : SqlDateWraps.ofJdkDate(utilDate);
+    }
+
+    public static <K> java.util.Date getJdkDate(@Nullable Map<? super K, ?> map, @Nullable K key) {
+        return getJdkDate(map, key, null, ArrayUtils.EMPTY_STRING_ARRAY);
+    }
+
+    public static <K> java.util.Date getJdkDate(@Nullable Map<? super K, ?> map, @Nullable K key, @Nullable String... formats) {
+        return getJdkDate(map, key, ArrayUtilsWraps.asList(formats));
+    }
+
+    public static <K> java.util.Date getJdkDate(@Nullable Map<? super K, ?> map, @Nullable K key, @Nullable Collection<String> formats) {
+        return getJdkDate(map, key, null, formats);
+    }
+
+    public static <K> java.util.Date getJdkDate(@Nullable Map<? super K, ?> map, @Nullable K key, @Nullable java.util.Date defaultValue) {
+        return getJdkDate(map, key, defaultValue, ArrayUtils.EMPTY_STRING_ARRAY);
+    }
+
+    public static <K> java.util.Date getJdkDate(@Nullable Map<? super K, ?> map, @Nullable K key, @Nullable java.util.Date defaultValue, @Nullable String... formats) {
+        return getJdkDate(map, key, defaultValue, ArrayUtilsWraps.asList(formats));
+    }
+
+    @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
+    public static <K> java.util.Date getJdkDate(@Nullable Map<? super K, ?> map, @Nullable K key, @Nullable java.util.Date defaultValue, @Nullable Collection<String> formats) {
+        java.util.Date result = null;
+        Object value = map.get(key);
+        if (value instanceof java.util.Date alias) {
+            result = alias;
+        } else if (value instanceof String alias) {
+            if (CollectionPlainWraps.isEmpty(formats)) {
+                result = ObjectUtils.defaultIfNull(JdkDateWraps.parseDateTimeGuessing(alias), JdkDateWraps.parseDateGuessing((String) value));
+            } else {
+                result = JdkDateWraps.parseDateTimeWithFormats((String) value, formats);
+            }
+        }
+        return (result == null) ? defaultValue : result;
+    }
+
     public static <K> java.sql.Date getSqlDate(@Nullable Map<? super K, ?> map, @Nullable K key) {
         return getSqlDate(map, key, null, ArrayUtils.EMPTY_STRING_ARRAY);
     }
@@ -617,47 +658,6 @@ public abstract class MapPlainWraps {
 
     public static <K> java.sql.Date getSqlDate(@Nullable Map<? super K, ?> map, @Nullable K key, @Nullable java.sql.Date defaultValue, @Nullable String... formats) {
         return getSqlDate(map, key, defaultValue, ArrayUtilsWraps.asList(formats));
-    }
-
-    public static <K> java.sql.Date getSqlDate(@Nullable Map<? super K, ?> map, @Nullable K key, @Nullable java.sql.Date defaultValue, @Nullable Collection<String> formats) {
-        java.util.Date utilDate = getUtilDate(map, key, formats);
-        return (utilDate == null) ? defaultValue : SqlDateWraps.castOfUtilDate(utilDate);
-    }
-
-    public static <K> java.util.Date getUtilDate(@Nullable Map<? super K, ?> map, @Nullable K key) {
-        return getUtilDate(map, key, null, ArrayUtils.EMPTY_STRING_ARRAY);
-    }
-
-    public static <K> java.util.Date getUtilDate(@Nullable Map<? super K, ?> map, @Nullable K key, @Nullable String... formats) {
-        return getUtilDate(map, key, ArrayUtilsWraps.asList(formats));
-    }
-
-    public static <K> java.util.Date getUtilDate(@Nullable Map<? super K, ?> map, @Nullable K key, @Nullable Collection<String> formats) {
-        return getUtilDate(map, key, null, formats);
-    }
-
-    public static <K> java.util.Date getUtilDate(@Nullable Map<? super K, ?> map, @Nullable K key, @Nullable java.util.Date defaultValue) {
-        return getUtilDate(map, key, defaultValue, ArrayUtils.EMPTY_STRING_ARRAY);
-    }
-
-    public static <K> java.util.Date getUtilDate(@Nullable Map<? super K, ?> map, @Nullable K key, @Nullable java.util.Date defaultValue, @Nullable String... formats) {
-        return getUtilDate(map, key, defaultValue, ArrayUtilsWraps.asList(formats));
-    }
-
-    @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
-    public static <K> java.util.Date getUtilDate(@Nullable Map<? super K, ?> map, @Nullable K key, @Nullable java.util.Date defaultValue, @Nullable Collection<String> formats) {
-        java.util.Date result = null;
-        Object value = map.get(key);
-        if (value instanceof java.util.Date alias) {
-            result = alias;
-        } else if (value instanceof String alias) {
-            if (CollectionPlainWraps.isEmpty(formats)) {
-                result = ObjectUtils.defaultIfNull(JdkDateWraps.parseDateTimeGuessing(alias), JdkDateWraps.parseDateGuessing((String) value));
-            } else {
-                result = JdkDateWraps.parseDateTimeWithFormats((String) value, formats);
-            }
-        }
-        return (result == null) ? defaultValue : result;
     }
 
     @Nullable

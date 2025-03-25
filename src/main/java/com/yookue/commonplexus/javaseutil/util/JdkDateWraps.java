@@ -63,7 +63,7 @@ public abstract class JdkDateWraps {
     @Nullable
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
     public static Integer getYear(@Nullable Date date) {
-        return (date == null) ? null : LocalDateWraps.ofUtilDate(date).getYear();
+        return (date == null) ? null : LocalDateWraps.ofJdkDate(date).getYear();
     }
 
     /**
@@ -76,7 +76,7 @@ public abstract class JdkDateWraps {
     @Nullable
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
     public static Integer getMonth(@Nullable Date date) {
-        return (date == null) ? null : LocalDateWraps.ofUtilDate(date).getMonthValue();
+        return (date == null) ? null : LocalDateWraps.ofJdkDate(date).getMonthValue();
     }
 
     /**
@@ -89,7 +89,7 @@ public abstract class JdkDateWraps {
     @Nullable
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
     public static Integer getDayOfMonth(@Nullable Date date) {
-        return (date == null) ? null : LocalDateWraps.ofUtilDate(date).getDayOfMonth();
+        return (date == null) ? null : LocalDateWraps.ofJdkDate(date).getDayOfMonth();
     }
 
     @Nullable
@@ -144,7 +144,7 @@ public abstract class JdkDateWraps {
         if (dayOfMonth < 1 || dayOfMonth > 31) {
             throw new IllegalArgumentException(AssertMessageWraps.isDay("dayOfMonth"));    // $NON-NLS-1$
         }
-        return LocalDateWraps.toUtilDate(LocalDateTime.of(year, monthOfYear, dayOfMonth, hourOfDay, minuteOfHour, secondOfMinute, nanoOfSecond));
+        return LocalDateWraps.toJdkDate(LocalDateTime.of(year, monthOfYear, dayOfMonth, hourOfDay, minuteOfHour, secondOfMinute, nanoOfSecond));
     }
 
     @Nonnull
@@ -197,7 +197,7 @@ public abstract class JdkDateWraps {
 
     @Nullable
     public static Integer getMonthDays(@Nullable Date date) {
-        return LocalDateWraps.getMonthDays(LocalDateWraps.ofUtilDateTime(date));
+        return LocalDateWraps.getMonthDays(LocalDateWraps.ofJdkDateTime(date));
     }
 
     @Nullable
@@ -213,42 +213,42 @@ public abstract class JdkDateWraps {
 
     @Nullable
     public static Date getMonthFirstDate(int year, int month) {
-        return LocalDateWraps.toUtilDate(LocalDateWraps.getMonthFirstDateTime(year, month));
+        return LocalDateWraps.toJdkDate(LocalDateWraps.getMonthFirstDateTime(year, month));
     }
 
     @Nullable
     public static Date getMonthFirstDate(@Nullable Date date) {
-        return (date == null) ? null : LocalDateWraps.toUtilDate(LocalDateWraps.getMonthFirstDateTime(LocalDateWraps.ofUtilDateTime(date)));
+        return (date == null) ? null : LocalDateWraps.toJdkDate(LocalDateWraps.getMonthFirstDateTime(LocalDateWraps.ofJdkDateTime(date)));
     }
 
     @Nullable
     public static Date getMonthLastDate(int year, int month) {
-        return LocalDateWraps.toUtilDate(LocalDateWraps.getMonthLastDateTime(year, month));
+        return LocalDateWraps.toJdkDate(LocalDateWraps.getMonthLastDateTime(year, month));
     }
 
     @Nullable
     public static Date getMonthLastDate(@Nullable Date date) {
-        return (date == null) ? null : LocalDateWraps.toUtilDate(LocalDateWraps.getMonthLastDateTime(LocalDateWraps.ofUtilDateTime(date)));
+        return (date == null) ? null : LocalDateWraps.toJdkDate(LocalDateWraps.getMonthLastDateTime(LocalDateWraps.ofJdkDateTime(date)));
     }
 
     @Nullable
     public static Date getSeasonFirstDate(int year, int month) {
-        return LocalDateWraps.toUtilDate(LocalDateWraps.getSeasonFirstDateTime(year, month));
+        return LocalDateWraps.toJdkDate(LocalDateWraps.getSeasonFirstDateTime(year, month));
     }
 
     @Nullable
     public static Date getSeasonFirstDate(@Nullable Date date) {
-        return (date == null) ? null : LocalDateWraps.toUtilDate(LocalDateWraps.getSeasonFirstDateTime(LocalDateWraps.ofUtilDateTime(date)));
+        return (date == null) ? null : LocalDateWraps.toJdkDate(LocalDateWraps.getSeasonFirstDateTime(LocalDateWraps.ofJdkDateTime(date)));
     }
 
     @Nullable
     public static Date getSeasonLastDate(int year, int month) {
-        return LocalDateWraps.toUtilDate(LocalDateWraps.getSeasonLastDateTime(year, month));
+        return LocalDateWraps.toJdkDate(LocalDateWraps.getSeasonLastDateTime(year, month));
     }
 
     @Nullable
     public static Date getSeasonLastDate(@Nullable Date date) {
-        return (date == null) ? null : LocalDateWraps.toUtilDate(LocalDateWraps.getSeasonLastDateTime(LocalDateWraps.ofUtilDateTime(date)));
+        return (date == null) ? null : LocalDateWraps.toJdkDate(LocalDateWraps.getSeasonLastDateTime(LocalDateWraps.ofJdkDateTime(date)));
     }
 
     public static String formatCurrentDate() {

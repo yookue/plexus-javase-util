@@ -588,63 +588,63 @@ public abstract class LocalDateWraps {
      */
     @Nullable
     public static LocalDateTime ofEpochMillis(long milliseconds, @Nullable ZoneId zoneId) {
-        return (milliseconds <= 0L) ? null : ofUtilDateTime(new Date(milliseconds), zoneId);
+        return (milliseconds <= 0L) ? null : ofJdkDateTime(new Date(milliseconds), zoneId);
     }
 
     @Nullable
-    public static LocalDate ofUtilDate(@Nullable Date date) {
-        return ofUtilDate(date, null);
+    public static LocalDate ofJdkDate(@Nullable Date date) {
+        return ofJdkDate(date, null);
     }
 
     @Nullable
-    public static LocalDate ofUtilDate(@Nullable Date date, @Nullable ZoneId zoneId) {
-        LocalDateTime dateTime = ofUtilDateTime(date, zoneId);
+    public static LocalDate ofJdkDate(@Nullable Date date, @Nullable ZoneId zoneId) {
+        LocalDateTime dateTime = ofJdkDateTime(date, zoneId);
         return (dateTime == null) ? null : dateTime.toLocalDate();
     }
 
     @Nullable
-    public static LocalDateTime ofUtilDateTime(@Nullable Date date) {
-        return ofUtilDateTime(date, null);
+    public static LocalDateTime ofJdkDateTime(@Nullable Date date) {
+        return ofJdkDateTime(date, null);
     }
 
     @Nullable
-    public static LocalDateTime ofUtilDateTime(@Nullable Date date, @Nullable ZoneId zoneId) {
+    public static LocalDateTime ofJdkDateTime(@Nullable Date date, @Nullable ZoneId zoneId) {
         return (date == null) ? null : LocalDateTime.ofInstant(date.toInstant(), ObjectUtils.defaultIfNull(zoneId, ZoneId.systemDefault()));
     }
 
     @Nullable
-    public static LocalTime ofUtilTime(@Nullable Date date) {
-        return ofUtilTime(date, null);
+    public static LocalTime ofJdkTime(@Nullable Date date) {
+        return ofJdkTime(date, null);
     }
 
     @Nullable
-    public static LocalTime ofUtilTime(@Nullable Date date, @Nullable ZoneId zoneId) {
-        LocalDateTime dateTime = ofUtilDateTime(date, zoneId);
+    public static LocalTime ofJdkTime(@Nullable Date date, @Nullable ZoneId zoneId) {
+        LocalDateTime dateTime = ofJdkDateTime(date, zoneId);
         return (dateTime == null) ? null : dateTime.toLocalTime();
     }
 
     @Nullable
-    public static Date toUtilDate(@Nullable LocalDate date) {
-        return toUtilDate(date, null);
+    public static Date toJdkDate(@Nullable LocalDate date) {
+        return toJdkDate(date, null);
     }
 
     @Nullable
-    public static Date toUtilDate(@Nullable LocalDate date, @Nullable ZoneId zoneId) {
+    public static Date toJdkDate(@Nullable LocalDate date, @Nullable ZoneId zoneId) {
         return (date == null) ? null : Date.from(date.atStartOfDay().atZone(ObjectUtils.defaultIfNull(zoneId, ZoneId.systemDefault())).toInstant());
     }
 
     @Nullable
-    public static Date toUtilDate(@Nullable LocalDateTime dateTime) {
-        return toUtilDate(dateTime, null);
+    public static Date toJdkDate(@Nullable LocalDateTime dateTime) {
+        return toJdkDate(dateTime, null);
     }
 
     @Nullable
-    public static Date toUtilDate(@Nullable LocalDateTime dateTime, @Nullable ZoneId zoneId) {
+    public static Date toJdkDate(@Nullable LocalDateTime dateTime, @Nullable ZoneId zoneId) {
         return (dateTime == null) ? null : Date.from(dateTime.atZone(ObjectUtils.defaultIfNull(zoneId, ZoneId.systemDefault())).toInstant());
     }
 
     @Nullable
-    public static Date toUtilDate(@Nullable LocalTime time) {
-        return (time == null) ? null : toUtilDate(LocalDateTime.of(LocalDate.now(), time));
+    public static Date toJdkDate(@Nullable LocalTime time) {
+        return (time == null) ? null : toJdkDate(LocalDateTime.of(LocalDate.now(), time));
     }
 }
