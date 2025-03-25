@@ -35,12 +35,12 @@ import com.yookue.commonplexus.javaseutil.util.JdkDateWraps;
  * @see org.apache.commons.beanutils2.converters.DateConverter
  */
 @SuppressWarnings("unused")
-public class UtilDateConverter extends DateTimeConverter<Date> {
-    public UtilDateConverter() {
+public class JdkDateConverter extends DateTimeConverter<Date> {
+    public JdkDateConverter() {
         super.setPatterns(TemporalFormatCombo.ALL_DATETIME_DATES);
     }
 
-    public UtilDateConverter(@Nullable Date defaultValue) {
+    public JdkDateConverter(@Nullable Date defaultValue) {
         super(defaultValue);
         super.setPatterns(TemporalFormatCombo.ALL_DATETIME_DATES);
     }
