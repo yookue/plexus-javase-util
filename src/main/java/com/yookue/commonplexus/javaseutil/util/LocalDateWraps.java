@@ -574,21 +574,23 @@ public abstract class LocalDateWraps {
     }
 
     @Nullable
-    public static LocalDateTime ofEpochMillis(long milliseconds) {
-        return ofEpochMillis(milliseconds, null);
+    public static LocalDateTime ofEpochMilli(long millisecond) {
+        return ofEpochMilli(millisecond, null);
     }
 
     /**
      * Returns a {@link java.time.LocalDateTime} from milliseconds of the epoch
      *
-     * @param milliseconds milliseconds since the standard base time known as "the epoch" namely January 1, 1970, 00:00:00 GMT
+     * @param millisecond milliseconds since the standard base time known as "the epoch" namely January 1, 1970, 00:00:00 GMT
      * @param zoneId the time-zone, which may be an offset
      *
      * @return a {@link java.time.LocalDateTime} from milliseconds of the epoch
+     *
+     * @see java.time.Instant#ofEpochMilli
      */
     @Nullable
-    public static LocalDateTime ofEpochMillis(long milliseconds, @Nullable ZoneId zoneId) {
-        return (milliseconds <= 0L) ? null : ofJdkDateTime(new Date(milliseconds), zoneId);
+    public static LocalDateTime ofEpochMilli(long millisecond, @Nullable ZoneId zoneId) {
+        return (millisecond <= 0L) ? null : ofJdkDateTime(new Date(millisecond), zoneId);
     }
 
     @Nullable
