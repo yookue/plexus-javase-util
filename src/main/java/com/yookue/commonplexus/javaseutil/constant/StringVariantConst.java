@@ -75,6 +75,7 @@ public abstract class StringVariantConst {
     public static final String SYSTEM = "system";    // $NON-NLS-1$
     public static final String TEST_CLASSES = "test_classes";    // $NON-NLS-1$
     public static final String THEME = "theme";    // $NON-NLS-1$
+    public static final String TOKEN = "token";    // $NON-NLS-1$
     public static final String TRACE_ID = "traceId";    // $NON-NLS-1$
     public static final String UNDEFINED = "undefined";    // $NON-NLS-1$
     public static final String UNKNOWN = "unknown";    // $NON-NLS-1$
