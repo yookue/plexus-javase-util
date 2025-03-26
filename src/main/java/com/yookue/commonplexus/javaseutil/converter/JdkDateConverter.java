@@ -55,7 +55,7 @@ public class JdkDateConverter extends DateTimeConverter<Date> {
         }
         for (String pattern : super.getPatterns()) {
             if (JdkDateWraps.matchFormat(alias, pattern)) {
-                return type.cast(JdkDateWraps.parseDateTime(alias, pattern));
+                return type.cast(JdkDateWraps.parseDate(alias, pattern));
             }
         }
         return null;

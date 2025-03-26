@@ -313,7 +313,7 @@ public abstract class JdkDateWraps {
             return false;
         }
         try {
-            parseDateTime(date, format);
+            parseDate(date, format);
             return true;
         } catch (ParseException ignored) {
         }
@@ -325,7 +325,7 @@ public abstract class JdkDateWraps {
             return false;
         }
         try {
-            parseDateTime(date, format, zone, locale);
+            parseDate(date, format, zone, locale);
             return true;
         } catch (ParseException ignored) {
         }
@@ -333,60 +333,60 @@ public abstract class JdkDateWraps {
     }
 
     @Nullable
-    public static Date parseDateGuessing(@Nullable String date) {
-        return parseDateTimeWithFormats(date, TemporalFormatCombo.DATE_FORMATS);
+    public static Date parseDate(@Nullable String date, @Nullable String format) throws ParseException {
+        return parseDate(date, format, null, null);
     }
 
     @Nullable
-    public static Date parseDateTime(@Nullable String date, @Nullable String format) throws ParseException {
-        return parseDateTime(date, format, null, null);
-    }
-
-    @Nullable
-    public static Date parseDateTime(@Nullable String date, @Nullable String format, @Nullable TimeZone zone, @Nullable Locale locale) throws ParseException {
+    public static Date parseDate(@Nullable String date, @Nullable String format, @Nullable TimeZone zone, @Nullable Locale locale) throws ParseException {
         return StringUtils.isAnyBlank(date, format) ? null : FastDateFormat.getInstance(format, zone, locale).parse(date);
     }
 
     @Nullable
-    public static Date parseDateTimeQuietly(@Nullable String date, @Nullable String format) {
-        return parseDateTimeQuietly(date, format, null, null);
+    public static Date parseDateQuietly(@Nullable String date, @Nullable String format) {
+        return parseDateQuietly(date, format, null, null);
     }
 
     @Nullable
-    public static Date parseDateTimeQuietly(@Nullable String date, @Nullable String format, @Nullable TimeZone zone, @Nullable Locale locale) {
+    public static Date parseDateQuietly(@Nullable String date, @Nullable String format, @Nullable TimeZone zone, @Nullable Locale locale) {
         try {
-            return parseDateTime(date, format, zone, locale);
+            return parseDate(date, format, zone, locale);
         } catch (ParseException ignored) {
         }
         return null;
     }
 
     @Nullable
-    public static Date parseDateTimeGuessing(@Nullable String dateTime) {
-        return parseDateTimeWithFormats(dateTime, TemporalFormatCombo.DATETIME_FORMATS);
+    public static Date parseDateFormats(@Nullable String date, @Nullable String... formats) {
+        return parseDateFormats(date, ArrayUtilsWraps.asList(formats));
     }
 
     @Nullable
-    public static Date parseDateTimeWithFormats(@Nullable String date, @Nullable String... formats) {
-        return parseDateTimeWithFormats(date, ArrayUtilsWraps.asList(formats));
+    public static Date parseDateFormats(@Nullable String date, @Nullable Collection<String> formats) {
+        return parseDateFormats(date, null, null, formats);
     }
 
     @Nullable
-    public static Date parseDateTimeWithFormats(@Nullable String date, @Nullable Collection<String> formats) {
-        return parseDateTimeWithFormats(date, null, null, formats);
+    public static Date parseDateFormats(@Nullable String date, @Nullable TimeZone zone, @Nullable Locale locale, @Nullable String... formats) {
+        return parseDateFormats(date, zone, locale, ArrayUtilsWraps.asList(formats));
     }
 
     @Nullable
-    public static Date parseDateTimeWithFormats(@Nullable String date, @Nullable TimeZone zone, @Nullable Locale locale, @Nullable String... formats) {
-        return parseDateTimeWithFormats(date, zone, locale, ArrayUtilsWraps.asList(formats));
-    }
-
-    @Nullable
-    public static Date parseDateTimeWithFormats(@Nullable String date, @Nullable TimeZone zone, @Nullable Locale locale, @Nullable Collection<String> formats) {
+    public static Date parseDateFormats(@Nullable String date, @Nullable TimeZone zone, @Nullable Locale locale, @Nullable Collection<String> formats) {
         if (StringUtils.isBlank(date) || CollectionPlainWraps.isEmpty(formats)) {
             return null;
         }
-        return formats.stream().map(format -> parseDateTimeQuietly(date, format, zone, locale)).filter(Objects::nonNull).findFirst().orElse(null);
+        return formats.stream().map(format -> parseDateQuietly(date, format, zone, locale)).filter(Objects::nonNull).findFirst().orElse(null);
+    }
+
+    @Nullable
+    public static Date parseDateGuessing(@Nullable String date) {
+        return parseDateFormats(date, TemporalFormatCombo.DATE_FORMATS);
+    }
+
+    @Nullable
+    public static Date parseDateTimeGuessing(@Nullable String dateTime) {
+        return parseDateFormats(dateTime, TemporalFormatCombo.DATETIME_FORMATS);
     }
 
     /**
@@ -407,7 +407,7 @@ public abstract class JdkDateWraps {
      * @see org.apache.commons.lang3.time.DateUtils#addMilliseconds
      */
     @SuppressWarnings("MagicConstant")
-    public static Date plusDateTime(@Nullable Date date, int field, int amount) {
+    public static Date plusTemporal(@Nullable Date date, int field, int amount) {
         if (date == null || field < 0 || amount == 0) {
             return date;
         }
@@ -418,8 +418,8 @@ public abstract class JdkDateWraps {
     }
 
     @Nullable
-    public static Date plusDuration(@Nullable Date date, @Nullable Duration duration) {
-        return (duration == null || duration.isZero()) ? date : plusDateTime(date, Calendar.MILLISECOND, (int) duration.toMillis());
+    public static Date plusTemporal(@Nullable Date date, @Nullable Duration duration) {
+        return (duration == null || duration.isZero()) ? date : plusTemporal(date, Calendar.MILLISECOND, (int) duration.toMillis());
     }
 
     @Nullable

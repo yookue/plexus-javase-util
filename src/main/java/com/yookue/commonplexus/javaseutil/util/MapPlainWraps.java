@@ -634,7 +634,7 @@ public abstract class MapPlainWraps {
             if (CollectionPlainWraps.isEmpty(formats)) {
                 result = ObjectUtils.defaultIfNull(JdkDateWraps.parseDateTimeGuessing(alias), JdkDateWraps.parseDateGuessing((String) value));
             } else {
-                result = JdkDateWraps.parseDateTimeWithFormats((String) value, formats);
+                result = JdkDateWraps.parseDateFormats((String) value, formats);
             }
         }
         return (result == null) ? defaultValue : result;

@@ -57,7 +57,7 @@ public abstract class SqlTimestampWraps {
 
     @Nullable
     public static Timestamp parseTimestamp(@Nullable String timestamp, @Nullable String format, @Nullable TimeZone zone, @Nullable Locale locale) throws ParseException {
-        Date result = JdkDateWraps.parseDateTime(timestamp, format, zone, locale);
+        Date result = JdkDateWraps.parseDate(timestamp, format, zone, locale);
         return (result == null) ? null : Timestamp.from(result.toInstant());
     }
 
@@ -97,7 +97,7 @@ public abstract class SqlTimestampWraps {
 
     @Nullable
     public static Timestamp parseTimestampWithFormats(@Nullable String timestamp, @Nullable TimeZone zone, @Nullable Locale locale, @Nullable Collection<String> formats) {
-        Date result = JdkDateWraps.parseDateTimeWithFormats(timestamp, zone, locale, formats);
+        Date result = JdkDateWraps.parseDateFormats(timestamp, zone, locale, formats);
         return (result == null) ? null : Timestamp.from(result.toInstant());
     }
 
