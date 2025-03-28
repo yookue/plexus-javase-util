@@ -538,19 +538,19 @@ public abstract class CollectionPlainWraps {
     }
 
     @Nullable
-    public static <E> List<E> castToList(@Nullable Collection<?> sources, @Nullable Class<E> expectedType) {
-        if (CollectionPlainWraps.isEmpty(sources) || expectedType == null || expectedType == Void.class) {
+    public static <E> List<E> castToList(@Nullable Collection<?> sources, @Nullable Class<E> expectType) {
+        if (CollectionPlainWraps.isEmpty(sources) || expectType == null || expectType == Void.class) {
             return null;
         }
-        return sources.stream().map(element -> ObjectUtilsWraps.castAs(element, expectedType)).filter(Objects::nonNull).collect(Collectors.toList());
+        return sources.stream().map(element -> ObjectUtilsWraps.castAs(element, expectType)).filter(Objects::nonNull).collect(Collectors.toList());
     }
 
     @Nullable
-    public static <E> Set<E> castToSet(@Nullable Collection<?> sources, @Nullable Class<E> expectedType) {
-        if (CollectionPlainWraps.isEmpty(sources) || expectedType == null || expectedType == Void.class) {
+    public static <E> Set<E> castToSet(@Nullable Collection<?> sources, @Nullable Class<E> expectType) {
+        if (CollectionPlainWraps.isEmpty(sources) || expectType == null || expectType == Void.class) {
             return null;
         }
-        return sources.stream().map(element -> ObjectUtilsWraps.castAs(element, expectedType)).filter(Objects::nonNull).collect(Collectors.toSet());
+        return sources.stream().map(element -> ObjectUtilsWraps.castAs(element, expectType)).filter(Objects::nonNull).collect(Collectors.toSet());
     }
 
     /**

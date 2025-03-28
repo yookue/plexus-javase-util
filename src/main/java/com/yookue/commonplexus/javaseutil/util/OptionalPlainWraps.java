@@ -119,7 +119,7 @@ public abstract class OptionalPlainWraps {
     }
 
     @Nullable
-    public static <T> T unwrapAs(@Nullable Optional<?> source, @Nullable Class<T> expectedType) {
-        return ObjectUtils.anyNull(source, expectedType) ? null : ObjectUtilsWraps.castAs(unwrap(source), expectedType);
+    public static <T> T unwrapAs(@Nullable Optional<?> source, @Nullable Class<T> expectType) {
+        return ObjectUtils.anyNull(source, expectType) ? null : ObjectUtilsWraps.castAs(unwrap(source), expectType);
     }
 }

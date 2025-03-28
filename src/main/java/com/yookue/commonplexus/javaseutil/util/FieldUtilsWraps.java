@@ -510,21 +510,21 @@ public abstract class FieldUtilsWraps {
     }
 
     @Nullable
-    public static <T> T readFieldAs(@Nullable Class<?> clazz, @Nullable String fieldName, @Nullable Class<T> expectedType) {
-        return readFieldAs(clazz, fieldName, false, expectedType);
+    public static <T> T readFieldAs(@Nullable Class<?> clazz, @Nullable String fieldName, @Nullable Class<T> expectType) {
+        return readFieldAs(clazz, fieldName, false, expectType);
     }
 
     @Nullable
-    public static <T> T readFieldAs(@Nullable Class<?> clazz, @Nullable String fieldName, boolean forceAccess, @Nullable Class<T> expectedType) {
-        if (ObjectUtils.anyNull(clazz, expectedType) || StringUtils.isBlank(fieldName)) {
+    public static <T> T readFieldAs(@Nullable Class<?> clazz, @Nullable String fieldName, boolean forceAccess, @Nullable Class<T> expectType) {
+        if (ObjectUtils.anyNull(clazz, expectType) || StringUtils.isBlank(fieldName)) {
             return null;
         }
-        return ObjectUtilsWraps.castAs(readField(clazz, fieldName, forceAccess), expectedType);
+        return ObjectUtilsWraps.castAs(readField(clazz, fieldName, forceAccess), expectType);
     }
 
     @Nullable
-    public static <T> T readFieldAs(@Nullable Field field, @Nullable Object target, @Nullable Class<T> expectedType) {
-        return readFieldAs(field, target, false, expectedType);
+    public static <T> T readFieldAs(@Nullable Field field, @Nullable Object target, @Nullable Class<T> expectType) {
+        return readFieldAs(field, target, false, expectType);
     }
 
     /**
@@ -533,29 +533,29 @@ public abstract class FieldUtilsWraps {
      * @param field the field to read
      * @param target the object to call on, may be {@code null} for {@code static} fields
      * @param forceAccess whether to break scope restrictions using the {@link java.lang.reflect.AccessibleObject#setAccessible(boolean)} method
-     * @param expectedType the expected class to check
+     * @param expectType the expected class to check
      *
      * @return the field value from a filed in target
      */
     @Nullable
-    public static <T> T readFieldAs(@Nullable Field field, @Nullable Object target, boolean forceAccess, @Nullable Class<T> expectedType) {
-        if (ObjectUtils.anyNull(field, expectedType)) {
+    public static <T> T readFieldAs(@Nullable Field field, @Nullable Object target, boolean forceAccess, @Nullable Class<T> expectType) {
+        if (ObjectUtils.anyNull(field, expectType)) {
             return null;
         }
-        return ObjectUtilsWraps.castAs(readField(field, target, forceAccess), expectedType);
+        return ObjectUtilsWraps.castAs(readField(field, target, forceAccess), expectType);
     }
 
     @Nullable
-    public static <T> T readFieldAs(@Nullable Object target, @Nullable String fieldName, @Nullable Class<T> expectedType) {
-        return readFieldAs(target, fieldName, false, expectedType);
+    public static <T> T readFieldAs(@Nullable Object target, @Nullable String fieldName, @Nullable Class<T> expectType) {
+        return readFieldAs(target, fieldName, false, expectType);
     }
 
     @Nullable
-    public static <T> T readFieldAs(@Nullable Object target, @Nullable String fieldName, boolean forceAccess, @Nullable Class<T> expectedType) {
-        if (ObjectUtils.anyNull(target, expectedType) || StringUtils.isBlank(fieldName)) {
+    public static <T> T readFieldAs(@Nullable Object target, @Nullable String fieldName, boolean forceAccess, @Nullable Class<T> expectType) {
+        if (ObjectUtils.anyNull(target, expectType) || StringUtils.isBlank(fieldName)) {
             return null;
         }
-        return ObjectUtilsWraps.castAs(readField(target, fieldName, forceAccess), expectedType);
+        return ObjectUtilsWraps.castAs(readField(target, fieldName, forceAccess), expectType);
     }
 
     @Nullable
@@ -593,29 +593,29 @@ public abstract class FieldUtilsWraps {
     }
 
     @Nullable
-    public static <T> T readDeclaredFieldAs(@Nullable Class<?> clazz, @Nullable String fieldName, @Nullable Class<T> expectedType) {
-        return readDeclaredFieldAs(clazz, fieldName, false, expectedType);
+    public static <T> T readDeclaredFieldAs(@Nullable Class<?> clazz, @Nullable String fieldName, @Nullable Class<T> expectType) {
+        return readDeclaredFieldAs(clazz, fieldName, false, expectType);
     }
 
     @Nullable
-    public static <T> T readDeclaredFieldAs(@Nullable Class<?> clazz, @Nullable String fieldName, boolean forceAccess, @Nullable Class<T> expectedType) {
-        if (ObjectUtils.anyNull(clazz, expectedType) || StringUtils.isBlank(fieldName)) {
+    public static <T> T readDeclaredFieldAs(@Nullable Class<?> clazz, @Nullable String fieldName, boolean forceAccess, @Nullable Class<T> expectType) {
+        if (ObjectUtils.anyNull(clazz, expectType) || StringUtils.isBlank(fieldName)) {
             return null;
         }
-        return ObjectUtilsWraps.castAs(readDeclaredField(clazz, fieldName, forceAccess), expectedType);
+        return ObjectUtilsWraps.castAs(readDeclaredField(clazz, fieldName, forceAccess), expectType);
     }
 
     @Nullable
-    public static <T> T readDeclaredFieldAs(@Nullable Object target, @Nullable String fieldName, @Nullable Class<T> expectedType) {
-        return readDeclaredFieldAs(target, fieldName, false, expectedType);
+    public static <T> T readDeclaredFieldAs(@Nullable Object target, @Nullable String fieldName, @Nullable Class<T> expectType) {
+        return readDeclaredFieldAs(target, fieldName, false, expectType);
     }
 
     @Nullable
-    public static <T> T readDeclaredFieldAs(@Nullable Object target, @Nullable String fieldName, boolean forceAccess, @Nullable Class<T> expectedType) {
-        if (ObjectUtils.anyNull(target, expectedType) || StringUtils.isBlank(fieldName)) {
+    public static <T> T readDeclaredFieldAs(@Nullable Object target, @Nullable String fieldName, boolean forceAccess, @Nullable Class<T> expectType) {
+        if (ObjectUtils.anyNull(target, expectType) || StringUtils.isBlank(fieldName)) {
             return null;
         }
-        return ObjectUtilsWraps.castAs(readDeclaredField(target, fieldName, forceAccess), expectedType);
+        return ObjectUtilsWraps.castAs(readDeclaredField(target, fieldName, forceAccess), expectType);
     }
 
     @Nullable
@@ -636,16 +636,16 @@ public abstract class FieldUtilsWraps {
     }
 
     @Nullable
-    public static <T> T readDeclaredStaticFieldAs(@Nullable Class<?> clazz, @Nullable String fieldName, @Nullable Class<T> expectedType) {
-        return readDeclaredStaticFieldAs(clazz, fieldName, false, expectedType);
+    public static <T> T readDeclaredStaticFieldAs(@Nullable Class<?> clazz, @Nullable String fieldName, @Nullable Class<T> expectType) {
+        return readDeclaredStaticFieldAs(clazz, fieldName, false, expectType);
     }
 
     @Nullable
-    public static <T> T readDeclaredStaticFieldAs(@Nullable Class<?> clazz, @Nullable String fieldName, boolean forceAccess, @Nullable Class<T> expectedType) {
-        if (ObjectUtils.anyNull(clazz, expectedType) || StringUtils.isBlank(fieldName)) {
+    public static <T> T readDeclaredStaticFieldAs(@Nullable Class<?> clazz, @Nullable String fieldName, boolean forceAccess, @Nullable Class<T> expectType) {
+        if (ObjectUtils.anyNull(clazz, expectType) || StringUtils.isBlank(fieldName)) {
             return null;
         }
-        return ObjectUtilsWraps.castAs(readDeclaredStaticField(clazz, fieldName, forceAccess), expectedType);
+        return ObjectUtilsWraps.castAs(readDeclaredStaticField(clazz, fieldName, forceAccess), expectType);
     }
 
     @Nullable
@@ -683,29 +683,29 @@ public abstract class FieldUtilsWraps {
     }
 
     @Nullable
-    public static <T> T readStaticFieldAs(@Nullable Class<?> clazz, @Nullable String fieldName, @Nullable Class<T> expectedType) {
-        return readStaticFieldAs(clazz, fieldName, false, expectedType);
+    public static <T> T readStaticFieldAs(@Nullable Class<?> clazz, @Nullable String fieldName, @Nullable Class<T> expectType) {
+        return readStaticFieldAs(clazz, fieldName, false, expectType);
     }
 
     @Nullable
-    public static <T> T readStaticFieldAs(@Nullable Class<?> clazz, @Nullable String fieldName, boolean forceAccess, @Nullable Class<T> expectedType) {
-        if (ObjectUtils.anyNull(clazz, expectedType) || StringUtils.isBlank(fieldName)) {
+    public static <T> T readStaticFieldAs(@Nullable Class<?> clazz, @Nullable String fieldName, boolean forceAccess, @Nullable Class<T> expectType) {
+        if (ObjectUtils.anyNull(clazz, expectType) || StringUtils.isBlank(fieldName)) {
             return null;
         }
-        return ObjectUtilsWraps.castAs(readStaticField(clazz, fieldName, forceAccess), expectedType);
+        return ObjectUtilsWraps.castAs(readStaticField(clazz, fieldName, forceAccess), expectType);
     }
 
     @Nullable
-    public static <T> T readStaticFieldAs(@Nullable Field field, @Nullable Class<T> expectedType) {
-        return readStaticFieldAs(field, false, expectedType);
+    public static <T> T readStaticFieldAs(@Nullable Field field, @Nullable Class<T> expectType) {
+        return readStaticFieldAs(field, false, expectType);
     }
 
     @Nullable
-    public static <T> T readStaticFieldAs(@Nullable Field field, boolean forceAccess, @Nullable Class<T> expectedType) {
-        if (ObjectUtils.anyNull(field, expectedType)) {
+    public static <T> T readStaticFieldAs(@Nullable Field field, boolean forceAccess, @Nullable Class<T> expectType) {
+        if (ObjectUtils.anyNull(field, expectType)) {
             return null;
         }
-        return ObjectUtilsWraps.castAs(readStaticField(field, forceAccess), expectedType);
+        return ObjectUtilsWraps.castAs(readStaticField(field, forceAccess), expectType);
     }
 
     public static void writeField(@Nullable Field field, @Nullable Object target, @Nullable Object value) {

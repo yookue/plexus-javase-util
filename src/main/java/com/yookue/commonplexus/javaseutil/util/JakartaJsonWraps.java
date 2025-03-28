@@ -97,35 +97,35 @@ public abstract class JakartaJsonWraps {
     }
 
     @Nullable
-    public static <T> T ofJsonAs(@Nullable String content, @Nullable Class<T> expectedType) {
-        return ofJsonAs(content, expectedType, null);
+    public static <T> T ofJsonAs(@Nullable String content, @Nullable Class<T> expectType) {
+        return ofJsonAs(content, expectType, null);
     }
 
     @Nullable
-    public static <T> T ofJsonAs(@Nullable String content, @Nullable Class<T> expectedType, @Nullable JsonbConfig config) {
-        if (StringUtils.isBlank(content) || expectedType == null) {
+    public static <T> T ofJsonAs(@Nullable String content, @Nullable Class<T> expectType, @Nullable JsonbConfig config) {
+        if (StringUtils.isBlank(content) || expectType == null) {
             return null;
         }
         try (Jsonb jsonb = JsonbBuilder.create(config)) {
-            return jsonb.fromJson(content, expectedType);
+            return jsonb.fromJson(content, expectType);
         } catch (Exception ignored) {
         }
         return null;
     }
 
     @Nullable
-    public static <T> T ofJsonAs(@Nullable File file, @Nullable Class<T> expectedType) {
-        return ofJsonAs(file, expectedType, null, null);
+    public static <T> T ofJsonAs(@Nullable File file, @Nullable Class<T> expectType) {
+        return ofJsonAs(file, expectType, null, null);
     }
 
     @Nullable
-    public static <T> T ofJsonAs(@Nullable File file, @Nullable Class<T> expectedType, @Nullable Charset charset) {
-        return ofJsonAs(file, expectedType, null, charset);
+    public static <T> T ofJsonAs(@Nullable File file, @Nullable Class<T> expectType, @Nullable Charset charset) {
+        return ofJsonAs(file, expectType, null, charset);
     }
 
     @Nullable
-    public static <T> T ofJsonAs(@Nullable File file, @Nullable Class<T> expectedType, @Nullable JsonbConfig config, @Nullable Charset charset) {
-        if (ObjectUtils.anyNull(file, expectedType)) {
+    public static <T> T ofJsonAs(@Nullable File file, @Nullable Class<T> expectType, @Nullable JsonbConfig config, @Nullable Charset charset) {
+        if (ObjectUtils.anyNull(file, expectType)) {
             return null;
         }
         String content = FileUtilsWraps.readFileToString(file, ObjectUtils.defaultIfNull(charset, StandardCharsets.UTF_8));
@@ -133,41 +133,41 @@ public abstract class JakartaJsonWraps {
             return null;
         }
         try (Jsonb jsonb = JsonbBuilder.create(config)) {
-            return jsonb.fromJson(content, expectedType);
+            return jsonb.fromJson(content, expectType);
         } catch (Exception ignored) {
         }
         return null;
     }
 
     @Nullable
-    public static <T> T ofJsonAs(@Nullable InputStream stream, @Nullable Class<T> expectedType) {
-        return ofJsonAs(stream, expectedType, null);
+    public static <T> T ofJsonAs(@Nullable InputStream stream, @Nullable Class<T> expectType) {
+        return ofJsonAs(stream, expectType, null);
     }
 
     @Nullable
-    public static <T> T ofJsonAs(@Nullable InputStream stream, @Nullable Class<T> expectedType, @Nullable JsonbConfig config) {
-        if (ObjectUtils.anyNull(stream, expectedType)) {
+    public static <T> T ofJsonAs(@Nullable InputStream stream, @Nullable Class<T> expectType, @Nullable JsonbConfig config) {
+        if (ObjectUtils.anyNull(stream, expectType)) {
             return null;
         }
         try (Jsonb jsonb = JsonbBuilder.create(config)) {
-            return jsonb.fromJson(stream, expectedType);
+            return jsonb.fromJson(stream, expectType);
         } catch (Exception ignored) {
         }
         return null;
     }
 
     @Nullable
-    public static <T> T ofJsonAs(@Nullable Reader reader, @Nullable Class<T> expectedType) {
-        return ofJsonAs(reader, expectedType, null);
+    public static <T> T ofJsonAs(@Nullable Reader reader, @Nullable Class<T> expectType) {
+        return ofJsonAs(reader, expectType, null);
     }
 
     @Nullable
-    public static <T> T ofJsonAs(@Nullable Reader reader, @Nullable Class<T> expectedType, @Nullable JsonbConfig config) {
-        if (ObjectUtils.anyNull(reader, expectedType)) {
+    public static <T> T ofJsonAs(@Nullable Reader reader, @Nullable Class<T> expectType, @Nullable JsonbConfig config) {
+        if (ObjectUtils.anyNull(reader, expectType)) {
             return null;
         }
         try (Jsonb jsonb = JsonbBuilder.create(config)) {
-            return jsonb.fromJson(reader, expectedType);
+            return jsonb.fromJson(reader, expectType);
         } catch (Exception ignored) {
         }
         return null;

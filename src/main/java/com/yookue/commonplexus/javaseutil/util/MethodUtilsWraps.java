@@ -468,39 +468,39 @@ public abstract class MethodUtilsWraps {
     }
 
     @Nullable
-    public static <T> T invokeMethodAs(@Nullable Object target, @Nullable String methodName, @Nullable Class<T> expectedType) {
-        return invokeMethodAs(target, false, methodName, expectedType);
+    public static <T> T invokeMethodAs(@Nullable Object target, @Nullable String methodName, @Nullable Class<T> expectType) {
+        return invokeMethodAs(target, false, methodName, expectType);
     }
 
     @Nullable
-    public static <T> T invokeMethodAs(@Nullable Object target, boolean forceAccess, @Nullable String methodName, @Nullable Class<T> expectedType) {
-        return invokeMethodAs(target, forceAccess, methodName, ArrayUtils.EMPTY_OBJECT_ARRAY, expectedType);
+    public static <T> T invokeMethodAs(@Nullable Object target, boolean forceAccess, @Nullable String methodName, @Nullable Class<T> expectType) {
+        return invokeMethodAs(target, forceAccess, methodName, ArrayUtils.EMPTY_OBJECT_ARRAY, expectType);
     }
 
     @Nullable
-    public static <T> T invokeMethodAs(@Nullable Object target, @Nullable String methodName, @Nullable Object[] args, @Nullable Class<T> expectedType) {
-        return invokeMethodAs(target, false, methodName, args, expectedType);
+    public static <T> T invokeMethodAs(@Nullable Object target, @Nullable String methodName, @Nullable Object[] args, @Nullable Class<T> expectType) {
+        return invokeMethodAs(target, false, methodName, args, expectType);
     }
 
     @Nullable
-    public static <T> T invokeMethodAs(@Nullable Object target, boolean forceAccess, @Nullable String methodName, @Nullable Object[] args, @Nullable Class<T> expectedType) {
-        if (ObjectUtils.anyNull(target, expectedType) || StringUtils.isBlank(methodName)) {
+    public static <T> T invokeMethodAs(@Nullable Object target, boolean forceAccess, @Nullable String methodName, @Nullable Object[] args, @Nullable Class<T> expectType) {
+        if (ObjectUtils.anyNull(target, expectType) || StringUtils.isBlank(methodName)) {
             return null;
         }
-        return ObjectUtilsWraps.castAs(invokeMethod(target, forceAccess, methodName, args), expectedType);
+        return ObjectUtilsWraps.castAs(invokeMethod(target, forceAccess, methodName, args), expectType);
     }
 
     @Nullable
-    public static <T> T invokeMethodAs(@Nullable Object target, @Nullable String methodName, @Nullable Object[] args, @Nullable Class<?>[] paramTypes, @Nullable Class<T> expectedType) {
-        return invokeMethodAs(target, false, methodName, ArrayUtils.EMPTY_OBJECT_ARRAY, null, expectedType);
+    public static <T> T invokeMethodAs(@Nullable Object target, @Nullable String methodName, @Nullable Object[] args, @Nullable Class<?>[] paramTypes, @Nullable Class<T> expectType) {
+        return invokeMethodAs(target, false, methodName, ArrayUtils.EMPTY_OBJECT_ARRAY, null, expectType);
     }
 
     @Nullable
-    public static <T> T invokeMethodAs(@Nullable Object target, boolean forceAccess, @Nullable String methodName, @Nullable Object[] args, @Nullable Class<?>[] paramTypes, @Nullable Class<T> expectedType) {
-        if (ObjectUtils.anyNull(target, expectedType) || StringUtils.isBlank(methodName)) {
+    public static <T> T invokeMethodAs(@Nullable Object target, boolean forceAccess, @Nullable String methodName, @Nullable Object[] args, @Nullable Class<?>[] paramTypes, @Nullable Class<T> expectType) {
+        if (ObjectUtils.anyNull(target, expectType) || StringUtils.isBlank(methodName)) {
             return null;
         }
-        return ObjectUtilsWraps.castAs(invokeMethod(target, forceAccess, methodName, args, paramTypes), expectedType);
+        return ObjectUtilsWraps.castAs(invokeMethod(target, forceAccess, methodName, args, paramTypes), expectType);
     }
 
     @Nullable
@@ -528,19 +528,19 @@ public abstract class MethodUtilsWraps {
     }
 
     @Nullable
-    public static <T> T invokeStaticMethodAs(@Nullable Class<?> clazz, @Nullable String methodName, @Nullable Object[] args, @Nullable Class<T> expectedType) {
-        if (ObjectUtils.anyNull(clazz, expectedType) || StringUtils.isBlank(methodName)) {
+    public static <T> T invokeStaticMethodAs(@Nullable Class<?> clazz, @Nullable String methodName, @Nullable Object[] args, @Nullable Class<T> expectType) {
+        if (ObjectUtils.anyNull(clazz, expectType) || StringUtils.isBlank(methodName)) {
             return null;
         }
-        return ObjectUtilsWraps.castAs(invokeStaticMethod(clazz, methodName, args), expectedType);
+        return ObjectUtilsWraps.castAs(invokeStaticMethod(clazz, methodName, args), expectType);
     }
 
     @Nullable
-    public static <T> T invokeStaticMethodAs(@Nullable Class<?> clazz, @Nullable String methodName, @Nullable Object[] args, @Nullable Class<?>[] paramTypes, @Nullable Class<T> expectedType) {
-        if (ObjectUtils.anyNull(clazz, expectedType) || StringUtils.isBlank(methodName)) {
+    public static <T> T invokeStaticMethodAs(@Nullable Class<?> clazz, @Nullable String methodName, @Nullable Object[] args, @Nullable Class<?>[] paramTypes, @Nullable Class<T> expectType) {
+        if (ObjectUtils.anyNull(clazz, expectType) || StringUtils.isBlank(methodName)) {
             return null;
         }
-        return ObjectUtilsWraps.castAs(invokeStaticMethod(clazz, methodName, args, paramTypes), expectedType);
+        return ObjectUtilsWraps.castAs(invokeStaticMethod(clazz, methodName, args, paramTypes), expectType);
     }
 
     @Nullable
@@ -566,21 +566,21 @@ public abstract class MethodUtilsWraps {
     }
 
     @Nullable
-    public static <T> T invokeExactMethodAs(@Nullable Object target, @Nullable String methodName, @Nullable Class<T> expectedType) {
-        return invokeExactMethodAs(target, methodName, ArrayUtils.EMPTY_OBJECT_ARRAY, expectedType);
+    public static <T> T invokeExactMethodAs(@Nullable Object target, @Nullable String methodName, @Nullable Class<T> expectType) {
+        return invokeExactMethodAs(target, methodName, ArrayUtils.EMPTY_OBJECT_ARRAY, expectType);
     }
 
     @Nullable
-    public static <T> T invokeExactMethodAs(@Nullable Object target, @Nullable String methodName, @Nullable Object[] args, @Nullable Class<T> expectedType) {
-        return invokeExactMethodAs(target, methodName, args, null, expectedType);
+    public static <T> T invokeExactMethodAs(@Nullable Object target, @Nullable String methodName, @Nullable Object[] args, @Nullable Class<T> expectType) {
+        return invokeExactMethodAs(target, methodName, args, null, expectType);
     }
 
     @Nullable
-    public static <T> T invokeExactMethodAs(@Nullable Object target, @Nullable String methodName, @Nullable Object[] args, @Nullable Class<?>[] paramTypes, @Nullable Class<T> expectedType) {
+    public static <T> T invokeExactMethodAs(@Nullable Object target, @Nullable String methodName, @Nullable Object[] args, @Nullable Class<?>[] paramTypes, @Nullable Class<T> expectType) {
         if (target == null || StringUtils.isBlank(methodName)) {
             return null;
         }
-        return ObjectUtilsWraps.castAs(invokeExactMethod(target, methodName, args, paramTypes), expectedType);
+        return ObjectUtilsWraps.castAs(invokeExactMethod(target, methodName, args, paramTypes), expectType);
     }
 
     @Nullable
@@ -606,21 +606,21 @@ public abstract class MethodUtilsWraps {
     }
 
     @Nullable
-    public static <T> T invokeExactStaticMethodAs(@Nullable Class<?> clazz, @Nullable String methodName, @Nullable Class<T> expectedType) {
-        return invokeExactStaticMethodAs(clazz, methodName, ArrayUtils.EMPTY_OBJECT_ARRAY, expectedType);
+    public static <T> T invokeExactStaticMethodAs(@Nullable Class<?> clazz, @Nullable String methodName, @Nullable Class<T> expectType) {
+        return invokeExactStaticMethodAs(clazz, methodName, ArrayUtils.EMPTY_OBJECT_ARRAY, expectType);
     }
 
     @Nullable
-    public static <T> T invokeExactStaticMethodAs(@Nullable Class<?> clazz, @Nullable String methodName, @Nullable Object[] args, @Nullable Class<T> expectedType) {
-        return invokeExactStaticMethodAs(clazz, methodName, args, null, expectedType);
+    public static <T> T invokeExactStaticMethodAs(@Nullable Class<?> clazz, @Nullable String methodName, @Nullable Object[] args, @Nullable Class<T> expectType) {
+        return invokeExactStaticMethodAs(clazz, methodName, args, null, expectType);
     }
 
     @Nullable
-    public static <T> T invokeExactStaticMethodAs(@Nullable Class<?> clazz, @Nullable String methodName, @Nullable Object[] args, @Nullable Class<?>[] paramTypes, @Nullable Class<T> expectedType) {
+    public static <T> T invokeExactStaticMethodAs(@Nullable Class<?> clazz, @Nullable String methodName, @Nullable Object[] args, @Nullable Class<?>[] paramTypes, @Nullable Class<T> expectType) {
         if (clazz == null || StringUtils.isBlank(methodName)) {
             return null;
         }
-        return ObjectUtilsWraps.castAs(invokeExactStaticMethod(clazz, methodName, args, paramTypes), expectedType);
+        return ObjectUtilsWraps.castAs(invokeExactStaticMethod(clazz, methodName, args, paramTypes), expectType);
     }
 
     public static boolean isParamAssignable(@Nullable Method method, @Nullable Class<?>... paramTypes) {

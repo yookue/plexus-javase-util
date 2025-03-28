@@ -106,22 +106,22 @@ public abstract class ObjectUtilsWraps {
         return CollectionPlainWraps.isNotEmpty(values) && values.stream().anyMatch(ObjectUtils::isNotEmpty);
     }
 
-    public static <T> T castAs(@Nullable Object source, @Nullable Class<T> expectedType) {
-        return castAs(source, expectedType, null);
+    public static <T> T castAs(@Nullable Object source, @Nullable Class<T> expectType) {
+        return castAs(source, expectType, null);
     }
 
     /**
      * Returns a cast instance of the expected class, if the {@code source} object is instanceof the expected class
      *
      * @param source an object that maybe instanceof the expected class
-     * @param expectedType a parent/child class to check
+     * @param expectType a parent/child class to check
      * @param defaultValue the default value to return if expected value is null
      *
      * @return a cast instance of the expected class, if the {@code source} object is instanceof the expected class
      */
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
-    public static <T> T castAs(@Nullable Object source, @Nullable Class<T> expectedType, @Nullable T defaultValue) {
-        return (ObjectUtils.anyNull(source, expectedType) || !expectedType.isInstance(source)) ? defaultValue : expectedType.cast(source);
+    public static <T> T castAs(@Nullable Object source, @Nullable Class<T> expectType, @Nullable T defaultValue) {
+        return (ObjectUtils.anyNull(source, expectType) || !expectType.isInstance(source)) ? defaultValue : expectType.cast(source);
     }
 
     @Nullable
@@ -217,16 +217,16 @@ public abstract class ObjectUtilsWraps {
         return castAsIterable(source, List.class, componentType, defaultValue);
     }
 
-    public static <T extends Iterable<E>, E> T castAsIterable(@Nullable Object source, @Nullable Class<T> expectedType, @Nullable Class<E> componentType) {
-        return castAsIterable(source, expectedType, componentType, null);
+    public static <T extends Iterable<E>, E> T castAsIterable(@Nullable Object source, @Nullable Class<T> expectType, @Nullable Class<E> componentType) {
+        return castAsIterable(source, expectType, componentType, null);
     }
 
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
-    public static <T extends Iterable<E>, E> T castAsIterable(@Nullable Object source, @Nullable Class<T> expectedType, @Nullable Class<E> componentType, @Nullable T defaultValue) {
-        if (ObjectUtils.anyNull(source, expectedType, componentType) || !expectedType.isInstance(source)) {
+    public static <T extends Iterable<E>, E> T castAsIterable(@Nullable Object source, @Nullable Class<T> expectType, @Nullable Class<E> componentType, @Nullable T defaultValue) {
+        if (ObjectUtils.anyNull(source, expectType, componentType) || !expectType.isInstance(source)) {
             return defaultValue;
         }
-        T result = expectedType.cast(source);
+        T result = expectType.cast(source);
         Class<?> clazz = IterablePlainWraps.getComponentType(result);
         if (clazz == null || !componentType.isAssignableFrom(clazz)) {
             return defaultValue;
@@ -234,16 +234,16 @@ public abstract class ObjectUtilsWraps {
         return result;
     }
 
-    public static <T extends Iterator<E>, E> T castAsIterator(@Nullable Object source, @Nullable Class<T> expectedType, @Nullable Class<E> componentType) {
-        return castAsIterator(source, expectedType, componentType, null);
+    public static <T extends Iterator<E>, E> T castAsIterator(@Nullable Object source, @Nullable Class<T> expectType, @Nullable Class<E> componentType) {
+        return castAsIterator(source, expectType, componentType, null);
     }
 
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
-    public static <T extends Iterator<E>, E> T castAsIterator(@Nullable Object source, @Nullable Class<T> expectedType, @Nullable Class<E> componentType, @Nullable T defaultValue) {
-        if (ObjectUtils.anyNull(source, expectedType, componentType) || !expectedType.isInstance(source)) {
+    public static <T extends Iterator<E>, E> T castAsIterator(@Nullable Object source, @Nullable Class<T> expectType, @Nullable Class<E> componentType, @Nullable T defaultValue) {
+        if (ObjectUtils.anyNull(source, expectType, componentType) || !expectType.isInstance(source)) {
             return defaultValue;
         }
-        T result = expectedType.cast(source);
+        T result = expectType.cast(source);
         Class<?> clazz = IteratorPlainWraps.getComponentType(result);
         if (clazz == null || !componentType.isAssignableFrom(clazz)) {
             return defaultValue;

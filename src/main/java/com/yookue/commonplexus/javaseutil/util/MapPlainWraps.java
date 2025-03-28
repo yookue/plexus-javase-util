@@ -488,15 +488,15 @@ public abstract class MapPlainWraps {
         return (result == null) ? defaultValue : result;
     }
 
-    public static <K, T> T getObjectAs(@Nullable Map<? super K, ?> map, @Nullable K key, @Nullable Class<T> expectedType) {
-        return getObjectAs(map, key, expectedType, null);
+    public static <K, T> T getObjectAs(@Nullable Map<? super K, ?> map, @Nullable K key, @Nullable Class<T> expectType) {
+        return getObjectAs(map, key, expectType, null);
     }
 
-    public static <K, T> T getObjectAs(@Nullable Map<? super K, ?> map, @Nullable K key, @Nullable Class<T> expectedType, @Nullable T defaultValue) {
-        if (isEmpty(map) || expectedType == null) {
+    public static <K, T> T getObjectAs(@Nullable Map<? super K, ?> map, @Nullable K key, @Nullable Class<T> expectType, @Nullable T defaultValue) {
+        if (isEmpty(map) || expectType == null) {
             return defaultValue;
         }
-        T result = ObjectUtilsWraps.castAs(map.get(key), expectedType);
+        T result = ObjectUtilsWraps.castAs(map.get(key), expectType);
         return (result == null) ? defaultValue : result;
     }
 
@@ -515,16 +515,16 @@ public abstract class MapPlainWraps {
     }
 
     @Nullable
-    public static <T, K> T[] getObjectArrayAs(@Nullable Map<? super K, ?> map, @Nullable K key, @Nullable Class<T> expectedType) {
-        return getObjectArrayAs(map, key, expectedType, null);
+    public static <T, K> T[] getObjectArrayAs(@Nullable Map<? super K, ?> map, @Nullable K key, @Nullable Class<T> expectType) {
+        return getObjectArrayAs(map, key, expectType, null);
     }
 
     @Nullable
-    public static <T, K> T[] getObjectArrayAs(@Nullable Map<? super K, ?> map, @Nullable K key, @Nullable Class<T> expectedType, @Nullable T[] defaultValue) {
-        if (isEmpty(map) || expectedType == null) {
+    public static <T, K> T[] getObjectArrayAs(@Nullable Map<? super K, ?> map, @Nullable K key, @Nullable Class<T> expectType, @Nullable T[] defaultValue) {
+        if (isEmpty(map) || expectType == null) {
             return defaultValue;
         }
-        T[] result = ArrayUtilsWraps.castAs(getObjectArray(map, key), expectedType);
+        T[] result = ArrayUtilsWraps.castAs(getObjectArray(map, key), expectType);
         return (result == null) ? defaultValue : result;
     }
 

@@ -180,12 +180,12 @@ public abstract class ArrayUtilsWraps {
 
     @Nullable
     @SuppressWarnings("unchecked")
-    public static <E> E[] castAs(@Nullable Object[] sources, @Nullable Class<E> expectedType) {
-        if (ArrayUtils.isEmpty(sources) || expectedType == null || expectedType == Void.class) {
+    public static <E> E[] castAs(@Nullable Object[] sources, @Nullable Class<E> expectType) {
+        if (ArrayUtils.isEmpty(sources) || expectType == null || expectType == Void.class) {
             return null;
         }
-        E[] result = (E[]) Array.newInstance(expectedType, ArrayUtils.getLength(sources));
-        forEachIndexing(sources, (index, source) -> result[index] = ObjectUtilsWraps.castAs(source, expectedType));
+        E[] result = (E[]) Array.newInstance(expectType, ArrayUtils.getLength(sources));
+        forEachIndexing(sources, (index, source) -> result[index] = ObjectUtilsWraps.castAs(source, expectType));
         return ArrayUtils.isEmpty(result) ? null : result;
     }
 

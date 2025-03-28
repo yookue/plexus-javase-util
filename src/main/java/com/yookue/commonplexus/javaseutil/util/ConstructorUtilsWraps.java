@@ -104,12 +104,12 @@ public abstract class ConstructorUtilsWraps {
      *
      * @param <T> the required type to be constructed
      * @param className the class name to be constructed, not {@code null}
-     * @param expectedType the expected type to be converted, not {@code null}
+     * @param expectType the expected type to be converted, not {@code null}
      *
      * @return a new instance of the given class name
      */
-    public static <T> T invokeConstructor(@Nullable String className, @Nullable Class<T> expectedType) {
-        return invokeConstructor(className, null, expectedType, null, null);
+    public static <T> T invokeConstructor(@Nullable String className, @Nullable Class<T> expectType) {
+        return invokeConstructor(className, null, expectType, null, null);
     }
 
     /**
@@ -122,13 +122,13 @@ public abstract class ConstructorUtilsWraps {
      *
      * @param <T> the required type to be constructed
      * @param className the class name to be constructed, not {@code null}
-     * @param expectedType the expected type to be converted, not {@code null}
+     * @param expectType the expected type to be converted, not {@code null}
      * @param args the array of arguments, may be {@code null}
      *
      * @return a new instance of the given class name with the arguments
      */
-    public static <T> T invokeConstructor(@Nullable String className, @Nullable Class<T> expectedType, @Nullable Object... args) {
-        return invokeConstructor(className, null, expectedType, args);
+    public static <T> T invokeConstructor(@Nullable String className, @Nullable Class<T> expectType, @Nullable Object... args) {
+        return invokeConstructor(className, null, expectType, args);
     }
 
     /**
@@ -142,13 +142,13 @@ public abstract class ConstructorUtilsWraps {
      * @param <T> the required type to be constructed
      * @param className the class name to be constructed, not {@code null}
      * @param classLoader the class loader to be used, may be {@code null}
-     * @param expectedType the expected type to be converted, not {@code null}
+     * @param expectType the expected type to be converted, not {@code null}
      * @param args the array of arguments, may be {@code null}
      *
      * @return a new instance of the given class name with the arguments
      */
-    public static <T> T invokeConstructor(@Nullable String className, @Nullable ClassLoader classLoader, @Nullable Class<T> expectedType, @Nullable Object... args) {
-        return invokeConstructor(className, classLoader, expectedType, args, ClassUtils.toClass(args));
+    public static <T> T invokeConstructor(@Nullable String className, @Nullable ClassLoader classLoader, @Nullable Class<T> expectType, @Nullable Object... args) {
+        return invokeConstructor(className, classLoader, expectType, args, ClassUtils.toClass(args));
     }
 
     /**
@@ -166,8 +166,8 @@ public abstract class ConstructorUtilsWraps {
      *
      * @return a new instance of the given class with the arguments of the specified parameter types
      */
-    public static <T> T invokeConstructor(@Nullable String className, @Nullable Class<T> expectedType, @Nullable Object[] args, @Nullable Class<?>[] paramTypes) {
-        return invokeConstructor(className, null, expectedType, args, paramTypes);
+    public static <T> T invokeConstructor(@Nullable String className, @Nullable Class<T> expectType, @Nullable Object[] args, @Nullable Class<?>[] paramTypes) {
+        return invokeConstructor(className, null, expectType, args, paramTypes);
     }
 
     /**
@@ -187,8 +187,8 @@ public abstract class ConstructorUtilsWraps {
      * @return a new instance of the given class with the arguments of the specified parameter types
      */
     @Nullable
-    public static <T> T invokeConstructor(@Nullable String className, @Nullable ClassLoader classLoader, @Nullable Class<T> expectedType, @Nullable Object[] args, @Nullable Class<?>[] paramTypes) {
-        if (StringUtils.isBlank(className) || expectedType == null) {
+    public static <T> T invokeConstructor(@Nullable String className, @Nullable ClassLoader classLoader, @Nullable Class<T> expectType, @Nullable Object[] args, @Nullable Class<?>[] paramTypes) {
+        if (StringUtils.isBlank(className) || expectType == null) {
             return null;
         }
         Class<?> clazz = ClassUtilsWraps.forNameQuietly(className, classLoader);
@@ -197,7 +197,7 @@ public abstract class ConstructorUtilsWraps {
         }
         try {
             Object instance = ConstructorUtils.invokeConstructor(clazz, args, paramTypes);
-            return ObjectUtilsWraps.castAs(instance, expectedType);
+            return ObjectUtilsWraps.castAs(instance, expectType);
         } catch (Exception ignored) {
         }
         return null;
@@ -274,12 +274,12 @@ public abstract class ConstructorUtilsWraps {
      *
      * @param <T> the required type to be constructed
      * @param className the class name to be constructed, not {@code null}
-     * @param expectedType the expected type to be converted, not {@code null}
+     * @param expectType the expected type to be converted, not {@code null}
      *
      * @return a new instance of the given class name
      */
-    public static <T> T invokeExactConstructor(@Nullable String className, @Nullable Class<T> expectedType) {
-        return invokeExactConstructor(className, null, expectedType, null, null);
+    public static <T> T invokeExactConstructor(@Nullable String className, @Nullable Class<T> expectType) {
+        return invokeExactConstructor(className, null, expectType, null, null);
     }
 
     /**
@@ -292,13 +292,13 @@ public abstract class ConstructorUtilsWraps {
      *
      * @param <T> the required type to be constructed
      * @param className the class name to be constructed, not {@code null}
-     * @param expectedType the expected type to be converted, not {@code null}
+     * @param expectType the expected type to be converted, not {@code null}
      * @param args the array of arguments, may be {@code null}
      *
      * @return a new instance of the given class name with the arguments
      */
-    public static <T> T invokeExactConstructor(@Nullable String className, @Nullable Class<T> expectedType, @Nullable Object... args) {
-        return invokeExactConstructor(className, null, expectedType, args);
+    public static <T> T invokeExactConstructor(@Nullable String className, @Nullable Class<T> expectType, @Nullable Object... args) {
+        return invokeExactConstructor(className, null, expectType, args);
     }
 
     /**
@@ -312,13 +312,13 @@ public abstract class ConstructorUtilsWraps {
      * @param <T> the required type to be constructed
      * @param className the class name to be constructed, not {@code null}
      * @param classLoader the class loader to be used, may be {@code null}
-     * @param expectedType the expected type to be converted, not {@code null}
+     * @param expectType the expected type to be converted, not {@code null}
      * @param args the array of arguments, may be {@code null}
      *
      * @return a new instance of the given class name with the arguments
      */
-    public static <T> T invokeExactConstructor(@Nullable String className, @Nullable ClassLoader classLoader, @Nullable Class<T> expectedType, @Nullable Object... args) {
-        return invokeExactConstructor(className, classLoader, expectedType, args, ClassUtils.toClass(args));
+    public static <T> T invokeExactConstructor(@Nullable String className, @Nullable ClassLoader classLoader, @Nullable Class<T> expectType, @Nullable Object... args) {
+        return invokeExactConstructor(className, classLoader, expectType, args, ClassUtils.toClass(args));
     }
 
     /**
@@ -336,8 +336,8 @@ public abstract class ConstructorUtilsWraps {
      *
      * @return a new instance of the given class with the arguments of the specified parameter types
      */
-    public static <T> T invokeExactConstructor(@Nullable String className, @Nullable Class<T> expectedType, @Nullable Object[] args, @Nullable Class<?>[] paramTypes) {
-        return invokeExactConstructor(className, null, expectedType, args, paramTypes);
+    public static <T> T invokeExactConstructor(@Nullable String className, @Nullable Class<T> expectType, @Nullable Object[] args, @Nullable Class<?>[] paramTypes) {
+        return invokeExactConstructor(className, null, expectType, args, paramTypes);
     }
 
     /**
@@ -357,8 +357,8 @@ public abstract class ConstructorUtilsWraps {
      * @return a new instance of the given class with the arguments of the specified parameter types
      */
     @Nullable
-    public static <T> T invokeExactConstructor(@Nullable String className, @Nullable ClassLoader classLoader, @Nullable Class<T> expectedType, @Nullable Object[] args, @Nullable Class<?>[] paramTypes) {
-        if (StringUtils.isBlank(className) || expectedType == null) {
+    public static <T> T invokeExactConstructor(@Nullable String className, @Nullable ClassLoader classLoader, @Nullable Class<T> expectType, @Nullable Object[] args, @Nullable Class<?>[] paramTypes) {
+        if (StringUtils.isBlank(className) || expectType == null) {
             return null;
         }
         Class<?> clazz = ClassUtilsWraps.forNameQuietly(className, classLoader);
@@ -367,7 +367,7 @@ public abstract class ConstructorUtilsWraps {
         }
         try {
             Object instance = ConstructorUtils.invokeExactConstructor(clazz, args, paramTypes);
-            return ObjectUtilsWraps.castAs(instance, expectedType);
+            return ObjectUtilsWraps.castAs(instance, expectType);
         } catch (Exception ignored) {
         }
         return null;
@@ -408,13 +408,13 @@ public abstract class ConstructorUtilsWraps {
      *
      * @param <T> the required type to be constructed
      * @param className the class name to be constructed, not {@code null}
-     * @param expectedType the expected type to be converted, not {@code null}
+     * @param expectType the expected type to be converted, not {@code null}
      * @param paramTypes the array of parameter types, may be {@code null}
      *
      * @return the constructor of the given class with the specified parameter types, checking accessibility
      */
-    public static <T> Constructor<T> getAccessibleConstructor(@Nullable String className, @Nullable Class<T> expectedType, @Nullable Class<?>... paramTypes) {
-        return getAccessibleConstructor(className, null, expectedType, paramTypes);
+    public static <T> Constructor<T> getAccessibleConstructor(@Nullable String className, @Nullable Class<T> expectType, @Nullable Class<?>... paramTypes) {
+        return getAccessibleConstructor(className, null, expectType, paramTypes);
     }
 
     /**
@@ -428,15 +428,15 @@ public abstract class ConstructorUtilsWraps {
      * @param <T> the required type to be constructed
      * @param className the class name to be constructed, not {@code null}
      * @param classLoader the class loader to be used, may be {@code null}
-     * @param expectedType the expected type to be converted, not {@code null}
+     * @param expectType the expected type to be converted, not {@code null}
      * @param paramTypes the array of parameter types, may be {@code null}
      *
      * @return the constructor of the given class with the specified parameter types, checking accessibility
      */
     @Nullable
     @SuppressWarnings("unchecked")
-    public static <T> Constructor<T> getAccessibleConstructor(@Nullable String className, @Nullable ClassLoader classLoader, @Nullable Class<T> expectedType, @Nullable Class<?>... paramTypes) {
-        if (StringUtils.isBlank(className) || expectedType == null) {
+    public static <T> Constructor<T> getAccessibleConstructor(@Nullable String className, @Nullable ClassLoader classLoader, @Nullable Class<T> expectType, @Nullable Class<?>... paramTypes) {
+        if (StringUtils.isBlank(className) || expectType == null) {
             return null;
         }
         Class<?> clazz = ClassUtilsWraps.forNameQuietly(className, classLoader);
@@ -445,7 +445,7 @@ public abstract class ConstructorUtilsWraps {
         }
         try {
             Constructor<?> result = ConstructorUtils.getAccessibleConstructor(clazz, paramTypes);
-            if (result != null && ClassUtils.isAssignable(result.getDeclaringClass(), expectedType)) {
+            if (result != null && ClassUtils.isAssignable(result.getDeclaringClass(), expectType)) {
                 return (Constructor<T>) result;
             }
         } catch (Exception ignored) {
@@ -492,13 +492,13 @@ public abstract class ConstructorUtilsWraps {
      *
      * @param <T> the required type to be constructed
      * @param className the class name to be constructed, not {@code null}
-     * @param expectedType the expected type to be converted, not {@code null}
+     * @param expectType the expected type to be converted, not {@code null}
      * @param paramTypes the array of parameter types, may be {@code null}
      *
      * @return the constructor of the given class with compatible parameter types, checking accessibility
      */
-    public static <T> Constructor<T> getMatchingAccessibleConstructor(@Nullable String className, @Nullable Class<T> expectedType, @Nullable Class<?>... paramTypes) {
-        return getMatchingAccessibleConstructor(className, null, expectedType, paramTypes);
+    public static <T> Constructor<T> getMatchingAccessibleConstructor(@Nullable String className, @Nullable Class<T> expectType, @Nullable Class<?>... paramTypes) {
+        return getMatchingAccessibleConstructor(className, null, expectType, paramTypes);
     }
 
     /**
@@ -514,15 +514,15 @@ public abstract class ConstructorUtilsWraps {
      * @param <T> the required type to be constructed
      * @param className the class name to be constructed, not {@code null}
      * @param classLoader the class loader to be used, may be {@code null}
-     * @param expectedType the expected type to be converted, not {@code null}
+     * @param expectType the expected type to be converted, not {@code null}
      * @param paramTypes the array of parameter types, may be {@code null}
      *
      * @return the constructor of the given class with compatible parameter types, checking accessibility
      */
     @Nullable
     @SuppressWarnings("unchecked")
-    public static <T> Constructor<T> getMatchingAccessibleConstructor(@Nullable String className, @Nullable ClassLoader classLoader, @Nullable Class<T> expectedType, @Nullable Class<?>... paramTypes) {
-        if (StringUtils.isBlank(className) || expectedType == null) {
+    public static <T> Constructor<T> getMatchingAccessibleConstructor(@Nullable String className, @Nullable ClassLoader classLoader, @Nullable Class<T> expectType, @Nullable Class<?>... paramTypes) {
+        if (StringUtils.isBlank(className) || expectType == null) {
             return null;
         }
         Class<?> clazz = ClassUtilsWraps.forNameQuietly(className, classLoader);
@@ -531,7 +531,7 @@ public abstract class ConstructorUtilsWraps {
         }
         try {
             Constructor<?> result = ConstructorUtils.getMatchingAccessibleConstructor(clazz, paramTypes);
-            if (result != null && ClassUtils.isAssignable(result.getDeclaringClass(), expectedType)) {
+            if (result != null && ClassUtils.isAssignable(result.getDeclaringClass(), expectType)) {
                 return (Constructor<T>) result;
             }
         } catch (Exception ignored) {

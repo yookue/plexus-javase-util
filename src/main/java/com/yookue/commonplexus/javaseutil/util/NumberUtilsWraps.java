@@ -445,43 +445,43 @@ public abstract class NumberUtilsWraps {
         return (value == null) ? defaultValue : NumberUtils.toScaledBigDecimal(value.multiply(new BigDecimal(100)), scale, mode);
     }
 
-    public static <T extends Number & Comparable<? extends Number>> T parseAs(@Nullable String value, @Nullable Class<T> expectedType) throws NumberFormatException, ClassCastException {
-        return parseAs(value, expectedType, null);
+    public static <T extends Number & Comparable<? extends Number>> T parseAs(@Nullable String value, @Nullable Class<T> expectType) throws NumberFormatException, ClassCastException {
+        return parseAs(value, expectType, null);
     }
 
-    public static <T extends Number & Comparable<? extends Number>> T parseAs(@Nullable String value, @Nullable Class<T> expectedType, @Nullable T defaultValue) throws NumberFormatException, ClassCastException {
-        if (StringUtils.isBlank(value) || expectedType == null) {
+    public static <T extends Number & Comparable<? extends Number>> T parseAs(@Nullable String value, @Nullable Class<T> expectType, @Nullable T defaultValue) throws NumberFormatException, ClassCastException {
+        if (StringUtils.isBlank(value) || expectType == null) {
             return defaultValue;
         }
-        if (expectedType == BigDecimal.class) {
-            return expectedType.cast(NumberUtils.createBigDecimal(value));
-        } else if (expectedType == BigInteger.class) {
-            return expectedType.cast(NumberUtils.createBigInteger(value));
-        } else if (expectedType == Byte.class) {
-            return expectedType.cast(Byte.valueOf(value));
-        } else if (expectedType == Double.class) {
-            return expectedType.cast(Double.valueOf(value));
-        } else if (expectedType == Float.class) {
-            return expectedType.cast(Float.valueOf(value));
-        } else if (expectedType == Integer.class) {
-            return expectedType.cast(NumberUtils.createInteger(value));
-        } else if (expectedType == Long.class) {
-            return expectedType.cast(NumberUtils.createLong(value));
-        } else if (expectedType == Short.class) {
-            return expectedType.cast(Short.valueOf(value));
+        if (expectType == BigDecimal.class) {
+            return expectType.cast(NumberUtils.createBigDecimal(value));
+        } else if (expectType == BigInteger.class) {
+            return expectType.cast(NumberUtils.createBigInteger(value));
+        } else if (expectType == Byte.class) {
+            return expectType.cast(Byte.valueOf(value));
+        } else if (expectType == Double.class) {
+            return expectType.cast(Double.valueOf(value));
+        } else if (expectType == Float.class) {
+            return expectType.cast(Float.valueOf(value));
+        } else if (expectType == Integer.class) {
+            return expectType.cast(NumberUtils.createInteger(value));
+        } else if (expectType == Long.class) {
+            return expectType.cast(NumberUtils.createLong(value));
+        } else if (expectType == Short.class) {
+            return expectType.cast(Short.valueOf(value));
         }
-        throw new UnsupportedClassException("Unsupported expected type: " + expectedType.getName());
+        throw new UnsupportedClassException("Unsupported expected type: " + expectType.getName());
     }
 
     @Nullable
-    public static <T extends Number & Comparable<? extends Number>> T parseAsQuietly(@Nullable String value, @Nullable Class<T> expectedType) {
-        return parseAsQuietly(value, expectedType, null);
+    public static <T extends Number & Comparable<? extends Number>> T parseAsQuietly(@Nullable String value, @Nullable Class<T> expectType) {
+        return parseAsQuietly(value, expectType, null);
     }
 
     @Nullable
-    public static <T extends Number & Comparable<? extends Number>> T parseAsQuietly(@Nullable String value, @Nullable Class<T> expectedType, @Nullable T defaultValue) {
+    public static <T extends Number & Comparable<? extends Number>> T parseAsQuietly(@Nullable String value, @Nullable Class<T> expectType, @Nullable T defaultValue) {
         try {
-            return parseAs(value, expectedType, defaultValue);
+            return parseAs(value, expectType, defaultValue);
         } catch (Exception ignored) {
         }
         return defaultValue;

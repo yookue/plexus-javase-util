@@ -72,18 +72,18 @@ public abstract class TypeUtilsWraps {
     }
 
     @Nullable
-    public static <T> T getGenericParameterClassAs(@Nullable Class<?> clazz, @Nullable Class<T> expectedType) {
-        return getGenericParameterClassAs(clazz, 0, expectedType);
+    public static <T> T getGenericParameterClassAs(@Nullable Class<?> clazz, @Nullable Class<T> expectType) {
+        return getGenericParameterClassAs(clazz, 0, expectType);
     }
 
     @Nullable
     @SuppressWarnings("unchecked")
-    public static <T> T getGenericParameterClassAs(@Nullable Class<?> clazz, int index, @Nullable Class<T> expectedType) {
-        if (ObjectUtils.anyNull(clazz, expectedType) || index < 0) {
+    public static <T> T getGenericParameterClassAs(@Nullable Class<?> clazz, int index, @Nullable Class<T> expectType) {
+        if (ObjectUtils.anyNull(clazz, expectType) || index < 0) {
             return null;
         }
         Class<?> result = getGenericParameterClass(clazz, index);
-        return ClassUtils.isAssignable(result, expectedType) ? (T) result : null;
+        return ClassUtils.isAssignable(result, expectType) ? (T) result : null;
     }
 
     public boolean isGenericParameterizedWrapper(@Nullable Class<?> wrapper, @Nullable Type... parameters) {
