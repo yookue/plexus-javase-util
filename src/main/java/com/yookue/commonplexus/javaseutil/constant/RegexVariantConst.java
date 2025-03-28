@@ -32,6 +32,8 @@ public abstract class RegexVariantConst {
     public static final String ARRAY_INDEX = "\\[\\d*\\]";    // $NON-NLS-1$
     public static final String BASE64 = "^[A-Za-z0-9+/]*={0,2}$";    // $NON-NLS-1$
     public static final String BASE64_IMAGE = "data:image/\\w+;base64,";    // $NON-NLS-1$
+    public static final String COMMA_SQUARE_BRACKET = "\\,\\]";    // $NON-NLS-1$
+    public static final String COMMA_CURLY_BRACKET = "\\,\\}";    // $NON-NLS-1$
     public static final String CURLY_BRACKETS = "\\{\\}";    // $NON-NLS-1$
     public static final String LINE_SEPARATOR = "\\r?\\n";    // $NON-NLS-1$
     public static final String LANGUAGE_TAG = "[a-zA-Z]{2,3}([_\\-]{1}[a-zA-Z]{2,3}){0,1}([_\\-]{1}[a-zA-Z]{2,4}){0,1}";    // $NON-NLS-1$
