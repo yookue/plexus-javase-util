@@ -37,7 +37,8 @@ public enum PromptReminderType implements ValueEnum<String> {
     INFO("info"),    // $NON-NLS-1$
     WARN("warn"),    // $NON-NLS-1$
     ERROR("error"),    // $NON-NLS-1$
-    LOAD("load");    // $NON-NLS-1$
+    LOADING("loading"),    // $NON-NLS-1$
+    REDIRECT("redirect");    // $NON-NLS-1$
 
     private final String value;
 }
