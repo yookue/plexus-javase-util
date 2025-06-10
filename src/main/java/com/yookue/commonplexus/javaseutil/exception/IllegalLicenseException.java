@@ -17,17 +17,17 @@
 package com.yookue.commonplexus.javaseutil.exception;
 
 
-import lombok.NoArgsConstructor;
 import lombok.experimental.StandardException;
+import lombok.NoArgsConstructor;
 
 
 /**
- * Checked exception thrown that can not be accessed directly
+ * Checked exception thrown when a license operation
  *
  * @author David Hsing
  */
 @NoArgsConstructor
 @StandardException
 @SuppressWarnings("unused")
-public class DirectInaccessibleException extends RuntimeException {
+public class IllegalLicenseException extends RuntimeException {
 }

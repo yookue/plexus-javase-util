@@ -22,7 +22,7 @@ import jakarta.annotation.Nullable;
 
 
 /**
- * Checked exception thrown when a file system operation, fails because the operating target is not a file
+ * Checked exception thrown when a file system operation
  *
  * @author David Hsing
  * @see java.nio.file.NotDirectoryException
