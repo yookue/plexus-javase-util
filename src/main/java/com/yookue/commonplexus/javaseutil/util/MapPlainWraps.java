@@ -632,9 +632,9 @@ public abstract class MapPlainWraps {
             result = alias;
         } else if (value instanceof String alias) {
             if (CollectionPlainWraps.isEmpty(formats)) {
-                result = ObjectUtils.defaultIfNull(JdkDateWraps.parseDateTimeGuessing(alias), JdkDateWraps.parseDateGuessing((String) value));
+                result = ObjectUtils.defaultIfNull(JdkDateWraps.parseDateTimeGuessing(alias), JdkDateWraps.parseDateGuessing(alias));
             } else {
-                result = JdkDateWraps.parseDateFormats((String) value, formats);
+                result = JdkDateWraps.parseDateFormats(alias, formats);
             }
         }
         return (result == null) ? defaultValue : result;

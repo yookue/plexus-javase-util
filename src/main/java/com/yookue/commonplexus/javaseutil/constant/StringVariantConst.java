@@ -38,6 +38,7 @@ public abstract class StringVariantConst {
     public static final String AUTHORIZATION = "authorization";    // $NON-NLS-1$
     public static final String BEARER_SPACE = "Bearer ";    // $NON-NLS-1$
     public static final String CAPTCHA = "captcha";    // $NON-NLS-1$
+    public static final String CHILDREN = "children";    // $NON-NLS-1$
     public static final String CLASSES = "classes";    // $NON-NLS-1$
     public static final String CLASSPATH = "classpath";    // $NON-NLS-1$
     // @see "org.springframework.core.io.ResourceLoader#CLASSPATH_URL_PREFIX"
