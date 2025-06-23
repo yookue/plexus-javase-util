@@ -30,12 +30,14 @@ import org.apache.commons.lang3.ObjectUtils;
  * Utilities for {@link org.apache.commons.lang3.reflect.TypeUtils}
  *
  * @author David Hsing
- * @reference "http://tutorials.jenkov.com/java-reflection/generics.html"
- * @reference "https://xebia.com/blog/acessing-generic-types-at-runtime-in-java/"
- * @reference "https://blog.csdn.net/changsa65/article/details/78790881"
+ *
  * @see org.apache.commons.lang3.reflect.TypeUtils
  * @see "sun.reflect.generics.reflectiveObjects.TypeVariableImpl"
  * @see "org.springframework.util.TypeUtils"
+ *
+ * @reference "http://tutorials.jenkov.com/java-reflection/generics.html"
+ * @reference "https://xebia.com/blog/acessing-generic-types-at-runtime-in-java/"
+ * @reference "https://blog.csdn.net/changsa65/article/details/78790881"
  */
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue", "JavadocDeclaration", "JavadocLinkAsPlainText"})
 public abstract class TypeUtilsWraps {

@@ -60,9 +60,10 @@ public abstract class JsoupParserWraps {
      *
      * @return a safe list with flash for cleaning
      *
-     * @reference "http://elf8848.iteye.com/blog/1872433"
      * @see org.jsoup.Jsoup#clean(java.lang.String, org.jsoup.safety.Safelist)
      * @see org.jsoup.safety.Safelist#relaxed
+     *
+     * @reference "http://elf8848.iteye.com/blog/1872433"
      */
     @Nonnull
     @SuppressWarnings({"JavadocDeclaration", "JavadocLinkAsPlainText"})

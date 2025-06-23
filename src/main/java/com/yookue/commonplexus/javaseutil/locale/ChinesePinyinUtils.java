@@ -34,6 +34,7 @@ import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombi
  * Utilities for Chinese pinyin
  *
  * @author David Hsing
+ *
  * @reference "https://github.com/belerweb/pinyin4j"
  * @reference "https://github.com/stuxuhai/jpinyin"
  * @reference "http://yjck.iteye.com/blog/816107"

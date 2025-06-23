@@ -36,6 +36,7 @@ import com.yookue.commonplexus.javaseutil.util.StringUtilsWraps;
  * Utilities for Chinese Yuan
  *
  * @author David Hsing
+ *
  * @reference "https://www.cnblogs.com/weisenz/archive/2012/09/05/2672176.html"
  */
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue", "JavadocDeclaration", "JavadocLinkAsPlainText"})

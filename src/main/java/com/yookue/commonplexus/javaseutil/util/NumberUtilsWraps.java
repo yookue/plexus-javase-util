@@ -89,8 +89,9 @@ public abstract class NumberUtilsWraps {
     }
 
     /**
-     * @reference "https://cloud.tencent.com/developer/ask/44072"
      * @see org.apache.commons.lang3.Range
+     *
+     * @reference "https://cloud.tencent.com/developer/ask/44072"
      */
     @SuppressWarnings({"JavadocDeclaration", "JavadocLinkAsPlainText"})
     public static <T extends Number & Comparable<? super T>> boolean between(@Nullable T value, @Nullable T startValue, @Nullable T endValue, boolean includeStart, boolean includeEnd) {

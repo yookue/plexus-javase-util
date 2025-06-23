@@ -26,6 +26,7 @@ import lombok.Getter;
  * Enumerations of Microsoft Office mime types
  *
  * @author David Hsing
+ *
  * @reference "http://filext.com/faq/office_mime_types.php"
  */
 @AllArgsConstructor

@@ -52,6 +52,7 @@ import lombok.experimental.Accessors;
  *
  * @author chkrr00k
  * @author David Hsing
+ *
  * @reference "https://github.com/chkrr00k/Beans2SQL"
  */
 @Getter

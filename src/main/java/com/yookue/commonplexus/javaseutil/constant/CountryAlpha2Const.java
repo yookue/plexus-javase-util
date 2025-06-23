@@ -21,6 +21,7 @@ package com.yookue.commonplexus.javaseutil.constant;
  * Constants for country alpha2 codes
  *
  * @author David Hsing
+ *
  * @reference "https://www.nationsonline.org/oneworld/country_code_list.htm"
  */
 @SuppressWarnings({"unused", "JavadocDeclaration", "JavadocLinkAsPlainText"})

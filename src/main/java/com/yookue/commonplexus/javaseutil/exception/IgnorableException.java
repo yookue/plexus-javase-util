@@ -25,6 +25,7 @@ import lombok.experimental.StandardException;
  * Checked exception thrown that may be ignored
  *
  * @author David Hsing
+ *
  * @reference "https://www.freeaihub.com/post/591.html"
  */
 @NoArgsConstructor

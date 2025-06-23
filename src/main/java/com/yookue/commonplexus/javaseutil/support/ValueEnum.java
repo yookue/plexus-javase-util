@@ -24,6 +24,7 @@ import com.yookue.commonplexus.javaseutil.util.ObjectUtilsWraps;
  * Generic {@link java.lang.Enum} type with a {@code value} property
  *
  * @author David Hsing
+ *
  * @reference "https://www.jianshu.com/p/9a99b00ebe9d"
  */
 @SuppressWarnings({"unused", "JavadocDeclaration", "JavadocLinkAsPlainText"})

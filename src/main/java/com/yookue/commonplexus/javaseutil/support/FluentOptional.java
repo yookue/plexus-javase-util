@@ -37,8 +37,10 @@ import lombok.NoArgsConstructor;
  * Similar to use fluent methods of {@link java.util.Optional#map}
  *
  * @author David Hsing
- * @reference "https://blog.csdn.net/code_shadow/article/details/109039751"
+ *
  * @see java.util.Optional
+ *
+ * @reference "https://blog.csdn.net/code_shadow/article/details/109039751"
  */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @SuppressWarnings({"unused", "WeakerAccess", "JavadocDeclaration", "JavadocLinkAsPlainText"})

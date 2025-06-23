@@ -45,6 +45,7 @@ import lombok.extern.slf4j.Slf4j;
  * </code></pre>
  *
  * @author izilotti
+ *
  * @reference "https://stackoverflow.com/questions/22743765/beanutils-not-works-for-chain-setter"
  */
 @Slf4j

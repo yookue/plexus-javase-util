@@ -26,6 +26,7 @@ import lombok.Getter;
  * Enumerations of number order types
  *
  * @author David Hsing
+ *
  * @reference "https://zhidao.baidu.com/question/283479244.html"
  */
 @AllArgsConstructor

@@ -41,10 +41,12 @@ import com.yookue.commonplexus.javaseutil.structure.BooleanDataStruct;
  * Utilities for {@link org.apache.commons.beanutils2.BeanUtils}
  *
  * @author David Hsing
- * @reference "https://gitbox.apache.org/repos/asf?p=commons-beanutils.git;a=tree"
+ *
  * @see org.apache.commons.beanutils2.BeanUtils
  * @see org.apache.commons.beanutils2.BeanUtilsBean
  * @see org.apache.commons.beanutils2.BeanMap
+ *
+ * @reference "https://gitbox.apache.org/repos/asf?p=commons-beanutils.git;a=tree"
  */
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue", "JavadocDeclaration", "JavadocLinkAsPlainText"})
 public abstract class BeanUtilsWraps {
@@ -501,10 +503,11 @@ public abstract class BeanUtilsWraps {
     /**
      * Sets the property naming {@code property} of the given {@code bean} object, with value {@code value}
      *
-     * @reference "https://stackoverflow.com/questions/22743765/beanutils-not-works-for-chain-setter"
-     * @reference "https://blog.csdn.net/u014074757/article/details/106273150/"
      * @see org.apache.commons.beanutils2.BeanUtils#setProperty
      * @see "org.springframework.beans.BeanUtils#copyProperties"
+     *
+     * @reference "https://stackoverflow.com/questions/22743765/beanutils-not-works-for-chain-setter"
+     * @reference "https://blog.csdn.net/u014074757/article/details/106273150/"
      */
     public static boolean setProperty(@Nullable Object bean, @Nullable String property, @Nullable Object value) throws BeanInvocationException {
         if (bean == null || StringUtils.isBlank(property)) {

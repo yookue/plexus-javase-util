@@ -26,9 +26,11 @@ import lombok.Getter;
  * Enumerations of network protocol types in session layer
  *
  * @author David Hsing
+ *
+ * @see "com.sun.deploy.net.protocol.ProtocolType"
+ *
  * @reference "https://www.educba.com/types-of-networking-protocols/"
  * @reference "https://blog.csdn.net/weixin_39218743/article/details/88818069"
- * @see "com.sun.deploy.net.protocol.ProtocolType"
  */
 @AllArgsConstructor
 @Getter

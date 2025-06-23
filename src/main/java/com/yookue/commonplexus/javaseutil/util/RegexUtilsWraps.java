@@ -39,10 +39,12 @@ import com.yookue.commonplexus.javaseutil.constant.SymbolVariantConst;
  * Utilities for {@link org.apache.commons.lang3.RegExUtils}
  *
  * @author David Hsing
+ *
+ * @see "org.apache.commons.lang3.RegExUtils"
+ *
  * @reference "https://www3.ntu.edu.sg/home/ehchua/programming/howto/Regexe.html"
  * @reference "https://regexr.com/"
  * @reference "http://www.regexlab.com/zh/regref.htm"
- * @see "org.apache.commons.lang3.RegExUtils"
  */
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue", "JavadocDeclaration", "JavadocLinkAsPlainText"})
 public abstract class RegexUtilsWraps {

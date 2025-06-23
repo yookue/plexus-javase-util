@@ -26,10 +26,12 @@ import lombok.Getter;
  * Enumerations of security algorithm types
  *
  * @author David Hsing
- * @reference "https://docs.oracle.com/en/java/javase/11/docs/specs/security/standard-names.html#securerandom-number-generation-algorithms"
+ *
  * @see java.security.SecureRandom
  * @see "sun.security.jca.ProviderList"
  * @see "io.jsonwebtoken.SignatureAlgorithm"
+ *
+ * @reference "https://docs.oracle.com/en/java/javase/11/docs/specs/security/standard-names.html#securerandom-number-generation-algorithms"
  */
 @AllArgsConstructor
 @Getter

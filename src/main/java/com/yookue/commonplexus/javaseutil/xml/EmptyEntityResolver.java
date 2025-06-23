@@ -12,6 +12,7 @@ import org.xml.sax.InputSource;
  * {@link org.xml.sax.EntityResolver} with empty stream
  *
  * @author David Hsing
+ *
  * @reference "http://www.jdom.org/docs/faq.html#a0350"
  */
 @SuppressWarnings({"unused", "JavadocDeclaration", "JavadocLinkAsPlainText"})

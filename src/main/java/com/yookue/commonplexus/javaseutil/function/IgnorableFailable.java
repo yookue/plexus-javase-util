@@ -49,9 +49,11 @@ import org.apache.commons.lang3.math.NumberUtils;
  * Attempts to address the fact that lambdas are supposed not to throw exceptions, at least not checked exceptions
  *
  * @author David Hsing
- * @reference "https://blog.csdn.net/Revivedsun/article/details/79906165/"
+ *
  * @see org.apache.commons.lang3.function.Failable
  * @see org.apache.commons.lang3.exception.ExceptionUtils
+ *
+ * @reference "https://blog.csdn.net/Revivedsun/article/details/79906165/"
  */
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue", "JavadocDeclaration", "JavadocLinkAsPlainText"})
 public abstract class IgnorableFailable {

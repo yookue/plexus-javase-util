@@ -27,11 +27,13 @@ import lombok.Getter;
  * Enumerations of http mime types
  *
  * @author David Hsing
- * @reference "http://www.iana.org/assignments/media-types/media-types.xhtml"
+ *
  * @see "org.springframework.http.MediaType"
  * @see "org.springframework.http.MediaTypeFactory"
  * @see "org.springframework.util.MimeTypeUtils"
  * @see "org.springframework.boot.actuate.endpoint.http.ActuatorMediaType"
+ *
+ * @reference "http://www.iana.org/assignments/media-types/media-types.xhtml"
  */
 @AllArgsConstructor
 @Getter
