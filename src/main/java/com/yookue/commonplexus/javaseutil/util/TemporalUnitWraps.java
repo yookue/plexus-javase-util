@@ -29,6 +29,7 @@ import org.apache.commons.lang3.time.DurationUtils;
  * Utilities for {@link java.time.temporal.TemporalUnit}
  *
  * @author David Hsing
+ *
  * @see java.time.temporal.TemporalUnit
  * @see java.time.temporal.ChronoUnit
  * @see java.util.concurrent.TimeUnit

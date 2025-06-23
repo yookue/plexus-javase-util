@@ -48,6 +48,7 @@ import com.yookue.commonplexus.javaseutil.constant.SymbolVariantConst;
  * Utilities for {@link org.apache.commons.lang3.StringUtils}
  *
  * @author David Hsing
+ *
  * @see org.apache.commons.lang3.StringUtils
  */
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})

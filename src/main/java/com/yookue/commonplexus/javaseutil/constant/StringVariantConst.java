@@ -21,6 +21,7 @@ package com.yookue.commonplexus.javaseutil.constant;
  * Constants for string variants
  *
  * @author David Hsing
+ *
  * @see org.apache.commons.lang3.StringUtils
  * @see "org.springframework.beans.PropertyAccessor"
  * @see "org.springframework.util.StringUtils"

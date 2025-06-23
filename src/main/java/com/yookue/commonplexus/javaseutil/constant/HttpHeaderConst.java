@@ -21,6 +21,7 @@ package com.yookue.commonplexus.javaseutil.constant;
  * Constants for http headers
  *
  * @author David Hsing
+ *
  * @see "org.springframework.http.HttpHeaders"
  * @see "org.apache.http.HttpHeaders"
  * @see "com.google.common.net.HttpHeaders"

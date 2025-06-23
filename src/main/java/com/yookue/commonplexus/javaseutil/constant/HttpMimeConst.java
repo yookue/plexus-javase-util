@@ -21,6 +21,7 @@ package com.yookue.commonplexus.javaseutil.constant;
  * Constants for http mime types
  *
  * @author David Hsing
+ *
  * @see "org.springframework.http.MediaType"
  */
 @SuppressWarnings("unused")

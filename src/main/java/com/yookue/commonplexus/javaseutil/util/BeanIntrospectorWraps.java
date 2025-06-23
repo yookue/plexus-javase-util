@@ -31,6 +31,7 @@ import org.apache.commons.beanutils2.PropertyUtilsBean;
  * Utilities for {@link org.apache.commons.beanutils2.BeanIntrospector}
  *
  * @author David Hsing
+ *
  * @see org.apache.commons.beanutils2.BeanIntrospector
  */
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})

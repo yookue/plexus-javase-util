@@ -26,6 +26,7 @@ import lombok.Getter;
  * Enumerations of inet address types
  *
  * @author David Hsing
+ *
  * @see java.net.Inet4Address
  * @see java.net.Inet6Address
  */

@@ -28,6 +28,7 @@ import java.util.Objects;
  * @param <V> the type of the third argument to the operation
  *
  * @author David Hsing
+ *
  * @see java.util.function.BiPredicate
  * @see org.apache.commons.lang3.function.TriFunction
  */

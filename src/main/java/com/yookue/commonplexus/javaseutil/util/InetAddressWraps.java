@@ -38,6 +38,7 @@ import com.yookue.commonplexus.javaseutil.constant.RegexVariantConst;
  * Utilities for {@link java.net.InetAddress}
  *
  * @author David Hsing
+ *
  * @see "org.apache.http.conn.util.InetAddressWraps"
  */
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})

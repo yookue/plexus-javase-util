@@ -31,6 +31,7 @@ import com.yookue.commonplexus.javaseutil.constant.CharVariantConst;
  * Utilities for {@link org.apache.commons.text.StringSubstitutor}
  *
  * @author David Hsing
+ *
  * @see org.apache.commons.text.StringSubstitutor
  */
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})

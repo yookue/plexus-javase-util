@@ -21,6 +21,7 @@ package com.yookue.commonplexus.javaseutil.constant;
  * Constants for character variants
  *
  * @author David Hsing
+ *
  * @see org.apache.commons.lang3.CharUtils
  * @see org.apache.commons.lang3.CharSequenceUtils
  * @see "org.springframework.beans.PropertyAccessor"

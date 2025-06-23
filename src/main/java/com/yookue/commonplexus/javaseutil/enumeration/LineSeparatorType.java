@@ -26,6 +26,7 @@ import lombok.Getter;
  * Enumerations of line separator types
  *
  * @author David Hsing
+ *
  * @see org.apache.commons.io.StandardLineSeparator
  * @see "com.sun.org.apache.xml.internal.serialize.LineSeparator"
  */

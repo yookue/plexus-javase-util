@@ -29,6 +29,7 @@ import org.apache.commons.lang3.SerializationUtils;
  * Utilities for {@link org.apache.commons.lang3.SerializationUtils}
  *
  * @author David Hsing
+ *
  * @see org.apache.commons.lang3.SerializationUtils
  */
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})

@@ -39,6 +39,7 @@ import com.yookue.commonplexus.javaseutil.constant.RegexVariantConst;
  * Utilities for Base64
  *
  * @author David Hsing
+ *
  * @see org.apache.commons.codec.binary.Base64
  */
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})

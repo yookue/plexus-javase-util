@@ -47,6 +47,7 @@ import org.apache.commons.lang3.StringUtils;
  * Utilities for {@link jakarta.json.JsonStructure}
  *
  * @author David Hsing
+ *
  * @see jakarta.json.JsonStructure
  */
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})

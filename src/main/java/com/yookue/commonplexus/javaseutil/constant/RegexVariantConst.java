@@ -21,6 +21,7 @@ package com.yookue.commonplexus.javaseutil.constant;
  * Constants for regular expressions
  *
  * @author David Hsing
+ *
  * @see "org.apache.http.conn.util.InetAddressWraps"
  */
 @SuppressWarnings("unused")

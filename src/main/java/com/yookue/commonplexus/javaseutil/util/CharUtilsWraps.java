@@ -32,6 +32,7 @@ import org.apache.commons.lang3.CharUtils;
  * Utilities for {@link org.apache.commons.lang3.CharUtils}
  *
  * @author David Hsing
+ *
  * @see org.apache.commons.lang3.CharUtils
  * @see org.apache.commons.lang3.CharSequenceUtils
  */

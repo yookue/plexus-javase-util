@@ -25,6 +25,7 @@ import jakarta.annotation.Nullable;
  * Checked exception thrown when a file system operation
  *
  * @author David Hsing
+ *
  * @see java.nio.file.NotDirectoryException
  * @see java.nio.file.attribute.BasicFileAttributes
  */

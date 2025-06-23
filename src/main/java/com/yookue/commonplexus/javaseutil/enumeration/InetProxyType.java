@@ -26,6 +26,7 @@ import lombok.Getter;
  * Enumerations of inet proxy types
  *
  * @author David Hsing
+ *
  * @see java.net.Proxy.Type
  */
 @AllArgsConstructor

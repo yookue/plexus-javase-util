@@ -30,6 +30,7 @@ import org.apache.commons.lang3.ObjectUtils;
  * Utilities for {@link org.apache.commons.beanutils2.ConvertUtils}
  *
  * @author David Hsing
+ *
  * @see org.apache.commons.beanutils2.ConvertUtils
  * @see org.apache.commons.beanutils2.ConvertUtilsBean
  */

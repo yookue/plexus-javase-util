@@ -42,6 +42,7 @@ import org.apache.commons.lang3.reflect.FieldUtils;
  * Utilities for {@link org.apache.commons.lang3.reflect.FieldUtils}
  *
  * @author David Hsing
+ *
  * @see org.apache.commons.lang3.reflect.FieldUtils
  */
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})

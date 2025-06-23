@@ -36,6 +36,7 @@ import lombok.Setter;
  * Converts an object to {@link java.time.LocalTime}
  *
  * @author David Hsing
+ *
  * @see org.apache.commons.beanutils2.Converter
  * @see org.apache.commons.beanutils2.converters.LocalDateTimeConverter
  */

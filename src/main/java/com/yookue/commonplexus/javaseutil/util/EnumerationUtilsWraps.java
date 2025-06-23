@@ -34,6 +34,7 @@ import org.apache.commons.lang3.ObjectUtils;
  * Utilities for {@link org.apache.commons.collections4.EnumerationUtils}
  *
  * @author David Hsing
+ *
  * @see org.apache.commons.collections4.EnumerationUtils
  * @see org.apache.commons.collections4.IteratorUtils
  */

@@ -36,6 +36,7 @@ import com.yookue.commonplexus.javaseutil.constant.CharVariantConst;
  * Utilities for {@link org.apache.commons.lang3.ClassUtils}
  *
  * @author David Hsing
+ *
  * @see org.apache.commons.lang3.ClassUtils
  */
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})

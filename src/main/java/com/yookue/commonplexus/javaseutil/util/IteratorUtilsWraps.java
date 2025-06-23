@@ -28,6 +28,7 @@ import org.apache.commons.lang3.ObjectUtils;
  * Utilities for {@link org.apache.commons.collections4.IteratorUtils}
  *
  * @author David Hsing
+ *
  * @see org.apache.commons.collections4.IteratorUtils
  */
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})

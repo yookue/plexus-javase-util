@@ -36,6 +36,7 @@ import com.yookue.commonplexus.javaseutil.exception.UnsupportedClassException;
  * Utilities for {@link org.apache.commons.lang3.math.NumberUtils}
  *
  * @author David Hsing
+ *
  * @see org.apache.commons.lang3.math.NumberUtils
  */
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})

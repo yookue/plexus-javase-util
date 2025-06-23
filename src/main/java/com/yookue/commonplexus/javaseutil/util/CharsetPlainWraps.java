@@ -29,6 +29,7 @@ import org.apache.commons.lang3.StringUtils;
  * Utilities for {@link java.nio.charset.Charset}
  *
  * @author David Hsing
+ *
  * @see java.nio.charset.Charset
  * @see org.apache.commons.io.Charsets
  */

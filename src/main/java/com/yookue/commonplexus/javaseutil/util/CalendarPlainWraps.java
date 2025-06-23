@@ -31,6 +31,7 @@ import org.apache.commons.lang3.ObjectUtils;
  * Utilities for {@link java.util.Calendar}
  *
  * @author David Hsing
+ *
  * @see org.apache.commons.lang3.time.CalendarUtils
  */
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})

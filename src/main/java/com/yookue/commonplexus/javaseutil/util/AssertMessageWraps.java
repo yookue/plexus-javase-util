@@ -25,6 +25,7 @@ import jakarta.annotation.Nullable;
  * Utilities for assertion messages
  *
  * @author David Hsing
+ *
  * @see org.apache.commons.lang3.Validate
  * @see "org.springframework.util.Assert"
  */

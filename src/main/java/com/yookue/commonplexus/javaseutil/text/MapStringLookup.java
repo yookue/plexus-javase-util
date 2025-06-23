@@ -27,6 +27,7 @@ import org.apache.commons.text.lookup.StringLookup;
  * Lookup for {@link org.apache.commons.text.lookup.StringLookup}
  *
  * @author David Hsing
+ *
  * @see org.apache.commons.text.StringSubstitutor#StringSubstitutor(org.apache.commons.text.lookup.StringLookup)
  * @see "org.apache.commons.text.StrLookup.MapStrLookup"
  */

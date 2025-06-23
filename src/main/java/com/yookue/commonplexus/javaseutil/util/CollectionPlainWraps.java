@@ -50,6 +50,7 @@ import org.apache.commons.lang3.StringUtils;
  * Utilities for {@link java.util.Collection}
  *
  * @author David Hsing
+ *
  * @see java.util.Collections
  */
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})

@@ -49,6 +49,7 @@ import com.yookue.commonplexus.javaseutil.function.IgnorableFailable;
  * Utilities for {@link org.apache.commons.io.FileUtils}
  *
  * @author David Hsing
+ *
  * @see org.apache.commons.io.FileUtils
  */
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})

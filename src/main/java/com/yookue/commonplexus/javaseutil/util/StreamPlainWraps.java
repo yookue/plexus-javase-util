@@ -35,6 +35,7 @@ import com.yookue.commonplexus.javaseutil.iterator.EnumerationIterator;
  * Utilities for {@link java.util.stream.Stream}
  *
  * @author David Hsing
+ *
  * @see java.util.stream.Stream
  * @see java.util.stream.StreamSupport
  * @see org.apache.commons.lang3.stream.Streams

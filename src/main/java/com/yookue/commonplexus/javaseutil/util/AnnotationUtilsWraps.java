@@ -28,6 +28,7 @@ import org.apache.commons.lang3.ObjectUtils;
  * Utilities for {@link org.apache.commons.lang3.AnnotationUtils}
  *
  * @author David Hsing
+ *
  * @see java.lang.reflect.AnnotatedElement
  * @see org.apache.commons.lang3.AnnotationUtils
  */

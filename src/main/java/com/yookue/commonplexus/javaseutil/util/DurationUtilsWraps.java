@@ -33,6 +33,7 @@ import com.yookue.commonplexus.javaseutil.constant.RangeVariantConst;
  * Utilities for {@link java.time.Duration}
  *
  * @author David Hsing
+ *
  * @see org.apache.commons.lang3.time.DurationUtils
  * @see org.apache.commons.lang3.time.DurationFormatUtils
  */

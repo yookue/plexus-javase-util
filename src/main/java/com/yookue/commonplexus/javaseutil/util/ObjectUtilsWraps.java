@@ -38,6 +38,7 @@ import com.yookue.commonplexus.javaseutil.exception.UnsupportedClassException;
  * Utilities for {@link org.apache.commons.lang3.ObjectUtils}
  *
  * @author David Hsing
+ *
  * @see org.apache.commons.lang3.ObjectUtils
  */
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})

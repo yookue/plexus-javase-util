@@ -25,6 +25,7 @@ import lombok.Getter;
  * Utilities for detecting docker
  *
  * @author David Hsing
+ *
  * @see "com.baidu.fsg.uid.utils.DockerUtils"
  */
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})

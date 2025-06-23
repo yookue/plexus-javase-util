@@ -32,6 +32,7 @@ import com.yookue.commonplexus.javaseutil.util.JdkDateWraps;
  * Converts an object to {@link java.sql.Date}
  *
  * @author David Hsing
+ *
  * @see org.apache.commons.beanutils2.Converter
  */
 @SuppressWarnings("unused")

@@ -25,6 +25,7 @@ import org.apache.commons.lang3.math.NumberUtils;
  * Constants for range variants
  *
  * @author David Hsing
+ *
  * @see org.apache.commons.lang3.Range
  */
 @SuppressWarnings("unused")

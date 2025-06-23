@@ -31,6 +31,7 @@ import com.yookue.commonplexus.javaseutil.util.JdkDateWraps;
  * Converts an object to {@link java.util.Date}
  *
  * @author David Hsing
+ *
  * @see org.apache.commons.beanutils2.Converter
  * @see org.apache.commons.beanutils2.converters.DateConverter
  */

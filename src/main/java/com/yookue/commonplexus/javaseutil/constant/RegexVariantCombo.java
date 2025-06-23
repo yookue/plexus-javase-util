@@ -21,6 +21,7 @@ package com.yookue.commonplexus.javaseutil.constant;
  * Combinations of regular expressions
  *
  * @author David Hsing
+ *
  * @see <a href="https://www.runoob.com/regexp/regexp-metachar.html">https://www.runoob.com/regexp/regexp-metachar.html</a>
  * @see <a href="https://regexr.com/">https://regexr.com/</a>
  */

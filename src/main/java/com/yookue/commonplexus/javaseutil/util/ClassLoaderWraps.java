@@ -29,6 +29,7 @@ import org.apache.commons.lang3.ClassLoaderUtils;
  * Utilities for {@link org.apache.commons.lang3.ClassLoaderUtils}
  *
  * @author David Hsing
+ *
  * @see org.apache.commons.lang3.ClassLoaderUtils
  */
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})

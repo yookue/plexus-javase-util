@@ -25,6 +25,7 @@ import lombok.experimental.StandardException;
  * Thrown to indicate that the requested class is unsupported
  *
  * @author David Hsing
+ *
  * @see java.lang.CloneNotSupportedException
  * @see java.lang.UnsupportedClassVersionError
  * @see java.lang.UnsupportedOperationException

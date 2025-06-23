@@ -26,6 +26,7 @@ import com.aventrix.jnanoid.jnanoid.NanoIdUtils;
  * Nano id generator by {@link java.util.UUID}
  *
  * @author David Hsing
+ *
  * @see "org.springframework.util.JdkIdGenerator"
  */
 @SuppressWarnings("unused")

@@ -26,6 +26,7 @@ import org.apache.commons.lang3.StringUtils;
  * Utilities for {@link java.lang.CharSequence}
  *
  * @author David Hsing
+ *
  * @see org.apache.commons.lang3.CharSequenceUtils
  */
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})

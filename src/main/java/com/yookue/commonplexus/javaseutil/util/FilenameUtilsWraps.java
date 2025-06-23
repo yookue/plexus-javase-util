@@ -27,6 +27,7 @@ import org.apache.commons.lang3.StringUtils;
  * Utilities for {@link org.apache.commons.io.FilenameUtils}
  *
  * @author David Hsing
+ *
  * @see org.apache.commons.io.FilenameUtils
  */
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})

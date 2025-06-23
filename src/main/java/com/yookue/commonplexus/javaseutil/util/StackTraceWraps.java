@@ -29,6 +29,7 @@ import com.yookue.commonplexus.javaseutil.constant.CharVariantConst;
  * Utilities for {@link java.lang.StackTraceElement}
  *
  * @author David Hsing
+ *
  * @see org.apache.commons.lang3.exception.ExceptionUtils
  * @see "org.codehaus.groovy.runtime.StackTraceUtils"
  */

@@ -33,6 +33,7 @@ import com.yookue.commonplexus.javaseutil.constant.LocaleAreaCombo;
  * Utilities for {@link java.util.Locale}
  *
  * @author David Hsing
+ *
  * @see org.apache.commons.lang3.LocaleUtils
  */
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})

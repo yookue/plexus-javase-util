@@ -21,6 +21,7 @@ package com.yookue.commonplexus.javaseutil.constant;
  * Constants for chrono units
  *
  * @author David Hsing
+ *
  * @see java.time.temporal.ChronoUnit
  */
 @SuppressWarnings("unused")

@@ -21,6 +21,7 @@ package com.yookue.commonplexus.javaseutil.constant;
  * Constants for assertion messages
  *
  * @author David Hsing
+ *
  * @see "org.springframework.util.Assert"
  */
 @SuppressWarnings("unused")

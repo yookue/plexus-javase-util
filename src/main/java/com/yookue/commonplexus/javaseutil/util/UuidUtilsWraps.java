@@ -30,6 +30,7 @@ import com.yookue.commonplexus.javaseutil.constant.CharVariantConst;
  * Utilities for transforming {@link java.util.UUID}
  *
  * @author David Hsing
+ *
  * @see "org.apache.logging.log4j.core.util.UuidUtil"
  * @see "org.springframework.core.convert.support.StringToUUIDConverter"
  */

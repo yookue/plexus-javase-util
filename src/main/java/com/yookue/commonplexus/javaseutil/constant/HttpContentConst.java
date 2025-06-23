@@ -21,6 +21,7 @@ package com.yookue.commonplexus.javaseutil.constant;
  * Constants for http contents
  *
  * @author David Hsing
+ *
  * @see "org.springframework.http.ContentDisposition"
  */
 @SuppressWarnings("unused")

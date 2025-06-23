@@ -26,6 +26,7 @@ import jakarta.annotation.Nullable;
  * Structure for HTML "&lt;script&gt;" node
  *
  * @author David Hsing
+ *
  * @see "org.springframework.web.util.JavaScriptUtils"
  */
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})

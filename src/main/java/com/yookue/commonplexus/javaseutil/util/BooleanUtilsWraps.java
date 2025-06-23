@@ -30,6 +30,7 @@ import org.apache.commons.lang3.StringUtils;
  * Utilities for {@link org.apache.commons.lang3.BooleanUtils}
  *
  * @author David Hsing
+ *
  * @see org.apache.commons.lang3.BooleanUtils
  */
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})
