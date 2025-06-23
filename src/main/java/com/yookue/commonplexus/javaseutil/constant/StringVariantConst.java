@@ -73,9 +73,11 @@ public abstract class StringVariantConst {
     public static final String REDIRECT = "redirect";    // $NON-NLS-1$
     public static final String REFERRER = "referrer";    // $NON-NLS-1$
     public static final String REMEMBER_ME = "rememberMe";    // $NON-NLS-1$
+    public static final String RESOURCES = "resources";    // $NON-NLS-1$
     public static final String SERIAL = "serial";    // $NON-NLS-1$
     public static final String SERIAL_VERSION_UID = "serialVersionUID";    // $NON-NLS-1$
     public static final String SESSION = "SESSION";    // $NON-NLS-1$
+    public static final String SUPERVISOR = "supervisor";    // $NON-NLS-1$
     public static final String SYSTEM = "system";    // $NON-NLS-1$
     public static final String TEST_CLASSES = "test_classes";    // $NON-NLS-1$
     public static final String THEME = "theme";    // $NON-NLS-1$
