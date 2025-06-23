@@ -52,6 +52,7 @@ public abstract class StringVariantConst {
     // @see "org.springframework.util.ResourceUtils#URL_PROTOCOL_FILE"
     public static final String FILE = "file";    // $NON-NLS-1$
     public static final String FILENAME = "filename";    // $NON-NLS-1$
+    public static final String FORWARD = "forward";    // $NON-NLS-1$
     public static final String INSTANCE = "instance";    // $NON-NLS-1$
     // @see "org.springframework.mock.web.MockHttpSession#SESSION_COOKIE_NAME"
     public static final String JSESSION = "JSESSION";    // $NON-NLS-1$
@@ -69,6 +70,7 @@ public abstract class StringVariantConst {
     public static final String PROPERTY = "property";    // $NON-NLS-1$
     public static final String PROPERTIES = "properties";    // $NON-NLS-1$
     public static final String RANDOM = "random";    // $NON-NLS-1$
+    public static final String REDIRECT = "redirect";    // $NON-NLS-1$
     public static final String REFERRER = "referrer";    // $NON-NLS-1$
     public static final String REMEMBER_ME = "rememberMe";    // $NON-NLS-1$
     public static final String SERIAL = "serial";    // $NON-NLS-1$
