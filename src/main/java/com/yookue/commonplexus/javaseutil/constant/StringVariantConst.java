@@ -69,6 +69,7 @@ public abstract class StringVariantConst {
     public static final String NONE = "none";    // $NON-NLS-1$
     public static final String NULL = "null";    // $NON-NLS-1$
     public static final String PASSWORD = "password";    // $NON-NLS-1$
+    public static final String PATTERN = "pattern";    // $NON-NLS-1$
     public static final String PROPERTY = "property";    // $NON-NLS-1$
     public static final String PROPERTIES = "properties";    // $NON-NLS-1$
     public static final String RANDOM = "random";    // $NON-NLS-1$
