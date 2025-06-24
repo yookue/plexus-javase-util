@@ -68,6 +68,7 @@ public abstract class StringVariantConst {
     public static final String NAME = "name";    // $NON-NLS-1$
     public static final String NONE = "none";    // $NON-NLS-1$
     public static final String NULL = "null";    // $NON-NLS-1$
+    public static final String PASSWORD = "password";    // $NON-NLS-1$
     public static final String PROPERTY = "property";    // $NON-NLS-1$
     public static final String PROPERTIES = "properties";    // $NON-NLS-1$
     public static final String RANDOM = "random";    // $NON-NLS-1$
@@ -84,6 +85,7 @@ public abstract class StringVariantConst {
     public static final String THEME = "theme";    // $NON-NLS-1$
     public static final String TOKEN = "token";    // $NON-NLS-1$
     public static final String TRACE_ID = "traceId";    // $NON-NLS-1$
+    public static final String USERNAME = "username";    // $NON-NLS-1$
     public static final String UNDEFINED = "undefined";    // $NON-NLS-1$
     public static final String UNKNOWN = "unknown";    // $NON-NLS-1$
     public static final String URI = "URI";    // $NON-NLS-1$
