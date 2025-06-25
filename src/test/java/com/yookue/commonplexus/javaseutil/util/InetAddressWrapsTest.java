@@ -31,16 +31,23 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 class InetAddressWrapsTest {
     @Test
-    void localIpAddress() {
+    void getLocalIpAddress() {
         String result = InetAddressWraps.getLocalIpAddressQuietly();
         log.info("{}: {}", StackTraceWraps.getExecutingMethodName(), result);
         Assertions.assertNotNull(result);
     }
 
     @Test
-    void localMacAddress() {
+    void getLocalMacAddress() {
         List<String> result = InetAddressWraps.getLocalMacAddressQuietly();
         log.info("{}: {}", StackTraceWraps.getExecutingMethodName(), StringUtilsWraps.joinWithCommaSpace(result));
         Assertions.assertNotNull(result);
+    }
+
+    @Test
+    void isLanAddress() {
+        boolean result = InetAddressWraps.isLanAddress("169.254.173.183");
+        log.info("{}: {}", StackTraceWraps.getExecutingMethodName(), result);
+        Assertions.assertTrue(result);
     }
 }
