@@ -58,6 +58,7 @@ public abstract class StringVariantConst {
     // @see "org.springframework.mock.web.MockHttpSession#SESSION_COOKIE_NAME"
     public static final String JSESSION = "JSESSION";    // $NON-NLS-1$
     public static final String JSESSIONID = "JSESSIONID";    // $NON-NLS-1$
+    public static final String LABEL = "label";    // $NON-NLS-1$
     public static final String LANG = "lang";    // $NON-NLS-1$
     public static final String LANG_TAG = "langTag";    // $NON-NLS-1$
     public static final String LATEST = "latest";    // $NON-NLS-1$
@@ -68,6 +69,7 @@ public abstract class StringVariantConst {
     public static final String NAME = "name";    // $NON-NLS-1$
     public static final String NONE = "none";    // $NON-NLS-1$
     public static final String NULL = "null";    // $NON-NLS-1$
+    public static final String PARENT = "parent";    // $NON-NLS-1$
     public static final String PASSWORD = "password";    // $NON-NLS-1$
     public static final String PATTERN = "pattern";    // $NON-NLS-1$
     public static final String PROPERTY = "property";    // $NON-NLS-1$
