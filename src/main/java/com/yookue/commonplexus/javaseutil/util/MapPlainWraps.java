@@ -1557,55 +1557,55 @@ public abstract class MapPlainWraps {
     }
 
     /**
-     * Returns the sorted map which converts the plain list to tree list, joining with the children prop
+     * Returns the sorted list of maps which converts the plain list to tree list, joining with the children prop
      *
      * @param maps the source maps to inspect
-     * @param idKey the id key to identify each record, such as "id"
-     * @param pidKey the parent key to identify the parent record of current, such as "pid"
-     * @param childrenKey the children key to organize children records, such as "children"
-     * @param comparator comparator to sort records
+     * @param idKey the id key to identify each source map, such as "id"
+     * @param pidKey the parent key to identify the parent source map, such as "pid"
+     * @param childrenKey the children key to organize children source maps, such as "children"
+     * @param comparator comparator to sort maps
      *
-     * @return the sorted map which converts the plain list to tree list, joining with the children prop
+     * @return the sorted list of maps which converts the plain list to tree list, joining with the children prop
      */
     @Nullable
     public static List<Map<String, Object>> sortChildrenTree(@Nullable Collection<Map<String, Object>> maps, @Nullable String idKey, @Nullable String pidKey, @Nullable String childrenKey, @Nullable Comparator<Map<String, Object>> comparator) {
         if (CollectionPlainWraps.isEmpty(maps) || StringUtils.isAnyBlank(idKey, pidKey, childrenKey)) {
             return null;
         }
-        Map<String, Map<String, Object>> indexes = new HashMap<>(maps.size());
+        Map<Object, Map<String, Object>> indexes = new HashMap<>(maps.size());
+        // Initialize all nodes with an empty children list
         for (Map<String, Object> map : maps) {
-            String idValue = getString(map, idKey);
-            if (StringUtils.isNotBlank(idValue)) {
-                Map<String, Object> alias = new LinkedHashMap<>(map);
-                alias.remove(childrenKey);
-                indexes.put(idValue, alias);
+            if (map == null) {
+                continue;
+            }
+            Object idValue = map.get(idKey);
+            if (idValue != null) {
+                map.put(childrenKey, new ArrayList<Map<String, Object>>());
+                indexes.put(idValue, map);
             }
         }
         if (isEmpty(indexes)) {
             return null;
         }
+        // Build the tree
         List<Map<String, Object>> roots = new ArrayList<>(maps.size());
         for (Map<String, Object> map : maps) {
-            String pidValue = getString(map, pidKey);
-            if (StringUtils.isBlank(pidValue)) {
+            Object pidValue = map.get(pidKey);
+            if (ObjectUtils.isEmpty(pidValue) || !indexes.containsKey(pidValue)) {
                 roots.add(map);
             } else {
                 Map<String, Object> parent = indexes.get(pidValue);
-                if (parent != null) {
-                    Object children = getObject(parent, childrenKey);
-                    if (children == null) {
-                        parent.put(childrenKey, CollectionPlainWraps.newArrayListWithin(map));
-                    } else if (children instanceof Collection<?> alias) {
-                        @SuppressWarnings("unchecked")
-                        List<Map<String, Object>> clone = new ArrayList<>((Collection<? extends Map<String, Object>>) alias);
-                        clone.add(map);
-                        if (comparator != null) {
-                            clone.sort(comparator);
-                        }
-                        parent.put(childrenKey, clone);
-                    }
+                @SuppressWarnings("unchecked")
+                List<Map<String, Object>> children = (List<Map<String, Object>>) parent.get(childrenKey);
+                children.add(map);
+                if (comparator != null) {
+                    children.sort(comparator);
                 }
             }
+        }
+        // Sort root nodes if comparator is provided
+        if (comparator != null) {
+            roots.sort(comparator);
         }
         return roots.isEmpty() ? null : roots;
     }

@@ -18,6 +18,7 @@ package com.yookue.commonplexus.javaseutil.util;
 
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import org.junit.jupiter.api.Assertions;
@@ -68,6 +69,6 @@ class MapPlainWrapsTest {
         income.add(MapPlainWraps.newHashMapWithin("id", "4", "pid", "2"));
         income.add(MapPlainWraps.newHashMapWithin("id", "5", "pid", "2"));
         List<Map<String, Object>> outcome = MapPlainWraps.sortChildrenTree(income, "id", "pid", "children");
-        Assertions.assertTrue(outcome != null && outcome.size() == 1);
+        Assertions.assertTrue(outcome != null && outcome.size() == 1 && CollectionPlainWraps.size((Collection<?>) outcome.get(0).get("children")) == 2);
     }
 }
