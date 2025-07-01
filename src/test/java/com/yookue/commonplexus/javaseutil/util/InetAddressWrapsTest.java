@@ -32,14 +32,14 @@ import lombok.extern.slf4j.Slf4j;
 class InetAddressWrapsTest {
     @Test
     void getLocalIpAddress() {
-        String result = InetAddressWraps.getLocalIpAddressQuietly();
+        String result = InetAddressWraps.getLocalIpAddress();
         log.info("{}: {}", StackTraceWraps.getExecutingMethodName(), result);
         Assertions.assertNotNull(result);
     }
 
     @Test
-    void getLocalMacAddress() {
-        List<String> result = InetAddressWraps.getLocalMacAddressQuietly();
+    void getLocalMacAddresses() {
+        List<String> result = InetAddressWraps.getLocalMacAddresses();
         log.info("{}: {}", StackTraceWraps.getExecutingMethodName(), StringUtilsWraps.joinWithCommaSpace(result));
         Assertions.assertNotNull(result);
     }

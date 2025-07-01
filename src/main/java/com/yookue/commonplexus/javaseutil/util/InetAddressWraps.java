@@ -19,8 +19,6 @@ package com.yookue.commonplexus.javaseutil.util;
 
 import java.net.InetAddress;
 import java.net.NetworkInterface;
-import java.net.SocketException;
-import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
@@ -44,43 +42,25 @@ import com.yookue.commonplexus.javaseutil.constant.RegexVariantConst;
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})
 public abstract class InetAddressWraps {
     @Nullable
-    public static byte[] getAddressBytes(@Nullable String ipAddress) {
-        InetAddress address = getByName(ipAddress);
-        return (address == null) ? null : address.getAddress();
-    }
-
-    @Nullable
-    public static InetAddress[] getAllByName(@Nullable String host) {
-        if (StringUtils.isBlank(host)) {
-            return null;
-        }
-        try {
-            return InetAddress.getAllByName(host);
-        } catch (Exception ignored) {
-        }
-        return null;
-    }
-
-    @Nullable
-    public static InetAddress getByAddress(@Nullable byte[] ipAddress) {
-        return getByAddress(null, ipAddress);
+    public static InetAddress getInetAddressByHost(@Nullable byte[] address) {
+        return getInetAddressByHost(null, address);
     }
 
     @Nullable
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
-    public static InetAddress getByAddress(@Nullable String host, @Nullable byte[] ipAddress) {
-        if (ArrayUtils.isEmpty(ipAddress)) {
+    public static InetAddress getInetAddressByHost(@Nullable String host, @Nullable byte[] address) {
+        if (ArrayUtils.isEmpty(address)) {
             return null;
         }
         try {
-            return InetAddress.getByAddress(host, ipAddress);
+            return InetAddress.getByAddress(host, address);
         } catch (Exception ignored) {
         }
         return null;
     }
 
     @Nullable
-    public static InetAddress getByName(@Nullable String host) {
+    public static InetAddress getInetAddressByName(@Nullable String host) {
         if (StringUtils.isBlank(host)) {
             return null;
         }
@@ -91,72 +71,70 @@ public abstract class InetAddressWraps {
         return null;
     }
 
-    public static String getLocalIpAddress() throws UnknownHostException {
-        return InetAddress.getLocalHost().getHostAddress();
-    }
-
     @Nullable
-    public static String getLocalIpAddressQuietly() {
+    public static InetAddress[] getInetAddressesByName(@Nullable String host) {
+        if (StringUtils.isBlank(host)) {
+            return null;
+        }
         try {
-            return getLocalIpAddress();
+            return InetAddress.getAllByName(host);
         } catch (Exception ignored) {
         }
         return null;
     }
 
-    @Nullable
-    public static List<String> getLocalMacAddress() throws SocketException {
-        List<String> result = new ArrayList<>();
-        Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces();
-        while (interfaces.hasMoreElements()) {
-            NetworkInterface interfacing = interfaces.nextElement();
-            if (interfacing.isLoopback() || interfacing.isVirtual() || interfacing.isPointToPoint() || !interfacing.isUp()) {
-                continue;
-            }
-            byte[] address = interfacing.getHardwareAddress();
-            if (ArrayUtils.isEmpty(address)) {
-                continue;
-            }
-            StringBuilder builder = new StringBuilder();
-            for (int i = 0; i < address.length; i++) {
-                builder.append(String.format("%02X%s", address[i], (i < address.length - 1) ? CharVariantConst.HYPHEN : StringUtils.EMPTY));    // $NON-NLS-1$
-            }
-            result.add(builder.toString());
-        }
-        return result.isEmpty() ? null : result.stream().distinct().collect(Collectors.toList());
+    public static String getLocalIpAddress() {
+        return getLocalIpAddress(false);
     }
 
     @Nullable
-    public static List<String> getLocalMacAddressQuietly() {
+    public static String getLocalIpAddress(boolean useDefault) {
         try {
-            return getLocalMacAddress();
+            return InetAddress.getLocalHost().getHostAddress();
+        } catch (Exception ignored) {
+        }
+        return !useDefault ? null : InetAddressConst.LOCALHOST_IPV4;
+    }
+
+    @Nullable
+    public static List<String> getLocalMacAddresses() {
+        try {
+            List<String> result = new ArrayList<>();
+            Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces();
+            while (interfaces.hasMoreElements()) {
+                NetworkInterface interfacing = interfaces.nextElement();
+                if (interfacing.isLoopback() || interfacing.isVirtual() || interfacing.isPointToPoint() || !interfacing.isUp()) {
+                    continue;
+                }
+                byte[] address = interfacing.getHardwareAddress();
+                if (ArrayUtils.isEmpty(address)) {
+                    continue;
+                }
+                StringBuilder builder = new StringBuilder();
+                for (int i = 0; i < address.length; i++) {
+                    builder.append(String.format("%02X%s", address[i], (i < address.length - 1) ? CharVariantConst.HYPHEN : StringUtils.EMPTY));    // $NON-NLS-1$
+                }
+                result.add(builder.toString());
+            }
+            return result.isEmpty() ? null : result.stream().distinct().collect(Collectors.toList());
         } catch (Exception ignored) {
         }
         return null;
     }
 
-    public static boolean isLanAddress(@Nullable String ipAddress) {
-        return StringUtils.isNotBlank(ipAddress) && Pattern.matches(RegexVariantConst.LAN_ADDRESS_IPV4, ipAddress);
+    public static boolean isLanAddress(@Nullable String address) {
+        return StringUtils.isNotBlank(address) && (StringUtils.equalsIgnoreCase(address, InetAddressConst.LOCALHOST_NAME) || Pattern.matches(RegexVariantConst.LAN_ADDRESS_IPV4, address));
     }
 
     /**
      * Returns an ip address of LAN from localhost one
      *
-     * @param ipAddress the localhost ip address, such as '127.0.0.1'
+     * @param address the localhost ip address, such as '127.0.0.1'
      *
      * @return an ip address of LAN from localhost one
      */
-    public static String toLanAddress(@Nullable String ipAddress) throws UnknownHostException {
-        return StringUtils.equalsAny(ipAddress, InetAddressConst.LOCALHOST_IPV4, InetAddressConst.LOCALHOST_IPV6) ? getLocalIpAddress() : ipAddress;
-    }
-
-    @Nullable
-    public static String toLanAddressQuietly(@Nullable String ipAddress) {
-        try {
-            return toLanAddress(ipAddress);
-        } catch (Exception ignored) {
-        }
-        return null;
+    public static String toLanAddress(@Nullable String address) {
+        return StringUtils.equalsAny(address, InetAddressConst.LOCALHOST_NAME, InetAddressConst.LOCALHOST_IPV4, InetAddressConst.LOCALHOST_IPV6) ? getLocalIpAddress() : address;
     }
 
     /**
