@@ -89,6 +89,7 @@ public abstract class StringVariantConst {
     public static final String THEME = "theme";    // $NON-NLS-1$
     public static final String TOKEN = "token";    // $NON-NLS-1$
     public static final String TRACE_ID = "traceId";    // $NON-NLS-1$
+    public static final String USER_ID = "userId";    // $NON-NLS-1$
     public static final String USERNAME = "username";    // $NON-NLS-1$
     public static final String UNDEFINED = "undefined";    // $NON-NLS-1$
     public static final String UNKNOWN = "unknown";    // $NON-NLS-1$
