@@ -48,6 +48,7 @@ public abstract class StringVariantConst {
     // @see "org.springframework.core.io.support.ResourcePatternResolver#CLASSPATH_ALL_URL_PREFIX"
     public static final String CLASSPATH_STAR_COLON = CLASSPATH + "*:";    // $NON-NLS-1$
     public static final String CURRENT = "current";    // $NON-NLS-1$
+    public static final String DATA_SPACE = "data: ";    // $NON-NLS-1$
     public static final String DEFAULT = "default";    // $NON-NLS-1$
     public static final String ENABLED = "enabled";    // $NON-NLS-1$
     // @see "org.springframework.util.ResourceUtils#URL_PROTOCOL_FILE"

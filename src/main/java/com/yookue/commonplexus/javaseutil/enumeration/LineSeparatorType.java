@@ -35,9 +35,9 @@ import lombok.Getter;
 @SuppressWarnings("unused")
 public enum LineSeparatorType implements ValueEnum<String> {
     AUTO(System.lineSeparator()),
-    CR("\r"),    //Mac // $NON-NLS-1$
-    CRLF("\r\n"),    //Windows // $NON-NLS-1$
-    LF("\n");    //Unix // $NON-NLS-1$
+    CR("\r"),    // Traditional Mac // $NON-NLS-1$
+    CRLF("\r\n"),    // Windows // $NON-NLS-1$
+    LF("\n");    // Unix/Linux and modern Mac // $NON-NLS-1$
 
     private final String value;
 }

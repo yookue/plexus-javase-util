@@ -36,6 +36,8 @@ public abstract class SymbolVariantConst {
     public static final String HEX_ORDER_SQUARES = "[0x%d]";    // $NON-NLS-1$
     public static final String JAVASCRIPT_COLON = "javascript:";    // $NON-NLS-1$
     public static final String JAVASCRIPT_VOID = JAVASCRIPT_COLON + "void(0);";    // $NON-NLS-1$
+    public static final String LFS = "\n\n";    // $NON-NLS-1$
+    public static final String NA = "N/A";    // $NON-NLS-1$
     public static final String ORDER_ANGLES = "<%d>";    // $NON-NLS-1$
     public static final String ORDER_ANGLES_SPACE = ORDER_ANGLES + CharVariantConst.SPACE;
     public static final String ORDER_COLON = "%d:";    // $NON-NLS-1$
