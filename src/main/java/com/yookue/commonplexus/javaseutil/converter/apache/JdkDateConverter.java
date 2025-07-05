@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Yookue Ltd. All rights reserved.
+ * Copyright (c) 2025 Yookue Ltd. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,17 +14,18 @@
  * limitations under the License.
  */
 
-package com.yookue.commonplexus.javaseutil.converter;
+package com.yookue.commonplexus.javaseutil.converter.apache;
 
 
 import java.util.Date;
 import jakarta.annotation.Nonnull;
 import jakarta.annotation.Nullable;
 import org.apache.commons.beanutils2.converters.DateTimeConverter;
-import org.apache.commons.lang3.ArrayUtils;
-import org.apache.commons.lang3.ClassUtils;
 import com.yookue.commonplexus.javaseutil.constant.TemporalFormatCombo;
 import com.yookue.commonplexus.javaseutil.util.JdkDateWraps;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 
 /**
@@ -35,31 +36,31 @@ import com.yookue.commonplexus.javaseutil.util.JdkDateWraps;
  * @see org.apache.commons.beanutils2.Converter
  * @see org.apache.commons.beanutils2.converters.DateConverter
  */
+@Getter
+@Setter
+@NoArgsConstructor
 @SuppressWarnings("unused")
 public class JdkDateConverter extends DateTimeConverter<Date> {
-    public JdkDateConverter() {
-        super.setPatterns(TemporalFormatCombo.ALL_DATETIME_DATES);
-    }
+    private String[] formats = TemporalFormatCombo.ALL_DATETIME_DATES;
 
     public JdkDateConverter(@Nullable Date defaultValue) {
         super(defaultValue);
-        super.setPatterns(TemporalFormatCombo.ALL_DATETIME_DATES);
     }
 
     @Override
     protected <T> T convertToType(@Nonnull Class<T> type, @Nullable Object value) throws Exception {
-        if (!ClassUtils.isAssignable(type, getDefaultType())) {
-            throw super.conversionException(type, value);
-        }
-        if (!(value instanceof String alias) || ArrayUtils.isEmpty(super.getPatterns())) {
+        if (value == null) {
             return null;
         }
-        for (String pattern : super.getPatterns()) {
-            if (JdkDateWraps.matchFormat(alias, pattern)) {
-                return type.cast(JdkDateWraps.parseDate(alias, pattern));
+        if (value instanceof String alias) {
+            for (String pattern : super.getPatterns()) {
+                T result = type.cast(JdkDateWraps.parseDate(alias, pattern));
+                if (result != null) {
+                    return result;
+                }
             }
         }
-        return null;
+        return super.convertToType(type, value);
     }
 
     @Override

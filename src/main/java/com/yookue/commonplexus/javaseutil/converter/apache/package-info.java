@@ -16,7 +16,7 @@
 
 
 /**
- * Implemented classes of bean converter
+ * Implemented classes of apache commons-beanutils converter
  */
 
-package com.yookue.commonplexus.javaseutil.converter;
+package com.yookue.commonplexus.javaseutil.converter.apache;

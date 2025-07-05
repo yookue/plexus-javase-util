@@ -649,4 +649,9 @@ public abstract class LocalDateWraps {
     public static Date toJdkDate(@Nullable LocalTime time) {
         return (time == null) ? null : toJdkDate(LocalDateTime.of(LocalDate.now(), time));
     }
+
+    @Nullable
+    public static LocalDateTime toLocalDateTime(@Nullable LocalDate date) {
+        return (date == null) ? null : LocalDateTime.of(date, LocalTime.MIDNIGHT);
+    }
 }

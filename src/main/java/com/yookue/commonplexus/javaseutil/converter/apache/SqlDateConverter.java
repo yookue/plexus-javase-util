@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Yookue Ltd. All rights reserved.
+ * Copyright (c) 2025 Yookue Ltd. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,18 +14,19 @@
  * limitations under the License.
  */
 
-package com.yookue.commonplexus.javaseutil.converter;
+package com.yookue.commonplexus.javaseutil.converter.apache;
 
 
 import java.sql.Date;
 import jakarta.annotation.Nonnull;
 import jakarta.annotation.Nullable;
 import org.apache.commons.beanutils2.converters.DateTimeConverter;
-import org.apache.commons.lang3.ArrayUtils;
-import org.apache.commons.lang3.ClassUtils;
 import com.yookue.commonplexus.javaseutil.constant.TemporalFormatCombo;
-import com.yookue.commonplexus.javaseutil.util.SqlDateWraps;
 import com.yookue.commonplexus.javaseutil.util.JdkDateWraps;
+import com.yookue.commonplexus.javaseutil.util.SqlDateWraps;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 
 /**
@@ -34,32 +35,33 @@ import com.yookue.commonplexus.javaseutil.util.JdkDateWraps;
  * @author David Hsing
  *
  * @see org.apache.commons.beanutils2.Converter
+ * @see org.apache.commons.beanutils2.sql.converters.SqlDateConverter
  */
+@Getter
+@Setter
+@NoArgsConstructor
 @SuppressWarnings("unused")
 public class SqlDateConverter extends DateTimeConverter<Date> {
-    public SqlDateConverter() {
-        super.setPatterns(TemporalFormatCombo.ALL_DATETIME_DATES);
-    }
+    private String[] formats = TemporalFormatCombo.ALL_DATETIME_DATES;
 
     public SqlDateConverter(@Nullable Date defaultValue) {
         super(defaultValue);
-        super.setPatterns(TemporalFormatCombo.ALL_DATETIME_DATES);
     }
 
     @Override
     protected <T> T convertToType(@Nonnull Class<T> type, @Nullable Object value) throws Exception {
-        if (!ClassUtils.isAssignable(type, getDefaultType())) {
-            throw super.conversionException(type, value);
-        }
-        if (!(value instanceof String alias) || ArrayUtils.isEmpty(super.getPatterns())) {
+        if (value == null) {
             return null;
         }
-        for (String pattern : super.getPatterns()) {
-            if (JdkDateWraps.matchFormat(alias, pattern)) {
-                return type.cast(SqlDateWraps.ofJdkDate(JdkDateWraps.parseDate(alias, pattern)));
+        if (value instanceof String alias) {
+            for (String pattern : super.getPatterns()) {
+                java.util.Date result = JdkDateWraps.parseDate(alias, pattern);
+                if (result != null) {
+                    return type.cast(SqlDateWraps.ofJdkDate(result));
+                }
             }
         }
-        return null;
+        return super.convertToType(type, value);
     }
 
     @Override

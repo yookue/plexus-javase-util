@@ -17,16 +17,26 @@
 package com.yookue.commonplexus.javaseutil.util;
 
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Properties;
 import java.util.function.BiFunction;
 import java.util.function.BiPredicate;
 import jakarta.annotation.Nullable;
+import org.apache.commons.beanutils2.BeanIntrospector;
 import org.apache.commons.beanutils2.BeanMap;
 import org.apache.commons.beanutils2.BeanUtils;
+import org.apache.commons.beanutils2.BeanUtilsBean;
+import org.apache.commons.beanutils2.ConvertUtils;
+import org.apache.commons.beanutils2.Converter;
+import org.apache.commons.beanutils2.FluentPropertyBeanIntrospector;
+import org.apache.commons.beanutils2.PropertyUtils;
+import org.apache.commons.beanutils2.PropertyUtilsBean;
+import org.apache.commons.beanutils2.converters.ArrayConverter;
 import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -45,13 +55,21 @@ import com.yookue.commonplexus.javaseutil.structure.BooleanDataStruct;
  * @see org.apache.commons.beanutils2.BeanUtils
  * @see org.apache.commons.beanutils2.BeanUtilsBean
  * @see org.apache.commons.beanutils2.BeanMap
+ * @see org.apache.commons.beanutils2.ConvertUtils
+ * @see org.apache.commons.beanutils2.ConvertUtilsBean
  *
  * @reference "https://gitbox.apache.org/repos/asf?p=commons-beanutils.git;a=tree"
  */
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue", "JavadocDeclaration", "JavadocLinkAsPlainText"})
 public abstract class BeanUtilsWraps {
     static {
-        BeanIntrospectorWraps.initPropertyIntrospectors();
+        initPropertyIntrospectors();
+    }
+
+    public static void initPropertyIntrospectors() {
+        if (!containsPropertyIntrospector(FluentPropertyBeanIntrospector.class)) {
+            PropertyUtils.addBeanIntrospector(new FluentPropertyBeanIntrospector());
+        }
     }
 
     public static void copyProperties(@Nullable Object target, @Nullable Object source) throws BeanInvocationException {
@@ -527,5 +545,46 @@ public abstract class BeanUtilsWraps {
         } catch (Exception ignored) {
         }
         return false;
+    }
+
+    /**
+     * @see org.apache.commons.beanutils2.BeanIntrospector
+     */
+    public static boolean containsPropertyIntrospector(@Nullable Class<? extends BeanIntrospector> clazz) {
+        if (clazz == null) {
+            return false;
+        }
+        PropertyUtilsBean bean = BeanUtilsBean.getInstance().getPropertyUtils();
+        if (bean == null) {
+            return false;
+        }
+        List<?> introspectors = FieldUtilsWraps.readDeclaredFieldAs(bean, "introspectors", true, List.class);    // $NON-NLS-1$
+        return CollectionPlainWraps.isNotEmpty(introspectors) && introspectors.stream().filter(Objects::nonNull).anyMatch(element -> ClassUtilsWraps.isAssignableValue(clazz, element));
+    }
+
+    /**
+     * @see org.apache.commons.beanutils2.ConvertUtilsBean#registerArrayConverter
+     */
+    @SuppressWarnings({"unchecked", "DataFlowIssue", "RedundantSuppression", "JavadocReference"})
+    public static <T> void registerArrayConverter(@Nullable Class<T> clazz, @Nullable Converter<T> converter) {
+        if (ObjectUtils.allNotNull(clazz, converter)) {
+            Class<T[]> arrayType = (Class<T[]>) Array.newInstance(clazz, 0).getClass();
+            Converter<T[]> arrayConverter = new ArrayConverter<>(arrayType, converter, 0);
+            ConvertUtils.register(arrayConverter, arrayType);
+        }
+    }
+
+    public static <T> void registerClassConverter(@Nullable Class<T> clazz, @Nullable Converter<T> converter) {
+        if (ObjectUtils.allNotNull(clazz, converter)) {
+            ConvertUtils.register(converter, clazz);
+            registerArrayConverter(clazz, converter);
+        }
+    }
+
+    /**
+     * @see org.apache.commons.beanutils2.ConvertUtilsBean#register(boolean, boolean, int)
+     */
+    public static void registerNullConverter() {
+        BeanUtilsBean.getInstance().getConvertUtils().register(false, true, 0);
     }
 }

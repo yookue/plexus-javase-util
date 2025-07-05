@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Yookue Ltd. All rights reserved.
+ * Copyright (c) 2025 Yookue Ltd. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,21 +14,17 @@
  * limitations under the License.
  */
 
-package com.yookue.commonplexus.javaseutil.converter;
+package com.yookue.commonplexus.javaseutil.converter.apache;
 
 
 import java.time.LocalTime;
-import java.util.Arrays;
-import java.util.List;
 import jakarta.annotation.Nonnull;
 import jakarta.annotation.Nullable;
-import org.apache.commons.beanutils2.ConversionException;
 import org.apache.commons.beanutils2.converters.AbstractConverter;
-import org.apache.commons.lang3.ClassUtils;
 import com.yookue.commonplexus.javaseutil.constant.TemporalFormatCombo;
-import com.yookue.commonplexus.javaseutil.util.CollectionPlainWraps;
 import com.yookue.commonplexus.javaseutil.util.LocalDateWraps;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
@@ -38,28 +34,36 @@ import lombok.Setter;
  * @author David Hsing
  *
  * @see org.apache.commons.beanutils2.Converter
- * @see org.apache.commons.beanutils2.converters.LocalDateTimeConverter
+ * @see org.apache.commons.beanutils2.converters.LocalTimeConverter
  */
 @Getter
 @Setter
+@NoArgsConstructor
 @SuppressWarnings("unused")
 public class LocalTimeConverter extends AbstractConverter<LocalTime> {
-    private List<String> patterns = Arrays.asList(TemporalFormatCombo.TIME_FORMATS);
+    private String[] formats = TemporalFormatCombo.TIME_FORMATS;
+
+    public LocalTimeConverter(@Nullable LocalTime defaultValue) {
+        super(defaultValue);
+    }
 
     @Override
-    protected <T> T convertToType(@Nonnull Class<T> type, @Nullable Object value) throws ConversionException {
-        if (!ClassUtils.isAssignable(type, getDefaultType())) {
-            throw super.conversionException(type, value);
-        }
-        if (!(value instanceof String alias) || CollectionPlainWraps.isEmpty(patterns)) {
+    protected <T> T convertToType(@Nonnull Class<T> type, @Nullable Object value) throws Exception {
+        if (value == null) {
             return null;
         }
-        for (String pattern : patterns) {
-            if (LocalDateWraps.matchTimeFormat(alias, pattern)) {
-                return type.cast(LocalDateWraps.parseTime(alias, pattern));
+        if (value instanceof String alias) {
+            for (String pattern : formats) {
+                T result = type.cast(LocalDateWraps.parseTime(alias, pattern));
+                if (result != null) {
+                    return result;
+                }
             }
         }
-        return null;
+        if (LocalTime.class.equals(type)) {
+            return type.cast(LocalTime.parse(String.valueOf(value)));
+        }
+        throw super.conversionException(type, value);
     }
 
     @Override

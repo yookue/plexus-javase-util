@@ -17,7 +17,8 @@
 package com.yookue.commonplexus.javaseutil.constant;
 
 
-import com.yookue.commonplexus.javaseutil.util.ArrayUtilsWraps;
+import java.util.Arrays;
+import java.util.stream.Stream;
 
 
 /**
@@ -31,5 +32,5 @@ public abstract class TemporalFormatCombo {
     public static final String[] DATETIME_FORMATS = new String[]{TemporalFormatConst.ISO_YYYYMMDD_HHMMSS, TemporalFormatConst.EUR_YYYYMMDD_HHMMSS, TemporalFormatConst.EUR_MMDDYYYY_HHMMSS, TemporalFormatConst.NON_YYYYMMDD_HHMMSS};
     public static final String[] TIME_FORMATS = new String[]{TemporalFormatConst.ISO_HHMMSS, TemporalFormatConst.NON_HHMMSS};
 
-    public static final String[] ALL_DATETIME_DATES = ArrayUtilsWraps.unionAll(DATETIME_FORMATS, DATE_FORMATS);
+    public static final String[] ALL_DATETIME_DATES = Stream.concat(Arrays.stream(DATETIME_FORMATS), Arrays.stream(DATE_FORMATS)).toArray(String[]::new);
 }
