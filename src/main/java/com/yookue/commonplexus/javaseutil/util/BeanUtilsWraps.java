@@ -29,7 +29,6 @@ import java.util.function.BiPredicate;
 import jakarta.annotation.Nullable;
 import org.apache.commons.beanutils2.BeanIntrospector;
 import org.apache.commons.beanutils2.BeanMap;
-import org.apache.commons.beanutils2.BeanUtils;
 import org.apache.commons.beanutils2.BeanUtilsBean;
 import org.apache.commons.beanutils2.ConvertUtils;
 import org.apache.commons.beanutils2.Converter;
@@ -37,12 +36,16 @@ import org.apache.commons.beanutils2.FluentPropertyBeanIntrospector;
 import org.apache.commons.beanutils2.PropertyUtils;
 import org.apache.commons.beanutils2.PropertyUtilsBean;
 import org.apache.commons.beanutils2.converters.ArrayConverter;
-import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import com.yookue.commonplexus.javaseutil.annotation.BeanCopyIgnore;
 import com.yookue.commonplexus.javaseutil.annotation.ViewSubmitIgnore;
 import com.yookue.commonplexus.javaseutil.constant.JavaKeywordConst;
+import com.yookue.commonplexus.javaseutil.converter.apache.JdkDateConverter;
+import com.yookue.commonplexus.javaseutil.converter.apache.LocalDateConverter;
+import com.yookue.commonplexus.javaseutil.converter.apache.LocalDateTimeConverter;
+import com.yookue.commonplexus.javaseutil.converter.apache.LocalTimeConverter;
+import com.yookue.commonplexus.javaseutil.converter.apache.SqlDateConverter;
 import com.yookue.commonplexus.javaseutil.exception.BeanInvocationException;
 import com.yookue.commonplexus.javaseutil.structure.BooleanDataStruct;
 
@@ -62,6 +65,8 @@ import com.yookue.commonplexus.javaseutil.structure.BooleanDataStruct;
  */
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue", "JavadocDeclaration", "JavadocLinkAsPlainText"})
 public abstract class BeanUtilsWraps {
+    public static final BeanUtilsBean BEAN_UTILS_INSTANCE = new BeanUtilsBean();
+
     static {
         initPropertyIntrospectors();
     }
@@ -261,21 +266,22 @@ public abstract class BeanUtilsWraps {
     }
 
     @Nullable
+    @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
     public static Properties beanToProperties(@Nullable Object bean, @Nullable Map<String, String> keyMapping, @Nullable Map<Object, Object> valueMapping, @Nullable BiPredicate<String, Object> filer) {
         if (bean == null) {
             return null;
         }
         BeanMap map = new BeanMap(bean);
-        if (MapUtils.isEmpty(map)) {
+        if (MapPlainWraps.isEmpty(map)) {
             return null;
         }
         Properties properties = new Properties();
         for (Map.Entry<String, Object> entry : map.entrySet()) {
             if (filer == null || filer.test(entry.getKey(), entry.getValue())) {
-                properties.put(MapUtils.getString(keyMapping, entry.getKey(), entry.getKey()), MapUtils.getObject(valueMapping, entry.getValue(), entry.getValue()));
+                properties.put(MapPlainWraps.getString(keyMapping, entry.getKey(), entry.getKey()), MapPlainWraps.getObject(valueMapping, entry.getValue(), entry.getValue()));
             }
         }
-        return MapUtils.isEmpty(properties) ? null : properties;
+        return MapPlainWraps.isEmpty(properties) ? null : properties;
     }
 
     @Nullable
@@ -284,12 +290,13 @@ public abstract class BeanUtilsWraps {
     }
 
     @Nullable
+    @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
     public static Properties beanToProperties(@Nullable Object bean, @Nullable CharSequence keyPrefix, @Nullable CharSequence keySuffix, boolean allowClassKey, boolean allowEmptyValue) {
         if (bean == null) {
             return null;
         }
         BeanMap map = new BeanMap(bean);
-        if (MapUtils.isEmpty(map)) {
+        if (MapPlainWraps.isEmpty(map)) {
             return null;
         }
         Properties properties = new Properties();
@@ -305,7 +312,7 @@ public abstract class BeanUtilsWraps {
             }
             properties.put(StringUtils.join(keyPrefix, entry.getKey(), keySuffix), entry.getValue());
         }
-        return MapUtils.isEmpty(properties) ? null : properties;
+        return MapPlainWraps.isEmpty(properties) ? null : properties;
     }
 
     @Nullable
@@ -319,12 +326,13 @@ public abstract class BeanUtilsWraps {
     }
 
     @Nullable
+    @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
     public static Properties beanToPropertiesExclusive(@Nullable Object bean, @Nullable Collection<String> fields, boolean allowClassKey, boolean allowEmptyValue) {
         if (bean == null) {
             return null;
         }
         BeanMap map = new BeanMap(bean);
-        if (MapUtils.isEmpty(map)) {
+        if (MapPlainWraps.isEmpty(map)) {
             return null;
         }
         Properties properties = new Properties();
@@ -336,7 +344,7 @@ public abstract class BeanUtilsWraps {
                 properties.put(entry.getKey(), entry.getValue());
             }
         }
-        return MapUtils.isEmpty(properties) ? null : properties;
+        return MapPlainWraps.isEmpty(properties) ? null : properties;
     }
 
     @Nullable
@@ -350,12 +358,13 @@ public abstract class BeanUtilsWraps {
     }
 
     @Nullable
+    @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
     public static Properties beanToPropertiesInclusive(@Nullable Object bean, @Nullable Collection<String> fields, boolean allowClassKey, boolean allowEmptyValue) {
         if (bean == null || CollectionPlainWraps.isEmpty(fields)) {
             return null;
         }
         BeanMap map = new BeanMap(bean);
-        if (MapUtils.isEmpty(map)) {
+        if (MapPlainWraps.isEmpty(map)) {
             return null;
         }
         Properties properties = new Properties();
@@ -367,11 +376,11 @@ public abstract class BeanUtilsWraps {
                 properties.put(entry.getKey(), entry.getValue());
             }
         }
-        return MapUtils.isEmpty(properties) ? null : properties;
+        return MapPlainWraps.isEmpty(properties) ? null : properties;
     }
 
     public static void mapToBean(@Nullable Object bean, @Nullable Map<String, ?> map) throws BeanInvocationException {
-        if (bean == null || MapUtils.isEmpty(map)) {
+        if (bean == null || MapPlainWraps.isEmpty(map)) {
             return;
         }
         List<String> excludes = new ArrayList<>();
@@ -380,7 +389,7 @@ public abstract class BeanUtilsWraps {
     }
 
     public static void mapToBean(@Nullable Object bean, @Nullable Map<String, ?> map, BiPredicate<String, Object> filter) throws BeanInvocationException {
-        if (ObjectUtils.anyNull(bean, filter) || MapUtils.isEmpty(map)) {
+        if (ObjectUtils.anyNull(bean, filter) || MapPlainWraps.isEmpty(map)) {
             return;
         }
         for (Map.Entry<String, ?> entry : map.entrySet()) {
@@ -392,7 +401,7 @@ public abstract class BeanUtilsWraps {
     }
 
     public static void mapToBean(@Nullable Object bean, @Nullable Map<String, ?> map, BiFunction<String, Object, BooleanDataStruct<Object>> action) throws BeanInvocationException {
-        if (ObjectUtils.anyNull(bean, action) || MapUtils.isEmpty(map)) {
+        if (ObjectUtils.anyNull(bean, action) || MapPlainWraps.isEmpty(map)) {
             return;
         }
         for (Map.Entry<String, ?> entry : map.entrySet()) {
@@ -416,7 +425,7 @@ public abstract class BeanUtilsWraps {
      */
     @SuppressWarnings({"JavadocDeclaration", "JavadocLinkAsPlainText"})
     public static void mapToBeanExclusive(@Nullable Object bean, @Nullable Map<String, ?> map, @Nullable Collection<String> fields, boolean allowEmptyValue) throws BeanInvocationException {
-        if (bean == null || MapUtils.isEmpty(map)) {
+        if (bean == null || MapPlainWraps.isEmpty(map)) {
             return;
         }
         for (Map.Entry<String, ?> entry : map.entrySet()) {
@@ -442,7 +451,7 @@ public abstract class BeanUtilsWraps {
      */
     @SuppressWarnings({"JavadocDeclaration", "JavadocLinkAsPlainText"})
     public static void mapToBeanInclusive(@Nullable Object bean, @Nullable Map<String, ?> map, @Nullable Collection<String> fields, boolean allowEmptyValue) throws BeanInvocationException {
-        if (bean == null || MapUtils.isEmpty(map) || CollectionPlainWraps.isEmpty(fields)) {
+        if (bean == null || MapPlainWraps.isEmpty(map) || CollectionPlainWraps.isEmpty(fields)) {
             return;
         }
         for (Map.Entry<String, ?> entry : map.entrySet()) {
@@ -532,7 +541,7 @@ public abstract class BeanUtilsWraps {
             return false;
         }
         try {
-            BeanUtils.setProperty(bean, property, value);
+            BEAN_UTILS_INSTANCE.setProperty(bean, property, value);
             return true;
         } catch (Exception ex) {
             throw new BeanInvocationException(String.format("Could not set property '%s' value of bean '%s'", property, bean.getClass().getName()));
@@ -565,26 +574,36 @@ public abstract class BeanUtilsWraps {
     /**
      * @see org.apache.commons.beanutils2.ConvertUtilsBean#registerArrayConverter
      */
-    @SuppressWarnings({"unchecked", "DataFlowIssue", "RedundantSuppression", "JavadocReference"})
-    public static <T> void registerArrayConverter(@Nullable Class<T> clazz, @Nullable Converter<T> converter) {
-        if (ObjectUtils.allNotNull(clazz, converter)) {
-            Class<T[]> arrayType = (Class<T[]>) Array.newInstance(clazz, 0).getClass();
-            Converter<T[]> arrayConverter = new ArrayConverter<>(arrayType, converter, 0);
+    @SuppressWarnings({"unchecked", "JavadocReference"})
+    public static <T> void registerArrayConverter(@Nullable Class<T> clazz, @Nullable Converter<T> converter, @Nullable BeanUtilsBean bean) {
+        if (clazz == null || converter == null) {
+            return;
+        }
+        Class<T[]> arrayType = (Class<T[]>) Array.newInstance(clazz, 0).getClass();
+        Converter<T[]> arrayConverter = new ArrayConverter<>(arrayType, converter, 0);
+        if (bean == null) {
             ConvertUtils.register(arrayConverter, arrayType);
+        } else {
+            bean.getConvertUtils().register(arrayConverter, arrayType);
         }
     }
 
-    public static <T> void registerClassConverter(@Nullable Class<T> clazz, @Nullable Converter<T> converter) {
-        if (ObjectUtils.allNotNull(clazz, converter)) {
+    public static <T> void registerClassConverter(@Nullable Class<T> clazz, @Nullable Converter<T> converter, @Nullable BeanUtilsBean bean) {
+        if (clazz == null || converter == null) {
+            return;
+        }
+        if (bean == null) {
             ConvertUtils.register(converter, clazz);
-            registerArrayConverter(clazz, converter);
+        } else {
+            bean.getConvertUtils().register(converter, clazz);
         }
     }
 
-    /**
-     * @see org.apache.commons.beanutils2.ConvertUtilsBean#register(boolean, boolean, int)
-     */
-    public static void registerNullConverter() {
-        BeanUtilsBean.getInstance().getConvertUtils().register(false, true, 0);
+    public static void registerTemporalConverters(@Nullable BeanUtilsBean bean) {
+        registerClassConverter(java.util.Date.class, new JdkDateConverter(), bean);
+        registerClassConverter(java.sql.Date.class, new SqlDateConverter(), bean);
+        registerClassConverter(java.time.LocalDate.class, new LocalDateConverter(), bean);
+        registerClassConverter(java.time.LocalDateTime.class, new LocalDateTimeConverter(), bean);
+        registerClassConverter(java.time.LocalTime.class, new LocalTimeConverter(), bean);
     }
 }

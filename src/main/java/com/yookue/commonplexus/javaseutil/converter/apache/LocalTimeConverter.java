@@ -48,6 +48,7 @@ public class LocalTimeConverter extends AbstractConverter<LocalTime> {
     }
 
     @Override
+    @SuppressWarnings("RedundantThrows")
     protected <T> T convertToType(@Nonnull Class<T> type, @Nullable Object value) throws Exception {
         if (value == null) {
             return null;
