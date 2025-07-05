@@ -53,7 +53,7 @@ public class JdkDateConverter extends DateTimeConverter<Date> {
             return null;
         }
         if (value instanceof String alias) {
-            for (String pattern : super.getPatterns()) {
+            for (String pattern : formats) {
                 T result = type.cast(JdkDateWraps.parseDate(alias, pattern));
                 if (result != null) {
                     return result;

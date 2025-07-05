@@ -54,7 +54,7 @@ public class SqlDateConverter extends DateTimeConverter<Date> {
             return null;
         }
         if (value instanceof String alias) {
-            for (String pattern : super.getPatterns()) {
+            for (String pattern : formats) {
                 java.util.Date result = JdkDateWraps.parseDate(alias, pattern);
                 if (result != null) {
                     return type.cast(SqlDateWraps.ofJdkDate(result));
