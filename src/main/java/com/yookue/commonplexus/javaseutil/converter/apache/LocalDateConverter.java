@@ -56,13 +56,13 @@ public class LocalDateConverter extends DateTimeConverter<LocalDate> {
         }
         if (value instanceof String alias) {
             for (String pattern : formats) {
-                T result = type.cast(LocalDateWraps.parseDate(alias, pattern));
+                T result = type.cast(LocalDateWraps.parseDateQuietly(alias, pattern));
                 if (result != null) {
                     return result;
                 }
             }
             for (String pattern : spares) {
-                LocalDateTime dateTime = LocalDateWraps.parseDateTime(alias, pattern);
+                LocalDateTime dateTime = LocalDateWraps.parseDateTimeQuietly(alias, pattern);
                 if (dateTime != null) {
                     return type.cast(dateTime.toLocalDate());
                 }

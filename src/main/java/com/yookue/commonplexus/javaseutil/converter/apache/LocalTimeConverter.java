@@ -54,7 +54,7 @@ public class LocalTimeConverter extends AbstractConverter<LocalTime> {
         }
         if (value instanceof String alias) {
             for (String pattern : formats) {
-                T result = type.cast(LocalDateWraps.parseTime(alias, pattern));
+                T result = type.cast(LocalDateWraps.parseTimeQuietly(alias, pattern));
                 if (result != null) {
                     return result;
                 }
