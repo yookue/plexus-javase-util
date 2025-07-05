@@ -16,7 +16,7 @@
 
 
 /**
- * Implemented classes of apache commons-beanutils converter
+ * Implemented classes of apache beanutils converter
  */
 
 package com.yookue.commonplexus.javaseutil.converter.apache;

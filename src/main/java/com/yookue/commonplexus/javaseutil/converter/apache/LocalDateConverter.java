@@ -37,9 +37,9 @@ import lombok.Setter;
  * @see org.apache.commons.beanutils2.Converter
  * @see org.apache.commons.beanutils2.converters.LocalDateConverter
  */
+@NoArgsConstructor
 @Getter
 @Setter
-@NoArgsConstructor
 @SuppressWarnings("unused")
 public class LocalDateConverter extends DateTimeConverter<LocalDate> {
     private String[] formats = TemporalFormatCombo.DATE_FORMATS;

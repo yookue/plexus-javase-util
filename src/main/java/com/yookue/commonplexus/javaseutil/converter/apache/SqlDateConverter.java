@@ -37,9 +37,9 @@ import lombok.Setter;
  * @see org.apache.commons.beanutils2.Converter
  * @see org.apache.commons.beanutils2.sql.converters.SqlDateConverter
  */
+@NoArgsConstructor
 @Getter
 @Setter
-@NoArgsConstructor
 @SuppressWarnings("unused")
 public class SqlDateConverter extends DateTimeConverter<Date> {
     private String[] formats = TemporalFormatCombo.ALL_DATETIME_DATES;

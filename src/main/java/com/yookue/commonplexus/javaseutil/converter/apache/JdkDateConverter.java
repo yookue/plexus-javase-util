@@ -36,9 +36,9 @@ import lombok.Setter;
  * @see org.apache.commons.beanutils2.Converter
  * @see org.apache.commons.beanutils2.converters.DateConverter
  */
+@NoArgsConstructor
 @Getter
 @Setter
-@NoArgsConstructor
 @SuppressWarnings("unused")
 public class JdkDateConverter extends DateTimeConverter<Date> {
     private String[] formats = TemporalFormatCombo.ALL_DATETIME_DATES;
