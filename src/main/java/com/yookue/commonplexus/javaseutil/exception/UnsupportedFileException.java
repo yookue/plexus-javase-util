@@ -18,8 +18,8 @@ package com.yookue.commonplexus.javaseutil.exception;
 
 
 import java.io.IOException;
-import lombok.NoArgsConstructor;
 import lombok.experimental.StandardException;
+import lombok.NoArgsConstructor;
 
 
 /**

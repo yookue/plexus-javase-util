@@ -17,9 +17,9 @@
 package com.yookue.commonplexus.javaseutil.exception;
 
 
+import lombok.experimental.StandardException;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.experimental.StandardException;
 
 
 /**

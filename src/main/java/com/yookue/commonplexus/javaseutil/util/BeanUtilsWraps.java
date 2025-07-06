@@ -68,13 +68,30 @@ public abstract class BeanUtilsWraps {
     public static final BeanUtilsBean BEAN_UTILS_INSTANCE = new BeanUtilsBean();
 
     static {
-        initPropertyIntrospectors();
+        initPropertyIntrospectors(BEAN_UTILS_INSTANCE);
     }
 
-    public static void initPropertyIntrospectors() {
-        if (!containsPropertyIntrospector(FluentPropertyBeanIntrospector.class)) {
+    public static void initPropertyIntrospectors(@Nullable BeanUtilsBean bean) {
+        if (bean == null) {
             PropertyUtils.addBeanIntrospector(new FluentPropertyBeanIntrospector());
+        } else {
+            bean.getPropertyUtils().addBeanIntrospector(new FluentPropertyBeanIntrospector());
         }
+    }
+
+    /**
+     * @see org.apache.commons.beanutils2.BeanIntrospector
+     */
+    public static boolean containsPropertyIntrospector(@Nullable Class<? extends BeanIntrospector> clazz, @Nullable BeanUtilsBean bean) {
+        if (clazz == null) {
+            return false;
+        }
+        PropertyUtilsBean alias = (bean != null) ? bean.getPropertyUtils() : BeanUtilsBean.getInstance().getPropertyUtils();
+        if (alias == null) {
+            return false;
+        }
+        List<?> introspectors = FieldUtilsWraps.readDeclaredFieldAs(alias, "introspectors", true, List.class);    // $NON-NLS-1$
+        return CollectionPlainWraps.isNotEmpty(introspectors) && introspectors.stream().filter(Objects::nonNull).anyMatch(element -> ClassUtilsWraps.isAssignableValue(clazz, element));
     }
 
     public static void copyProperties(@Nullable Object target, @Nullable Object source) throws BeanInvocationException {
@@ -191,62 +208,62 @@ public abstract class BeanUtilsWraps {
         }
     }
 
-    public static Map<String, ?> beanToMap(@Nullable Object bean) {
+    public static Map<String, Object> beanToMap(@Nullable Object bean) {
         return beanToMapExclusive(bean, (Collection<String>) null);
     }
 
     @Nullable
-    public static Map<String, ?> beanToMap(@Nullable Object bean, @Nullable String keyPrefix, @Nullable String keySuffix) {
+    public static Map<String, Object> beanToMap(@Nullable Object bean, @Nullable String keyPrefix, @Nullable String keySuffix) {
         return beanToMap(bean, keyPrefix, keySuffix, true, true);
     }
 
     @Nullable
-    public static Map<String, ?> beanToMap(@Nullable Object bean, @Nullable String keyPrefix, @Nullable String keySuffix, boolean allowClassKey, boolean allowEmptyValue) {
+    public static Map<String, Object> beanToMap(@Nullable Object bean, @Nullable String keyPrefix, @Nullable String keySuffix, boolean allowClassKey, boolean allowEmptyValue) {
         return PropertyPlainWraps.toStringObjectMap(beanToProperties(bean, keyPrefix, keySuffix, allowClassKey, allowEmptyValue));
     }
 
     @Nullable
-    public static Map<String, ?> beanToMap(@Nullable Object bean, @Nullable Map<String, String> keyMapping, @Nullable Map<Object, Object> valueMapping) {
+    public static Map<String, Object> beanToMap(@Nullable Object bean, @Nullable Map<String, String> keyMapping, @Nullable Map<Object, Object> valueMapping) {
         return beanToMap(bean, keyMapping, valueMapping, null);
     }
 
     @Nullable
-    public static Map<String, ?> beanToMap(@Nullable Object bean, @Nullable BiPredicate<String, Object> filer) {
+    public static Map<String, Object> beanToMap(@Nullable Object bean, @Nullable BiPredicate<String, Object> filer) {
         return beanToMap(bean, null, null, filer);
     }
 
     @Nullable
-    public static Map<String, ?> beanToMap(@Nullable Object bean, @Nullable Map<String, String> keyMapping, @Nullable Map<Object, Object> valueMapping, @Nullable BiPredicate<String, Object> filer) {
+    public static Map<String, Object> beanToMap(@Nullable Object bean, @Nullable Map<String, String> keyMapping, @Nullable Map<Object, Object> valueMapping, @Nullable BiPredicate<String, Object> filer) {
         return PropertyPlainWraps.toStringObjectMap(beanToProperties(bean, keyMapping, valueMapping, filer));
     }
 
     @Nullable
-    public static Map<String, ?> beanToMapExclusive(@Nullable Object bean, @Nullable String... fields) {
+    public static Map<String, Object> beanToMapExclusive(@Nullable Object bean, @Nullable String... fields) {
         return beanToMapExclusive(bean, ArrayUtilsWraps.asList(fields), true, true);
     }
 
     @Nullable
-    public static Map<String, ?> beanToMapExclusive(@Nullable Object bean, @Nullable Collection<String> fields) {
+    public static Map<String, Object> beanToMapExclusive(@Nullable Object bean, @Nullable Collection<String> fields) {
         return beanToMapExclusive(bean, fields, true, true);
     }
 
     @Nullable
-    public static Map<String, ?> beanToMapExclusive(@Nullable Object bean, @Nullable Collection<String> fields, boolean allowClassKey, boolean allowEmptyValue) {
+    public static Map<String, Object> beanToMapExclusive(@Nullable Object bean, @Nullable Collection<String> fields, boolean allowClassKey, boolean allowEmptyValue) {
         return PropertyPlainWraps.toStringObjectMap(beanToPropertiesExclusive(bean, fields, allowClassKey, allowEmptyValue));
     }
 
     @Nullable
-    public static Map<String, ?> beanToMapInclusive(@Nullable Object bean, @Nullable String... fields) {
+    public static Map<String, Object> beanToMapInclusive(@Nullable Object bean, @Nullable String... fields) {
         return beanToMapInclusive(bean, ArrayUtilsWraps.asList(fields), true, true);
     }
 
     @Nullable
-    public static Map<String, ?> beanToMapInclusive(@Nullable Object bean, @Nullable Collection<String> fields) {
+    public static Map<String, Object> beanToMapInclusive(@Nullable Object bean, @Nullable Collection<String> fields) {
         return beanToMapInclusive(bean, fields, true, true);
     }
 
     @Nullable
-    public static Map<String, ?> beanToMapInclusive(@Nullable Object bean, @Nullable Collection<String> fields, boolean allowClassKey, boolean allowEmptyValue) {
+    public static Map<String, Object> beanToMapInclusive(@Nullable Object bean, @Nullable Collection<String> fields, boolean allowClassKey, boolean allowEmptyValue) {
         return PropertyPlainWraps.toStringObjectMap(beanToPropertiesInclusive(bean, fields, allowClassKey, allowEmptyValue));
     }
 
@@ -554,21 +571,6 @@ public abstract class BeanUtilsWraps {
         } catch (Exception ignored) {
         }
         return false;
-    }
-
-    /**
-     * @see org.apache.commons.beanutils2.BeanIntrospector
-     */
-    public static boolean containsPropertyIntrospector(@Nullable Class<? extends BeanIntrospector> clazz) {
-        if (clazz == null) {
-            return false;
-        }
-        PropertyUtilsBean bean = BeanUtilsBean.getInstance().getPropertyUtils();
-        if (bean == null) {
-            return false;
-        }
-        List<?> introspectors = FieldUtilsWraps.readDeclaredFieldAs(bean, "introspectors", true, List.class);    // $NON-NLS-1$
-        return CollectionPlainWraps.isNotEmpty(introspectors) && introspectors.stream().filter(Objects::nonNull).anyMatch(element -> ClassUtilsWraps.isAssignableValue(clazz, element));
     }
 
     /**

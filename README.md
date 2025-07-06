@@ -25,7 +25,6 @@ Yookue plexus-javase-util is a package of utility classes for the Java SE's hier
 | exception    | Extended exception for throwing customized needs                              |
 | function     | Lambda functions to support complex predicate/consumer                        |
 | identity     | Helps to generate identifiers, typically UUID                                 |
-| introspector | Implemented classes of bean introspector                                      |
 | iterator     | Enhanced iterators to iterate enumerations/collections                        |
 | locale       | Capable to handle locales, such as Chinese date, Chinese number, Chinese Yuan |
 | structure    | Various structures to represents data combinations                            |

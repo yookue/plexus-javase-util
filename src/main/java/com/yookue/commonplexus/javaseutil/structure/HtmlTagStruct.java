@@ -34,10 +34,10 @@ import com.yookue.commonplexus.javaseutil.util.ArrayUtilsWraps;
 import com.yookue.commonplexus.javaseutil.util.CollectionPlainWraps;
 import com.yookue.commonplexus.javaseutil.util.ListPlainWraps;
 import com.yookue.commonplexus.javaseutil.util.MapPlainWraps;
+import lombok.experimental.Accessors;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.experimental.Accessors;
 
 
 /**

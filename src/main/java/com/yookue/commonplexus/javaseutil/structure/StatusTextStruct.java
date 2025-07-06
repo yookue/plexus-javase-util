@@ -19,11 +19,11 @@ package com.yookue.commonplexus.javaseutil.structure;
 
 import java.util.Collection;
 import jakarta.annotation.Nullable;
+import lombok.experimental.Accessors;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.experimental.Accessors;
 
 
 /**
