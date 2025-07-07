@@ -89,6 +89,10 @@ public abstract class InetAddressWraps {
 
     @Nullable
     public static String getLocalIpAddress(boolean useDefault) {
+        List<String> outcome = getLocalIpAddresses();
+        if (CollectionPlainWraps.isNotEmpty(outcome)) {
+            return outcome.get(0);
+        }
         try {
             return InetAddress.getLocalHost().getHostAddress();
         } catch (Exception ignored) {
@@ -97,9 +101,32 @@ public abstract class InetAddressWraps {
     }
 
     @Nullable
-    public static List<String> getLocalMacAddresses() {
+    public static List<String> getLocalIpAddresses() {
+        List<String> result = new ArrayList<>();
         try {
-            List<String> result = new ArrayList<>();
+            Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces();
+            while (interfaces.hasMoreElements()) {
+                NetworkInterface interfacing = interfaces.nextElement();
+                if (interfacing.isLoopback() || interfacing.isVirtual() || interfacing.isPointToPoint() || !interfacing.isUp()) {
+                    continue;
+                }
+                Enumeration<InetAddress> addresses = interfacing.getInetAddresses();
+                while (addresses.hasMoreElements()) {
+                    InetAddress addr = addresses.nextElement();
+                    if (addr.isSiteLocalAddress() && !addr.isLoopbackAddress()) {
+                        result.add(addr.getHostAddress());
+                    }
+                }
+            }
+        } catch (Exception ignored) {
+        }
+        return result.isEmpty() ? null : result.stream().distinct().collect(Collectors.toList());
+    }
+
+    @Nullable
+    public static List<String> getLocalMacAddresses() {
+        List<String> result = new ArrayList<>();
+        try {
             Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces();
             while (interfaces.hasMoreElements()) {
                 NetworkInterface interfacing = interfaces.nextElement();
@@ -116,10 +143,9 @@ public abstract class InetAddressWraps {
                 }
                 result.add(builder.toString());
             }
-            return result.isEmpty() ? null : result.stream().distinct().collect(Collectors.toList());
         } catch (Exception ignored) {
         }
-        return null;
+        return result.isEmpty() ? null : result.stream().distinct().collect(Collectors.toList());
     }
 
     public static boolean isLanAddress(@Nullable String address) {
