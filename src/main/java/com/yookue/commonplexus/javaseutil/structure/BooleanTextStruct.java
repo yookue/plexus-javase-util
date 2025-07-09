@@ -52,6 +52,16 @@ public class BooleanTextStruct extends PureTextStruct {
     }
 
     @Nonnull
+    public static BooleanTextStruct of(boolean success, @Nullable String... texts) {
+        return new BooleanTextStruct(success, texts);
+    }
+
+    @Nonnull
+    public static BooleanTextStruct of(boolean success, @Nullable Collection<String> texts) {
+        return new BooleanTextStruct(success, texts);
+    }
+
+    @Nonnull
     public static BooleanTextStruct ofSuccess() {
         return new BooleanTextStruct(true);
     }

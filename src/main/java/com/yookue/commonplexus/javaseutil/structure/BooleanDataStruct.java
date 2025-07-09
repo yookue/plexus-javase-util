@@ -56,6 +56,16 @@ public class BooleanDataStruct<T> extends DataTextStruct<T> {
     }
 
     @Nonnull
+    public static <T> BooleanDataStruct<T> of(boolean success, @Nullable T data, @Nullable String... texts) {
+        return new BooleanDataStruct<>(success, data, texts);
+    }
+
+    @Nonnull
+    public static <T> BooleanDataStruct<T> of(boolean success, @Nullable T data, @Nullable Collection<String> texts) {
+        return new BooleanDataStruct<>(success, data, texts);
+    }
+
+    @Nonnull
     public static BooleanDataStruct<?> ofSuccess() {
         return new BooleanDataStruct<>(true);
     }
