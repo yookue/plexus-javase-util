@@ -816,6 +816,11 @@ public abstract class MapPlainWraps {
     }
 
     @Nonnull
+    public static <K, V> HashMap<K, V> newHashMapWithin(@Nullable Map<? extends K, ? extends V> map) {
+        return (map != null ) ? new HashMap<>(map) : new HashMap<>();
+    }
+
+    @Nonnull
     public static <K, V> HashMap<K, V> newHashMapWithin(@Nullable K key, @Nullable V value) {
         HashMap<K, V> map = new HashMap<>(1);
         map.put(key, value);
@@ -873,6 +878,11 @@ public abstract class MapPlainWraps {
     @Nonnull
     public static <K, V> ConcurrentHashMap<K, V> newConcurrentHashMapSizing(int size) {
         return (size < 0) ? new ConcurrentHashMap<>() : new ConcurrentHashMap<>((int) ((float) size / DEFAULT_LOAD_FACTOR), DEFAULT_LOAD_FACTOR);
+    }
+
+    @Nonnull
+    public static <K, V> ConcurrentHashMap<K, V> newConcurrentHashMapWithin(@Nullable Map<? extends K, ? extends V> map) {
+        return (map != null ) ? new ConcurrentHashMap<>(map) : new ConcurrentHashMap<>();
     }
 
     @Nonnull
@@ -955,6 +965,11 @@ public abstract class MapPlainWraps {
     }
 
     @Nonnull
+    public static <K, V> LinkedHashMap<K, V> newLinkedHashMapWithin(@Nullable Map<? extends K, ? extends V> map) {
+        return (map != null ) ? new LinkedHashMap<>(map) : new LinkedHashMap<>();
+    }
+
+    @Nonnull
     public static <K, V> LinkedHashMap<K, V> newLinkedHashMapWithin(@Nullable K key, @Nullable V value) {
         LinkedHashMap<K, V> map = new LinkedHashMap<>(1);
         map.put(key, value);
@@ -1007,6 +1022,11 @@ public abstract class MapPlainWraps {
     @Nonnull
     public static <K extends Comparable<?>, V> TreeMap<K, V> newTreeMapIfNull(@Nullable Map<K, V> map) {
         return (map instanceof TreeMap<K, V> alias) ? alias : (map == null ? new TreeMap<>() : new TreeMap<>(map));
+    }
+
+    @Nonnull
+    public static <K extends Comparable<?>, V> TreeMap<K, V> newTreeMapWithin(@Nullable Map<? extends K, ? extends V> map) {
+        return (map != null ) ? new TreeMap<>(map) : new TreeMap<>();
     }
 
     /**
@@ -1082,6 +1102,11 @@ public abstract class MapPlainWraps {
     @Nonnull
     public static <K, V> Hashtable<K, V> newHashtableSizing(int size) {
         return (size < 0) ? new Hashtable<>() : new Hashtable<>((int) ((float) size / DEFAULT_LOAD_FACTOR), DEFAULT_LOAD_FACTOR);
+    }
+
+    @Nonnull
+    public static <K, V> Hashtable<K, V> newHashTableWithin(@Nullable Map<? extends K, ? extends V> map) {
+        return (map != null ) ? new Hashtable<>(map) : new Hashtable<>();
     }
 
     @Nonnull
@@ -1237,6 +1262,11 @@ public abstract class MapPlainWraps {
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
     public static <K, V> V putIfAllNotNull(@Nullable Map<K, V> target, @Nullable K key, @Nullable V value) {
         return ObjectUtils.anyNull(target, key, value) ? null : target.put(key, value);
+    }
+
+    @Nullable
+    public static <K, V> V putIfMapNotNull(@Nullable Map<K, V> target, @Nullable K key, @Nullable V value) {
+        return (target == null) ? null : target.put(key, value);
     }
 
     @Nullable
