@@ -33,5 +33,5 @@ import java.lang.annotation.Target;
 @Documented
 @Inherited
 @SuppressWarnings("unused")
-public @interface ViewSubmitIgnore {
+public @interface ViewTransferIgnore {
 }

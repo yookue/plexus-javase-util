@@ -39,7 +39,7 @@ import org.apache.commons.beanutils2.converters.ArrayConverter;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import com.yookue.commonplexus.javaseutil.annotation.BeanCopyIgnore;
-import com.yookue.commonplexus.javaseutil.annotation.ViewSubmitIgnore;
+import com.yookue.commonplexus.javaseutil.annotation.ViewTransferIgnore;
 import com.yookue.commonplexus.javaseutil.constant.JavaKeywordConst;
 import com.yookue.commonplexus.javaseutil.converter.apache.JdkDateConverter;
 import com.yookue.commonplexus.javaseutil.converter.apache.LocalDateConverter;
@@ -401,7 +401,7 @@ public abstract class BeanUtilsWraps {
             return;
         }
         List<String> excludes = new ArrayList<>();
-        FieldUtilsWraps.doWithNestedFields(bean.getClass(), field -> excludes.add(field.getName()), field -> AnnotationUtilsWraps.anyPresent(field, BeanCopyIgnore.class, ViewSubmitIgnore.class));
+        FieldUtilsWraps.doWithNestedFields(bean.getClass(), field -> excludes.add(field.getName()), field -> AnnotationUtilsWraps.anyPresent(field, BeanCopyIgnore.class, ViewTransferIgnore.class));
         mapToBeanExclusive(bean, map, excludes);
     }
 
