@@ -65,6 +65,7 @@ public abstract class StringVariantConst {
     public static final String LATEST = "latest";    // $NON-NLS-1$
     public static final String LOCALE = "locale";    // $NON-NLS-1$
     public static final String LOGGING = "logging";    // $NON-NLS-1$
+    public static final String LOG_ID = "logId";    // $NON-NLS-1$
     public static final String MESSAGE = "message";    // $NON-NLS-1$
     public static final String META_INF = "META-INF";    // $NON-NLS-1$
     public static final String NAME = "name";    // $NON-NLS-1$
