@@ -84,6 +84,7 @@ public abstract class StringVariantConst {
     public static final String SERIAL = "serial";    // $NON-NLS-1$
     public static final String SERIAL_VERSION_UID = "serialVersionUID";    // $NON-NLS-1$
     public static final String SESSION = "SESSION";    // $NON-NLS-1$
+    public static final String SORT_ORDER = "sortOrder";    // $NON-NLS-1$
     public static final String SUPERVISOR = "supervisor";    // $NON-NLS-1$
     public static final String SYSTEM = "system";    // $NON-NLS-1$
     public static final String TEST_CLASSES = "test_classes";    // $NON-NLS-1$
