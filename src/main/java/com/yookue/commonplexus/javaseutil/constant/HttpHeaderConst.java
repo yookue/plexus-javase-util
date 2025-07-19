@@ -44,6 +44,7 @@ public abstract class HttpHeaderConst {
     public static final String X_FORWARDED_PORT = "X-Forwarded-Port";    // $NON-NLS-1$
     public static final String X_FORWARDED_PREFIX = "X-Forwarded-Prefix";    // $NON-NLS-1$
     public static final String X_FORWARDED_PROTO = "X-Forwarded-Proto";    // $NON-NLS-1$
+    public static final String X_FORWARDED_SERVER = "X-Forwarded-Server";    // $NON-NLS-1$
     public static final String X_FRAME_OPTIONS = "X-Frame-Options";    // $NON-NLS-1$
     public static final String X_MOZ = "X-Moz";    // $NON-NLS-1$
     public static final String X_POWERED_BY = "X-Powered-By";    // $NON-NLS-1$
