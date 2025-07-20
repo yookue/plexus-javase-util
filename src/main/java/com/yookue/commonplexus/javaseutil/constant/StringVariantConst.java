@@ -71,6 +71,7 @@ public abstract class StringVariantConst {
     public static final String NAME = "name";    // $NON-NLS-1$
     public static final String NONE = "none";    // $NON-NLS-1$
     public static final String NULL = "null";    // $NON-NLS-1$
+    public static final String OBJECT = "object";    // $NON-NLS-1$
     public static final String PARENT = "parent";    // $NON-NLS-1$
     public static final String PASSWORD = "password";    // $NON-NLS-1$
     public static final String PATTERN = "pattern";    // $NON-NLS-1$
