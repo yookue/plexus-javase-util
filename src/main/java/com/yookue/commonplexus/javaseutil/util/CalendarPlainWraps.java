@@ -56,8 +56,8 @@ public abstract class CalendarPlainWraps {
      * In lenient mode, all calendar fields are normalized
      * In non-lenient mode, all calendar fields are validated and this method throws an exception if any calendar fields have out-of-range values
      *
-     * @param date the date to check
-     * @param field the given calendar field
+     * @param date The date to check
+     * @param field The given calendar field
      *
      * @return the value of the given calendar field
      */

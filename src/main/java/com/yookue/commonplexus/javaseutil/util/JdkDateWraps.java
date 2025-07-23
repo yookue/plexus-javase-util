@@ -57,7 +57,7 @@ public abstract class JdkDateWraps {
     /**
      * Returns the year that represents, from LONG.MIN_YEAR to LONG.MAX_YEAR
      *
-     * @param date the source date to check
+     * @param date The source date to check
      *
      * @return the year that represents, from LONG.MIN_YEAR to LONG.MAX_YEAR
      */
@@ -70,7 +70,7 @@ public abstract class JdkDateWraps {
     /**
      * Returns the month-of-year that represents, from 1 (January) to 12 (December)
      *
-     * @param date the source date to check
+     * @param date The source date to check
      *
      * @return the month-of-year that represents, from 1 (January) to 12 (December)
      */
@@ -83,7 +83,7 @@ public abstract class JdkDateWraps {
     /**
      * Returns the day-of-month that represents, from 1 to 31
      *
-     * @param date the source date to check
+     * @param date The source date to check
      *
      * @return the day-of-month that represents, from 1 to 31
      */
@@ -121,13 +121,13 @@ public abstract class JdkDateWraps {
     /**
      * Returns a {@link java.util.Date} with specified calendar fields
      *
-     * @param year the year to represent, from LONG.MIN_YEAR to LONG.MAX_YEAR
-     * @param monthOfYear the month-of-year to represent, from 1 (January) to 12 (December)
-     * @param dayOfMonth the day-of-month to represent, from 1 to 31
-     * @param hourOfDay the hour-of-day to represent, from 0 to 23
-     * @param minuteOfHour the minute-of-hour to represent, from 0 to 59
-     * @param secondOfMinute the second-of-minute to represent, from 0 to 59
-     * @param nanoOfSecond the nano-of-second to represent, from 0 to 999,999,999
+     * @param year The year to represent, from LONG.MIN_YEAR to LONG.MAX_YEAR
+     * @param monthOfYear The month-of-year to represent, from 1 (January) to 12 (December)
+     * @param dayOfMonth The day-of-month to represent, from 1 to 31
+     * @param hourOfDay The hour-of-day to represent, from 0 to 23
+     * @param minuteOfHour The minute-of-hour to represent, from 0 to 59
+     * @param secondOfMinute The second-of-minute to represent, from 0 to 59
+     * @param nanoOfSecond The nano-of-second to represent, from 0 to 999,999,999
      * @return a {@link java.util.Date} with specified calendar fields
      *
      * @throws java.lang.IllegalArgumentException if any calendar fields are invalid
@@ -393,9 +393,9 @@ public abstract class JdkDateWraps {
     /**
      * Returns a date that plus amount with the given data field
      *
-     * @param date the date, not null
-     * @param field the calendar field type to add to
-     * @param amount the amount to add, may be negative
+     * @param date The date, not null
+     * @param field The calendar field type to add to
+     * @param amount The amount to add, may be negative
      *
      * @return a date that plus amount with the given data field
      *

@@ -114,9 +114,9 @@ public abstract class ObjectUtilsWraps {
     /**
      * Returns a cast instance of the expected class, if the {@code source} object is instanceof the expected class
      *
-     * @param source an object that maybe instanceof the expected class
-     * @param expectType a parent/child class to check
-     * @param defaultValue the default value to return if expected value is null
+     * @param source The object that maybe instanceof the expected class
+     * @param expectType The parent/child class to check
+     * @param defaultValue The default value to return if expected value is null
      *
      * @return a cast instance of the expected class, if the {@code source} object is instanceof the expected class
      */
@@ -133,7 +133,7 @@ public abstract class ObjectUtilsWraps {
     /**
      * Convert the given object (which may be a primitive array) to an object array (if necessary of primitive wrapper objects)
      *
-     * @param source the (potentially primitive) array
+     * @param source The (potentially primitive) array
      * @param transform indicates whether to detect the source object type and try to convert it
      *
      * @return the corresponding object array
@@ -456,7 +456,7 @@ public abstract class ObjectUtilsWraps {
     /**
      * Returns whether the given object is an array or not
      *
-     * @param object the source object to check
+     * @param object The source object to check
      *
      * @return whether the given object is an array or not
      *
@@ -469,7 +469,7 @@ public abstract class ObjectUtilsWraps {
     /**
      * Returns whether the given object is an enum or not
      *
-     * @param object the source object to check
+     * @param object The source object to check
      *
      * @return whether the given object is an enum or not
      */
@@ -480,7 +480,7 @@ public abstract class ObjectUtilsWraps {
     /**
      * Returns whether the given object is a record
      *
-     * @param object the source object to check
+     * @param object The source object to check
      *
      * @return whether the given object is a record or not
      */
@@ -514,7 +514,7 @@ public abstract class ObjectUtilsWraps {
      * <li>Enumeration - the number of elements remaining in the enumeration
      * </ul>
      *
-     * @param object the object to get the size of, may be null
+     * @param object The object to get the size of, may be null
      *
      * @return the size of the specified object, or 0 if the object is {@code null}
      *
@@ -565,8 +565,8 @@ public abstract class ObjectUtilsWraps {
     /**
      * Returns the string representation of the given object
      *
-     * @param source the given source object
-     * @param nullString the default string value if {@code source} is null
+     * @param source The given source object
+     * @param nullString The default string value if {@code source} is null
      *
      * @return the string representation of the given object
      *

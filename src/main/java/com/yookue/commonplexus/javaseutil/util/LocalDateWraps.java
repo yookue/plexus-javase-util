@@ -581,8 +581,8 @@ public abstract class LocalDateWraps {
     /**
      * Returns a {@link java.time.LocalDateTime} from milliseconds of the epoch
      *
-     * @param millisecond milliseconds since the standard base time known as "the epoch" namely January 1, 1970, 00:00:00 GMT
-     * @param zoneId the time-zone, which may be an offset
+     * @param millisecond The milliseconds since the standard base time known as "the epoch" namely January 1, 1970, 00:00:00 GMT
+     * @param zoneId The time-zone, which may be an offset
      *
      * @return a {@link java.time.LocalDateTime} from milliseconds of the epoch
      *

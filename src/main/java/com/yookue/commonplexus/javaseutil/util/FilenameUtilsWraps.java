@@ -43,8 +43,8 @@ public abstract class FilenameUtilsWraps {
     /**
      * Returns {@code true} if the file name is one of those case-insensitive extensions
      *
-     * @param fileName the file name to query, null returns false
-     * @param extensions the extensions to check for, null checks for no extension
+     * @param fileName The file name to query, null returns false
+     * @param extensions The extensions to check for, null checks for no extension
      *
      * @return {@code true} if the file name is one of those case-insensitive extensions
      *

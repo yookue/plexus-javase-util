@@ -37,8 +37,8 @@ public abstract class ClassLoaderWraps {
     /**
      * Returns the names of the loaded libraries within the classloader
      *
-     * @param loader the source classloader
-     * @param extension indicates whether include the extension or not
+     * @param loader The source classloader
+     * @param extension Whether include the extension or not
      *
      * @return the names of the loaded libraries within the classloader
      */
@@ -55,8 +55,8 @@ public abstract class ClassLoaderWraps {
     /**
      * Returns the paths of the loaded libraries within the classloader
      *
-     * @param loader the source classloader
-     * @param separator indicates whether include the end separator or not
+     * @param loader The source classloader
+     * @param separator Whether include the end separator or not
      *
      * @return the paths of the loaded libraries within the classloader
      */
@@ -73,7 +73,7 @@ public abstract class ClassLoaderWraps {
     /**
      * Returns the pathnames of the loaded libraries within the classloader
      *
-     * @param loader the source classloader
+     * @param loader The source classloader
      *
      * @return the pathnames of the loaded libraries within the classloader
      */

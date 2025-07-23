@@ -95,9 +95,9 @@ public abstract class StringSubstitutorWraps {
     /**
      * Returns the replacing string with angle brackets in format "&lt;variable&gt;"
      *
-     * @param source the source text containing the variables to substitute
-     * @param mappings the map that contains the variables and values
-     * @param lookup the string variable resolver
+     * @param source The source text containing the variables to substitute
+     * @param mappings The map that contains the variables and values
+     * @param lookup The string variable resolver
      *
      * @return the replacing string with angle brackets in format "&lt;variable&gt;"
      */
@@ -114,9 +114,9 @@ public abstract class StringSubstitutorWraps {
     /**
      * Returns the replacing string with dollar and angle brackets in format "$&lt;variable&gt;"
      *
-     * @param source the source text containing the variables to substitute
-     * @param mappings the map that contains the variables and values
-     * @param lookup the string variable resolver
+     * @param source The source text containing the variables to substitute
+     * @param mappings The map that contains the variables and values
+     * @param lookup The string variable resolver
      *
      * @return the replacing string with dollar and angle brackets in format "$&lt;variable&gt;"
      */
@@ -133,9 +133,9 @@ public abstract class StringSubstitutorWraps {
     /**
      * Returns the replacing string with curly brackets in format "{variable}"
      *
-     * @param source the source text containing the variables to substitute
-     * @param mappings the map that contains the variables and values
-     * @param lookup the string variable resolver
+     * @param source The source text containing the variables to substitute
+     * @param mappings The map that contains the variables and values
+     * @param lookup The string variable resolver
      *
      * @return the replacing string with curly brackets in format "{variable}"
      */
@@ -152,9 +152,9 @@ public abstract class StringSubstitutorWraps {
     /**
      * Returns the replacing string with dollar and curly brackets in format "${variable}"
      *
-     * @param source the source text containing the variables to substitute
-     * @param mappings the map that contains the variables and values
-     * @param lookup the string variable resolver
+     * @param source The source text containing the variables to substitute
+     * @param mappings The map that contains the variables and values
+     * @param lookup The string variable resolver
      *
      * @return the replacing string with dollar and curly brackets in format "${variable}"
      */
@@ -171,9 +171,9 @@ public abstract class StringSubstitutorWraps {
     /**
      * Returns the replacing string with square brackets in format "[variable]"
      *
-     * @param source the source text containing the variables to substitute
-     * @param mappings the map that contains the variables and values
-     * @param lookup the string variable resolver
+     * @param source The source text containing the variables to substitute
+     * @param mappings The map that contains the variables and values
+     * @param lookup The string variable resolver
      *
      * @return the replacing string with square brackets in format "[variable]"
      */
@@ -190,9 +190,9 @@ public abstract class StringSubstitutorWraps {
     /**
      * Returns the replacing string with dollar and square brackets in format "$[variable]"
      *
-     * @param source the source text containing the variables to substitute
-     * @param mappings the map that contains the variables and values
-     * @param lookup the string variable resolver
+     * @param source The source text containing the variables to substitute
+     * @param mappings The map that contains the variables and values
+     * @param lookup The string variable resolver
      *
      * @return the replacing string with dollar and square brackets in format "$[variable]"
      */
@@ -209,9 +209,9 @@ public abstract class StringSubstitutorWraps {
     /**
      * Returns the replacing string with parenthesis in format "(variable)"
      *
-     * @param source the source text containing the variables to substitute
-     * @param mappings the map that contains the variables and values
-     * @param lookup the string variable resolver
+     * @param source The source text containing the variables to substitute
+     * @param mappings The map that contains the variables and values
+     * @param lookup The string variable resolver
      *
      * @return the replacing string with parenthesis in format "(variable)"
      */
@@ -228,9 +228,9 @@ public abstract class StringSubstitutorWraps {
     /**
      * Returns the replacing string with dollar and parenthesis in format "$(variable)"
      *
-     * @param source the source text containing the variables to substitute
-     * @param mappings the map that contains the variables and values
-     * @param lookup the string variable resolver
+     * @param source The source text containing the variables to substitute
+     * @param mappings The map that contains the variables and values
+     * @param lookup The string variable resolver
      *
      * @return the replacing string with dollar and parenthesis in format "$(variable)"
      */

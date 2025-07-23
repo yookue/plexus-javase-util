@@ -1655,8 +1655,8 @@ public abstract class ArrayUtilsWraps {
     /**
      * Returns a new array created with the specified component type of the source array and length
      *
-     * @param array the source array
-     * @param length the length of the new array
+     * @param array The source array
+     * @param length The length of the new array
      *
      * @return a new array created with the specified component type of the source array and length
      *
@@ -2869,7 +2869,7 @@ public abstract class ArrayUtilsWraps {
      * <p>
      * Typically used in scenarios, building "args" parameter of "org.springframework.context.MessageSource"
      *
-     * @param array the source object array
+     * @param array The source object array
      *
      * @return an object array
      *

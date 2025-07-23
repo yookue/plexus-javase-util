@@ -50,9 +50,9 @@ public abstract class ChineseDateUtils {
     /**
      * Returns the Chinese date string with the given {@link java.util.Date}
      *
-     * @param date the source {@link java.util.Date}
+     * @param date The source {@link java.util.Date}
      * @param prefixIfAd indicates to prepend the AD prefix when the year is positive or not
-     * @param type the Chinese number type enumeration
+     * @param type The Chinese number type enumeration
      *
      * @return the Chinese date string with the given {@link java.util.Date}
      */
@@ -75,9 +75,9 @@ public abstract class ChineseDateUtils {
     /**
      * Returns the Chinese date string with the given {@link java.time.LocalDate}
      *
-     * @param date the source {@link java.time.LocalDate}
+     * @param date The source {@link java.time.LocalDate}
      * @param prefixIfAd indicates to prepend the AD prefix when the year is positive or not
-     * @param type the Chinese number type enumeration
+     * @param type The Chinese number type enumeration
      *
      * @return the Chinese date string with the given {@link java.time.LocalDate}
      */
@@ -99,9 +99,9 @@ public abstract class ChineseDateUtils {
     /**
      * Returns the Chinese date string with the given {@link java.time.LocalDateTime}
      *
-     * @param dateTime the source {@link java.time.LocalDateTime}
+     * @param dateTime The source {@link java.time.LocalDateTime}
      * @param prefixIfAd indicates to prepend the AD prefix when the year is positive or not
-     * @param type the Chinese number type enumeration
+     * @param type The Chinese number type enumeration
      *
      * @return the Chinese date string with the given {@link java.time.LocalDateTime}
      */
@@ -114,7 +114,7 @@ public abstract class ChineseDateUtils {
      * Returns a Chinese string that represents the specified date
      *
      * @param prefixIfAd indicates to prepend the AD prefix when the year is positive or not
-     * @param type the Chinese number type enumeration
+     * @param type The Chinese number type enumeration
      *
      * @return a Chinese string that represents the specified date
      *

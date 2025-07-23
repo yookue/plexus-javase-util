@@ -466,10 +466,10 @@ public abstract class BooleanUtilsWraps {
     /**
      * Returns a Boolean object that converted from the {@code value} String
      *
-     * @param value the String to check
-     * @param truthy the String to match for true
-     * @param falsy the String to match for false
-     * @param nil the String to match for null
+     * @param value The String to check
+     * @param truthy The String to match for true
+     * @param falsy The String to match for false
+     * @param nil The String to match for null
      *
      * @return a Boolean object that converted from the {@code value} String
      *

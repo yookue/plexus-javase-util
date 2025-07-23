@@ -75,7 +75,7 @@ public abstract class CharUtilsWraps {
      *     CharUtilsWraps.upperCase(25) = 'Z'
      * </pre>
      *
-     * @param value the value to convert, must between 0(inclusive) and 26(exclusive)
+     * @param value The value to convert, must between 0(inclusive) and 26(exclusive)
      *
      * @return an uppercase Character object on the given value
      */
@@ -91,7 +91,7 @@ public abstract class CharUtilsWraps {
      *     CharUtilsWraps.toLowerCharacter(25) = 'z'
      * </pre>
      *
-     * @param value the value to convert, must between 0(inclusive) and 26(exclusive)
+     * @param value The value to convert, must between 0(inclusive) and 26(exclusive)
      *
      * @return a lowercase Character object on the given value
      */

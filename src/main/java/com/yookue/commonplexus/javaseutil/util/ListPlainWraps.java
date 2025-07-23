@@ -208,7 +208,7 @@ public abstract class ListPlainWraps {
     /**
      * Reverse the order of the given list
      *
-     * @param list the target list to reverse
+     * @param list The target list to reverse
      *
      * @see org.apache.commons.lang3.ArrayUtils#reverse(Object[])
      */
@@ -219,9 +219,9 @@ public abstract class ListPlainWraps {
     /**
      * Reverse the order of the given list in the given range
      *
-     * @param list the target list to reverse
-     * @param startIndexInclusive the starting index
-     * @param endIndexExclusive the ending index, exclusive
+     * @param list The target list to reverse
+     * @param startIndexInclusive The starting index
+     * @param endIndexExclusive The ending index, exclusive
      *
      * @see org.apache.commons.lang3.ArrayUtils#reverse(Object[], int, int)
      */

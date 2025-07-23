@@ -186,7 +186,7 @@ public abstract class FilenamePlainWraps {
     /**
      * Returns a string that removed starting slash (/) and backslash (\\)
      *
-     * @param sequence the sequence to be processed
+     * @param sequence The sequence to be processed
      *
      * @return a string that removed starting slash (/) and backslash (\\)
      */
@@ -232,7 +232,7 @@ public abstract class FilenamePlainWraps {
     /**
      * Returns a string that removed ending slash (/) and backslash (\\)
      *
-     * @param sequence the sequence to be processed
+     * @param sequence The sequence to be processed
      *
      * @return a string that removed ending slash (/) and backslash (\\)
      */

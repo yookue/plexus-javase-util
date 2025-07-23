@@ -621,10 +621,10 @@ public abstract class FileUtilsWraps {
     /**
      * Force creating parents with ability to delete {@code dest} file
      *
-     * @param dest the destination file or folder
-     * @param deleteIfExists when {@code dest} file exists, if true means this will delete it first; while false means not to delete
+     * @param dest The destination file or folder
+     * @param deleteIfExists When {@code dest} file exists, if true means this will delete it first; while false means not to delete
      *
-     * @see FileUtils#forceMkdirParent
+     * @see org.apache.commons.io.FileUtils#forceMkdirParent
      */
     public static void forceMkdirParentDeletable(@Nullable File dest, boolean deleteIfExists) throws IOException {
         if (dest == null) {

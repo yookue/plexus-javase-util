@@ -191,8 +191,8 @@ public abstract class ChinesePinyinUtils {
         /**
          * Returns processed pinyin spells, for customization
          *
-         * @param pinyin the pinyin result of {@code origin} char
-         * @param origin the source char of inputs
+         * @param pinyin The pinyin result of {@code origin} char
+         * @param origin The source char of inputs
          * @param polyphony indicates that {@code origin} char is polyphony
          * @param index index of polyphony
          *

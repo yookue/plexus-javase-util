@@ -155,7 +155,7 @@ public abstract class InetAddressWraps {
     /**
      * Returns an ip address of LAN from localhost one
      *
-     * @param address the localhost ip address, such as '127.0.0.1'
+     * @param address The localhost ip address, such as '127.0.0.1'
      *
      * @return an ip address of LAN from localhost one
      */
@@ -166,7 +166,7 @@ public abstract class InetAddressWraps {
     /**
      * Returns a {@link String} that represents an inet4 address from it's {@link Long} representation
      *
-     * @param inet4 the address of {@link Long} representation
+     * @param inet4 The address of {@link Long} representation
      *
      * @return a {@link String} that represents an inet4 address from it's {@link Long} representation
      */
@@ -185,7 +185,7 @@ public abstract class InetAddressWraps {
     /**
      * Returns a {@link String} that represents an inet4 address with port from it's {@link Long} representation
      *
-     * @param inet4Port the address with port of {@link Long} representation
+     * @param inet4Port The address with port of {@link Long} representation
      *
      * @return a {@link String} that represents an inet4 address with port from it's {@link Long} representation
      */
@@ -205,7 +205,7 @@ public abstract class InetAddressWraps {
     /**
      * Returns a {@link Long} that represents an inet4 address from it's {@link String} representation
      *
-     * @param inet4 the address of {@link String} representation
+     * @param inet4 The address of {@link String} representation
      *
      * @return a {@link Long} that represents an inet4 address from it's {@link String} representation
      */
@@ -224,8 +224,8 @@ public abstract class InetAddressWraps {
     /**
      * Returns a {@link Long} that represents an inet4 address with port from it's {@link String} representation
      *
-     * @param inet4 the address of {@link String} representation
-     * @param port the port number
+     * @param inet4 The address of {@link String} representation
+     * @param port The port number
      *
      * @return a {@link Long} that represents an inet4 address with port from it's {@link String} representation
      */

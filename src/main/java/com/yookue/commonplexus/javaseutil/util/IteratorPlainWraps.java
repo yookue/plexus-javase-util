@@ -51,8 +51,8 @@ public abstract class IteratorPlainWraps {
     /**
      * Checks whether the given {@code iterator} contains the given element
      *
-     * @param iterator the source iterator to check
-     * @param comparison the target element to look for
+     * @param iterator The source iterator to check
+     * @param comparison The target element to look for
      *
      * @return {@code true} if found, {@code false} otherwise
      */
@@ -121,9 +121,9 @@ public abstract class IteratorPlainWraps {
     /**
      * Perform an action for filtered elements in the {@code iterator} until the {@code action} return false
      *
-     * @param iterator the source iterator to lookup
-     * @param action the action to be performed. when return {@code true}, means continue next element; otherwise means break loop
-     * @param filter the filter to choose elements
+     * @param iterator The source iterator to lookup
+     * @param action The action to be performed. when return {@code true}, means continue next element; otherwise means break loop
+     * @param filter The filter to choose elements
      */
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
     public static <E> void forEachBreakable(@Nullable Iterator<E> iterator, @Nullable Function<? super E, Boolean> action, @Nullable Predicate<? super E> filter) {
@@ -181,9 +181,9 @@ public abstract class IteratorPlainWraps {
     /**
      * Perform an action with index for filtered elements in the {@code iterator} until the {@code action} return false
      *
-     * @param iterator the iterator to get a value from
-     * @param action the action to be performed. when return {@code true}, means continue next element; otherwise means break loop
-     * @param filter the filter to choose elements
+     * @param iterator The iterator to get a value from
+     * @param action The action to be performed. when return {@code true}, means continue next element; otherwise means break loop
+     * @param filter The filter to choose elements
      */
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
     public static <E> void forEachIndexingBreakable(@Nullable Iterator<E> iterator, @Nullable BiFunction<Integer, ? super E, Boolean> action, @Nullable BiPredicate<Integer, ? super E> filter) {
@@ -222,8 +222,8 @@ public abstract class IteratorPlainWraps {
     /**
      * Returns the index-th value in the iterator
      *
-     * @param iterator the source to get from
-     * @param index the index to get
+     * @param iterator The source to get from
+     * @param index The index to get
      *
      * @return the index-th value in the iterator
      */
@@ -251,7 +251,7 @@ public abstract class IteratorPlainWraps {
     /**
      * Returns the component type of superclass in the iterator
      *
-     * @param iterator the iterator to check
+     * @param iterator The iterator to check
      * @param deepScan true means need to scan all the elements; false means by the first nonnull element
      *
      * @see "org.springframework.util.CollectionUtils#findCommonElementType"

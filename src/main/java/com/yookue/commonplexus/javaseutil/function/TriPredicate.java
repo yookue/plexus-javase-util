@@ -38,9 +38,9 @@ public interface TriPredicate<T, U, V> {
     /**
      * Evaluate this predicate on the given arguments
      *
-     * @param t the first input argument
-     * @param u the second input argument
-     * @param v the third input argument
+     * @param t The first input argument
+     * @param u The second input argument
+     * @param v The third input argument
      */
     boolean test(T t, U u, V v);
 

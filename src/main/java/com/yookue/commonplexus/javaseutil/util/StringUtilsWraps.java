@@ -120,8 +120,8 @@ public abstract class StringUtilsWraps {
     /**
      * Returns a string that appends the suffix to the end of the sequence if the sequence does not already end with the suffix
      *
-     * @param sequence the source char sequence to be appended
-     * @param append the suffix to append to the end of the string
+     * @param sequence The source char sequence to be appended
+     * @param append The suffix to append to the end of the string
      *
      * @return a string that appends the suffix to the end of the string if the string does not already end with the suffix
      */
@@ -132,8 +132,8 @@ public abstract class StringUtilsWraps {
     /**
      * Returns a string that appends the suffix to the end of the sequence if the sequence does not already end with the suffix
      *
-     * @param sequence the source char sequence to be appended
-     * @param append the suffix to append to the end of the string
+     * @param sequence The source char sequence to be appended
+     * @param append The suffix to append to the end of the string
      *
      * @return a string that appends the suffix to the end of the string if the string does not already end with the suffix
      */
@@ -160,9 +160,9 @@ public abstract class StringUtilsWraps {
     /**
      * Append the suffix to the end of the string if the string does not already end with any of the suffixes
      *
-     * @param collection the collection to get the input from
-     * @param append the suffix to append to the end of the string
-     * @param suffixes additional suffixes that are valid terminators
+     * @param collection The collection to get the input from
+     * @param append The suffix to append to the end of the string
+     * @param suffixes The additional suffixes that are valid terminators
      *
      * @throws java.lang.UnsupportedOperationException if the <tt>clear</tt> operation is not supported by this collection
      * @see "org.springframework.util.ObjectUtils#addObjectToArray"
@@ -179,8 +179,8 @@ public abstract class StringUtilsWraps {
     /**
      * Returns a string that appends the suffix to the end of the string if the string does not already end with the suffix, case-insensitive
      *
-     * @param sequence the source char sequence to be appended
-     * @param append the suffix to append to the end of the string
+     * @param sequence The source char sequence to be appended
+     * @param append The suffix to append to the end of the string
      *
      * @return a string that appends the suffix to the end of the string if the string does not already end with the suffix
      */
@@ -191,8 +191,8 @@ public abstract class StringUtilsWraps {
     /**
      * Returns a string that appends the suffix to the end of the string if the string does not already end with the suffix, case-insensitive
      *
-     * @param sequence the source char sequence to be appended
-     * @param append the suffix to append to the end of the string
+     * @param sequence The source char sequence to be appended
+     * @param append The suffix to append to the end of the string
      *
      * @return a string that appends the suffix to the end of the string if the string does not already end with the suffix
      */
@@ -219,9 +219,9 @@ public abstract class StringUtilsWraps {
     /**
      * Append the suffix to the end of the string if the string does not already end with any of the suffixes, case-insensitive
      *
-     * @param collection the collection to get the input from
-     * @param append the suffix to append to the end of the string
-     * @param suffixes additional suffixes that are valid terminators
+     * @param collection The collection to get the input from
+     * @param append The suffix to append to the end of the string
+     * @param suffixes The additional suffixes that are valid terminators
      *
      * @throws java.lang.UnsupportedOperationException if the <tt>clear</tt> operation is not supported by this collection
      * @see org.apache.commons.lang3.StringUtils#appendIfMissingIgnoreCase
@@ -494,8 +494,8 @@ public abstract class StringUtilsWraps {
     /**
      * Check if a CharSequence ends with any of the provided case-insensitive suffixes
      *
-     * @param sequence the CharSequence to check
-     * @param comparisons the case-insensitive CharSequence suffixes, may be empty or contain {@code null}
+     * @param sequence The CharSequence to check
+     * @param comparisons The case-insensitive CharSequence suffixes, may be empty or contain {@code null}
      *
      * @see org.apache.commons.lang3.StringUtils#endsWithAny
      */
@@ -755,10 +755,10 @@ public abstract class StringUtilsWraps {
      *     StringUtilsWraps.joinWith(Arrays.asList(new String[]{"a", "b", "c"}), '*', '[', ']') = "[a]*[b]*[c]"
      * </pre>
      *
-     * @param collection the varargs providing the values to join together
-     * @param delimiter the separator character to use, null treated as empty string
-     * @param prefix the prefix for each element in the collection, null treated as empty string
-     * @param suffix the suffix for each element in the collection, null treated as empty string
+     * @param collection The varargs providing the values to join together
+     * @param delimiter The separator character to use, null treated as empty string
+     * @param prefix The prefix for each element in the collection, null treated as empty string
+     * @param suffix The suffix for each element in the collection, null treated as empty string
      *
      * @return the joined elements into a String containing the provided elements, with delimiter, prefix and suffix
      *
@@ -893,8 +893,8 @@ public abstract class StringUtilsWraps {
      *     StringUtilsWraps.joinWithOnce(':', "a", "b", ":c:") = "a:b:c:"
      * </pre>
      *
-     * @param delimiter the separator character to use, null treated as empty string
-     * @param sequences the varargs providing the values to join together
+     * @param delimiter The separator character to use, null treated as empty string
+     * @param sequences The varargs providing the values to join together
      *
      * @return the joined elements into a single String containing the provided elements, with one single delimiter
      *
@@ -1052,8 +1052,8 @@ public abstract class StringUtilsWraps {
      * Returns a String that is nested in between two Strings, only the last match is returned
      *
      * @param text a String containing the substring
-     * @param open the String before the substring
-     * @param close the String after the substring
+     * @param open The String before the substring
+     * @param close The String after the substring
      *
      * @return a String that is nested in between two Strings, only the last match is returned
      *
@@ -1092,8 +1092,8 @@ public abstract class StringUtilsWraps {
     /**
      * Returns a string that prepends the prefix to the start of the sequence if the sequence does not already start with any of the prefixes
      *
-     * @param sequence the source char sequence to be prepended
-     * @param prepend the prefix to prepend to the start of the string
+     * @param sequence The source char sequence to be prepended
+     * @param prepend The prefix to prepend to the start of the string
      *
      * @return a string that prepends the prefix to the start of the string if the string does not already start with any of the prefixes
      */
@@ -1104,8 +1104,8 @@ public abstract class StringUtilsWraps {
     /**
      * Returns a string that prepends the prefix to the start of the sequence if the sequence does not already start with any of the prefixes
      *
-     * @param sequence the source char sequence to be prepended
-     * @param prepend the prefix to prepend to the start of the string
+     * @param sequence The source char sequence to be prepended
+     * @param prepend The prefix to prepend to the start of the string
      *
      * @return a string that prepends the prefix to the start of the string if the string does not already start with any of the prefixes
      */
@@ -1132,8 +1132,8 @@ public abstract class StringUtilsWraps {
     /**
      * Prepend the prefix to the start of the string if the string does not already start with any of the suffixes
      *
-     * @param collection the collection to get the input from
-     * @param prepend the prefix to append to the start of the string
+     * @param collection The collection to get the input from
+     * @param prepend The prefix to append to the start of the string
      * @param prefixes additional prefixes that are valid terminators
      *
      * @throws java.lang.UnsupportedOperationException if the <tt>clear</tt> operation is not supported by this collection
@@ -1151,8 +1151,8 @@ public abstract class StringUtilsWraps {
     /**
      * Returns a string that prepends the prefix to the start of the sequence if the sequence does not already start with any of the prefixes, case-insensitive
      *
-     * @param sequence the source char sequence to be prepended
-     * @param prepend the prefix to prepend to the start of the string
+     * @param sequence The source char sequence to be prepended
+     * @param prepend The prefix to prepend to the start of the string
      *
      * @return a string that prepends the prefix to the start of the string if the string does not already start with any of the prefixes
      */
@@ -1163,8 +1163,8 @@ public abstract class StringUtilsWraps {
     /**
      * Returns a string that prepends the prefix to the start of the sequence if the sequence does not already start with any of the prefixes, case-insensitive
      *
-     * @param sequence the source char sequence to be prepended
-     * @param prepend the prefix to prepend to the start of the string
+     * @param sequence The source char sequence to be prepended
+     * @param prepend The prefix to prepend to the start of the string
      *
      * @return a string that prepends the prefix to the start of the string if the string does not already start with any of the prefixes
      */
@@ -1191,8 +1191,8 @@ public abstract class StringUtilsWraps {
     /**
      * Prepend the prefix to the start of the string if the string does not already start with any of the suffixes, case-insensitive
      *
-     * @param collection the collection to get the input from
-     * @param prepend the prefix to append to the start of the string
+     * @param collection The collection to get the input from
+     * @param prepend The prefix to append to the start of the string
      * @param prefixes additional prefixes that are valid terminators
      *
      * @throws java.lang.UnsupportedOperationException if the <tt>clear</tt> operation is not supported by this collection
@@ -1282,7 +1282,7 @@ public abstract class StringUtilsWraps {
     /**
      * Returns a String that removed some substrings from within the source string
      *
-     * @param sequence the source char sequence to search
+     * @param sequence The source char sequence to search
      * @param removes some Strings to search for and remove
      *
      * @return a String that removed some substrings from within the source string
@@ -1307,7 +1307,7 @@ public abstract class StringUtilsWraps {
     /**
      * Returns char sequences which every element is not blank
      *
-     * @param sequences the source of char sequences
+     * @param sequences The source of char sequences
      *
      * @return char sequences which every element is not blank
      */
@@ -1323,7 +1323,7 @@ public abstract class StringUtilsWraps {
     /**
      * Returns char sequences which every element is not empty
      *
-     * @param sequences the source of char sequences
+     * @param sequences The source of char sequences
      *
      * @return char sequences which every element is not empty
      */
@@ -1339,7 +1339,7 @@ public abstract class StringUtilsWraps {
     /**
      * Returns strings which every element is not blank
      *
-     * @param texts the source of strings
+     * @param texts The source of strings
      *
      * @return strings which every element is not blank
      */
@@ -1355,7 +1355,7 @@ public abstract class StringUtilsWraps {
     /**
      * Returns strings which every element is not empty
      *
-     * @param texts the source of strings
+     * @param texts The source of strings
      *
      * @return strings which every element is not empty
      */
@@ -1383,7 +1383,7 @@ public abstract class StringUtilsWraps {
     /**
      * Returns a string that removed some substrings only if at end of the source string
      *
-     * @param sequence the source char sequence to search
+     * @param sequence The source char sequence to search
      * @param removes some Strings to search for and remove
      *
      * @return a string that removed some substrings only if at end of the source string
@@ -1502,7 +1502,7 @@ public abstract class StringUtilsWraps {
     /**
      * Returns a string that removed some substrings only if at start of the source string
      *
-     * @param sequence the source char sequence to search
+     * @param sequence The source char sequence to search
      * @param removes some Strings to search for and remove
      *
      * @return a string that removed some substrings only if at start of the source string
@@ -1749,10 +1749,10 @@ public abstract class StringUtilsWraps {
     /**
      * Returns a split {@code String} array at the first occurrence of the delimiter
      *
-     * @param text the string to split (potentially {@code null} or empty)
-     * @param delimiter the separate string, {@code null} means use whitespace
+     * @param text The string to split (potentially {@code null} or empty)
+     * @param delimiter The separate string, {@code null} means use whitespace
      * @param trim indicates whether trim the split elements or not
-     * @param max the maximum number of elements to include in the array. A zero or negative value implies no limit
+     * @param max The maximum number of elements to include in the array. A zero or negative value implies no limit
      *
      * @return a split {@code String} array at the first occurrence of the delimiter
      */
@@ -1871,8 +1871,8 @@ public abstract class StringUtilsWraps {
     /**
      * Check if a CharSequence starts with any of the provided case-insensitive prefixes
      *
-     * @param sequence the CharSequence to check
-     * @param comparisons the case-insensitive CharSequence prefixes
+     * @param sequence The CharSequence to check
+     * @param comparisons The case-insensitive CharSequence prefixes
      *
      * @see org.apache.commons.lang3.StringUtils#startsWithAny
      */
@@ -1893,9 +1893,9 @@ public abstract class StringUtilsWraps {
      *     StringUtilsWraps.substringAfter("foo.foobar.bar", "*", 3) = null
      * </pre>
      *
-     * @param text the String to get a substring from
-     * @param separator the String to search for
-     * @param length the max length of substring
+     * @param text The String to get a substring from
+     * @param separator The String to search for
+     * @param length The max length of substring
      *
      * @return the substring after the first occurrence of a separator, with specified length, the separator is not returned
      *
@@ -1925,8 +1925,8 @@ public abstract class StringUtilsWraps {
      *     StringUtilsWraps.substringAfterIncluding("foo.bar.bar", "bar") = "bar.bar"
      * </pre>
      *
-     * @param text the String to get a substring from
-     * @param separator the String to search for
+     * @param text The String to get a substring from
+     * @param separator The String to search for
      *
      * @return the substring after the first occurrence of a separator, the separator is returned
      *
@@ -1955,8 +1955,8 @@ public abstract class StringUtilsWraps {
      *     StringUtilsWraps.substringAfterIncluding("foo.bar.bar", "bar") = "bar"
      * </pre>
      *
-     * @param text the String to get a substring from
-     * @param separator the String to search for
+     * @param text The String to get a substring from
+     * @param separator The String to search for
      *
      * @return the substring after the last occurrence of a separator, the separator is returned
      *
@@ -1979,9 +1979,9 @@ public abstract class StringUtilsWraps {
      *     StringUtilsWraps.substringAfterLast("foo.bar.foobar", "*", 3) = null
      * </pre>
      *
-     * @param text the String to get a substring from
-     * @param separator the String to search for
-     * @param length the max length of substring
+     * @param text The String to get a substring from
+     * @param separator The String to search for
+     * @param length The max length of substring
      *
      * @return the substring after the last occurrence of a separator, with specified length, the separator is not returned
      *
@@ -2013,9 +2013,9 @@ public abstract class StringUtilsWraps {
      *     StringUtilsWraps.substringBefore("foo.foobar.bar", "*", 3) = null
      * </pre>
      *
-     * @param text the String to get a substring from
-     * @param separator the String to search for
-     * @param length the max length of substring
+     * @param text The String to get a substring from
+     * @param separator The String to search for
+     * @param length The max length of substring
      *
      * @return the substring before the first occurrence of a separator, with specified length, the separator is not returned
      *
@@ -2045,8 +2045,8 @@ public abstract class StringUtilsWraps {
      *     StringUtilsWraps.substringBeforeIncluding("foo.bar.bar", "bar") = "foo.bar"
      * </pre>
      *
-     * @param text the String to get a substring from
-     * @param separator the String to search for
+     * @param text The String to get a substring from
+     * @param separator The String to search for
      *
      * @return the substring before the first occurrence of a separator, the separator is returned
      *
@@ -2077,9 +2077,9 @@ public abstract class StringUtilsWraps {
      *     StringUtilsWraps.substringBeforeLast("foobar.bar", "*", 3) = null
      * </pre>
      *
-     * @param text the String to get a substring from
-     * @param separator the String to search for
-     * @param length the max length of substring
+     * @param text The String to get a substring from
+     * @param separator The String to search for
+     * @param length The max length of substring
      *
      * @return the substring before the last occurrence of a separator, with specified length, the separator is not returned
      *
@@ -2109,8 +2109,8 @@ public abstract class StringUtilsWraps {
      *     StringUtilsWraps.substringBeforeIncluding("foo.bar.bar", "bar") = "foo.bar.bar"
      * </pre>
      *
-     * @param text the String to get a substring from
-     * @param separator the String to search for
+     * @param text The String to get a substring from
+     * @param separator The String to search for
      *
      * @return the substring before the last occurrence of a separator, the separator is returned
      *
@@ -2304,8 +2304,8 @@ public abstract class StringUtilsWraps {
     /**
      * Returns a string that wraps the {@code sequence} with parentheses ("()")
      *
-     * @param sequence the source to be wrapped
-     * @param emptyAsNull when {@code sequence} is empty, true means this will return {@code null}, otherwise this will return an empty parentheses
+     * @param sequence The source to be wrapped
+     * @param emptyAsNull When {@code sequence} is empty, true means this will return {@code null}, otherwise this will return an empty parentheses
      *
      * @return a string that wraps the {@code sequence} with parentheses ("()")
      */
@@ -2321,8 +2321,8 @@ public abstract class StringUtilsWraps {
     /**
      * Returns a string that wraps the {@code sequence} with square brackets ("[]")
      *
-     * @param sequence the source to be wrapped
-     * @param emptyAsNull when {@code sequence} is empty, true means this will return {@code null}, otherwise this will return an empty parentheses
+     * @param sequence The source to be wrapped
+     * @param emptyAsNull When {@code sequence} is empty, true means this will return {@code null}, otherwise this will return an empty parentheses
      *
      * @return a string that wraps the {@code sequence} with square brackets ("[]")
      */
@@ -2338,8 +2338,8 @@ public abstract class StringUtilsWraps {
     /**
      * Returns a string that wraps the {@code sequence} with curly brackets ("{}")
      *
-     * @param sequence the source to be wrapped
-     * @param emptyAsNull when {@code sequence} is empty, true means this will return {@code null}, otherwise this will return an empty parentheses
+     * @param sequence The source to be wrapped
+     * @param emptyAsNull When {@code sequence} is empty, true means this will return {@code null}, otherwise this will return an empty parentheses
      *
      * @return a string that wraps the {@code sequence} with curly brackets ("{}")
      */

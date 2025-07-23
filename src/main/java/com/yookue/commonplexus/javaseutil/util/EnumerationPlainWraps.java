@@ -49,8 +49,8 @@ public abstract class EnumerationPlainWraps {
     /**
      * Checks whether the given {@code enumeration} contains the given element
      *
-     * @param enumeration the source enumeration to check
-     * @param comparison the target element to look for
+     * @param enumeration The source enumeration to check
+     * @param comparison The target element to look for
      *
      * @return {@code true} if found, {@code false} otherwise
      */
@@ -179,8 +179,8 @@ public abstract class EnumerationPlainWraps {
     /**
      * Returns the index-th value in the enumeration
      *
-     * @param enumeration the source to get from
-     * @param index the index to get
+     * @param enumeration The source to get from
+     * @param index The index to get
      *
      * @return the index-th value in the enumeration
      */
@@ -208,8 +208,8 @@ public abstract class EnumerationPlainWraps {
     /**
      * Returns the component type of superclass in the enumeration
      *
-     * @param enumeration the enumeration to check
-     * @param deepScan true means need to scan all the elements; false means by the first nonnull element
+     * @param enumeration The enumeration to check
+     * @param deepScan {@code true} means need to scan all the elements; false means by the first nonnull element
      *
      * @see "org.springframework.util.CollectionUtils#findCommonElementType"
      */
@@ -384,7 +384,7 @@ public abstract class EnumerationPlainWraps {
     /**
      * Return an array containing all the elements in the enumeration
      *
-     * @param enumeration the enumeration to convert, with element that can not be primitive types
+     * @param enumeration The enumeration to convert, with element that can not be primitive types
      *
      * @return an array containing all the elements in the enumeration
      *

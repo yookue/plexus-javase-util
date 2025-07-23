@@ -60,7 +60,7 @@ public abstract class UuidUtilsWraps {
     /**
      * Convert plain uuids to hyphen uuids
      *
-     * @param uuids the source plain uuids
+     * @param uuids The source plain uuids
      * @throws java.lang.UnsupportedOperationException if the <tt>clear</tt> operation is not supported by the source collection
      */
     public static void toHyphenUuid(@Nullable Collection<String> uuids) {
@@ -80,7 +80,7 @@ public abstract class UuidUtilsWraps {
     /**
      * Convert hyphen uuids to plain uuids
      *
-     * @param uuids the source hyphen uuids
+     * @param uuids The source hyphen uuids
      * @throws java.lang.UnsupportedOperationException if the <tt>clear</tt> operation is not supported by the source collection
      */
     public static void toPlainUuid(@Nullable Collection<String> uuids) {

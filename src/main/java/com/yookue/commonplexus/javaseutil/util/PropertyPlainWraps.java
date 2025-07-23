@@ -73,7 +73,7 @@ public abstract class PropertyPlainWraps {
     /**
      * Returns a new {@code Map<String, Object>} object that converted from the given properties
      *
-     * @param properties the properties to be converted
+     * @param properties The properties to be converted
      *
      * @return a new {@code Map<String, Object>} object that converted from the given properties
      *
@@ -92,7 +92,7 @@ public abstract class PropertyPlainWraps {
     /**
      * Returns a new {@code Map<String, String>} object that converted from the given properties
      *
-     * @param properties the properties to be converted
+     * @param properties The properties to be converted
      *
      * @return a new {@code Map<String, String>} object that converted from the given properties
      *

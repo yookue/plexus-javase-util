@@ -137,7 +137,7 @@ public abstract class LocalePlainWraps {
      * <li><tt>en-US</tt></li>
      * <li><tt>zh-CN</tt></li>
      *
-     * @param locale the source locale to convert
+     * @param locale The source locale to convert
      *
      * @return a BCP47 language tag representing the locale
      */
@@ -160,7 +160,7 @@ public abstract class LocalePlainWraps {
      * <li><tt>en_US_WIN</tt></li>
      * <li><tt>zh_CN_#Hans</tt></li>
      *
-     * @param locale the source locale to convert
+     * @param locale The source locale to convert
      *
      * @return a string representation of the Locale, for debugging
      */

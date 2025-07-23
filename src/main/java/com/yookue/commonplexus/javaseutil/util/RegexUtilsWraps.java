@@ -362,8 +362,8 @@ public abstract class RegexUtilsWraps {
     /**
      * Compiles the given regular expression into a pattern with the given flags
      *
-     * @param regex the expression to be compiled
-     * @param flags match flags, a bit mask that may include
+     * @param regex The expression to be compiled
+     * @param flags The match flags, a bit mask that may include
      *
      * @return the given regular expression compiled into a pattern with the given flags
      *
@@ -405,9 +405,9 @@ public abstract class RegexUtilsWraps {
     /**
      * Returns a list that containing the result that matched any of the patterns to the input sequence
      *
-     * @param sequence the input sequence
-     * @param flags pattern match flags, a bit mask such as {@code Pattern.CASE_INSENSITIVE}
-     * @param regexes the regex patterns
+     * @param sequence The input sequence
+     * @param flags The pattern match flags, a bit mask such as {@code Pattern.CASE_INSENSITIVE}
+     * @param regexes The regex patterns
      *
      * @return a list that containing the result that matched any of the patterns to the input sequence
      */
@@ -710,8 +710,8 @@ public abstract class RegexUtilsWraps {
     /**
      * Attempts to find the next subsequence of the input sequence that matches the pattern
      *
-     * @param sequence the character sequence to be matched
-     * @param regex the expression to be compiled
+     * @param sequence The character sequence to be matched
+     * @param regex The expression to be compiled
      *
      * @return true if a subsequence of the input sequence matches this matcher's pattern
      *
@@ -733,8 +733,8 @@ public abstract class RegexUtilsWraps {
     /**
      * Attempts to find the next subsequence of the input sequence that matches the pattern, case-insensitive
      *
-     * @param sequence the character sequence to be matched
-     * @param regex the expression to be compiled
+     * @param sequence The character sequence to be matched
+     * @param regex The expression to be compiled
      *
      * @return true if a subsequence of the input sequence matches this matcher's pattern
      *
@@ -756,8 +756,8 @@ public abstract class RegexUtilsWraps {
     /**
      * Attempts to find the next subsequence of the input sequence that matches the pattern, with the given flags
      *
-     * @param sequence the character sequence to be matched
-     * @param regex the expression to be compiled
+     * @param sequence The character sequence to be matched
+     * @param regex The expression to be compiled
      *
      * @return true if a subsequence of the input sequence matches this matcher's pattern
      *
@@ -783,8 +783,8 @@ public abstract class RegexUtilsWraps {
     /**
      * Compiles the given regular expression and attempts to match the given input against it
      *
-     * @param sequence the character sequence to be matched
-     * @param regex the expression to be compiled
+     * @param sequence The character sequence to be matched
+     * @param regex The expression to be compiled
      *
      * @return true if the input sequence matches this matcher's pattern
      *
@@ -798,8 +798,8 @@ public abstract class RegexUtilsWraps {
     /**
      * Compiles the given regular expression and attempts to match the given input against it, case-insensitive
      *
-     * @param sequence the character sequence to be matched
-     * @param regex the expression to be compiled
+     * @param sequence The character sequence to be matched
+     * @param regex The expression to be compiled
      *
      * @return true if the input sequence matches this matcher's pattern
      *
@@ -813,8 +813,8 @@ public abstract class RegexUtilsWraps {
     /**
      * Compiles the given regular expression and attempts to match the given input against it, with the given flags
      *
-     * @param sequence the character sequence to be matched
-     * @param regex the expression to be compiled
+     * @param sequence The character sequence to be matched
+     * @param regex The expression to be compiled
      *
      * @return true if the input sequence matches this matcher's pattern
      *

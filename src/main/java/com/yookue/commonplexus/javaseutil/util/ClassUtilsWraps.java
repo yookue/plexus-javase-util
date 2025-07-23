@@ -167,8 +167,8 @@ public abstract class ClassUtilsWraps {
     /**
      * Returns the canonical path of the package
      *
-     * @param clazz the class to get the path for, may be {@code null}
-     * @param subtracts the group count (separated by dot) to be subtracted from right side
+     * @param clazz The class to get the path for, may be {@code null}
+     * @param subtracts The group count (separated by dot) to be subtracted from right side
      *
      * @return the canonical path of the package
      */
@@ -198,8 +198,8 @@ public abstract class ClassUtilsWraps {
     /**
      * Returns the canonical path of the package
      *
-     * @param source the object to get the path for, may be {@code null}
-     * @param subtracts the group count (separated by dot) to be subtracted from right side
+     * @param source The object to get the path for, may be {@code null}
+     * @param subtracts The group count (separated by dot) to be subtracted from right side
      *
      * @return the canonical path of the package
      */

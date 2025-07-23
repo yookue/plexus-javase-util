@@ -105,7 +105,7 @@ public abstract class OptionalPlainWraps {
      * Unwrap the given object which is potentially a {@link java.util.Optional}
      * Differ from {@code org.springframework.util.ObjectUtils#unwrapOptional}, this return object recursively rather than throw a {@link java.lang.IllegalArgumentException}
      *
-     * @param source the source object
+     * @param source The source object
      *
      * @return either the value held within the {@code Optional}, {@code null}
      *

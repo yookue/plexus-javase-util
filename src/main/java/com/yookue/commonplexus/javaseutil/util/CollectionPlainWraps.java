@@ -129,9 +129,9 @@ public abstract class CollectionPlainWraps {
     /**
      * Adds all elements to the target collection if matched the filter
      *
-     * @param target the collection to add to
-     * @param filter the filter to apply to the target collection and each element
-     * @param sources the elements to add
+     * @param target The collection to add to
+     * @param filter The filter to apply to the target collection and each element
+     * @param sources The elements to add
      *
      * @return {@code true} if the collection was changed, {@code false} otherwise
      */
@@ -151,9 +151,9 @@ public abstract class CollectionPlainWraps {
     /**
      * Adds all elements to the target collection if matched the filter
      *
-     * @param target the target collection to merge the array into
-     * @param filter the filter to apply to the target collection and each element
-     * @param sources the element arrays to add
+     * @param target The target collection to merge the array into
+     * @param filter The filter to apply to the target collection and each element
+     * @param sources The element arrays to add
      *
      * @return {@code true} if the collection was changed, {@code false} otherwise
      */
@@ -173,9 +173,9 @@ public abstract class CollectionPlainWraps {
     /**
      * Adds all elements to the target collection if matched the filter
      *
-     * @param target the collection to add to
-     * @param filter the filter to apply to the target collection and each element
-     * @param source the element iterable to add
+     * @param target The collection to add to
+     * @param filter The filter to apply to the target collection and each element
+     * @param source The element iterable to add
      *
      * @return {@code true} if the collection was changed, {@code false} otherwise
      */
@@ -194,9 +194,9 @@ public abstract class CollectionPlainWraps {
     /**
      * Adds all elements to the target collection if matched the filter
      *
-     * @param target the collection to add to
-     * @param filter the filter to apply to the target collection and each element
-     * @param sources the element iterables to add
+     * @param target The collection to add to
+     * @param filter The filter to apply to the target collection and each element
+     * @param sources The element iterables to add
      *
      * @return {@code true} if the collection was changed, {@code false} otherwise
      */
@@ -220,9 +220,9 @@ public abstract class CollectionPlainWraps {
     /**
      * Adds all elements to the target collection if matched the filter
      *
-     * @param target the collection to add to
-     * @param filter the filter to apply to the target collection and each element
-     * @param source the element iterator to add
+     * @param target The collection to add to
+     * @param filter The filter to apply to the target collection and each element
+     * @param source The element iterator to add
      *
      * @return {@code true} if the collections was changed, {@code false} otherwise
      */
@@ -241,9 +241,9 @@ public abstract class CollectionPlainWraps {
     /**
      * Adds all elements to the target collection if matched the filter
      *
-     * @param target the collection to add to
-     * @param filter the filter to apply to the target collection and each element
-     * @param sources the element iterators to add
+     * @param target The collection to add to
+     * @param filter The filter to apply to the target collection and each element
+     * @param sources The element iterators to add
      *
      * @return {@code true} if the collections was changed, {@code false} otherwise
      */
@@ -268,9 +268,9 @@ public abstract class CollectionPlainWraps {
     /**
      * Adds all elements to the target collection if matched the filter
      *
-     * @param target the collection to add to
-     * @param filter the filter to apply to the target collection and each element
-     * @param source the element enumeration to add
+     * @param target The collection to add to
+     * @param filter The filter to apply to the target collection and each element
+     * @param source The element enumeration to add
      *
      * @return {@code true} if the collections was changed, {@code false} otherwise
      */
@@ -288,9 +288,9 @@ public abstract class CollectionPlainWraps {
     /**
      * Adds all elements to the target collection if matched the filter
      *
-     * @param target the collection to add to
-     * @param filter the filter to apply to the target collection and each element
-     * @param sources the element enumerations to add
+     * @param target The collection to add to
+     * @param filter The filter to apply to the target collection and each element
+     * @param sources The element enumerations to add
      *
      * @return {@code true} if the collections was changed, {@code false} otherwise
      */
@@ -557,8 +557,8 @@ public abstract class CollectionPlainWraps {
     /**
      * Returns {@code true} if the element is in collection
      *
-     * @param collection the collection to check
-     * @param element the element to look for
+     * @param collection The collection to check
+     * @param element The element to look for
      *
      * @return {@code true} if the element is in collection
      */
@@ -574,8 +574,8 @@ public abstract class CollectionPlainWraps {
     /**
      * Returns {@code true} if all elements of {@code comparison} is in the {@code target} collection
      *
-     * @param target the target collection to check
-     * @param comparison the elements to look for
+     * @param target The target collection to check
+     * @param comparison The elements to look for
      *
      * @return {@code true} if all elements of {@code comparison} is in the {@code target} collection
      */
@@ -602,8 +602,8 @@ public abstract class CollectionPlainWraps {
     /**
      * Returns {@code true} if any elements of {@code comparison} is in the {@code target} collection
      *
-     * @param target the target collection to check
-     * @param comparison the elements to look for
+     * @param target The target collection to check
+     * @param comparison The elements to look for
      *
      * @return {@code true} if any elements of {@code comparison} is in the {@code target} collection
      */
@@ -872,8 +872,8 @@ public abstract class CollectionPlainWraps {
     /**
      * Returns true if the index object exists in the collection
      *
-     * @param collection the source to check
-     * @param index the index to detect
+     * @param collection The source to check
+     * @param index The index to detect
      * @param adding indicates whether trying to add an element to the source collection or not
      *
      * @return true if the index object exists in the collection
@@ -1133,7 +1133,7 @@ public abstract class CollectionPlainWraps {
     /**
      * Return an array containing all the elements in the collection
      *
-     * @param collection the collection to convert, with element that can not be primitive types
+     * @param collection The collection to convert, with element that can not be primitive types
      *
      * @return an array containing all the elements in the collection
      *

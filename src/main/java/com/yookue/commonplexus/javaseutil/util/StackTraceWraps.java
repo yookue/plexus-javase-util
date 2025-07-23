@@ -156,7 +156,7 @@ public abstract class StackTraceWraps {
     /**
      * Returns a {@link java.lang.StackTraceElement} object with the specified index
      *
-     * @param index the index from the invoking method, unnecessary to consider the {@link StackTraceWraps} class
+     * @param index The index from the invoking method, unnecessary to consider the {@link StackTraceWraps} class
      *
      * @return a {@link java.lang.StackTraceElement} object with the specified index
      *

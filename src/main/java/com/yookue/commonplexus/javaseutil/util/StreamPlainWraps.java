@@ -48,7 +48,7 @@ public abstract class StreamPlainWraps {
     /**
      * Returns an estimate of the number of bytes that can be read (or skipped over) from this stream without blocking by the next invocation for this stream
      *
-     * @param input an {@link java.io.InputStream} object to check
+     * @param input The {@link java.io.InputStream} object to check
      *
      * @return an estimate of the number of bytes that can be read (or skipped over) from this stream without blocking by the next invocation for this stream
      */
@@ -72,8 +72,8 @@ public abstract class StreamPlainWraps {
     /**
      * Returns a stream object that created from an array
      *
-     * @param array the source array
-     * @param parallel if true then the returned stream is a parallel stream; if false the returned stream is a sequential stream
+     * @param array The source array
+     * @param parallel If {@code true} then the returned stream is a parallel stream; if false the returned stream is a sequential stream
      *
      * @return a stream object that created from an array
      */
@@ -90,8 +90,8 @@ public abstract class StreamPlainWraps {
     /**
      * Returns a stream object that created from an enumeration
      *
-     * @param enumeration the source enumeration
-     * @param parallel if true then the returned stream is a parallel stream; if false the returned stream is a sequential stream
+     * @param enumeration The source enumeration
+     * @param parallel If {@code true} then the returned stream is a parallel stream; if false the returned stream is a sequential stream
      *
      * @return a stream object that created from an enumeration
      *

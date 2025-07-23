@@ -45,8 +45,8 @@ public abstract class IterablePlainWraps {
     /**
      * Checks whether the given {@code iterable} contains the given element
      *
-     * @param iterable the source iterable to check
-     * @param comparison the target element to look for
+     * @param iterable The source iterable to check
+     * @param comparison The target element to look for
      *
      * @return {@code true} if found, {@code false} otherwise
      */
@@ -123,8 +123,8 @@ public abstract class IterablePlainWraps {
     /**
      * Returns the index-th value in the iterable
      *
-     * @param iterable the source to get from
-     * @param index the index to get
+     * @param iterable The source to get from
+     * @param index The index to get
      *
      * @return the index-th value in the iterable
      */
@@ -142,7 +142,7 @@ public abstract class IterablePlainWraps {
     /**
      * Returns the first element in the given iterable
      *
-     * @param iterable the source iterable
+     * @param iterable The source iterable
      *
      * @return the first element in the given iterable
      */
@@ -163,7 +163,7 @@ public abstract class IterablePlainWraps {
     /**
      * Returns the last element in the given iterable
      *
-     * @param iterable the source iterable
+     * @param iterable The source iterable
      *
      * @return the last element in the given iterable
      *
@@ -314,8 +314,8 @@ public abstract class IterablePlainWraps {
     /**
      * Returns true if the index object exists in the iterable
      *
-     * @param iterable the source to check
-     * @param index the index to detect
+     * @param iterable The source to check
+     * @param index The index to detect
      * @param adding indicates whether trying to add an element to the source iterable or not
      *
      * @return true if the index object exists in the iterable
