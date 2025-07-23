@@ -16,19 +16,20 @@ Yookue plexus-javase-util is a package of utility classes for the Java SE's hier
 
 - There are many useful packages that may help you a lot, code with it as you wish.
 
-| Package      | Description                                                                   |
-|--------------|-------------------------------------------------------------------------------|
-| annotation   | Annotated on elements to enable some abilities or capable                     |
-| constant     | Miscellaneous constants                                                       |
-| converter    | Extra converters for apache beanutils                                         |
-| enumeration  | Useful enumerations                                                           |
-| exception    | Extended exception for throwing customized needs                              |
-| function     | Lambda functions to support complex predicate/consumer                        |
-| identity     | Helps to generate identifiers, typically UUID                                 |
-| iterator     | Enhanced iterators to iterate enumerations/collections                        |
-| locale       | Capable to handle locales, such as Chinese date, Chinese number, Chinese Yuan |
-| structure    | Various structures to represents data combinations                            |
-| util         | Powerful utilities that may speed up your development                         |
+| Package     | Description                                                                   |
+|-------------|-------------------------------------------------------------------------------|
+| annotation  | Annotated on elements to enable some abilities or capable                     |
+| constant    | Miscellaneous constants                                                       |
+| converter   | Extra converters for apache beanutils                                         |
+| enumeration | Useful enumerations                                                           |
+| exception   | Extended exception for throwing customized needs                              |
+| function    | Lambda functions to support complex predicate/consumer                        |
+| identity    | Helps to generate identifiers, typically UUID                                 |
+| iterator    | Enhanced iterators to iterate enumerations/collections                        |
+| locale      | Capable to handle locales, such as Chinese date, Chinese number, Chinese Yuan |
+| structure   | Various structures to represents data combinations                            |
+| util        | Powerful utilities that may speed up your development                         |
+| validation  | Useful sequences and groups for validations                                   |
 
 ## Document
 
