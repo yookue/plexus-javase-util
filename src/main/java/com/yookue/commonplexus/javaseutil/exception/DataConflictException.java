@@ -22,12 +22,12 @@ import lombok.NoArgsConstructor;
 
 
 /**
- * Checked exception thrown that may be ambiguous
+ * Checked exception thrown that data conflicts
  *
  * @author David Hsing
  */
 @NoArgsConstructor
 @StandardException
 @SuppressWarnings("unused")
-public class AmbiguousRuntimeException extends RuntimeException {
+public class DataConflictException extends RuntimeException {
 }
