@@ -31,6 +31,7 @@ public abstract class SymbolVariantConst {
     public static final String CURLY_BRACKETS = "{}";    // $NON-NLS-1$
     public static final String DOLLARS = "$$";    // $NON-NLS-1$
     public static final String DOLLAR_CURLY_BRACKET = "${";    // $NON-NLS-1$
+    public static final String DOT_SPACE = ". ";    // $NON-NLS-1$
     public static final String DOTS = "..";    // $NON-NLS-1$
     public static final String HEX_PREFIX = "0x";    // $NON-NLS-1$
     public static final String HEX_ORDER_SQUARES = "[0x%d]";    // $NON-NLS-1$
