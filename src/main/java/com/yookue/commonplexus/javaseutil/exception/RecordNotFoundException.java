@@ -22,12 +22,12 @@ import lombok.NoArgsConstructor;
 
 
 /**
- * Checked exception thrown when data conflicts
+ * Checked exception thrown when record not found
  *
  * @author David Hsing
  */
 @NoArgsConstructor
 @StandardException
 @SuppressWarnings("unused")
-public class DataConflictException extends RuntimeException {
+public class RecordNotFoundException extends RuntimeException {
 }
