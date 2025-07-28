@@ -659,4 +659,64 @@ public abstract class NumberUtilsWraps {
     public static float toPrimitive(@Nullable Float value, float defaultValue) {
         return (value == null) ? defaultValue : value;
     }
+
+    /**
+     * Returns an uppercase Character object on the given value
+     * <pre>
+     *     NumberUtilsWraps.toUppercaseChar(1)  = 'A'
+     *     NumberUtilsWraps.toUppercaseChar(26) = 'Z'
+     * </pre>
+     *
+     * @param value The value to convert, must between 1(inclusive) and 26(inclusive)
+     *
+     * @return an uppercase Character object on the given value
+     */
+    @Nullable
+    public static Character toUppercaseChar(int value) {
+        return (value < 1 || value > 26) ? null : (char) (value + 64);
+    }
+
+    /**
+     * Returns a lowercase Character object on the given value
+     * <pre>
+     *     NumberUtilsWraps.toLowercaseChar(1)  = 'a'
+     *     NumberUtilsWraps.toLowercaseChar(26) = 'z'
+     * </pre>
+     *
+     * @param value The value to convert, must between 1(inclusive) and 26(inclusive)
+     *
+     * @return a lowercase Character object on the given value
+     */
+    @Nullable
+    public static Character toLowercaseChar(int value) {
+        return (value < 1 || value > 26) ? null : (char) (value + 96);
+    }
+
+    /**
+     * Returns an uppercase string from the given value, just like Excel column title
+     * <pre>
+     *     NumberUtilsWraps.toExcelColumn(1)  = "A"
+     *     NumberUtilsWraps.toExcelColumn(26) = "Z"
+     *     NumberUtilsWraps.toExcelColumn(27) = "AA"
+     *     NumberUtilsWraps.toExcelColumn(703) = "AAA"
+     * </pre>
+     *
+     * @param value The value to convert, 1 based
+     *
+     * @return  an uppercase string from the given value, just like Excel column title
+     */
+    @Nullable
+    public static String toExcelColumn(int value) {
+        if (value < 1) {
+            return null;
+        }
+        StringBuilder result = new StringBuilder();
+        while (value > 0) {
+            value--;
+            char ch = (char) ('A' + value % 26);
+            result.append(ch);
+            value /= 26;
+        }
+        return result.reverse().toString();
+    }
 }

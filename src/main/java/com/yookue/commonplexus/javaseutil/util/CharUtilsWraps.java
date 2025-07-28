@@ -69,38 +69,6 @@ public abstract class CharUtilsWraps {
     }
 
     /**
-     * Returns an uppercase Character object on the given value
-     * <pre>
-     *     CharUtilsWraps.upperCase(0)  = 'A'
-     *     CharUtilsWraps.upperCase(25) = 'Z'
-     * </pre>
-     *
-     * @param value The value to convert, must between 0(inclusive) and 26(exclusive)
-     *
-     * @return an uppercase Character object on the given value
-     */
-    @Nullable
-    public static Character upperCase(short value) {
-        return (value < 0 || value > 25) ? null : (char) (value + 65);
-    }
-
-    /**
-     * Returns a lowercase Character object on the given value
-     * <pre>
-     *     CharUtilsWraps.toLowerCharacter(0)  = 'a'
-     *     CharUtilsWraps.toLowerCharacter(25) = 'z'
-     * </pre>
-     *
-     * @param value The value to convert, must between 0(inclusive) and 26(exclusive)
-     *
-     * @return a lowercase Character object on the given value
-     */
-    @Nullable
-    public static Character lowerCase(short value) {
-        return (value < 0 || value > 25) ? null : (char) (value + 97);
-    }
-
-    /**
      * @see org.apache.commons.lang3.CharSequenceUtils#toCharArray
      */
     @Nullable
