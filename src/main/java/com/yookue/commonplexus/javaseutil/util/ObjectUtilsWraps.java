@@ -125,6 +125,30 @@ public abstract class ObjectUtilsWraps {
         return (ObjectUtils.anyNull(source, expectType) || !expectType.isInstance(source)) ? defaultValue : expectType.cast(source);
     }
 
+    public static String castAsString(@Nullable Object source) {
+        return castAsString(source, null);
+    }
+
+    public static String castAsString(@Nullable Object source, @Nullable String defaultValue) {
+        return castAs(source, String.class, defaultValue);
+    }
+
+    public static Integer castAsInteger(@Nullable Object source) {
+        return castAsInteger(source, null);
+    }
+
+    public static Integer castAsInteger(@Nullable Object source, @Nullable Integer defaultValue) {
+        return castAs(source, Integer.class, defaultValue);
+    }
+
+    public static Boolean castAsBoolean(@Nullable Object source) {
+        return castAsBoolean(source, null);
+    }
+
+    public static Boolean castAsBoolean(@Nullable Object source, @Nullable Boolean defaultValue) {
+        return castAs(source, Boolean.class, defaultValue);
+    }
+
     @Nullable
     public static Object[] castAsArray(@Nullable Object source) {
         return castAsArray(source, false);
