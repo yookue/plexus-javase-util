@@ -44,15 +44,15 @@ public abstract class RangeMapWraps {
         if (ranges == null || ranges.size() < 2) {
             return false;
         }
-        RangeMap<T, Boolean> rangeMap = TreeRangeMap.create();
+        RangeMap<T, Boolean> map = TreeRangeMap.create();
         for (Range<T> range : ranges) {
             if (range == null) {
                 continue;
             }
-            if (!rangeMap.subRangeMap(range).asMapOfRanges().isEmpty()) {
+            if (!map.subRangeMap(range).asMapOfRanges().isEmpty()) {
                 return true;
             }
-            rangeMap.put(range, true);
+            map.put(range, true);
         }
         return false;
     }
