@@ -97,8 +97,8 @@ public abstract class StringVariantConst {
     public static final String USERNAME = "username";    // $NON-NLS-1$
     public static final String UNDEFINED = "undefined";    // $NON-NLS-1$
     public static final String UNKNOWN = "unknown";    // $NON-NLS-1$
-    public static final String URI = "URI";    // $NON-NLS-1$
-    public static final String URL = "URL";    // $NON-NLS-1$
+    public static final String URI = "uri";    // $NON-NLS-1$
+    public static final String URL = "url";    // $NON-NLS-1$
     public static final String VALUE = "value";    // $NON-NLS-1$
     public static final String WEB_INF = "WEB-INF";    // $NON-NLS-1$
 }
