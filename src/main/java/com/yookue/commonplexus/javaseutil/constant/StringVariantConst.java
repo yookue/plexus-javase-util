@@ -34,6 +34,7 @@ public abstract class StringVariantConst {
     public static final String EMPTY = "";    // $NON-NLS-1$
     public static final String SPACE = " ";    // $NON-NLS-1$
 
+    public static final String ADDITIVE = "additive";    // $NON-NLS-1$
     public static final String ATTACHMENT = "attachment";    // $NON-NLS-1$
     public static final String AUTHORITIES = "authorities";    // $NON-NLS-1$
     public static final String AUTHORIZATION = "authorization";    // $NON-NLS-1$
