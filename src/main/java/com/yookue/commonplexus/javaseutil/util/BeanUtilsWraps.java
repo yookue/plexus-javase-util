@@ -400,9 +400,9 @@ public abstract class BeanUtilsWraps {
         if (bean == null || MapPlainWraps.isEmpty(map)) {
             return;
         }
-        List<String> excludes = new ArrayList<>();
-        FieldUtilsWraps.doWithNestedFields(bean.getClass(), field -> excludes.add(field.getName()), field -> AnnotationUtilsWraps.anyPresent(field, BeanCopyIgnore.class, ViewTransferIgnore.class));
-        mapToBeanExclusive(bean, map, excludes);
+        for (Map.Entry<String, ?> entry : map.entrySet()) {
+            setProperty(bean, entry.getKey(), entry.getValue());
+        }
     }
 
     public static void mapToBean(@Nullable Object bean, @Nullable Map<String, ?> map, BiPredicate<String, Object> filter) throws BeanInvocationException {
@@ -427,6 +427,15 @@ public abstract class BeanUtilsWraps {
                 setProperty(bean, entry.getKey(), result.getData());
             }
         }
+    }
+
+    public static void mapToBeanSheared(@Nullable Object bean, @Nullable Map<String, ?> map) throws BeanInvocationException {
+        if (bean == null || MapPlainWraps.isEmpty(map)) {
+            return;
+        }
+        List<String> excludes = new ArrayList<>();
+        FieldUtilsWraps.doWithNestedFields(bean.getClass(), field -> excludes.add(field.getName()), field -> AnnotationUtilsWraps.anyPresent(field, BeanCopyIgnore.class, ViewTransferIgnore.class));
+        mapToBeanExclusive(bean, map, excludes);
     }
 
     public static void mapToBeanExclusive(@Nullable Object bean, @Nullable Map<String, ?> map, @Nullable String... fields) throws BeanInvocationException {
