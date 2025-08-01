@@ -182,15 +182,27 @@ public abstract class ListPlainWraps {
     }
 
     public static <E> E get(@Nullable List<E> list, int index) {
-        return (list == null || index < 0 || index > list.size() - 1) ? null : list.get(index);
+        return get(list, index, null);
+    }
+
+    public static <E> E get(@Nullable List<E> list, int index, E defaultValue) {
+        return (list == null || index < 0 || index > list.size() - 1) ? defaultValue : ObjectUtils.defaultIfNull(list.get(index), defaultValue);
     }
 
     public static <E> E getFirst(@Nullable List<E> list) {
-        return get(list, 0);
+        return getFirst(list, null);
+    }
+
+    public static <E> E getFirst(@Nullable List<E> list, E defaultValue) {
+        return get(list, 0, defaultValue);
     }
 
     public static <E> E getLast(@Nullable List<E> list) {
-        return get(list, CollectionPlainWraps.size(list) - 1);
+        return getLast(list, null);
+    }
+
+    public static <E> E getLast(@Nullable List<E> list, E defaultValue) {
+        return get(list, CollectionPlainWraps.size(list) - 1, defaultValue);
     }
 
     public static <E> ListIterator<E> listIterator(@Nullable List<E> list) {
