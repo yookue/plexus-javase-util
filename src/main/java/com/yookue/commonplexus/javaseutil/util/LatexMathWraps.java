@@ -87,6 +87,25 @@ public abstract class LatexMathWraps {
     }
 
     @Nullable
+    public static Double evalLatexExpressQuietly(@Nullable String latex) {
+        return evalLatexExpressQuietly(latex, null, null);
+    }
+
+    @Nullable
+    public static Double evalLatexExpressQuietly(@Nullable String latex, @Nullable Map<String, String> variables) {
+        return evalLatexExpressQuietly(latex, variables, null);
+    }
+
+    @Nullable
+    public static Double evalLatexExpressQuietly(@Nullable String latex, @Nullable Map<String, String> variables, @Nullable Map<String, String> keywords) {
+        try {
+            return evalLatexExpress(latex, variables, keywords);
+        } catch (Exception ignored) {
+        }
+        return null;
+    }
+
+    @Nullable
     public static Double evalMathExpress(@Nullable String math) throws IllegalArgumentException {
         return evalMathExpress(math, null);
     }
@@ -106,6 +125,20 @@ public abstract class LatexMathWraps {
             }
         }
         return new ExpressionBuilder(alias).build().evaluate();
+    }
+
+    @Nullable
+    public static Double evalMathExpressQuietly(@Nullable String math) {
+        return evalMathExpressQuietly(math, null);
+    }
+
+    @Nullable
+    public static Double evalMathExpressQuietly(@Nullable String math, @Nullable Map<String, String> variables) {
+        try {
+            return evalMathExpress(math, variables);
+        } catch (Exception ignored) {
+        }
+        return null;
     }
 
     public static boolean testLatexExpress(@Nullable String latex) {
