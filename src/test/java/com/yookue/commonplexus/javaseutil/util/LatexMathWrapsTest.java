@@ -42,7 +42,7 @@ class LatexMathWrapsTest {
         Map<String, String> variables = Map.of("x", "3");
         Double result = LatexMathWraps.evalLatexExpress("x\\cdot2", variables);
         log.info("{}: {}", StackTraceWraps.getExecutingMethodName(), result);
-        Assertions.assertEquals(6.0, result);
+        Assertions.assertThrows(IllegalArgumentException.class, () -> LatexMathWraps.evalLatexExpress("y\\cdot2", variables));
     }
 
     @Test
@@ -51,6 +51,7 @@ class LatexMathWrapsTest {
         Double result = LatexMathWraps.evalMathExpress("x*2", variables);
         log.info("{}: {}", StackTraceWraps.getExecutingMethodName(), result);
         Assertions.assertEquals(6.0, result);
+        Assertions.assertThrows(IllegalArgumentException.class, () -> LatexMathWraps.evalLatexExpress("y*2", variables));
     }
 
     @Test

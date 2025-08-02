@@ -68,17 +68,17 @@ public abstract class LatexMathWraps {
     }
 
     @Nullable
-    public static Double evalLatexExpress(@Nullable String latex) {
+    public static Double evalLatexExpress(@Nullable String latex) throws IllegalArgumentException {
         return evalLatexExpress(latex, null, null);
     }
 
     @Nullable
-    public static Double evalLatexExpress(@Nullable String latex, @Nullable Map<String, String> variables) {
+    public static Double evalLatexExpress(@Nullable String latex, @Nullable Map<String, String> variables) throws IllegalArgumentException {
         return evalLatexExpress(latex, variables, null);
     }
 
     @Nullable
-    public static Double evalLatexExpress(@Nullable String latex, @Nullable Map<String, String> variables, @Nullable Map<String, String> keywords) {
+    public static Double evalLatexExpress(@Nullable String latex, @Nullable Map<String, String> variables, @Nullable Map<String, String> keywords) throws IllegalArgumentException {
         if (StringUtils.isBlank(latex)) {
             return null;
         }
@@ -87,12 +87,12 @@ public abstract class LatexMathWraps {
     }
 
     @Nullable
-    public static Double evalMathExpress(@Nullable String math) {
+    public static Double evalMathExpress(@Nullable String math) throws IllegalArgumentException {
         return evalMathExpress(math, null);
     }
 
     @Nullable
-    public static Double evalMathExpress(@Nullable String math, @Nullable Map<String, String> variables) {
+    public static Double evalMathExpress(@Nullable String math, @Nullable Map<String, String> variables) throws IllegalArgumentException {
         if (StringUtils.isBlank(math)) {
             return null;
         }
