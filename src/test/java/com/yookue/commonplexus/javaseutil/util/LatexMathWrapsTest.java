@@ -39,7 +39,7 @@ class LatexMathWrapsTest {
 
     @Test
     void evalLatexExpress() {
-        Map<String, String> variables = Map.of("x", "3");
+        Map<String, Object> variables = Map.of("x", 3);
         Double result = LatexMathWraps.evalLatexExpress("x\\cdot2", variables);
         log.info("{}: {}", StackTraceWraps.getExecutingMethodName(), result);
         Assertions.assertThrows(IllegalArgumentException.class, () -> LatexMathWraps.evalLatexExpress("y\\cdot2", variables));
@@ -47,7 +47,7 @@ class LatexMathWrapsTest {
 
     @Test
     void evalMathExpress() {
-        Map<String, String> variables = Map.of("x", "3");
+        Map<String, Object> variables = Map.of("x", 3);
         Double result = LatexMathWraps.evalMathExpress("x*2", variables);
         log.info("{}: {}", StackTraceWraps.getExecutingMethodName(), result);
         Assertions.assertEquals(6.0, result);
@@ -56,7 +56,7 @@ class LatexMathWrapsTest {
 
     @Test
     void testLatexExpress() {
-        Map<String, String> variables = Map.of("x", "3");
+        Map<String, Object> variables = Map.of("x", 3);
         boolean result = LatexMathWraps.testLatexExpress("x\\cdot2", variables);
         log.info("{}: {}", StackTraceWraps.getExecutingMethodName(), result);
         Assertions.assertTrue(result);
@@ -64,7 +64,7 @@ class LatexMathWrapsTest {
 
     @Test
     void testMathExpress() {
-        Map<String, String> variables = Map.of("x", "3");
+        Map<String, Object> variables = Map.of("x", 3);
         boolean result = LatexMathWraps.testMathExpress("x*2", variables);
         log.info("{}: {}", StackTraceWraps.getExecutingMethodName(), result);
         Assertions.assertTrue(result);

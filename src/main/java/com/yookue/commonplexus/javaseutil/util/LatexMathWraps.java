@@ -73,12 +73,12 @@ public abstract class LatexMathWraps {
     }
 
     @Nullable
-    public static Double evalLatexExpress(@Nullable String latex, @Nullable Map<String, String> variables) throws IllegalArgumentException {
+    public static Double evalLatexExpress(@Nullable String latex, @Nullable Map<String, Object> variables) throws IllegalArgumentException {
         return evalLatexExpress(latex, variables, null);
     }
 
     @Nullable
-    public static Double evalLatexExpress(@Nullable String latex, @Nullable Map<String, String> variables, @Nullable Map<String, String> keywords) throws IllegalArgumentException {
+    public static Double evalLatexExpress(@Nullable String latex, @Nullable Map<String, Object> variables, @Nullable Map<String, String> keywords) throws IllegalArgumentException {
         if (StringUtils.isBlank(latex)) {
             return null;
         }
@@ -92,12 +92,12 @@ public abstract class LatexMathWraps {
     }
 
     @Nullable
-    public static Double evalLatexExpressQuietly(@Nullable String latex, @Nullable Map<String, String> variables) {
+    public static Double evalLatexExpressQuietly(@Nullable String latex, @Nullable Map<String, Object> variables) {
         return evalLatexExpressQuietly(latex, variables, null);
     }
 
     @Nullable
-    public static Double evalLatexExpressQuietly(@Nullable String latex, @Nullable Map<String, String> variables, @Nullable Map<String, String> keywords) {
+    public static Double evalLatexExpressQuietly(@Nullable String latex, @Nullable Map<String, Object> variables, @Nullable Map<String, String> keywords) {
         try {
             return evalLatexExpress(latex, variables, keywords);
         } catch (Exception ignored) {
@@ -111,17 +111,17 @@ public abstract class LatexMathWraps {
     }
 
     @Nullable
-    public static Double evalMathExpress(@Nullable String math, @Nullable Map<String, String> variables) throws IllegalArgumentException {
+    public static Double evalMathExpress(@Nullable String math, @Nullable Map<String, Object> variables) throws IllegalArgumentException {
         if (StringUtils.isBlank(math)) {
             return null;
         }
         String alias = math;
         if (MapPlainWraps.isNotEmpty(variables)) {
-            for (Map.Entry<String, String> entry : variables.entrySet()) {
+            for (Map.Entry<String, Object> entry : variables.entrySet()) {
                 if (StringUtils.isBlank(entry.getKey())) {
                     continue;
                 }
-                alias = alias.replace(entry.getKey(), StringUtils.defaultString(entry.getValue()));
+                alias = alias.replace(entry.getKey(), ObjectUtilsWraps.toString(entry.getValue(), StringUtils.EMPTY));
             }
         }
         return new ExpressionBuilder(alias).build().evaluate();
@@ -133,7 +133,7 @@ public abstract class LatexMathWraps {
     }
 
     @Nullable
-    public static Double evalMathExpressQuietly(@Nullable String math, @Nullable Map<String, String> variables) {
+    public static Double evalMathExpressQuietly(@Nullable String math, @Nullable Map<String, Object> variables) {
         try {
             return evalMathExpress(math, variables);
         } catch (Exception ignored) {
@@ -145,11 +145,11 @@ public abstract class LatexMathWraps {
         return testLatexExpress(latex, null, null);
     }
 
-    public static boolean testLatexExpress(@Nullable String latex, @Nullable Map<String, String> variables) {
+    public static boolean testLatexExpress(@Nullable String latex, @Nullable Map<String, Object> variables) {
         return testLatexExpress(latex, variables, null);
     }
 
-    public static boolean testLatexExpress(@Nullable String latex, @Nullable Map<String, String> variables, @Nullable Map<String, String> keywords) {
+    public static boolean testLatexExpress(@Nullable String latex, @Nullable Map<String, Object> variables, @Nullable Map<String, String> keywords) {
         if (StringUtils.isBlank(latex)) {
             return false;
         }
@@ -161,7 +161,7 @@ public abstract class LatexMathWraps {
         return testMathExpress(math, null);
     }
 
-    public static boolean testMathExpress(@Nullable String math, @Nullable Map<String, String> variables) {
+    public static boolean testMathExpress(@Nullable String math, @Nullable Map<String, Object> variables) {
         try {
             return evalMathExpress(math, variables) != null;
         } catch (Exception ignored) {
