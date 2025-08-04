@@ -31,16 +31,23 @@ import net.objecthunter.exp4j.ExpressionBuilder;
  */
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})
 public abstract class LatexMathWraps {
-    private static final Map<String, String> latexMaths = Map.of(
-        "\\cdot", "*",    // $NON-NLS-1$ // $NON-NLS-2$
-        "\\times", "*",    // $NON-NLS-1$ // $NON-NLS-2$
-        "\\div", "/",    // $NON-NLS-1$ // $NON-NLS-2$
-        "\\sqrt", "Sqrt",    // $NON-NLS-1$ // $NON-NLS-2$
-        "\\pi", "Pi",    // $NON-NLS-1$ // $NON-NLS-2$
-        "\\infty", "Infinity",    // $NON-NLS-1$ // $NON-NLS-2$
-        "\\int", "Integrate",    // $NON-NLS-1$ // $NON-NLS-2$
-        "\\sum", "Sum"    // $NON-NLS-1$ // $NON-NLS-2$
-    );
+    private static final Map<String, String> latexMaths = new LinkedHashMap<>() {{
+        put("\\cdot", "*"); // $NON-NLS-1$ // $NON-NLS-2$
+        put("\\times", "*"); // $NON-NLS-1$ // $NON-NLS-2$
+        put("\\div", "/"); // $NON-NLS-1$ // $NON-NLS-2$
+        put("\\pm", "+-"); // $NON-NLS-1$ // $NON-NLS-2$
+        put("\\approx", "~"); // $NON-NLS-1$ // $NON-NLS-2$
+        put("\\neq", "!="); // $NON-NLS-1$ // $NON-NLS-2$
+        put("\\sqrt", "Sqrt");    // $NON-NLS-1$ // $NON-NLS-2$
+        put("\\pi", "Pi");    // $NON-NLS-1$ // $NON-NLS-2$
+        put("\\infty", "Infinity");    // $NON-NLS-1$ // $NON-NLS-2$
+        put("\\int", "Integrate");    // $NON-NLS-1$ // $NON-NLS-2$
+        put("\\sum", "Sum");    // $NON-NLS-1$ // $NON-NLS-2$
+        put("\\lfloor", "floor(");    // $NON-NLS-1$ // $NON-NLS-2$
+        put("\\rfloor", ")");    // $NON-NLS-1$ // $NON-NLS-2$
+        put("\\lceil", "ceil(");    // $NON-NLS-1$ // $NON-NLS-2$
+        put("\\rceil", ")");    // $NON-NLS-1$ // $NON-NLS-2$
+    }};
 
     @Nullable
     public static String parseLatexToMath(@Nullable String latex) {

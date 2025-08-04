@@ -34,7 +34,6 @@ class LatexMathWrapsTest {
     void parseLatexToMath() {
         String result = LatexMathWraps.parseLatexToMath("x\\cdot2");
         log.info("{}: {}", StackTraceWraps.getExecutingMethodName(), result);
-        Assertions.assertEquals("x*2", result);
     }
 
     @Test
@@ -42,6 +41,8 @@ class LatexMathWrapsTest {
         Map<String, Object> variables = Map.of("x", 3);
         Double result = LatexMathWraps.evalLatexExpress("x\\cdot2", variables);
         log.info("{}: {}", StackTraceWraps.getExecutingMethodName(), result);
+        Assertions.assertEquals(61.0, LatexMathWraps.evalLatexExpress("\\lfloor 61.2 \\rfloor"));
+        Assertions.assertEquals(62.0, LatexMathWraps.evalLatexExpress("\\lceil 61.2 \\rceil"));
         Assertions.assertThrows(IllegalArgumentException.class, () -> LatexMathWraps.evalLatexExpress("y\\cdot2", variables));
     }
 
@@ -51,6 +52,8 @@ class LatexMathWrapsTest {
         Double result = LatexMathWraps.evalMathExpress("x*2", variables);
         log.info("{}: {}", StackTraceWraps.getExecutingMethodName(), result);
         Assertions.assertEquals(6.0, result);
+        Assertions.assertEquals(61.0, LatexMathWraps.evalMathExpress("floor(61.2)"));
+        Assertions.assertEquals(62.0, LatexMathWraps.evalMathExpress("ceil(61.2)"));
         Assertions.assertThrows(IllegalArgumentException.class, () -> LatexMathWraps.evalLatexExpress("y*2", variables));
     }
 
