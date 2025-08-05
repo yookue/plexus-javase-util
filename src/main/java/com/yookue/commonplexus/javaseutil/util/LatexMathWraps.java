@@ -47,6 +47,8 @@ public abstract class LatexMathWraps {
         put("\\rfloor", ")");    // $NON-NLS-1$ // $NON-NLS-2$
         put("\\lceil", "ceil(");    // $NON-NLS-1$ // $NON-NLS-2$
         put("\\rceil", ")");    // $NON-NLS-1$ // $NON-NLS-2$
+        put("\\lvert", "abs(");    // $NON-NLS-1$ // $NON-NLS-2$
+        put("\\rvert", ")");    // $NON-NLS-1$ // $NON-NLS-2$
     }};
 
     @Nullable

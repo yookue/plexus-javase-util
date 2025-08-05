@@ -43,6 +43,7 @@ class LatexMathWrapsTest {
         log.info("{}: {}", StackTraceWraps.getExecutingMethodName(), result);
         Assertions.assertEquals(61.0, LatexMathWraps.evalLatexExpress("\\lfloor 61.2 \\rfloor"));
         Assertions.assertEquals(62.0, LatexMathWraps.evalLatexExpress("\\lceil 61.2 \\rceil"));
+        Assertions.assertEquals(3.0, LatexMathWraps.evalLatexExpress("\\lvert -3 \\rvert"));
         Assertions.assertThrows(IllegalArgumentException.class, () -> LatexMathWraps.evalLatexExpress("y\\cdot2", variables));
     }
 
@@ -54,6 +55,7 @@ class LatexMathWrapsTest {
         Assertions.assertEquals(6.0, result);
         Assertions.assertEquals(61.0, LatexMathWraps.evalMathExpress("floor(61.2)"));
         Assertions.assertEquals(62.0, LatexMathWraps.evalMathExpress("ceil(61.2)"));
+        Assertions.assertEquals(3.0, LatexMathWraps.evalMathExpress("abs(-3)"));
         Assertions.assertThrows(IllegalArgumentException.class, () -> LatexMathWraps.evalLatexExpress("y*2", variables));
     }
 
