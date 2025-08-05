@@ -1255,6 +1255,15 @@ public abstract class StringUtilsWraps {
         return StringUtils.isBlank(prepend) ? CharSequenceWraps.toStringIgnoreNull(sequence) : StringUtils.join(prepend, delimiter, sequence);
     }
 
+    public static String parenthesis(@Nullable CharSequence sequence) {
+        return parenthesis(sequence, false);
+    }
+
+    @Nullable
+    public static String parenthesis(@Nullable CharSequence sequence, boolean emptyAsNull) {
+        return (StringUtils.isEmpty(sequence) && emptyAsNull) ? null : StringUtils.join(CharVariantConst.PARENTHESIS_LEFT, sequence, CharVariantConst.PARENTHESIS_RIGHT);
+    }
+
     public static String quoteSingle(@Nullable CharSequence sequence) {
         return quoteSingle(sequence, false);
     }
