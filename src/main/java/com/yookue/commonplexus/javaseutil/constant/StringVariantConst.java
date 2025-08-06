@@ -52,6 +52,7 @@ public abstract class StringVariantConst {
     public static final String DATA_SPACE = "data: ";    // $NON-NLS-1$
     public static final String DEFAULT = "default";    // $NON-NLS-1$
     public static final String ENABLED = "enabled";    // $NON-NLS-1$
+    public static final String ERROR = "error";    // $NON-NLS-1$
     // @see "org.springframework.util.ResourceUtils#URL_PROTOCOL_FILE"
     public static final String FILE = "file";    // $NON-NLS-1$
     public static final String FILENAME = "filename";    // $NON-NLS-1$
