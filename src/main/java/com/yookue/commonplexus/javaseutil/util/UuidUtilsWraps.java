@@ -24,6 +24,7 @@ import jakarta.annotation.Nullable;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import com.yookue.commonplexus.javaseutil.constant.CharVariantConst;
+import com.yookue.commonplexus.javaseutil.constant.RegexVariantConst;
 
 
 /**
@@ -36,6 +37,14 @@ import com.yookue.commonplexus.javaseutil.constant.CharVariantConst;
  */
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})
 public abstract class UuidUtilsWraps {
+    public static boolean isHyphenUuid(@Nullable String uuid) {
+        return uuid != null && uuid.matches(RegexVariantConst.HYPHEN_UUID);
+    }
+
+    public static boolean isPlainUuid(@Nullable String uuid) {
+        return uuid != null && uuid.matches(RegexVariantConst.PLAIN_UUID);
+    }
+
     @Nullable
     public static UUID ofString(@Nullable String uuid) {
         if (StringUtils.isBlank(uuid)) {
@@ -48,13 +57,8 @@ public abstract class UuidUtilsWraps {
         return null;
     }
 
-    @Nullable
-    @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
     public static String toHyphenUuid(@Nullable String uuid) {
-        if (StringUtils.length(uuid) != 32) {
-            return uuid;
-        }
-        return String.format("%s-%s-%s-%s-%s", uuid.substring(0, 8), uuid.substring(8, 12), uuid.substring(12, 16), uuid.substring(16, 20), uuid.substring(20));    // $NON-NLS-1$
+        return !isPlainUuid(uuid) ? uuid : String.format("%s-%s-%s-%s-%s", uuid.substring(0, 8), uuid.substring(8, 12), uuid.substring(12, 16), uuid.substring(16, 20), uuid.substring(20));    // $NON-NLS-1$
     }
 
     /**
@@ -74,7 +78,7 @@ public abstract class UuidUtilsWraps {
 
     @Nullable
     public static String toPlainUuid(@Nullable String uuid) {
-        return (StringUtils.length(uuid) == 36) ? StringUtils.remove(uuid, CharVariantConst.HYPHEN) : uuid;
+        return !isHyphenUuid(uuid) ? uuid : StringUtils.remove(uuid, CharVariantConst.HYPHEN);
     }
 
     /**

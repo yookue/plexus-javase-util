@@ -39,6 +39,8 @@ public abstract class RegexVariantConst {
     public static final String LINE_SEPARATOR = "\\r?\\n";    // $NON-NLS-1$
     public static final String LANGUAGE_TAG = "[a-zA-Z]{2,3}([_\\-]{1}[a-zA-Z]{2,3}){0,1}([_\\-]{1}[a-zA-Z]{2,4}){0,1}";    // $NON-NLS-1$
     public static final String MULTIPLE_SUFFIX = "{2,}";    // $NON-NLS-1$
+    public static final String HYPHEN_UUID = "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$";    // $NON-NLS-1$
+    public static final String PLAIN_UUID = "^[0-9a-fA-F]{32}$";    // $NON-NLS-1$
 
     public static final String LAN_ADDRESS_IPV4 = "(127\\.0\\.0\\.1)|(localhost)|(10\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3})|(169\\.254\\.\\d{1,3}\\.\\d{1,3})|(172\\.((1[6-9])|(2\\d)|(3[01]))\\.\\d{1,3}\\.\\d{1,3})|(192\\.168\\.\\d{1,3}\\.\\d{1,3})";    // $NON-NLS-1$
 }
