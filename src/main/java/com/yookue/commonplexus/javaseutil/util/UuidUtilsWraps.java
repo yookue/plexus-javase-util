@@ -38,11 +38,11 @@ import com.yookue.commonplexus.javaseutil.constant.RegexVariantConst;
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})
 public abstract class UuidUtilsWraps {
     public static boolean isHyphenUuid(@Nullable String uuid) {
-        return uuid != null && uuid.matches(RegexVariantConst.HYPHEN_UUID);
+        return uuid != null && uuid.length() == 36 && uuid.matches(RegexVariantConst.HYPHEN_UUID);
     }
 
     public static boolean isPlainUuid(@Nullable String uuid) {
-        return uuid != null && uuid.matches(RegexVariantConst.PLAIN_UUID);
+        return uuid != null && uuid.length() == 32 && uuid.matches(RegexVariantConst.PLAIN_UUID);
     }
 
     @Nullable
