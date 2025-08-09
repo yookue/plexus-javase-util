@@ -17,19 +17,18 @@
 package com.yookue.commonplexus.javaseutil.exception;
 
 
+import java.io.IOException;
 import lombok.experimental.StandardException;
 import lombok.NoArgsConstructor;
 
 
 /**
- * Exception thrown to indicate that this exception can be ignored
+ * Checked exception thrown when file storage
  *
  * @author David Hsing
- *
- * @reference "https://www.freeaihub.com/post/591.html"
  */
 @NoArgsConstructor
 @StandardException
-@SuppressWarnings({"unused", "JavadocDeclaration", "JavadocLinkAsPlainText"})
-public class IgnorableException extends RuntimeException {
+@SuppressWarnings("unused")
+public class FileStorageException extends IOException {
 }

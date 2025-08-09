@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 
 
 /**
- * Thrown to indicate that the service is unavailable
+ * Exception thrown to indicate that the service is unavailable
  *
  * @author David Hsing
  */

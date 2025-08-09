@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 
 
 /**
- * Thrown to indicate that the service version mismatch
+ * Exception thrown to indicate that the service version mismatch
  *
  * @author David Hsing
  */

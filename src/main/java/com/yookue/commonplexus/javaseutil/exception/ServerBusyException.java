@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 
 
 /**
- * Thrown to indicate that the server is busy
+ * Exception thrown to indicate that the server is busy
  *
  * @author David Hsing
  */

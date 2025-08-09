@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 
 
 /**
- * Thrown to indicate that the server is under maintenance
+ * Exception thrown to indicate that the server is under maintenance
  *
  * @author David Hsing
  */

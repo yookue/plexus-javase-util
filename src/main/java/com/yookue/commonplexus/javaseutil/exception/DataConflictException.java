@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 
 
 /**
- * Checked exception thrown when data conflicts
+ * Exception thrown to indicate that data conflicted
  *
  * @author David Hsing
  */

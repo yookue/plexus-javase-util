@@ -22,7 +22,7 @@ import jakarta.annotation.Nullable;
 
 
 /**
- * Checked exception thrown when a file system operation
+ * Exception thrown to indicate that a file operation is failed
  *
  * @author David Hsing
  *

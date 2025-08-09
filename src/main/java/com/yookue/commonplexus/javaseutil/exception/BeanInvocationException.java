@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 
 
 /**
- * Thrown to indicate that bean is inaccessible
+ * Exception thrown to indicate that bean is inaccessible
  *
  * @author David Hsing
  */

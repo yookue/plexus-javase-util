@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 
 
 /**
- * Checked exception thrown when business validation fails
+ * Exception thrown to indicate that business validation failed
  *
  * @author David Hsing
  */

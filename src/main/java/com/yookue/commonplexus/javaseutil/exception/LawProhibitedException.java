@@ -23,7 +23,7 @@ import lombok.NoArgsConstructor;
 
 
 /**
- * Checked exception thrown that may be prohibited by the law of requesting locale
+ * Exception thrown to indicate that something may be prohibited by the law of requesting locale
  *
  * @author David Hsing
  */

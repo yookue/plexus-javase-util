@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 
 
 /**
- * Thrown to indicate that the server be attacked
+ * Exception thrown to indicate that the server may be attacked
  *
  * @author David Hsing
  */

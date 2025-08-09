@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 
 
 /**
- * Thrown to indicate that the service configuration is incorrect
+ * Exception thrown to indicate that the service configuration is incorrect
  *
  * @author David Hsing
  */

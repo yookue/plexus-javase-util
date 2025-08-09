@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 
 
 /**
- * Checked exception thrown when record not found
+ * Exception thrown to indicate that a record is not found
  *
  * @author David Hsing
  */

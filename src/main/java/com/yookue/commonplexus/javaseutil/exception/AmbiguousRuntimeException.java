@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 
 
 /**
- * Checked exception thrown that may be ambiguous
+ * Exception thrown to indicate that something may be ambiguous
  *
  * @author David Hsing
  */

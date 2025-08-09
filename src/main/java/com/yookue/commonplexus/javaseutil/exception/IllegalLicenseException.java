@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 
 
 /**
- * Checked exception thrown when a license operation
+ * Exception thrown to indicate that a license is illegal
  *
  * @author David Hsing
  */

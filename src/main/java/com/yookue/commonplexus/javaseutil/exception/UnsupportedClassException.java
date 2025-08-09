@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 
 
 /**
- * Thrown to indicate that the requested class is unsupported
+ * Exception thrown to indicate that the requested class is unsupported
  *
  * @author David Hsing
  *
