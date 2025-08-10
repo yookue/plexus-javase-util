@@ -26,7 +26,7 @@ import org.apache.commons.lang3.time.DurationUtils;
 
 
 /**
- * Utilities for {@link java.time.temporal.TemporalUnit}
+ * Utilities for temporal utilities
  *
  * @author David Hsing
  *
@@ -36,7 +36,7 @@ import org.apache.commons.lang3.time.DurationUtils;
  * @see "org.springframework.data.redis.core.TimeoutUtils"
  */
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue", "JavadocReference"})
-public abstract class TemporalUnitWraps {
+public abstract class TemporalUtilsWraps {
     @Nullable
     public static ChronoUnit toChronoUnit(@Nullable CharSequence sequence) {
         if (StringUtils.isBlank(sequence)) {

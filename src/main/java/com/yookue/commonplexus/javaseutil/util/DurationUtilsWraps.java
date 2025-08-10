@@ -132,7 +132,7 @@ public abstract class DurationUtilsWraps {
 
     @Nullable
     public static Duration ofChronoUnit(@Nullable Long amount, @Nullable CharSequence unit) {
-        return ofChronoUnit(amount, TemporalUnitWraps.toChronoUnit(unit));
+        return ofChronoUnit(amount, TemporalUtilsWraps.toChronoUnit(unit));
     }
 
     @Nullable
@@ -143,7 +143,7 @@ public abstract class DurationUtilsWraps {
 
     @Nullable
     public static Duration ofTimeUnit(@Nullable Long amount, @Nullable CharSequence unit) {
-        return ofTimeUnit(amount, TemporalUnitWraps.toTimeUnit(unit));
+        return ofTimeUnit(amount, TemporalUtilsWraps.toTimeUnit(unit));
     }
 
     @Nullable
