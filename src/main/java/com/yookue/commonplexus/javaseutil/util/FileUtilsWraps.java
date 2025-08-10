@@ -21,16 +21,12 @@ import java.io.File;
 import java.io.FileFilter;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.nio.file.CopyOption;
-import java.nio.file.FileAlreadyExistsException;
-import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
-import java.nio.file.attribute.BasicFileAttributes;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Stream;
@@ -251,7 +247,7 @@ public abstract class FileUtilsWraps {
         return null;
     }
 
-    public static void deleteDirectoryQuietly(@Nullable File directory) {
+    public static void deleteDirectory(@Nullable File directory) {
         if (directory == null) {
             return;
         }
@@ -269,7 +265,7 @@ public abstract class FileUtilsWraps {
         return StringUtils.isNotBlank(path) && new File(path).exists();
     }
 
-    public static void forceDeleteQuietly(@Nullable File file) {
+    public static void forceDelete(@Nullable File file) {
         if (file == null) {
             return;
         }
@@ -279,7 +275,7 @@ public abstract class FileUtilsWraps {
         }
     }
 
-    public static void forceDeleteOnExitQuietly(@Nullable File file) {
+    public static void forceDeleteOnExit(@Nullable File file) {
         if (file == null) {
             return;
         }
@@ -289,7 +285,7 @@ public abstract class FileUtilsWraps {
         }
     }
 
-    public static void forceMkdirQuietly(@Nullable File directory) {
+    public static void forceMkdir(@Nullable File directory) {
         if (directory == null) {
             return;
         }
@@ -626,56 +622,54 @@ public abstract class FileUtilsWraps {
      *
      * @see org.apache.commons.io.FileUtils#forceMkdirParent
      */
-    public static void forceMkdirParentDeletable(@Nullable File dest, boolean deleteIfExists) throws IOException {
+    public static void forceMkdirParent(@Nullable File dest, boolean deleteIfExists) {
         if (dest == null) {
             return;
         }
-        if (!dest.exists()) {
-            FileUtils.forceMkdirParent(dest);
-            return;
-        }
-        if (deleteIfExists) {
-            BasicFileAttributes attributes = Files.readAttributes(dest.toPath(), BasicFileAttributes.class);
-            if (attributes.isRegularFile()) {
-                FileUtils.delete(dest);
-            } else if (attributes.isDirectory()) {
-                FileUtils.deleteDirectory(dest);
-            }
-            return;
-        }
-        throw new FileAlreadyExistsException(String.format("File '%s' already exists", dest.getAbsolutePath()));
-    }
-
-    public static void forceMkdirParentDeletableQuietly(@Nullable File dest, boolean deleteIfExists) {
         try {
-            forceMkdirParentDeletable(dest, deleteIfExists);
+            if (!dest.exists()) {
+                FileUtils.forceMkdirParent(dest);
+            } else {
+                if (deleteIfExists) {
+                    if (dest.isFile()) {
+                        FileUtils.delete(dest);
+                    } else if (dest.isDirectory()) {
+                        FileUtils.deleteDirectory(dest);
+                    }
+                }
+            }
         } catch (Exception ignored) {
         }
     }
 
     @Nullable
-    public static FileImageInputStream openImageInputStream(@Nullable File file) throws IOException {
-        return (file == null) ? null : new FileImageInputStream(file);
+    public static FileImageInputStream openImageInputStream(@Nullable File file) {
+        try {
+            return (file == null || file.isDirectory()) ? null : new FileImageInputStream(file);
+        } catch (Exception ignored) {
+        }
+        return null;
     }
 
     /**
      * @see org.apache.commons.io.FileUtils#openOutputStream(java.io.File, boolean)
      */
     @Nullable
-    public static FileImageOutputStream openImageOutputStream(@Nullable File file) throws IOException {
-        if (file == null) {
+    public static FileImageOutputStream openImageOutputStream(@Nullable File file, boolean deleteIfExists) {
+        if (file == null || file.isDirectory()) {
             return null;
         }
-        if (file.exists()) {
-            if (!file.isFile()) {
-                throw new IllegalStateException("The destination must be a file");    // $NON-NLS-1$
+        try {
+            if (file.exists()) {
+                if (deleteIfExists) {
+                    FileUtils.delete(file);
+                }
+            } else {
+                FileUtils.createParentDirectories(file);
             }
-            if (!file.canWrite()) {
-                throw new IllegalStateException("The destination must be writeable");    // $NON-NLS-1$
-            }
-        } else {
-            FileUtils.createParentDirectories(file);
+            return new FileImageOutputStream(file);
+        } catch (Exception ignored) {
         }
-        return new FileImageOutputStream(file);
+        return null;
     }
 }

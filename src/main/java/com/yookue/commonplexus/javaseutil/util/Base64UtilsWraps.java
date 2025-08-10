@@ -109,8 +109,8 @@ public abstract class Base64UtilsWraps {
         if (StringUtils.isBlank(base64) || file == null) {
             return false;
         }
-        FileUtilsWraps.forceMkdirParentDeletable(file, !append);
-        return saveImage(base64, FileUtilsWraps.openImageOutputStream(file), width, height);
+        FileUtilsWraps.forceMkdirParent(file, !append);
+        return saveImage(base64, FileUtilsWraps.openImageOutputStream(file, true), width, height);
     }
 
     public static boolean saveImageQuietly(@Nullable String base64, @Nullable File file) {
