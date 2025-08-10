@@ -678,7 +678,7 @@ public abstract class MethodUtilsWraps {
             return false;
         }
         Method superMethod = findMethod(superclass, methodName, paramTypes), subMethod = findMethod(subclass, methodName, paramTypes);
-        return ObjectUtils.allNotNull(superclass, subclass) && superMethod.getDeclaringClass() != subMethod.getDeclaringClass();
+        return superMethod.getDeclaringClass() != subMethod.getDeclaringClass();
     }
 
     /**

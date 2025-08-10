@@ -136,7 +136,6 @@ public abstract class DurationUtilsWraps {
     }
 
     @Nullable
-    @SuppressWarnings("DataFlowIssue")
     public static Duration ofChronoUnit(@Nullable Long amount, @Nullable ChronoUnit unit) {
         return ObjectUtils.anyNull(amount, unit) ? null : Duration.of(amount, unit);
     }
@@ -147,7 +146,6 @@ public abstract class DurationUtilsWraps {
     }
 
     @Nullable
-    @SuppressWarnings("DataFlowIssue")
     public static Duration ofTimeUnit(@Nullable Long amount, @Nullable TimeUnit unit) {
         return ObjectUtils.anyNull(amount, unit) ? null : DurationUtils.toDuration(amount, unit);
     }

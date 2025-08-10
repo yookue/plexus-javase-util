@@ -31,7 +31,7 @@ import org.apache.commons.text.lookup.StringLookup;
  * @see org.apache.commons.text.StringSubstitutor#StringSubstitutor(org.apache.commons.text.lookup.StringLookup)
  * @see "org.apache.commons.text.StrLookup.MapStrLookup"
  */
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "ClassCanBeRecord"})
 public class MapStringLookup<V> implements StringLookup {
     private final Map<String, V> map;
     private final boolean nullKeyAsPlaceholder;

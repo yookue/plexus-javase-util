@@ -44,7 +44,7 @@ public abstract class OptionalPlainWraps {
             return null;
         }
         Optional<T> filtered = (filter == null) ? source : source.filter(filter);
-        return filtered.map(t -> action.apply(t)).orElse(null);
+        return filtered.map(action).orElse(null);
     }
 
     public static <T> void ifPresent(@Nullable Optional<T> source, @Nullable Consumer<? super T> action) {

@@ -440,13 +440,11 @@ public abstract class JakartaJsonWraps {
     }
 
     @Nullable
-    @SuppressWarnings("DataFlowIssue")
     public static <T extends JsonValue> List<T> getValuesAs(@Nullable JsonArray instance, @Nullable Class<T> clazz) {
         return ObjectUtils.anyNull(instance, clazz) ? null : instance.getValuesAs(clazz);
     }
 
     @Nullable
-    @SuppressWarnings("DataFlowIssue")
     public static <T, K extends JsonValue> List<T> getValuesAs(@Nullable JsonArray instance, @Nullable Function<K, T> func) {
         return ObjectUtils.anyNull(instance, func) ? null : instance.getValuesAs(func);
     }
