@@ -28,9 +28,9 @@ import java.util.stream.Stream;
  */
 @SuppressWarnings("unused")
 public abstract class TemporalFormatCombo {
-    public static final String[] DATE_FORMATS = new String[]{TemporalFormatConst.ISO_YYYYMMDD, TemporalFormatConst.EUR_YYYYMMDD, TemporalFormatConst.EUR_MMDDYYYY, TemporalFormatConst.NON_YYYYMMDD};
-    public static final String[] DATETIME_FORMATS = new String[]{TemporalFormatConst.ISO_YYYYMMDD_HHMMSS, TemporalFormatConst.EUR_YYYYMMDD_HHMMSS, TemporalFormatConst.EUR_MMDDYYYY_HHMMSS, TemporalFormatConst.NON_YYYYMMDD_HHMMSS};
-    public static final String[] TIME_FORMATS = new String[]{TemporalFormatConst.ISO_HHMMSS, TemporalFormatConst.NON_HHMMSS};
+    public static final String[] DATE_FORMATS = new String[]{TemporalFormatConst.ISO_YYYYMMDD, TemporalFormatConst.EUR_YYYYMMDD, TemporalFormatConst.EUR_MMDDYYYY, TemporalFormatConst.RAW_YYYYMMDD};
+    public static final String[] DATETIME_FORMATS = new String[]{TemporalFormatConst.ISO_YYYYMMDD_HHMMSS, TemporalFormatConst.EUR_YYYYMMDD_HHMMSS, TemporalFormatConst.EUR_MMDDYYYY_HHMMSS, TemporalFormatConst.RAW_YYYYMMDD_HHMMSS};
+    public static final String[] TIME_FORMATS = new String[]{TemporalFormatConst.ISO_HHMMSS, TemporalFormatConst.RAW_HHMMSS};
 
     public static final String[] ALL_DATETIME_DATES = Stream.concat(Arrays.stream(DATETIME_FORMATS), Arrays.stream(DATE_FORMATS)).toArray(String[]::new);
 }

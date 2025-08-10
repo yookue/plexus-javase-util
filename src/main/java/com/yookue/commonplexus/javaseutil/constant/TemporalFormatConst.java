@@ -32,14 +32,14 @@ package com.yookue.commonplexus.javaseutil.constant;
 public abstract class TemporalFormatConst {
     public static final String GMT_JAVASCRIPT = "EEE MMM dd yyyy HH:mm:ss 'GMT'Z";    // $NON-NLS-1$
 
-    public static final String NON_YYYY = "yyyy";    // $NON-NLS-1$
-    public static final String NON_YYYYMM = "yyyyMM";    // $NON-NLS-1$
-    public static final String NON_YYYYMMDD = "yyyyMMdd";    // $NON-NLS-1$
-    public static final String NON_HHMMSS = "HHmmss";    // $NON-NLS-1$
-    public static final String NON_HHMMSSS = "HHmmssSSS";    // $NON-NLS-1$
-    public static final String NON_YYYYMMDD_HHMM = "yyyyMMddHHmm";    // $NON-NLS-1$
-    public static final String NON_YYYYMMDD_HHMMSS = "yyyyMMddHHmmss";    // $NON-NLS-1$
-    public static final String NON_YYYYMMDD_HHMMSSS = "yyyyMMddHHmmssSSS";    // $NON-NLS-1$
+    public static final String RAW_YYYY = "yyyy";    // $NON-NLS-1$
+    public static final String RAW_YYYYMM = "yyyyMM";    // $NON-NLS-1$
+    public static final String RAW_YYYYMMDD = "yyyyMMdd";    // $NON-NLS-1$
+    public static final String RAW_HHMMSS = "HHmmss";    // $NON-NLS-1$
+    public static final String RAW_HHMMSSS = "HHmmssSSS";    // $NON-NLS-1$
+    public static final String RAW_YYYYMMDD_HHMM = "yyyyMMddHHmm";    // $NON-NLS-1$
+    public static final String RAW_YYYYMMDD_HHMMSS = "yyyyMMddHHmmss";    // $NON-NLS-1$
+    public static final String RAW_YYYYMMDD_HHMMSSS = "yyyyMMddHHmmssSSS";    // $NON-NLS-1$
 
     public static final String ISO_YYYYMMDD = "yyyy-MM-dd";    // $NON-NLS-1$
     public static final String ISO_YYYYMMDD_HHMM = "yyyy-MM-dd HH:mm";    // $NON-NLS-1$
