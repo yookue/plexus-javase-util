@@ -50,96 +50,110 @@ import com.yookue.commonplexus.javaseutil.function.IgnorableFailable;
  */
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})
 public abstract class FileUtilsWraps {
-    public static void cleanDirectory(@Nullable File directory) {
+    public static boolean cleanDirectory(@Nullable File directory) {
         if (directory == null) {
-            return;
+            return false;
         }
         try {
             FileUtils.cleanDirectory(directory);
+            return true;
         } catch (Exception ignored) {
         }
+        return false;
     }
 
-    public static void copyDirectory(@Nullable File srcDir, @Nullable File destDir) {
-        copyDirectory(srcDir, destDir, null, true);
+    public static boolean copyDirectory(@Nullable File srcDir, @Nullable File destDir) {
+        return copyDirectory(srcDir, destDir, null, true);
     }
 
-    public static void copyDirectory(@Nullable File srcDir, @Nullable File destDir, boolean preserveFileDate) {
-        copyDirectory(srcDir, destDir, null, preserveFileDate);
+    public static boolean copyDirectory(@Nullable File srcDir, @Nullable File destDir, boolean preserveFileDate) {
+        return copyDirectory(srcDir, destDir, null, preserveFileDate);
     }
 
-    public static void copyDirectory(@Nullable File srcDir, @Nullable File destDir, @Nullable FileFilter fileFilter) {
-        copyDirectory(srcDir, destDir, fileFilter, true);
+    public static boolean copyDirectory(@Nullable File srcDir, @Nullable File destDir, @Nullable FileFilter fileFilter) {
+        return copyDirectory(srcDir, destDir, fileFilter, true);
     }
 
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
-    public static void copyDirectory(@Nullable File srcDir, @Nullable File destDir, @Nullable FileFilter fileFilter, boolean preserveFileDate) {
+    public static boolean copyDirectory(@Nullable File srcDir, @Nullable File destDir, @Nullable FileFilter fileFilter, boolean preserveFileDate) {
         if (ObjectUtils.anyNull(srcDir, destDir)) {
-            return;
+            return false;
         }
         try {
             FileUtils.copyDirectory(srcDir, destDir, fileFilter, preserveFileDate);
+            return true;
         } catch (Exception ignored) {
         }
+        return false;
     }
 
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
-    public static void copyDirectory(@Nullable File srcDir, @Nullable File destDir, @Nullable FileFilter fileFilter, boolean preserveFileDate, @Nullable CopyOption... copyOptions) {
+    public static boolean copyDirectory(@Nullable File srcDir, @Nullable File destDir, @Nullable FileFilter fileFilter, boolean preserveFileDate, @Nullable CopyOption... copyOptions) {
         if (ObjectUtils.anyNull(srcDir, destDir, copyOptions)) {
-            return;
+            return false;
         }
         try {
             FileUtils.copyDirectory(srcDir, destDir, fileFilter, preserveFileDate, copyOptions);
+            return true;
         } catch (Exception ignored) {
         }
+        return false;
     }
 
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
-    public static void copyDirectoryToDirectory(@Nullable File srcDir, @Nullable File destDir) {
+    public static boolean copyDirectoryToDirectory(@Nullable File srcDir, @Nullable File destDir) {
         if (ObjectUtils.anyNull(srcDir, destDir)) {
-            return;
+            return false;
         }
         try {
             FileUtils.copyDirectoryToDirectory(srcDir, destDir);
+            return true;
         } catch (Exception ignored) {
         }
+        return false;
     }
 
-    public static void copyFile(@Nullable File srcFile, @Nullable File destFile) {
-        copyFile(srcFile, destFile, true);
+    public static boolean copyFile(@Nullable File srcFile, @Nullable File destFile) {
+        return copyFile(srcFile, destFile, true);
     }
 
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
-    public static void copyFile(@Nullable File srcFile, @Nullable File destFile, boolean preserveFileDate) {
+    public static boolean copyFile(@Nullable File srcFile, @Nullable File destFile, boolean preserveFileDate) {
         if (ObjectUtils.anyNull(srcFile, destFile)) {
-            return;
+            return false;
         }
         try {
             FileUtils.copyFile(srcFile, destFile, preserveFileDate);
+            return true;
         } catch (Exception ignored) {
         }
+        return false;
     }
 
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
-    public static void copyFile(@Nullable File srcFile, @Nullable File destFile, boolean preserveFileDate, @Nullable CopyOption... copyOptions) {
+    public static boolean copyFile(@Nullable File srcFile, @Nullable File destFile, boolean preserveFileDate, @Nullable CopyOption... copyOptions) {
         if (ObjectUtils.anyNull(srcFile, destFile, copyOptions)) {
-            return;
+            return false;
         }
         try {
             FileUtils.copyFile(srcFile, destFile, preserveFileDate, copyOptions);
+            return true;
         } catch (Exception ignored) {
         }
+        return false;
     }
 
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
-    public static void copyFile(@Nullable File srcFile, @Nullable File destFile, @Nullable CopyOption... copyOptions) {
+    public static boolean copyFile(@Nullable File srcFile, @Nullable File destFile, @Nullable CopyOption... copyOptions) {
         if (ObjectUtils.anyNull(srcFile, destFile, copyOptions)) {
-            return;
+            return false;
         }
         try {
             FileUtils.copyFile(srcFile, destFile, copyOptions);
+            return true;
         } catch (Exception ignored) {
         }
+        return false;
     }
 
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
@@ -154,85 +168,99 @@ public abstract class FileUtilsWraps {
         return 0L;
     }
 
-    public static void copyFileToDirectory(@Nullable File srcFile, @Nullable File destDir) {
-        copyFileToDirectory(srcFile, destDir, true);
+    public static boolean copyFileToDirectory(@Nullable File srcFile, @Nullable File destDir) {
+        return copyFileToDirectory(srcFile, destDir, true);
     }
 
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
-    public static void copyFileToDirectory(@Nullable File srcFile, @Nullable File destDir, boolean preserveFileDate) {
+    public static boolean copyFileToDirectory(@Nullable File srcFile, @Nullable File destDir, boolean preserveFileDate) {
         if (ObjectUtils.anyNull(srcFile, destDir)) {
-            return;
+            return false;
         }
         try {
             FileUtils.copyFileToDirectory(srcFile, destDir, preserveFileDate);
+            return true;
         } catch (Exception ignored) {
         }
+        return false;
     }
 
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
-    public static void copyInputStreamToFile(@Nullable InputStream src, @Nullable File dest) {
+    public static boolean copyInputStreamToFile(@Nullable InputStream src, @Nullable File dest) {
         if (ObjectUtils.anyNull(src, dest)) {
-            return;
+            return false;
         }
         try {
             FileUtils.copyInputStreamToFile(src, dest);
+            return true;
         } catch (Exception ignored) {
         }
+        return false;
     }
 
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
-    public static void copyToDirectory(@Nullable File srcFile, @Nullable File destDir) {
+    public static boolean copyToDirectory(@Nullable File srcFile, @Nullable File destDir) {
         if (ObjectUtils.anyNull(srcFile, destDir)) {
-            return;
+            return false;
         }
         try {
             FileUtils.copyToDirectory(srcFile, destDir);
+            return true;
         } catch (Exception ignored) {
         }
+        return false;
     }
 
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
-    public static void copyToDirectory(@Nullable Iterable<File> srcFiles, @Nullable File destDir) {
+    public static boolean copyToDirectory(@Nullable Iterable<File> srcFiles, @Nullable File destDir) {
         if (ObjectUtils.anyNull(srcFiles, destDir)) {
-            return;
+            return false;
         }
         try {
             FileUtils.copyToDirectory(srcFiles, destDir);
+            return true;
         } catch (Exception ignored) {
         }
+        return false;
     }
 
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
-    public static void copyToFile(@Nullable InputStream src, @Nullable File dest) {
+    public static boolean copyToFile(@Nullable InputStream src, @Nullable File dest) {
         if (ObjectUtils.anyNull(src, dest)) {
-            return;
+            return false;
         }
         try {
             FileUtils.copyToFile(src, dest);
+            return true;
         } catch (Exception ignored) {
         }
+        return false;
     }
 
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
-    public static void copyUrlToFile(@Nullable URL src, @Nullable File dest) {
+    public static boolean copyUrlToFile(@Nullable URL src, @Nullable File dest) {
         if (ObjectUtils.anyNull(src, dest)) {
-            return;
+            return false;
         }
         try {
             FileUtils.copyURLToFile(src, dest);
+            return true;
         } catch (Exception ignored) {
         }
+        return false;
     }
 
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
-    public static void copyUrlToFile(@Nullable URL src, @Nullable File dest, int connectionTimeoutMillis, int readTimeoutMillis) {
+    public static boolean copyUrlToFile(@Nullable URL src, @Nullable File dest, int connectionTimeoutMillis, int readTimeoutMillis) {
         if (ObjectUtils.anyNull(src, dest)) {
-            return;
+            return false;
         }
         try {
             FileUtils.copyURLToFile(src, dest, connectionTimeoutMillis, readTimeoutMillis);
+            return true;
         } catch (Exception ignored) {
         }
+        return false;
     }
 
     @Nullable
@@ -247,14 +275,16 @@ public abstract class FileUtilsWraps {
         return null;
     }
 
-    public static void deleteDirectory(@Nullable File directory) {
+    public static boolean deleteDirectory(@Nullable File directory) {
         if (directory == null) {
-            return;
+            return false;
         }
         try {
             FileUtils.deleteDirectory(directory);
+            return true;
         } catch (Exception ignored) {
         }
+        return false;
     }
 
     public static boolean exists(@Nullable File file) {
@@ -265,103 +295,121 @@ public abstract class FileUtilsWraps {
         return StringUtils.isNotBlank(path) && new File(path).exists();
     }
 
-    public static void forceDelete(@Nullable File file) {
+    public static boolean forceDelete(@Nullable File file) {
         if (file == null) {
-            return;
+            return false;
         }
         try {
             FileUtils.forceDelete(file);
+            return true;
         } catch (Exception ignored) {
         }
+        return false;
     }
 
-    public static void forceDeleteOnExit(@Nullable File file) {
+    public static boolean forceDeleteOnExit(@Nullable File file) {
         if (file == null) {
-            return;
+            return false;
         }
         try {
             FileUtils.forceDeleteOnExit(file);
+            return true;
         } catch (Exception ignored) {
         }
+        return false;
     }
 
-    public static void forceMkdir(@Nullable File directory) {
+    public static boolean forceMkdir(@Nullable File directory) {
         if (directory == null) {
-            return;
+            return false;
         }
         try {
             FileUtils.forceMkdir(directory);
+            return true;
         } catch (Exception ignored) {
         }
+        return false;
     }
 
-    public static void forceMkdirParent(@Nullable File file) {
+    public static boolean forceMkdirParent(@Nullable File file) {
         if (file == null) {
-            return;
+            return false;
         }
         try {
             FileUtils.forceMkdirParent(file);
+            return true;
         } catch (Exception ignored) {
         }
+        return false;
     }
 
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
-    public static void moveDirectory(@Nullable File srcDir, @Nullable File destDir) {
+    public static boolean moveDirectory(@Nullable File srcDir, @Nullable File destDir) {
         if (ObjectUtils.anyNull(srcDir, destDir)) {
-            return;
+            return false;
         }
         try {
             FileUtils.moveDirectory(srcDir, destDir);
+            return true;
         } catch (Exception ignored) {
         }
+        return false;
     }
 
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
-    public static void moveDirectoryToDirectory(@Nullable File srcDir, @Nullable File destDir, boolean createDestDir) {
+    public static boolean moveDirectoryToDirectory(@Nullable File srcDir, @Nullable File destDir, boolean createDestDir) {
         if (ObjectUtils.anyNull(srcDir, destDir)) {
-            return;
+            return false;
         }
         try {
             FileUtils.moveDirectoryToDirectory(srcDir, destDir, createDestDir);
+            return true;
         } catch (Exception ignored) {
         }
+        return false;
     }
 
-    public static void moveFile(@Nullable File srcFile, @Nullable File destFile) {
-        moveFile(srcFile, destFile, StandardCopyOption.COPY_ATTRIBUTES);
+    public static boolean moveFile(@Nullable File srcFile, @Nullable File destFile) {
+        return moveFile(srcFile, destFile, StandardCopyOption.COPY_ATTRIBUTES);
     }
 
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
-    public static void moveFile(@Nullable File srcFile, @Nullable File destFile, @Nullable CopyOption... copyOptions) {
+    public static boolean moveFile(@Nullable File srcFile, @Nullable File destFile, @Nullable CopyOption... copyOptions) {
         if (ObjectUtils.anyNull(srcFile, destFile, copyOptions)) {
-            return;
+            return false;
         }
         try {
             FileUtils.moveFile(srcFile, destFile, copyOptions);
+            return true;
         } catch (Exception ignored) {
         }
+        return false;
     }
 
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
-    public static void moveFileToDirectory(@Nullable File srcFile, @Nullable File destDir, boolean createDestDir) {
+    public static boolean moveFileToDirectory(@Nullable File srcFile, @Nullable File destDir, boolean createDestDir) {
         if (ObjectUtils.anyNull(srcFile, destDir)) {
-            return;
+            return false;
         }
         try {
             FileUtils.moveFileToDirectory(srcFile, destDir, createDestDir);
+            return true;
         } catch (Exception ignored) {
         }
+        return false;
     }
 
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
-    public static void moveToDirectory(@Nullable File srcDir, @Nullable File destDir, boolean createDestDir) {
+    public static boolean moveToDirectory(@Nullable File srcDir, @Nullable File destDir, boolean createDestDir) {
         if (ObjectUtils.anyNull(srcDir, destDir)) {
-            return;
+            return false;
         }
         try {
             FileUtils.moveToDirectory(srcDir, destDir, createDestDir);
+            return true;
         } catch (Exception ignored) {
         }
+        return false;
     }
 
     @Nullable
@@ -464,135 +512,167 @@ public abstract class FileUtilsWraps {
         return Stream.empty();
     }
 
-    public static void writeCharSequence(@Nullable File file, @Nullable CharSequence data, @Nullable Charset charset) {
-        writeCharSequence(file, data, charset, false);
+    public static boolean writeCharSequence(@Nullable File file, @Nullable CharSequence data, @Nullable Charset charset) {
+        return writeCharSequence(file, data, charset, false);
     }
 
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
-    public static void writeCharSequence(@Nullable File file, @Nullable CharSequence data, @Nullable Charset charset, boolean append) {
+    public static boolean writeCharSequence(@Nullable File file, @Nullable CharSequence data, @Nullable Charset charset, boolean append) {
         if (ObjectUtils.anyNull(file, data)) {
-            return;
+            return false;
         }
         try {
             FileUtils.write(file, data, charset, append);
+            return true;
         } catch (Exception ignored) {
         }
+        return false;
     }
 
-    public static void writeCharSequence(@Nullable File file, @Nullable CharSequence data, @Nullable String charset) {
-        writeCharSequence(file, data, charset, false);
+    public static boolean writeCharSequence(@Nullable File file, @Nullable CharSequence data, @Nullable String charset) {
+        return writeCharSequence(file, data, charset, false);
     }
 
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
-    public static void writeCharSequence(@Nullable File file, @Nullable CharSequence data, @Nullable String charset, boolean append) {
+    public static boolean writeCharSequence(@Nullable File file, @Nullable CharSequence data, @Nullable String charset, boolean append) {
         if (ObjectUtils.anyNull(file, data)) {
-            return;
+            return false;
         }
         try {
             FileUtils.write(file, data, CharsetPlainWraps.defaultCharsetName(charset), append);
+            return true;
         } catch (Exception ignored) {
         }
+        return false;
     }
 
-    public static void writeByteArray(@Nullable File file, @Nullable byte[] data) {
-        writeByteArray(file, data, false);
+    public static boolean writeByteArray(@Nullable File file, @Nullable byte[] data) {
+        return writeByteArray(file, data, false);
     }
 
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
-    public static void writeByteArray(@Nullable File file, @Nullable byte[] data, boolean append) {
+    public static boolean writeByteArray(@Nullable File file, @Nullable byte[] data, boolean append) {
         if (file == null || ArrayUtils.isEmpty(data)) {
-            return;
+            return false;
         }
         try {
             FileUtils.writeByteArrayToFile(file, data, append);
+            return true;
         } catch (Exception ignored) {
         }
+        return false;
     }
 
-    public static void writeByteArray(@Nullable File file, @Nullable byte[] data, int offset, int length) {
-        writeByteArray(file, data, 0, ArrayUtils.getLength(data), false);
+    public static boolean writeByteArray(@Nullable File file, @Nullable byte[] data, int offset, int length) {
+        return writeByteArray(file, data, 0, ArrayUtils.getLength(data), false);
     }
 
-    public static void writeByteArray(@Nullable File file, @Nullable byte[] data, int offset, int length, boolean append) {
+    public static boolean writeByteArray(@Nullable File file, @Nullable byte[] data, int offset, int length, boolean append) {
         if (file == null || ArrayUtils.isEmpty(data) || offset < 0 || length <= 0) {
-            return;
+            return false;
         }
         try {
             FileUtils.writeByteArrayToFile(file, data, offset, length, append);
+            return true;
         } catch (Exception ignored) {
         }
+        return false;
     }
 
-    public static void writeLines(@Nullable File file, @Nullable Collection<?> lines) {
-        writeLines(file, lines, null, false);
+    public static boolean writeLines(@Nullable File file, @Nullable Collection<?> lines) {
+        return writeLines(file, lines, null, false);
     }
 
-    public static void writeLines(@Nullable File file, @Nullable Collection<?> lines, boolean append) {
-        writeLines(file, lines, null, append);
+    public static boolean writeLines(@Nullable File file, @Nullable Collection<?> lines, boolean append) {
+        return writeLines(file, lines, null, append);
     }
 
-    public static void writeLines(@Nullable File file, @Nullable Collection<?> lines, @Nullable String lineEnding) {
-        writeLines(file, lines, lineEnding, false);
+    public static boolean writeLines(@Nullable File file, @Nullable Collection<?> lines, @Nullable String lineEnding) {
+        return writeLines(file, lines, lineEnding, false);
     }
 
-    public static void writeLines(@Nullable File file, @Nullable Collection<?> lines, @Nullable String lineEnding, boolean append) {
+    public static boolean writeLines(@Nullable File file, @Nullable Collection<?> lines, @Nullable String lineEnding, boolean append) {
         if (file == null || CollectionPlainWraps.isEmpty(lines)) {
-            return;
+            return false;
         }
         try {
             FileUtils.writeLines(file, lines, lineEnding, append);
+            return true;
         } catch (Exception ignored) {
         }
+        return false;
     }
 
-    public static void writeLines(@Nullable File file, @Nullable String charset, @Nullable Collection<?> lines) {
-        writeLines(file, charset, lines, null, false);
+    public static boolean writeLines(@Nullable File file, @Nullable String charset, @Nullable Collection<?> lines) {
+        return writeLines(file, charset, lines, null, false);
     }
 
-    public static void writeLines(@Nullable File file, @Nullable String charset, @Nullable Collection<?> lines, boolean append) {
-        writeLines(file, charset, lines, null, append);
+    public static boolean writeLines(@Nullable File file, @Nullable String charset, @Nullable Collection<?> lines, boolean append) {
+        return writeLines(file, charset, lines, null, append);
     }
 
-    public static void writeLines(@Nullable File file, @Nullable String charset, @Nullable Collection<?> lines, String lineEnding) {
-        writeLines(file, charset, lines, lineEnding, false);
+    public static boolean writeLines(@Nullable File file, @Nullable String charset, @Nullable Collection<?> lines, String lineEnding) {
+        return writeLines(file, charset, lines, lineEnding, false);
     }
 
-    public static void writeLines(@Nullable File file, @Nullable String charset, @Nullable Collection<?> lines, String lineEnding, boolean append) {
+    public static boolean writeLines(@Nullable File file, @Nullable String charset, @Nullable Collection<?> lines, String lineEnding, boolean append) {
         if (file == null || CollectionPlainWraps.isEmpty(lines)) {
-            return;
+            return false;
         }
         try {
             FileUtils.writeLines(file, CharsetPlainWraps.defaultCharsetName(charset), lines, lineEnding, append);
+            return true;
         } catch (Exception ignored) {
         }
+        return false;
     }
 
-    public static void writeString(@Nullable File file, @Nullable String data, @Nullable Charset charset) {
-        writeString(file, data, charset, false);
+    public static boolean writeStream(@Nullable File file, @Nullable InputStream inputStream) {
+        if (ObjectUtils.anyNull(file, inputStream) || !file.isFile() || !file.canWrite()) {
+            return false;
+        }
+        try (FileOutputStream outputStream = new FileOutputStream(file)) {
+            byte[] bufferRead = new byte[8192];
+            int bytesRead;
+            while ((bytesRead = inputStream.read(bufferRead)) != -1) {
+                outputStream.write(bufferRead, 0, bytesRead);
+            }
+            return true;
+        } catch (Exception ignored) {
+        }
+        return false;
     }
 
-    public static void writeString(@Nullable File file, @Nullable String data, @Nullable Charset charset, boolean append) {
+    public static boolean writeString(@Nullable File file, @Nullable String data, @Nullable Charset charset) {
+        return writeString(file, data, charset, false);
+    }
+
+    public static boolean writeString(@Nullable File file, @Nullable String data, @Nullable Charset charset, boolean append) {
         if (file == null || StringUtils.isEmpty(data)) {
-            return;
+            return false;
         }
         try {
             FileUtils.writeStringToFile(file, data, charset, append);
+            return true;
         } catch (Exception ignored) {
         }
+        return false;
     }
 
-    public static void writeString(@Nullable File file, @Nullable String data, @Nullable String charset) {
-        writeString(file, data, charset, false);
+    public static boolean writeString(@Nullable File file, @Nullable String data, @Nullable String charset) {
+        return writeString(file, data, charset, false);
     }
 
-    public static void writeString(@Nullable File file, @Nullable String data, @Nullable String charset, boolean append) {
+    public static boolean writeString(@Nullable File file, @Nullable String data, @Nullable String charset, boolean append) {
         if (file == null || StringUtils.isEmpty(data)) {
-            return;
+            return false;
         }
         try {
             FileUtils.writeStringToFile(file, data, CharsetPlainWraps.defaultCharsetName(charset), append);
+            return true;
         } catch (Exception ignored) {
         }
+        return false;
     }
 
     public static boolean directoryContainsAll(@Nullable File directory, @Nullable File... children) {
@@ -622,9 +702,9 @@ public abstract class FileUtilsWraps {
      *
      * @see org.apache.commons.io.FileUtils#forceMkdirParent
      */
-    public static void forceMkdirParent(@Nullable File dest, boolean deleteIfExists) {
+    public static boolean forceMkdirParent(@Nullable File dest, boolean deleteIfExists) {
         if (dest == null) {
-            return;
+            return false;
         }
         try {
             if (!dest.exists()) {
@@ -638,8 +718,10 @@ public abstract class FileUtilsWraps {
                     }
                 }
             }
+            return true;
         } catch (Exception ignored) {
         }
+        return false;
     }
 
     @Nullable
