@@ -195,11 +195,13 @@
             <groupId>jakarta.json</groupId>
             <artifactId>jakarta.json-api</artifactId>
             <version>${jakarta-json.version}</version>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>jakarta.json.bind</groupId>
             <artifactId>jakarta.json.bind-api</artifactId>
             <version>${jakarta-json-bind.version}</version>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>jakarta.persistence</groupId>
