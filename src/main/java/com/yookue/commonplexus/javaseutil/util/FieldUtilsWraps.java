@@ -451,23 +451,6 @@ public abstract class FieldUtilsWraps {
     }
 
     @Nullable
-    public static Object readField(@Nullable Class<?> clazz, @Nullable String fieldName) {
-        return readField(clazz, fieldName, false);
-    }
-
-    @Nullable
-    public static Object readField(@Nullable Class<?> clazz, @Nullable String fieldName, boolean forceAccess) {
-        if (clazz == null || StringUtils.isBlank(fieldName)) {
-            return null;
-        }
-        try {
-            return FieldUtils.readField(clazz, fieldName, forceAccess);
-        } catch (Exception ignored) {
-        }
-        return null;
-    }
-
-    @Nullable
     public static Object readField(@Nullable Field field, @Nullable Object target) {
         return readField(field, target, false);
     }
@@ -511,19 +494,6 @@ public abstract class FieldUtilsWraps {
     }
 
     @Nullable
-    public static <T> T readFieldAs(@Nullable Class<?> clazz, @Nullable String fieldName, @Nullable Class<T> expectType) {
-        return readFieldAs(clazz, fieldName, false, expectType);
-    }
-
-    @Nullable
-    public static <T> T readFieldAs(@Nullable Class<?> clazz, @Nullable String fieldName, boolean forceAccess, @Nullable Class<T> expectType) {
-        if (ObjectUtils.anyNull(clazz, expectType) || StringUtils.isBlank(fieldName)) {
-            return null;
-        }
-        return ObjectUtilsWraps.castAs(readField(clazz, fieldName, forceAccess), expectType);
-    }
-
-    @Nullable
     public static <T> T readFieldAs(@Nullable Field field, @Nullable Object target, @Nullable Class<T> expectType) {
         return readFieldAs(field, target, false, expectType);
     }
@@ -560,23 +530,6 @@ public abstract class FieldUtilsWraps {
     }
 
     @Nullable
-    public static Object readDeclaredField(@Nullable Class<?> clazz, @Nullable String fieldName) {
-        return readDeclaredField(clazz, fieldName, false);
-    }
-
-    @Nullable
-    public static Object readDeclaredField(@Nullable Class<?> clazz, @Nullable String fieldName, boolean forceAccess) {
-        if (clazz == null || StringUtils.isBlank(fieldName)) {
-            return null;
-        }
-        try {
-            return FieldUtils.readDeclaredField(clazz, fieldName, forceAccess);
-        } catch (Exception ignored) {
-        }
-        return null;
-    }
-
-    @Nullable
     public static Object readDeclaredField(@Nullable Object target, @Nullable String fieldName) {
         return readDeclaredField(target, fieldName, false);
     }
@@ -591,19 +544,6 @@ public abstract class FieldUtilsWraps {
         } catch (Exception ignored) {
         }
         return null;
-    }
-
-    @Nullable
-    public static <T> T readDeclaredFieldAs(@Nullable Class<?> clazz, @Nullable String fieldName, @Nullable Class<T> expectType) {
-        return readDeclaredFieldAs(clazz, fieldName, false, expectType);
-    }
-
-    @Nullable
-    public static <T> T readDeclaredFieldAs(@Nullable Class<?> clazz, @Nullable String fieldName, boolean forceAccess, @Nullable Class<T> expectType) {
-        if (ObjectUtils.anyNull(clazz, expectType) || StringUtils.isBlank(fieldName)) {
-            return null;
-        }
-        return ObjectUtilsWraps.castAs(readDeclaredField(clazz, fieldName, forceAccess), expectType);
     }
 
     @Nullable
