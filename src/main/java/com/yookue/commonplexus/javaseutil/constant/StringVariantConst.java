@@ -50,6 +50,7 @@ public abstract class StringVariantConst {
     public static final String CLASSPATH_STAR_COLON = CLASSPATH + "*:";    // $NON-NLS-1$
     public static final String CURRENT = "current";    // $NON-NLS-1$
     public static final String DATA_SPACE = "data: ";    // $NON-NLS-1$
+    public static final String DELTA = "delta";    // $NON-NLS-1$
     public static final String DEFAULT = "default";    // $NON-NLS-1$
     public static final String ENABLED = "enabled";    // $NON-NLS-1$
     public static final String ERROR = "error";    // $NON-NLS-1$
