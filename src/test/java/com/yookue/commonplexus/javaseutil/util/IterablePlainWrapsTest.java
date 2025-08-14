@@ -34,7 +34,7 @@ class IterablePlainWrapsTest {
     void forEachIndexingTailing() {
         String methodName = StackTraceWraps.getExecutingMethodName();
         List<Integer> list = CollectionPlainWraps.newArrayListWithin(1, 2, 3);
-        Integer tail = IterablePlainWraps.forEachIndexingTailing(list, (index, element) -> log.info("{}: index = {}, value= {}", methodName, index, element));
+        Integer tail = IterablePlainWraps.forEachIndexingTailing(list, (index, item) -> log.info("{}: index = {}, value= {}", methodName, index, item));
         Assertions.assertTrue(tail != null && tail == 3);
     }
 
@@ -42,7 +42,7 @@ class IterablePlainWrapsTest {
     void reverseForEachIndexingHeading() {
         String methodName = StackTraceWraps.getExecutingMethodName();
         List<Integer> list = CollectionPlainWraps.newArrayListWithin(1, 2, 3);
-        Integer head = ListPlainWraps.reverseForEachIndexingHeading(list, (index, element) -> log.info("{}: index = {}, value= {}", methodName, index, element));
+        Integer head = ListPlainWraps.reverseForEachIndexingHeading(list, (index, item) -> log.info("{}: index = {}, value= {}", methodName, index, item));
         Assertions.assertTrue(head != null && head == 1);
     }
 }

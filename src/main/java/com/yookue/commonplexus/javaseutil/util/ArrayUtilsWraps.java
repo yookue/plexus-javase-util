@@ -147,35 +147,35 @@ public abstract class ArrayUtilsWraps {
 
     @Nullable
     @SafeVarargs
-    public static <E> List<E> asList(@Nullable E... elements) {
-        return asList(false, elements);
+    public static <E> List<E> asList(@Nullable E... items) {
+        return asList(false, items);
     }
 
     @Nullable
     @SafeVarargs
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
-    public static <E> List<E> asList(boolean modifiable, @Nullable E... elements) {
-        if (ArrayUtils.isEmpty(elements)) {
+    public static <E> List<E> asList(boolean modifiable, @Nullable E... items) {
+        if (ArrayUtils.isEmpty(items)) {
             return null;
         }
-        List<E> result = Arrays.asList(elements);
+        List<E> result = Arrays.asList(items);
         return modifiable ? new ArrayList<>(result) : Collections.unmodifiableList(result);
     }
 
     @Nullable
     @SafeVarargs
-    public static <E> Set<E> asSet(@Nullable E... elements) {
-        return asSet(false, elements);
+    public static <E> Set<E> asSet(@Nullable E... items) {
+        return asSet(false, items);
     }
 
     @Nullable
     @SafeVarargs
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
-    public static <E> Set<E> asSet(boolean modifiable, @Nullable E... elements) {
-        if (ArrayUtils.isEmpty(elements)) {
+    public static <E> Set<E> asSet(boolean modifiable, @Nullable E... items) {
+        if (ArrayUtils.isEmpty(items)) {
             return null;
         }
-        Set<E> result = new LinkedHashSet<>(Arrays.asList(elements));
+        Set<E> result = new LinkedHashSet<>(Arrays.asList(items));
         return modifiable ? result : Collections.unmodifiableSet(result);
     }
 
@@ -192,22 +192,22 @@ public abstract class ArrayUtilsWraps {
 
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
     public static boolean containsString(@Nullable CharSequence[] sequences, @Nullable CharSequence sequence) {
-        return ArrayUtils.isNotEmpty(sequences) && StringUtils.isNotEmpty(sequence) && Arrays.stream(sequences).anyMatch(element -> StringUtils.contains(element, sequence));
+        return ArrayUtils.isNotEmpty(sequences) && StringUtils.isNotEmpty(sequence) && Arrays.stream(sequences).anyMatch(item -> StringUtils.contains(item, sequence));
     }
 
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
     public static boolean containsStringIgnoreCase(@Nullable CharSequence[] sequences, @Nullable CharSequence sequence) {
-        return ArrayUtils.isNotEmpty(sequences) && StringUtils.isNotEmpty(sequence) && Arrays.stream(sequences).anyMatch(element -> StringUtils.containsIgnoreCase(element, sequence));
+        return ArrayUtils.isNotEmpty(sequences) && StringUtils.isNotEmpty(sequence) && Arrays.stream(sequences).anyMatch(item -> StringUtils.containsIgnoreCase(item, sequence));
     }
 
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
     public static boolean equalsString(@Nullable CharSequence[] sequences, @Nullable CharSequence sequence) {
-        return ArrayUtils.isNotEmpty(sequences) && StringUtils.isNotEmpty(sequence) && Arrays.stream(sequences).anyMatch(element -> StringUtils.equals(element, sequence));
+        return ArrayUtils.isNotEmpty(sequences) && StringUtils.isNotEmpty(sequence) && Arrays.stream(sequences).anyMatch(item -> StringUtils.equals(item, sequence));
     }
 
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
     public static boolean equalsStringIgnoreCase(@Nullable CharSequence[] sequences, @Nullable CharSequence sequence) {
-        return ArrayUtils.isNotEmpty(sequences) && StringUtils.isNotEmpty(sequence) && Arrays.stream(sequences).anyMatch(element -> StringUtils.equalsIgnoreCase(element, sequence));
+        return ArrayUtils.isNotEmpty(sequences) && StringUtils.isNotEmpty(sequence) && Arrays.stream(sequences).anyMatch(item -> StringUtils.equalsIgnoreCase(item, sequence));
     }
 
     public static void forEach(@Nullable boolean[] array, @Nullable Consumer<Boolean> action) {
@@ -219,9 +219,9 @@ public abstract class ArrayUtilsWraps {
         if (ArrayUtils.isEmpty(array) || action == null) {
             return;
         }
-        for (boolean element : array) {
-            if (filter == null || filter.test(element)) {
-                action.accept(element);
+        for (boolean item : array) {
+            if (filter == null || filter.test(item)) {
+                action.accept(item);
             }
         }
     }
@@ -235,9 +235,9 @@ public abstract class ArrayUtilsWraps {
         if (ArrayUtils.isEmpty(array) || action == null) {
             return;
         }
-        for (byte element : array) {
-            if (filter == null || filter.test(element)) {
-                action.accept(element);
+        for (byte item : array) {
+            if (filter == null || filter.test(item)) {
+                action.accept(item);
             }
         }
     }
@@ -251,9 +251,9 @@ public abstract class ArrayUtilsWraps {
         if (ArrayUtils.isEmpty(array) || action == null) {
             return;
         }
-        for (char element : array) {
-            if (filter == null || filter.test(element)) {
-                action.accept(element);
+        for (char item : array) {
+            if (filter == null || filter.test(item)) {
+                action.accept(item);
             }
         }
     }
@@ -267,9 +267,9 @@ public abstract class ArrayUtilsWraps {
         if (ArrayUtils.isEmpty(array) || action == null) {
             return;
         }
-        for (double element : array) {
-            if (filter == null || filter.test(element)) {
-                action.accept(element);
+        for (double item : array) {
+            if (filter == null || filter.test(item)) {
+                action.accept(item);
             }
         }
     }
@@ -283,9 +283,9 @@ public abstract class ArrayUtilsWraps {
         if (ArrayUtils.isEmpty(array) || action == null) {
             return;
         }
-        for (float element : array) {
-            if (filter == null || filter.test(element)) {
-                action.accept(element);
+        for (float item : array) {
+            if (filter == null || filter.test(item)) {
+                action.accept(item);
             }
         }
     }
@@ -299,9 +299,9 @@ public abstract class ArrayUtilsWraps {
         if (ArrayUtils.isEmpty(array) || action == null) {
             return;
         }
-        for (int element : array) {
-            if (filter == null || filter.test(element)) {
-                action.accept(element);
+        for (int item : array) {
+            if (filter == null || filter.test(item)) {
+                action.accept(item);
             }
         }
     }
@@ -315,9 +315,9 @@ public abstract class ArrayUtilsWraps {
         if (ArrayUtils.isEmpty(array) || action == null) {
             return;
         }
-        for (long element : array) {
-            if (filter == null || filter.test(element)) {
-                action.accept(element);
+        for (long item : array) {
+            if (filter == null || filter.test(item)) {
+                action.accept(item);
             }
         }
     }
@@ -331,9 +331,9 @@ public abstract class ArrayUtilsWraps {
         if (ArrayUtils.isEmpty(array) || action == null) {
             return;
         }
-        for (short element : array) {
-            if (filter == null || filter.test(element)) {
-                action.accept(element);
+        for (short item : array) {
+            if (filter == null || filter.test(item)) {
+                action.accept(item);
             }
         }
     }
@@ -347,9 +347,9 @@ public abstract class ArrayUtilsWraps {
         if (ArrayUtils.isEmpty(array) || action == null) {
             return;
         }
-        for (E element : array) {
-            if (filter == null || filter.test(element)) {
-                action.accept(element);
+        for (E item : array) {
+            if (filter == null || filter.test(item)) {
+                action.accept(item);
             }
         }
     }
@@ -363,8 +363,8 @@ public abstract class ArrayUtilsWraps {
         if (ArrayUtils.isEmpty(array) || action == null) {
             return;
         }
-        for (boolean element : array) {
-            if ((filter == null || filter.test(element)) && BooleanUtils.isNotTrue(action.apply(element))) {
+        for (boolean item : array) {
+            if ((filter == null || filter.test(item)) && BooleanUtils.isNotTrue(action.apply(item))) {
                 break;
             }
         }
@@ -379,8 +379,8 @@ public abstract class ArrayUtilsWraps {
         if (ArrayUtils.isEmpty(array) || action == null) {
             return;
         }
-        for (byte element : array) {
-            if ((filter == null || filter.test(element)) && BooleanUtils.isNotTrue(action.apply(element))) {
+        for (byte item : array) {
+            if ((filter == null || filter.test(item)) && BooleanUtils.isNotTrue(action.apply(item))) {
                 break;
             }
         }
@@ -395,8 +395,8 @@ public abstract class ArrayUtilsWraps {
         if (ArrayUtils.isEmpty(array) || action == null) {
             return;
         }
-        for (char element : array) {
-            if ((filter == null || filter.test(element)) && BooleanUtils.isNotTrue(action.apply(element))) {
+        for (char item : array) {
+            if ((filter == null || filter.test(item)) && BooleanUtils.isNotTrue(action.apply(item))) {
                 break;
             }
         }
@@ -411,8 +411,8 @@ public abstract class ArrayUtilsWraps {
         if (ArrayUtils.isEmpty(array) || action == null) {
             return;
         }
-        for (double element : array) {
-            if ((filter == null || filter.test(element)) && BooleanUtils.isNotTrue(action.apply(element))) {
+        for (double item : array) {
+            if ((filter == null || filter.test(item)) && BooleanUtils.isNotTrue(action.apply(item))) {
                 break;
             }
         }
@@ -427,8 +427,8 @@ public abstract class ArrayUtilsWraps {
         if (ArrayUtils.isEmpty(array) || action == null) {
             return;
         }
-        for (float element : array) {
-            if ((filter == null || filter.test(element)) && BooleanUtils.isNotTrue(action.apply(element))) {
+        for (float item : array) {
+            if ((filter == null || filter.test(item)) && BooleanUtils.isNotTrue(action.apply(item))) {
                 break;
             }
         }
@@ -443,8 +443,8 @@ public abstract class ArrayUtilsWraps {
         if (ArrayUtils.isEmpty(array) || action == null) {
             return;
         }
-        for (int element : array) {
-            if ((filter == null || filter.test(element)) && BooleanUtils.isNotTrue(action.apply(element))) {
+        for (int item : array) {
+            if ((filter == null || filter.test(item)) && BooleanUtils.isNotTrue(action.apply(item))) {
                 break;
             }
         }
@@ -459,8 +459,8 @@ public abstract class ArrayUtilsWraps {
         if (ArrayUtils.isEmpty(array) || action == null) {
             return;
         }
-        for (long element : array) {
-            if ((filter == null || filter.test(element)) && BooleanUtils.isNotTrue(action.apply(element))) {
+        for (long item : array) {
+            if ((filter == null || filter.test(item)) && BooleanUtils.isNotTrue(action.apply(item))) {
                 break;
             }
         }
@@ -475,8 +475,8 @@ public abstract class ArrayUtilsWraps {
         if (ArrayUtils.isEmpty(array) || action == null) {
             return;
         }
-        for (short element : array) {
-            if ((filter == null || filter.test(element)) && BooleanUtils.isNotTrue(action.apply(element))) {
+        for (short item : array) {
+            if ((filter == null || filter.test(item)) && BooleanUtils.isNotTrue(action.apply(item))) {
                 break;
             }
         }
@@ -491,8 +491,8 @@ public abstract class ArrayUtilsWraps {
         if (ArrayUtils.isEmpty(array) || action == null) {
             return;
         }
-        for (E element : array) {
-            if ((filter == null || filter.test(element)) && BooleanUtils.isNotTrue(action.apply(element))) {
+        for (E item : array) {
+            if ((filter == null || filter.test(item)) && BooleanUtils.isNotTrue(action.apply(item))) {
                 break;
             }
         }
@@ -625,9 +625,9 @@ public abstract class ArrayUtilsWraps {
             return;
         }
         int index = 0;
-        for (boolean element : array) {
-            if (filter == null || filter.test(index, element)) {
-                action.accept(index, element);
+        for (boolean item : array) {
+            if (filter == null || filter.test(index, item)) {
+                action.accept(index, item);
             }
             index++;
         }
@@ -643,9 +643,9 @@ public abstract class ArrayUtilsWraps {
             return;
         }
         int index = 0;
-        for (byte element : array) {
-            if (filter == null || filter.test(index, element)) {
-                action.accept(index, element);
+        for (byte item : array) {
+            if (filter == null || filter.test(index, item)) {
+                action.accept(index, item);
             }
             index++;
         }
@@ -661,9 +661,9 @@ public abstract class ArrayUtilsWraps {
             return;
         }
         int index = 0;
-        for (char element : array) {
-            if (filter == null || filter.test(index, element)) {
-                action.accept(index, element);
+        for (char item : array) {
+            if (filter == null || filter.test(index, item)) {
+                action.accept(index, item);
             }
             index++;
         }
@@ -679,9 +679,9 @@ public abstract class ArrayUtilsWraps {
             return;
         }
         int index = 0;
-        for (double element : array) {
-            if (filter == null || filter.test(index, element)) {
-                action.accept(index, element);
+        for (double item : array) {
+            if (filter == null || filter.test(index, item)) {
+                action.accept(index, item);
             }
             index++;
         }
@@ -697,9 +697,9 @@ public abstract class ArrayUtilsWraps {
             return;
         }
         int index = 0;
-        for (float element : array) {
-            if (filter == null || filter.test(index, element)) {
-                action.accept(index, element);
+        for (float item : array) {
+            if (filter == null || filter.test(index, item)) {
+                action.accept(index, item);
             }
             index++;
         }
@@ -715,9 +715,9 @@ public abstract class ArrayUtilsWraps {
             return;
         }
         int index = 0;
-        for (int element : array) {
-            if (filter == null || filter.test(index, element)) {
-                action.accept(index, element);
+        for (int item : array) {
+            if (filter == null || filter.test(index, item)) {
+                action.accept(index, item);
             }
             index++;
         }
@@ -733,9 +733,9 @@ public abstract class ArrayUtilsWraps {
             return;
         }
         int index = 0;
-        for (long element : array) {
-            if (filter == null || filter.test(index, element)) {
-                action.accept(index, element);
+        for (long item : array) {
+            if (filter == null || filter.test(index, item)) {
+                action.accept(index, item);
             }
             index++;
         }
@@ -751,9 +751,9 @@ public abstract class ArrayUtilsWraps {
             return;
         }
         int index = 0;
-        for (short element : array) {
-            if (filter == null || filter.test(index, element)) {
-                action.accept(index, element);
+        for (short item : array) {
+            if (filter == null || filter.test(index, item)) {
+                action.accept(index, item);
             }
             index++;
         }
@@ -772,9 +772,9 @@ public abstract class ArrayUtilsWraps {
             return;
         }
         int index = 0;
-        for (E element : array) {
-            if (filter == null || filter.test(index, element)) {
-                action.accept(index, element);
+        for (E item : array) {
+            if (filter == null || filter.test(index, item)) {
+                action.accept(index, item);
             }
             index++;
         }
@@ -790,8 +790,8 @@ public abstract class ArrayUtilsWraps {
             return;
         }
         int index = 0;
-        for (boolean element : array) {
-            if ((filter == null || filter.test(index, element)) && BooleanUtils.isNotTrue(action.apply(index, element))) {
+        for (boolean item : array) {
+            if ((filter == null || filter.test(index, item)) && BooleanUtils.isNotTrue(action.apply(index, item))) {
                 break;
             }
             index++;
@@ -808,8 +808,8 @@ public abstract class ArrayUtilsWraps {
             return;
         }
         int index = 0;
-        for (byte element : array) {
-            if ((filter == null || filter.test(index, element)) && BooleanUtils.isNotTrue(action.apply(index, element))) {
+        for (byte item : array) {
+            if ((filter == null || filter.test(index, item)) && BooleanUtils.isNotTrue(action.apply(index, item))) {
                 break;
             }
             index++;
@@ -826,8 +826,8 @@ public abstract class ArrayUtilsWraps {
             return;
         }
         int index = 0;
-        for (char element : array) {
-            if ((filter == null || filter.test(index, element)) && BooleanUtils.isNotTrue(action.apply(index, element))) {
+        for (char item : array) {
+            if ((filter == null || filter.test(index, item)) && BooleanUtils.isNotTrue(action.apply(index, item))) {
                 break;
             }
             index++;
@@ -844,8 +844,8 @@ public abstract class ArrayUtilsWraps {
             return;
         }
         int index = 0;
-        for (double element : array) {
-            if ((filter == null || filter.test(index, element)) && BooleanUtils.isNotTrue(action.apply(index, element))) {
+        for (double item : array) {
+            if ((filter == null || filter.test(index, item)) && BooleanUtils.isNotTrue(action.apply(index, item))) {
                 break;
             }
             index++;
@@ -862,8 +862,8 @@ public abstract class ArrayUtilsWraps {
             return;
         }
         int index = 0;
-        for (float element : array) {
-            if ((filter == null || filter.test(index, element)) && BooleanUtils.isNotTrue(action.apply(index, element))) {
+        for (float item : array) {
+            if ((filter == null || filter.test(index, item)) && BooleanUtils.isNotTrue(action.apply(index, item))) {
                 break;
             }
             index++;
@@ -880,8 +880,8 @@ public abstract class ArrayUtilsWraps {
             return;
         }
         int index = 0;
-        for (int element : array) {
-            if ((filter == null || filter.test(index, element)) && BooleanUtils.isNotTrue(action.apply(index, element))) {
+        for (int item : array) {
+            if ((filter == null || filter.test(index, item)) && BooleanUtils.isNotTrue(action.apply(index, item))) {
                 break;
             }
             index++;
@@ -898,8 +898,8 @@ public abstract class ArrayUtilsWraps {
             return;
         }
         int index = 0;
-        for (long element : array) {
-            if ((filter == null || filter.test(index, element)) && BooleanUtils.isNotTrue(action.apply(index, element))) {
+        for (long item : array) {
+            if ((filter == null || filter.test(index, item)) && BooleanUtils.isNotTrue(action.apply(index, item))) {
                 break;
             }
             index++;
@@ -916,8 +916,8 @@ public abstract class ArrayUtilsWraps {
             return;
         }
         int index = 0;
-        for (short element : array) {
-            if ((filter == null || filter.test(index, element)) && BooleanUtils.isNotTrue(action.apply(index, element))) {
+        for (short item : array) {
+            if ((filter == null || filter.test(index, item)) && BooleanUtils.isNotTrue(action.apply(index, item))) {
                 break;
             }
             index++;
@@ -934,8 +934,8 @@ public abstract class ArrayUtilsWraps {
             return;
         }
         int index = 0;
-        for (E element : array) {
-            if ((filter == null || filter.test(index, element)) && BooleanUtils.isNotTrue(action.apply(index, element))) {
+        for (E item : array) {
+            if ((filter == null || filter.test(index, item)) && BooleanUtils.isNotTrue(action.apply(index, item))) {
                 break;
             }
             index++;
@@ -1066,9 +1066,9 @@ public abstract class ArrayUtilsWraps {
         }
         int length = Array.getLength(array);
         for (int i = 0; i < length; i++) {
-            Object element = Array.get(array, i);
-            if (element != null) {
-                return element.getClass();
+            Object item = Array.get(array, i);
+            if (item != null) {
+                return item.getClass();
             }
         }
         return null;
@@ -1118,8 +1118,8 @@ public abstract class ArrayUtilsWraps {
             return null;
         }
         List<Integer> result = new ArrayList<>();
-        forEachIndexing(array, (index, element) -> {
-            if (filter.test(element)) {
+        forEachIndexing(array, (index, item) -> {
+            if (filter.test(item)) {
                 result.add(index);
             }
         });
@@ -1492,7 +1492,7 @@ public abstract class ArrayUtilsWraps {
             return false;
         }
         int length = ArrayUtils.getLength(ArrayUtils.get(arrays, 0));
-        return Arrays.stream(arrays).skip(1L).allMatch(element -> ArrayUtils.getLength(element) == length);
+        return Arrays.stream(arrays).skip(1L).allMatch(item -> ArrayUtils.getLength(item) == length);
     }
 
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
@@ -1501,7 +1501,7 @@ public abstract class ArrayUtilsWraps {
             return false;
         }
         int length = ArrayUtils.getLength(ArrayUtils.get(arrays, 0));
-        return Arrays.stream(arrays).skip(1L).allMatch(element -> ArrayUtils.getLength(element) == length);
+        return Arrays.stream(arrays).skip(1L).allMatch(item -> ArrayUtils.getLength(item) == length);
     }
 
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
@@ -1510,7 +1510,7 @@ public abstract class ArrayUtilsWraps {
             return false;
         }
         int length = ArrayUtils.getLength(ArrayUtils.get(arrays, 0));
-        return Arrays.stream(arrays).skip(1L).allMatch(element -> ArrayUtils.getLength(element) == length);
+        return Arrays.stream(arrays).skip(1L).allMatch(item -> ArrayUtils.getLength(item) == length);
     }
 
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
@@ -1519,7 +1519,7 @@ public abstract class ArrayUtilsWraps {
             return false;
         }
         int length = ArrayUtils.getLength(ArrayUtils.get(arrays, 0));
-        return Arrays.stream(arrays).skip(1L).allMatch(array -> ArrayUtils.getLength(array) == length);
+        return Arrays.stream(arrays).skip(1L).allMatch(item -> ArrayUtils.getLength(item) == length);
     }
 
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
@@ -1528,7 +1528,7 @@ public abstract class ArrayUtilsWraps {
             return false;
         }
         int length = ArrayUtils.getLength(ArrayUtils.get(arrays, 0));
-        return Arrays.stream(arrays).skip(1L).allMatch(element -> ArrayUtils.getLength(element) == length);
+        return Arrays.stream(arrays).skip(1L).allMatch(item -> ArrayUtils.getLength(item) == length);
     }
 
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
@@ -1537,7 +1537,7 @@ public abstract class ArrayUtilsWraps {
             return false;
         }
         int length = ArrayUtils.getLength(ArrayUtils.get(arrays, 0));
-        return Arrays.stream(arrays).skip(1L).allMatch(element -> ArrayUtils.getLength(element) == length);
+        return Arrays.stream(arrays).skip(1L).allMatch(item -> ArrayUtils.getLength(item) == length);
     }
 
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
@@ -1546,7 +1546,7 @@ public abstract class ArrayUtilsWraps {
             return false;
         }
         int length = ArrayUtils.getLength(ArrayUtils.get(arrays, 0));
-        return Arrays.stream(arrays).skip(1L).allMatch(element -> ArrayUtils.getLength(element) == length);
+        return Arrays.stream(arrays).skip(1L).allMatch(item -> ArrayUtils.getLength(item) == length);
     }
 
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
@@ -1555,7 +1555,7 @@ public abstract class ArrayUtilsWraps {
             return false;
         }
         int length = ArrayUtils.getLength(ArrayUtils.get(arrays, 0));
-        return Arrays.stream(arrays).skip(1L).allMatch(element -> ArrayUtils.getLength(element) == length);
+        return Arrays.stream(arrays).skip(1L).allMatch(item -> ArrayUtils.getLength(item) == length);
     }
 
     @SafeVarargs
@@ -1565,7 +1565,7 @@ public abstract class ArrayUtilsWraps {
             return false;
         }
         int length = ArrayUtils.getLength(ArrayUtils.get(arrays, 0));
-        return Arrays.stream(arrays).skip(1L).allMatch(element -> ArrayUtils.getLength(element) == length);
+        return Arrays.stream(arrays).skip(1L).allMatch(item -> ArrayUtils.getLength(item) == length);
     }
 
     public static boolean isSingleton(@Nullable boolean[] array) {
@@ -2595,9 +2595,9 @@ public abstract class ArrayUtilsWraps {
         }
         int length = Array.getLength(array);
         for (int i = 0; i < length; i++) {
-            Object element = Array.get(array, i);
-            if (filter == null || filter.test(element)) {
-                action.accept(element);
+            Object item = Array.get(array, i);
+            if (filter == null || filter.test(item)) {
+                action.accept(item);
             }
         }
     }
@@ -2613,8 +2613,8 @@ public abstract class ArrayUtilsWraps {
         }
         int length = Array.getLength(array);
         for (int i = 0; i < length; i++) {
-            Object element = Array.get(array, i);
-            if ((filter == null || filter.test(element)) && BooleanUtils.isNotTrue(action.apply(element))) {
+            Object item = Array.get(array, i);
+            if ((filter == null || filter.test(item)) && BooleanUtils.isNotTrue(action.apply(item))) {
                 break;
             }
         }
@@ -2644,9 +2644,9 @@ public abstract class ArrayUtilsWraps {
         }
         int length = Array.getLength(array);
         for (int i = 0; i < length; i++) {
-            Object element = Array.get(array, i);
-            if (filter == null || filter.test(i, element)) {
-                action.accept(i, element);
+            Object item = Array.get(array, i);
+            if (filter == null || filter.test(i, item)) {
+                action.accept(i, item);
             }
         }
     }
@@ -2662,8 +2662,8 @@ public abstract class ArrayUtilsWraps {
         }
         int length = Array.getLength(array);
         for (int i = 0; i < length; i++) {
-            Object element = Array.get(array, i);
-            if ((filter == null || filter.test(i, element)) && BooleanUtils.isNotTrue(action.apply(i, element))) {
+            Object item = Array.get(array, i);
+            if ((filter == null || filter.test(i, item)) && BooleanUtils.isNotTrue(action.apply(i, item))) {
                 break;
             }
         }
@@ -2693,9 +2693,9 @@ public abstract class ArrayUtilsWraps {
         }
         int length = Array.getLength(array);
         for (int i = length - 1; i >= 0; i--) {
-            Object element = Array.get(array, i);
-            if (filter == null || filter.test(element)) {
-                action.accept(element);
+            Object item = Array.get(array, i);
+            if (filter == null || filter.test(item)) {
+                action.accept(item);
             }
         }
     }
@@ -2711,8 +2711,8 @@ public abstract class ArrayUtilsWraps {
         }
         int length = Array.getLength(array);
         for (int i = length - 1; i >= 0; i--) {
-            Object element = Array.get(array, i);
-            if ((filter == null || filter.test(element)) && BooleanUtils.isNotTrue(action.apply(element))) {
+            Object item = Array.get(array, i);
+            if ((filter == null || filter.test(item)) && BooleanUtils.isNotTrue(action.apply(item))) {
                 break;
             }
         }
@@ -2729,9 +2729,9 @@ public abstract class ArrayUtilsWraps {
         }
         int length = Array.getLength(array);
         for (int i = length - 1; i >= 0; i--) {
-            Object element = Array.get(array, i);
-            if (filter == null || filter.test(i, element)) {
-                action.accept(i, element);
+            Object item = Array.get(array, i);
+            if (filter == null || filter.test(i, item)) {
+                action.accept(i, item);
             }
         }
     }
@@ -2747,8 +2747,8 @@ public abstract class ArrayUtilsWraps {
         }
         int length = Array.getLength(array);
         for (int i = length - 1; i >= 0; i--) {
-            Object element = Array.get(array, i);
-            if ((filter == null || filter.test(i, element)) && BooleanUtils.isNotTrue(action.apply(i, element))) {
+            Object item = Array.get(array, i);
+            if ((filter == null || filter.test(i, item)) && BooleanUtils.isNotTrue(action.apply(i, item))) {
                 break;
             }
         }
@@ -2756,8 +2756,8 @@ public abstract class ArrayUtilsWraps {
 
     @Nullable
     @SuppressWarnings("unchecked")
-    public static <E> E[] singletonArray(@Nullable E element) {
-        return (element == null) ? null : ArrayUtils.toArray(element);
+    public static <E> E[] singletonArray(@Nullable E item) {
+        return (item == null) ? null : ArrayUtils.toArray(item);
     }
 
     @Nonnull
@@ -2891,7 +2891,7 @@ public abstract class ArrayUtilsWraps {
         }
         boolean[] result = new boolean[length];
         AtomicInteger index = new AtomicInteger(0);
-        Arrays.stream(arrays).filter(ArrayUtils::isNotEmpty).flatMap(ArrayUtilsWraps::stream).forEach(element -> result[index.getAndIncrement()] = element);
+        Arrays.stream(arrays).filter(ArrayUtils::isNotEmpty).flatMap(ArrayUtilsWraps::stream).forEach(item -> result[index.getAndIncrement()] = item);
         return result;
     }
 
@@ -2907,7 +2907,7 @@ public abstract class ArrayUtilsWraps {
         }
         byte[] result = new byte[length];
         AtomicInteger index = new AtomicInteger(0);
-        Arrays.stream(arrays).filter(ArrayUtils::isNotEmpty).flatMap(ArrayUtilsWraps::stream).forEach(element -> result[index.getAndIncrement()] = element);
+        Arrays.stream(arrays).filter(ArrayUtils::isNotEmpty).flatMap(ArrayUtilsWraps::stream).forEach(item -> result[index.getAndIncrement()] = item);
         return result;
     }
 
@@ -2923,7 +2923,7 @@ public abstract class ArrayUtilsWraps {
         }
         char[] result = new char[length];
         AtomicInteger index = new AtomicInteger(0);
-        Arrays.stream(arrays).filter(ArrayUtils::isNotEmpty).flatMap(ArrayUtilsWraps::stream).forEach(element -> result[index.getAndIncrement()] = element);
+        Arrays.stream(arrays).filter(ArrayUtils::isNotEmpty).flatMap(ArrayUtilsWraps::stream).forEach(item -> result[index.getAndIncrement()] = item);
         return result;
     }
 
@@ -2939,7 +2939,7 @@ public abstract class ArrayUtilsWraps {
         }
         double[] result = new double[length];
         AtomicInteger index = new AtomicInteger(0);
-        Arrays.stream(arrays).filter(ArrayUtils::isNotEmpty).flatMap(ArrayUtilsWraps::stream).forEach(element -> result[index.getAndIncrement()] = element);
+        Arrays.stream(arrays).filter(ArrayUtils::isNotEmpty).flatMap(ArrayUtilsWraps::stream).forEach(item -> result[index.getAndIncrement()] = item);
         return result;
     }
 
@@ -2955,7 +2955,7 @@ public abstract class ArrayUtilsWraps {
         }
         float[] result = new float[length];
         AtomicInteger index = new AtomicInteger(0);
-        Arrays.stream(arrays).filter(ArrayUtils::isNotEmpty).flatMap(ArrayUtilsWraps::stream).forEach(element -> result[index.getAndIncrement()] = element);
+        Arrays.stream(arrays).filter(ArrayUtils::isNotEmpty).flatMap(ArrayUtilsWraps::stream).forEach(item -> result[index.getAndIncrement()] = item);
         return result;
     }
 
@@ -2971,7 +2971,7 @@ public abstract class ArrayUtilsWraps {
         }
         int[] result = new int[length];
         AtomicInteger index = new AtomicInteger(0);
-        Arrays.stream(arrays).filter(ArrayUtils::isNotEmpty).flatMap(ArrayUtilsWraps::stream).forEach(element -> result[index.getAndIncrement()] = element);
+        Arrays.stream(arrays).filter(ArrayUtils::isNotEmpty).flatMap(ArrayUtilsWraps::stream).forEach(item -> result[index.getAndIncrement()] = item);
         return result;
     }
 
@@ -2987,7 +2987,7 @@ public abstract class ArrayUtilsWraps {
         }
         long[] result = new long[length];
         AtomicInteger index = new AtomicInteger(0);
-        Arrays.stream(arrays).filter(ArrayUtils::isNotEmpty).flatMap(ArrayUtilsWraps::stream).forEach(element -> result[index.getAndIncrement()] = element);
+        Arrays.stream(arrays).filter(ArrayUtils::isNotEmpty).flatMap(ArrayUtilsWraps::stream).forEach(item -> result[index.getAndIncrement()] = item);
         return result;
     }
 
@@ -3003,7 +3003,7 @@ public abstract class ArrayUtilsWraps {
         }
         short[] result = new short[length];
         AtomicInteger index = new AtomicInteger(0);
-        Arrays.stream(arrays).filter(ArrayUtils::isNotEmpty).flatMap(ArrayUtilsWraps::stream).forEach(element -> result[index.getAndIncrement()] = element);
+        Arrays.stream(arrays).filter(ArrayUtils::isNotEmpty).flatMap(ArrayUtilsWraps::stream).forEach(item -> result[index.getAndIncrement()] = item);
         return result;
     }
 
@@ -3023,7 +3023,7 @@ public abstract class ArrayUtilsWraps {
             return null;
         }
         AtomicInteger index = new AtomicInteger(0);
-        Arrays.stream(arrays).filter(ArrayUtils::isNotEmpty).flatMap(Arrays::stream).forEach(element -> result[index.getAndIncrement()] = element);
+        Arrays.stream(arrays).filter(ArrayUtils::isNotEmpty).flatMap(Arrays::stream).forEach(item -> result[index.getAndIncrement()] = item);
         return result;
     }
 }

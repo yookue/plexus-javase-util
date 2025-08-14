@@ -322,7 +322,7 @@ public abstract class RegexUtilsWraps {
             return false;
         }
         Pattern pattern = Pattern.compile(regex, flags);
-        return sequences.stream().allMatch(element -> pattern.matcher(element).matches());
+        return sequences.stream().allMatch(item -> pattern.matcher(item).matches());
     }
 
     public static boolean matchAnySequences(@Nullable String regex, @Nullable CharSequence... sequences) {
@@ -351,7 +351,7 @@ public abstract class RegexUtilsWraps {
             return false;
         }
         Pattern pattern = Pattern.compile(regex, flags);
-        return sequences.stream().anyMatch(element -> pattern.matcher(element).matches());
+        return sequences.stream().anyMatch(item -> pattern.matcher(item).matches());
     }
 
     @Nullable
@@ -727,7 +727,7 @@ public abstract class RegexUtilsWraps {
     }
 
     public static boolean findAny(@Nullable CharSequence sequence, @Nullable Collection<String> regexes) {
-        return StringUtils.isNotEmpty(sequence) && CollectionPlainWraps.isNotEmpty(regexes) && regexes.stream().filter(StringUtils::isNotEmpty).anyMatch(element -> find(sequence, element));
+        return StringUtils.isNotEmpty(sequence) && CollectionPlainWraps.isNotEmpty(regexes) && regexes.stream().filter(StringUtils::isNotEmpty).anyMatch(item -> find(sequence, item));
     }
 
     /**
@@ -750,7 +750,7 @@ public abstract class RegexUtilsWraps {
     }
 
     public static boolean findAnyIgnoreCase(@Nullable CharSequence sequence, @Nullable Collection<String> regexes) {
-        return StringUtils.isNotEmpty(sequence) && CollectionPlainWraps.isNotEmpty(regexes) && regexes.stream().filter(StringUtils::isNotEmpty).anyMatch(element -> findIgnoreCase(sequence, element));
+        return StringUtils.isNotEmpty(sequence) && CollectionPlainWraps.isNotEmpty(regexes) && regexes.stream().filter(StringUtils::isNotEmpty).anyMatch(item -> findIgnoreCase(sequence, item));
     }
 
     /**
@@ -773,7 +773,7 @@ public abstract class RegexUtilsWraps {
     }
 
     public static boolean findAnyWithFlags(@Nullable CharSequence sequence, int flags, @Nullable Collection<String> regexes) {
-        return StringUtils.isNotEmpty(sequence) && CollectionPlainWraps.isNotEmpty(regexes) && regexes.stream().filter(StringUtils::isNotEmpty).anyMatch(element -> findWithFlags(sequence, element, flags));
+        return StringUtils.isNotEmpty(sequence) && CollectionPlainWraps.isNotEmpty(regexes) && regexes.stream().filter(StringUtils::isNotEmpty).anyMatch(item -> findWithFlags(sequence, item, flags));
     }
 
     public static boolean matches(@Nullable CharSequence sequence, @Nullable Pattern pattern) {

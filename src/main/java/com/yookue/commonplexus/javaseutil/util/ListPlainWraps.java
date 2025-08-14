@@ -42,143 +42,143 @@ import org.apache.commons.lang3.StringUtils;
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})
 public abstract class ListPlainWraps {
     @SafeVarargs
-    public static <E> void addAll(@Nullable List<? super E> target, int index, @Nullable E... elements) {
-        addAllIf(target, index, null, elements);
+    public static <E> void addAll(@Nullable List<? super E> target, int index, @Nullable E... items) {
+        addAllIf(target, index, null, items);
     }
 
-    public static <E> void addAll(@Nullable List<E> target, int index, @Nullable Iterable<? extends E> elements) {
-        addAllIf(target, index, null, elements);
+    public static <E> void addAll(@Nullable List<E> target, int index, @Nullable Iterable<? extends E> items) {
+        addAllIf(target, index, null, items);
     }
 
-    public static <E> void addAll(@Nullable List<E> target, int index, @Nullable Iterator<? extends E> elements) {
-        addAllIf(target, index, null, elements);
+    public static <E> void addAll(@Nullable List<E> target, int index, @Nullable Iterator<? extends E> items) {
+        addAllIf(target, index, null, items);
     }
 
-    public static <E> void addAll(@Nullable List<E> target, int index, @Nullable Enumeration<? extends E> elements) {
-        addAllIf(target, index, null, elements);
+    public static <E> void addAll(@Nullable List<E> target, int index, @Nullable Enumeration<? extends E> items) {
+        addAllIf(target, index, null, items);
     }
 
     @SafeVarargs
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
-    public static <E> void addAllIf(@Nullable List<? super E> target, int index, @Nullable BiPredicate<List<? super E>, E> filter, @Nullable E... elements) {
-        if (target == null || ArrayUtils.isEmpty(elements)) {
+    public static <E> void addAllIf(@Nullable List<? super E> target, int index, @Nullable BiPredicate<List<? super E>, E> filter, @Nullable E... items) {
+        if (target == null || ArrayUtils.isEmpty(items)) {
             return;
         }
         int offset = index;
-        for (E element : elements) {
-            if (filter == null || filter.test(target, element)) {
-                target.add(offset++, element);
+        for (E item : items) {
+            if (filter == null || filter.test(target, item)) {
+                target.add(offset++, item);
             }
         }
     }
 
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
-    public static <E> void addAllIf(@Nullable List<E> target, int index, @Nullable BiPredicate<List<? super E>, E> filter, @Nullable Iterable<? extends E> elements) {
-        if (ObjectUtils.anyNull(target, elements) || !CollectionPlainWraps.isIndexBound(target, index, true)) {
+    public static <E> void addAllIf(@Nullable List<E> target, int index, @Nullable BiPredicate<List<? super E>, E> filter, @Nullable Iterable<? extends E> items) {
+        if (ObjectUtils.anyNull(target, items) || !CollectionPlainWraps.isIndexBound(target, index, true)) {
             return;
         }
         int offset = index;
-        for (E element : elements) {
-            if (filter == null || filter.test(target, element)) {
-                target.add(offset++, element);
+        for (E item : items) {
+            if (filter == null || filter.test(target, item)) {
+                target.add(offset++, item);
             }
         }
     }
 
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
-    public static <E> void addAllIf(@Nullable List<E> target, int index, @Nullable BiPredicate<List<? super E>, E> filter, @Nullable Iterator<? extends E> elements) {
-        if (ObjectUtils.anyNull(target, elements) || !CollectionPlainWraps.isIndexBound(target, index, true)) {
+    public static <E> void addAllIf(@Nullable List<E> target, int index, @Nullable BiPredicate<List<? super E>, E> filter, @Nullable Iterator<? extends E> items) {
+        if (ObjectUtils.anyNull(target, items) || !CollectionPlainWraps.isIndexBound(target, index, true)) {
             return;
         }
         int offset = index;
-        while (elements.hasNext()) {
-            E element = elements.next();
-            if (filter == null || filter.test(target, element)) {
-                target.add(offset++, element);
+        while (items.hasNext()) {
+            E item = items.next();
+            if (filter == null || filter.test(target, item)) {
+                target.add(offset++, item);
             }
         }
     }
 
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
-    public static <E> void addAllIf(@Nullable List<E> target, int index, @Nullable BiPredicate<List<? super E>, E> filter, @Nullable Enumeration<? extends E> elements) {
-        if (ObjectUtils.anyNull(target, elements) || !CollectionPlainWraps.isIndexBound(target, index, true)) {
+    public static <E> void addAllIf(@Nullable List<E> target, int index, @Nullable BiPredicate<List<? super E>, E> filter, @Nullable Enumeration<? extends E> items) {
+        if (ObjectUtils.anyNull(target, items) || !CollectionPlainWraps.isIndexBound(target, index, true)) {
             return;
         }
         int offset = index;
-        while (elements.hasMoreElements()) {
-            E element = elements.nextElement();
-            if (filter == null || filter.test(target, element)) {
-                target.add(offset++, element);
+        while (items.hasMoreElements()) {
+            E item = items.nextElement();
+            if (filter == null || filter.test(target, item)) {
+                target.add(offset++, item);
             }
         }
     }
 
     @SafeVarargs
-    public static <E> void addAllIfNotNull(@Nullable List<? super E> target, int index, @Nullable E... elements) {
-        addAllIf(target, index, (list, element) -> element != null, elements);
+    public static <E> void addAllIfNotNull(@Nullable List<? super E> target, int index, @Nullable E... items) {
+        addAllIf(target, index, (list, item) -> item != null, items);
     }
 
-    public static <E> void addAllIfNotNull(@Nullable List<E> target, int index, @Nullable Iterable<? extends E> elements) {
-        addAllIf(target, index, (list, element) -> element != null, elements);
+    public static <E> void addAllIfNotNull(@Nullable List<E> target, int index, @Nullable Iterable<? extends E> items) {
+        addAllIf(target, index, (list, item) -> item != null, items);
     }
 
-    public static <E> void addAllIfNotNull(@Nullable List<E> target, int index, @Nullable Iterator<? extends E> elements) {
-        addAllIf(target, index, (list, element) -> element != null, elements);
+    public static <E> void addAllIfNotNull(@Nullable List<E> target, int index, @Nullable Iterator<? extends E> items) {
+        addAllIf(target, index, (list, item) -> item != null, items);
     }
 
-    public static <E> void addAllIfNotNull(@Nullable List<E> target, int index, @Nullable Enumeration<? extends E> elements) {
-        addAllIf(target, index, (list, element) -> element != null, elements);
-    }
-
-    @SafeVarargs
-    public static <E> void addAllIfNotContains(@Nullable List<? super E> target, int index, @Nullable E... elements) {
-        addAllIf(target, index, (list, element) -> !CollectionPlainWraps.contains(list, element), elements);
-    }
-
-    public static <E> void addAllIfNotContains(@Nullable List<E> target, int index, @Nullable Iterable<? extends E> elements) {
-        addAllIf(target, index, (list, element) -> !CollectionPlainWraps.contains(list, element), elements);
-    }
-
-    public static <E> void addAllIfNotContains(@Nullable List<E> target, int index, @Nullable Iterator<? extends E> elements) {
-        addAllIf(target, index, (list, element) -> !CollectionPlainWraps.contains(list, element), elements);
-    }
-
-    public static <E> void addAllIfNotContains(@Nullable List<E> target, int index, @Nullable Enumeration<? extends E> elements) {
-        addAllIf(target, index, (list, element) -> !CollectionPlainWraps.contains(list, element), elements);
+    public static <E> void addAllIfNotNull(@Nullable List<E> target, int index, @Nullable Enumeration<? extends E> items) {
+        addAllIf(target, index, (list, item) -> item != null, items);
     }
 
     @SafeVarargs
-    public static <E extends CharSequence> void addAllIfNotBlank(@Nullable List<? super E> target, int index, @Nullable E... elements) {
-        addAllIf(target, index, (list, element) -> StringUtils.isNotBlank(element), elements);
+    public static <E> void addAllIfNotContains(@Nullable List<? super E> target, int index, @Nullable E... items) {
+        addAllIf(target, index, (list, item) -> !CollectionPlainWraps.contains(list, item), items);
     }
 
-    public static <E extends CharSequence> void addAllIfNotBlank(@Nullable List<E> target, int index, @Nullable Iterable<? extends E> elements) {
-        addAllIf(target, index, (list, element) -> StringUtils.isNotBlank(element), elements);
+    public static <E> void addAllIfNotContains(@Nullable List<E> target, int index, @Nullable Iterable<? extends E> items) {
+        addAllIf(target, index, (list, item) -> !CollectionPlainWraps.contains(list, item), items);
     }
 
-    public static <E extends CharSequence> void addAllIfNotBlank(@Nullable List<E> target, int index, @Nullable Iterator<? extends E> elements) {
-        addAllIf(target, index, (list, element) -> StringUtils.isNotBlank(element), elements);
+    public static <E> void addAllIfNotContains(@Nullable List<E> target, int index, @Nullable Iterator<? extends E> items) {
+        addAllIf(target, index, (list, item) -> !CollectionPlainWraps.contains(list, item), items);
     }
 
-    public static <E extends CharSequence> void addAllIfNotBlank(@Nullable List<E> target, int index, @Nullable Enumeration<? extends E> elements) {
-        addAllIf(target, index, (list, element) -> StringUtils.isNotBlank(element), elements);
+    public static <E> void addAllIfNotContains(@Nullable List<E> target, int index, @Nullable Enumeration<? extends E> items) {
+        addAllIf(target, index, (list, item) -> !CollectionPlainWraps.contains(list, item), items);
     }
 
     @SafeVarargs
-    public static <E> void addAllIfNotEmpty(@Nullable List<? super E> target, int index, @Nullable E... elements) {
-        addAllIf(target, index, (list, element) -> ObjectUtils.isNotEmpty(element), elements);
+    public static <E extends CharSequence> void addAllIfNotBlank(@Nullable List<? super E> target, int index, @Nullable E... items) {
+        addAllIf(target, index, (list, item) -> StringUtils.isNotBlank(item), items);
     }
 
-    public static <E> void addAllIfNotEmpty(@Nullable List<E> target, int index, @Nullable Iterable<? extends E> elements) {
-        addAllIf(target, index, (list, element) -> ObjectUtils.isNotEmpty(element), elements);
+    public static <E extends CharSequence> void addAllIfNotBlank(@Nullable List<E> target, int index, @Nullable Iterable<? extends E> items) {
+        addAllIf(target, index, (list, item) -> StringUtils.isNotBlank(item), items);
     }
 
-    public static <E> void addAllIfNotEmpty(@Nullable List<E> target, int index, @Nullable Iterator<? extends E> elements) {
-        addAllIf(target, index, (list, element) -> ObjectUtils.isNotEmpty(element), elements);
+    public static <E extends CharSequence> void addAllIfNotBlank(@Nullable List<E> target, int index, @Nullable Iterator<? extends E> items) {
+        addAllIf(target, index, (list, item) -> StringUtils.isNotBlank(item), items);
     }
 
-    public static <E> void addAllIfNotEmpty(@Nullable List<E> target, int index, @Nullable Enumeration<? extends E> elements) {
-        addAllIf(target, index, (list, element) -> ObjectUtils.isNotEmpty(element), elements);
+    public static <E extends CharSequence> void addAllIfNotBlank(@Nullable List<E> target, int index, @Nullable Enumeration<? extends E> items) {
+        addAllIf(target, index, (list, item) -> StringUtils.isNotBlank(item), items);
+    }
+
+    @SafeVarargs
+    public static <E> void addAllIfNotEmpty(@Nullable List<? super E> target, int index, @Nullable E... items) {
+        addAllIf(target, index, (list, item) -> ObjectUtils.isNotEmpty(item), items);
+    }
+
+    public static <E> void addAllIfNotEmpty(@Nullable List<E> target, int index, @Nullable Iterable<? extends E> items) {
+        addAllIf(target, index, (list, item) -> ObjectUtils.isNotEmpty(item), items);
+    }
+
+    public static <E> void addAllIfNotEmpty(@Nullable List<E> target, int index, @Nullable Iterator<? extends E> items) {
+        addAllIf(target, index, (list, item) -> ObjectUtils.isNotEmpty(item), items);
+    }
+
+    public static <E> void addAllIfNotEmpty(@Nullable List<E> target, int index, @Nullable Enumeration<? extends E> items) {
+        addAllIf(target, index, (list, item) -> ObjectUtils.isNotEmpty(item), items);
     }
 
     public static <E> E get(@Nullable List<E> list, int index) {
@@ -244,9 +244,9 @@ public abstract class ListPlainWraps {
         int start = Math.max(startIndexInclusive, 0);
         int end = Math.min(CollectionPlainWraps.size(list), endIndexExclusive) - 1;
         while (end > start) {
-            E element = list.get(end);
+            E item = list.get(end);
             list.set(end, list.get(start));
-            list.set(start, element);
+            list.set(start, item);
             end--;
             start++;
         }
@@ -262,9 +262,9 @@ public abstract class ListPlainWraps {
         }
         int size = list.size();
         for (int i = size - 1; i >= 0; i--) {
-            E element = list.get(i);
-            if (filter == null || filter.test(element)) {
-                action.accept(element);
+            E item = list.get(i);
+            if (filter == null || filter.test(item)) {
+                action.accept(item);
             }
         }
     }
@@ -279,8 +279,8 @@ public abstract class ListPlainWraps {
         }
         int size = list.size();
         for (int i = size - 1; i >= 0; i--) {
-            E element = list.get(i);
-            if ((filter == null || filter.test(element)) && BooleanUtils.isNotTrue(action.apply(element))) {
+            E item = list.get(i);
+            if ((filter == null || filter.test(item)) && BooleanUtils.isNotTrue(action.apply(item))) {
                 break;
             }
         }
@@ -308,9 +308,9 @@ public abstract class ListPlainWraps {
         }
         int size = list.size();
         for (int i = size - 1; i >= 0; i--) {
-            E element = list.get(i);
-            if (filter == null || filter.test(i, element)) {
-                action.accept(i, element);
+            E item = list.get(i);
+            if (filter == null || filter.test(i, item)) {
+                action.accept(i, item);
             }
         }
     }
@@ -325,8 +325,8 @@ public abstract class ListPlainWraps {
         }
         int size = list.size();
         for (int i = size - 1; i >= 0; i--) {
-            E element = list.get(i);
-            if ((filter == null || filter.test(i, element)) && BooleanUtils.isNotTrue(action.apply(i, element))) {
+            E item = list.get(i);
+            if ((filter == null || filter.test(i, item)) && BooleanUtils.isNotTrue(action.apply(i, item))) {
                 break;
             }
         }

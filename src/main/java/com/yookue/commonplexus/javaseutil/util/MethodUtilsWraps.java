@@ -266,7 +266,7 @@ public abstract class MethodUtilsWraps {
         if (clazz == null || CollectionPlainWraps.isEmpty(annotations)) {
             return null;
         }
-        List<Method> result = getNestedMethodsToList(clazz, element -> AnnotationUtilsWraps.allPresent(element, annotations));
+        List<Method> result = getNestedMethodsToList(clazz, item -> AnnotationUtilsWraps.allPresent(item, annotations));
         return CollectionPlainWraps.isEmpty(result) ? null : result;
     }
 
@@ -305,7 +305,7 @@ public abstract class MethodUtilsWraps {
         if (clazz == null || CollectionPlainWraps.isEmpty(annotations)) {
             return null;
         }
-        List<Method> result = getNestedMethodsToList(clazz, element -> AnnotationUtilsWraps.anyPresent(element, annotations));
+        List<Method> result = getNestedMethodsToList(clazz, item -> AnnotationUtilsWraps.anyPresent(item, annotations));
         return CollectionPlainWraps.isEmpty(result) ? null : result;
     }
 

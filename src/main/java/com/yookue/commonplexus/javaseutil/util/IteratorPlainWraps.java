@@ -49,10 +49,10 @@ import org.apache.commons.lang3.ObjectUtils;
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})
 public abstract class IteratorPlainWraps {
     /**
-     * Checks whether the given {@code iterator} contains the given element
+     * Checks whether the given {@code iterator} contains the given item
      *
      * @param iterator The source iterator to check
-     * @param comparison The target element to look for
+     * @param comparison The target item to look for
      *
      * @return {@code true} if found, {@code false} otherwise
      */
@@ -61,8 +61,8 @@ public abstract class IteratorPlainWraps {
             return false;
         }
         while (iterator.hasNext()) {
-            Object element = iterator.next();
-            if (ObjectUtilsWraps.equals(element, comparison)) {
+            Object item = iterator.next();
+            if (ObjectUtilsWraps.equals(item, comparison)) {
                 return true;
             }
         }
@@ -75,9 +75,9 @@ public abstract class IteratorPlainWraps {
             return null;
         }
         while (iterator.hasNext()) {
-            E element = iterator.next();
-            if (element != null) {
-                return element;
+            E item = iterator.next();
+            if (item != null) {
+                return item;
             }
         }
         return null;
@@ -89,9 +89,9 @@ public abstract class IteratorPlainWraps {
             return null;
         }
         while (iterator.hasNext()) {
-            E element = iterator.next();
-            if (ObjectUtils.isNotEmpty(element)) {
-                return element;
+            E item = iterator.next();
+            if (ObjectUtils.isNotEmpty(item)) {
+                return item;
             }
         }
         return null;
@@ -107,9 +107,9 @@ public abstract class IteratorPlainWraps {
             return;
         }
         while (iterator.hasNext()) {
-            E element = iterator.next();
-            if (filter == null || filter.test(element)) {
-                action.accept(element);
+            E item = iterator.next();
+            if (filter == null || filter.test(item)) {
+                action.accept(item);
             }
         }
     }
@@ -119,11 +119,11 @@ public abstract class IteratorPlainWraps {
     }
 
     /**
-     * Perform an action for filtered elements in the {@code iterator} until the {@code action} return false
+     * Perform an action for filtered items in the {@code iterator} until the {@code action} return false
      *
      * @param iterator The source iterator to lookup
-     * @param action The action to be performed. when return {@code true}, means continue next element; otherwise means break loop
-     * @param filter The filter to choose elements
+     * @param action The action to be performed. when return {@code true}, means continue next item; otherwise means break loop
+     * @param filter The filter to choose items
      */
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
     public static <E> void forEachBreakable(@Nullable Iterator<E> iterator, @Nullable Function<? super E, Boolean> action, @Nullable Predicate<? super E> filter) {
@@ -131,8 +131,8 @@ public abstract class IteratorPlainWraps {
             return;
         }
         while (iterator.hasNext()) {
-            E element = iterator.next();
-            if ((filter == null || filter.test(element)) && BooleanUtils.isNotTrue(action.apply(element))) {
+            E item = iterator.next();
+            if ((filter == null || filter.test(item)) && BooleanUtils.isNotTrue(action.apply(item))) {
                 break;
             }
         }
@@ -145,11 +145,11 @@ public abstract class IteratorPlainWraps {
             return null;
         }
         while (iterator.hasNext()) {
-            E element = iterator.next();
+            E item = iterator.next();
             if (iterator.hasNext()) {
-                action.accept(element);
+                action.accept(item);
             } else {
-                return element;
+                return item;
             }
         }
         return null;
@@ -166,9 +166,9 @@ public abstract class IteratorPlainWraps {
         }
         int index = 0;
         while (iterator.hasNext()) {
-            E element = iterator.next();
-            if (filter == null || filter.test(index, element)) {
-                action.accept(index, element);
+            E item = iterator.next();
+            if (filter == null || filter.test(index, item)) {
+                action.accept(index, item);
             }
             index++;
         }
@@ -179,11 +179,11 @@ public abstract class IteratorPlainWraps {
     }
 
     /**
-     * Perform an action with index for filtered elements in the {@code iterator} until the {@code action} return false
+     * Perform an action with index for filtered items in the {@code iterator} until the {@code action} return false
      *
      * @param iterator The iterator to get a value from
-     * @param action The action to be performed. when return {@code true}, means continue next element; otherwise means break loop
-     * @param filter The filter to choose elements
+     * @param action The action to be performed. when return {@code true}, means continue next item; otherwise means break loop
+     * @param filter The filter to choose items
      */
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
     public static <E> void forEachIndexingBreakable(@Nullable Iterator<E> iterator, @Nullable BiFunction<Integer, ? super E, Boolean> action, @Nullable BiPredicate<Integer, ? super E> filter) {
@@ -192,8 +192,8 @@ public abstract class IteratorPlainWraps {
         }
         int index = 0;
         while (iterator.hasNext()) {
-            E element = iterator.next();
-            if ((filter == null || filter.test(index, element)) && BooleanUtils.isNotTrue(action.apply(index, element))) {
+            E item = iterator.next();
+            if ((filter == null || filter.test(index, item)) && BooleanUtils.isNotTrue(action.apply(index, item))) {
                 break;
             }
             index++;
@@ -208,11 +208,11 @@ public abstract class IteratorPlainWraps {
         }
         int index = 0;
         while (iterator.hasNext()) {
-            E element = iterator.next();
+            E item = iterator.next();
             if (iterator.hasNext()) {
-                action.accept(index, element);
+                action.accept(index, item);
             } else {
-                return element;
+                return item;
             }
             index++;
         }
@@ -234,9 +234,9 @@ public abstract class IteratorPlainWraps {
         }
         int cursor = 0;
         while (iterator.hasNext()) {
-            E result = iterator.next();
+            E item = iterator.next();
             if (cursor == index) {
-                return result;
+                return item;
             }
             cursor++;
         }
@@ -252,7 +252,7 @@ public abstract class IteratorPlainWraps {
      * Returns the component type of superclass in the iterator
      *
      * @param iterator The iterator to check
-     * @param deepScan true means need to scan all the elements; false means by the first nonnull element
+     * @param deepScan true means need to scan all the items; false means by the first nonnull item
      *
      * @see "org.springframework.util.CollectionUtils#findCommonElementType"
      */
@@ -264,23 +264,23 @@ public abstract class IteratorPlainWraps {
         }
         Class<?> candidate = null;
         while (iterator.hasNext()) {
-            Object element = iterator.next();
-            if (element == null) {
+            Object item = iterator.next();
+            if (item == null) {
                 continue;
             }
             if (!deepScan) {
-                return element.getClass();
+                return item.getClass();
             }
             if (candidate == null) {
-                candidate = element.getClass();
+                candidate = item.getClass();
             } else {
                 boolean assignable = false;
-                if (ClassUtils.isAssignable(candidate, element.getClass())) {
-                    candidate = element.getClass();
+                if (ClassUtils.isAssignable(candidate, item.getClass())) {
+                    candidate = item.getClass();
                     assignable = true;
                 }
                 if (!assignable) {
-                    assignable = ClassUtils.isAssignable(element.getClass(), candidate);
+                    assignable = ClassUtils.isAssignable(item.getClass(), candidate);
                 }
                 if (!assignable) {
                     return null;
@@ -386,7 +386,7 @@ public abstract class IteratorPlainWraps {
             return false;
         }
         int size = size(ArrayUtils.get(iterators, 0));
-        return Arrays.stream(iterators).skip(1L).allMatch(element -> size(element) == size);
+        return Arrays.stream(iterators).skip(1L).allMatch(item -> size(item) == size);
     }
 
     public static boolean isSingleton(@Nullable Iterator<?> iterator) {

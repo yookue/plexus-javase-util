@@ -48,7 +48,7 @@ public abstract class ClassUtilsWraps {
 
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
     public static boolean allInstanceOf(@Nullable Object object, @Nullable Class<?>... superclasses) {
-        return object != null && ArrayUtils.isNotEmpty(superclasses) && Arrays.stream(superclasses).allMatch(element -> element != null && element.isInstance(object));
+        return object != null && ArrayUtils.isNotEmpty(superclasses) && Arrays.stream(superclasses).allMatch(item -> item != null && item.isInstance(object));
     }
 
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
@@ -58,7 +58,7 @@ public abstract class ClassUtilsWraps {
 
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
     public static boolean anyInstanceOf(@Nullable Object object, @Nullable Class<?>... superclasses) {
-        return object != null && ArrayUtils.isNotEmpty(superclasses) && Arrays.stream(superclasses).filter(Objects::nonNull).anyMatch(element -> element.isInstance(object));
+        return object != null && ArrayUtils.isNotEmpty(superclasses) && Arrays.stream(superclasses).filter(Objects::nonNull).anyMatch(item -> item.isInstance(object));
     }
 
     /**

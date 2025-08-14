@@ -141,15 +141,15 @@ public abstract class ChineseDateUtils {
                 yearBuilder.append(ChineseVariantConst.ANNO_DOMINI);
             }
             String yearText = String.valueOf(year);
-            StringUtilsWraps.forEachChars(yearText, element -> yearBuilder.append(numberType.isSimplified() ? ChineseVariantConst.NUMBER_CAPITALS_CN[element - '0'] : ChineseVariantConst.NUMBER_CAPITALS_TW[element - '0']));
+            StringUtilsWraps.forEachChars(yearText, item -> yearBuilder.append(numberType.isSimplified() ? ChineseVariantConst.NUMBER_CAPITALS_CN[item - '0'] : ChineseVariantConst.NUMBER_CAPITALS_TW[item - '0']));
             yearBuilder.append(ChineseVariantConst.DATE_UNITS[0]);
         }
         // Calculate month
         StringBuilder monthBuilder = new StringBuilder();
         String monthText = String.valueOf(monthOfYear);
-        StringUtilsWraps.forEachCharsIndexing(monthText, (index, element) -> {
-            if (element > '0' && (numberType.isFinance() || (index == 0 && (monthOfYear < 9 || (monthOfYear > 9 && element > '1'))) || index == 1)) {
-                monthBuilder.append(numberType.isSimplified() ? ChineseVariantConst.NUMBER_CAPITALS_CN[element - '0'] : ChineseVariantConst.NUMBER_CAPITALS_TW[element - '0']);
+        StringUtilsWraps.forEachCharsIndexing(monthText, (index, item) -> {
+            if (item > '0' && (numberType.isFinance() || (index == 0 && (monthOfYear < 9 || (monthOfYear > 9 && item > '1'))) || index == 1)) {
+                monthBuilder.append(numberType.isSimplified() ? ChineseVariantConst.NUMBER_CAPITALS_CN[item - '0'] : ChineseVariantConst.NUMBER_CAPITALS_TW[item - '0']);
             }
             if (index == 0 && monthOfYear > 9) {
                 monthBuilder.append(numberType.isSimplified() ? ChineseVariantConst.NUMBER_SECTIONS_CN[0] : ChineseVariantConst.NUMBER_SECTIONS_TW[0]);
@@ -162,9 +162,9 @@ public abstract class ChineseDateUtils {
         // Calculate day
         StringBuilder dayBuilder = new StringBuilder();
         String dayText = String.valueOf(dayOfMonth);
-        StringUtilsWraps.forEachCharsIndexing(dayText, (index, element) -> {
-            if (element > '0' && (numberType.isFinance() || (index == 0 && (dayOfMonth < 9 || (dayOfMonth > 9 && element > '1'))) || index == 1)) {
-                dayBuilder.append(numberType.isSimplified() ? ChineseVariantConst.NUMBER_CAPITALS_CN[element - '0'] : ChineseVariantConst.NUMBER_CAPITALS_TW[element - '0']);
+        StringUtilsWraps.forEachCharsIndexing(dayText, (index, item) -> {
+            if (item > '0' && (numberType.isFinance() || (index == 0 && (dayOfMonth < 9 || (dayOfMonth > 9 && item > '1'))) || index == 1)) {
+                dayBuilder.append(numberType.isSimplified() ? ChineseVariantConst.NUMBER_CAPITALS_CN[item - '0'] : ChineseVariantConst.NUMBER_CAPITALS_TW[item - '0']);
             }
             if (index == 0 && dayOfMonth > 9) {
                 dayBuilder.append(numberType.isSimplified() ? ChineseVariantConst.NUMBER_SECTIONS_CN[0] : ChineseVariantConst.NUMBER_SECTIONS_TW[0]);

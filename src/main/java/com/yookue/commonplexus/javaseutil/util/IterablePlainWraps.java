@@ -43,10 +43,10 @@ import org.apache.commons.lang3.ObjectUtils;
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})
 public abstract class IterablePlainWraps {
     /**
-     * Checks whether the given {@code iterable} contains the given element
+     * Checks whether the given {@code iterable} contains the given item
      *
      * @param iterable The source iterable to check
-     * @param comparison The target element to look for
+     * @param comparison The target item to look for
      *
      * @return {@code true} if found, {@code false} otherwise
      */
@@ -140,11 +140,11 @@ public abstract class IterablePlainWraps {
     }
 
     /**
-     * Returns the first element in the given iterable
+     * Returns the first item in the given iterable
      *
      * @param iterable The source iterable
      *
-     * @return the first element in the given iterable
+     * @return the first item in the given iterable
      */
     @Nullable
     public static <E> E getFirst(@Nullable Iterable<E> iterable) {
@@ -161,11 +161,11 @@ public abstract class IterablePlainWraps {
     }
 
     /**
-     * Returns the last element in the given iterable
+     * Returns the last item in the given iterable
      *
      * @param iterable The source iterable
      *
-     * @return the last element in the given iterable
+     * @return the last item in the given iterable
      *
      * @see "org.springframework.util.CollectionUtils#lastElement"
      */
@@ -296,7 +296,7 @@ public abstract class IterablePlainWraps {
             return false;
         }
         int size = size(ArrayUtils.get(iterables, 0));
-        return Arrays.stream(iterables).skip(1L).allMatch(element -> size(element) == size);
+        return Arrays.stream(iterables).skip(1L).allMatch(item -> size(item) == size);
     }
 
     public static boolean isSingleton(@Nullable Iterable<?> iterable) {
@@ -316,7 +316,7 @@ public abstract class IterablePlainWraps {
      *
      * @param iterable The source to check
      * @param index The index to detect
-     * @param adding indicates whether trying to add an element to the source iterable or not
+     * @param adding indicates whether trying to add an item to the source iterable or not
      *
      * @return true if the index object exists in the iterable
      *

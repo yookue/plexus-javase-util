@@ -52,7 +52,7 @@ public abstract class FilenamePlainWraps {
         }
         String[] array = collection.toArray(ArrayUtils.EMPTY_STRING_ARRAY);
         collection.clear();
-        Arrays.stream(array).map(element -> StringUtils.isEmpty(element) ? element : FilenamePlainWraps.appendSlash(element)).forEach(collection::add);
+        Arrays.stream(array).map(item -> StringUtils.isEmpty(item) ? item : FilenamePlainWraps.appendSlash(item)).forEach(collection::add);
     }
 
     public static void appendSlashIgnoreBlank(@Nullable Collection<String> collection) {
@@ -61,7 +61,7 @@ public abstract class FilenamePlainWraps {
         }
         String[] array = collection.toArray(ArrayUtils.EMPTY_STRING_ARRAY);
         collection.clear();
-        Arrays.stream(array).map(element -> StringUtils.isBlank(element) ? element : FilenamePlainWraps.appendSlash(element)).forEach(collection::add);
+        Arrays.stream(array).map(item -> StringUtils.isBlank(item) ? item : FilenamePlainWraps.appendSlash(item)).forEach(collection::add);
     }
 
     public static String appendBackslash(@Nullable CharSequence sequence) {
@@ -83,7 +83,7 @@ public abstract class FilenamePlainWraps {
         }
         String[] array = collection.toArray(ArrayUtils.EMPTY_STRING_ARRAY);
         collection.clear();
-        Arrays.stream(array).map(element -> StringUtils.isEmpty(element) ? element : FilenamePlainWraps.appendBackslash(element)).forEach(collection::add);
+        Arrays.stream(array).map(item -> StringUtils.isEmpty(item) ? item : FilenamePlainWraps.appendBackslash(item)).forEach(collection::add);
     }
 
     public static void appendBackslashIgnoreBlank(@Nullable Collection<String> collection) {
@@ -92,7 +92,7 @@ public abstract class FilenamePlainWraps {
         }
         String[] array = collection.toArray(ArrayUtils.EMPTY_STRING_ARRAY);
         collection.clear();
-        Arrays.stream(array).map(element -> StringUtils.isBlank(element) ? element : FilenamePlainWraps.appendBackslash(element)).forEach(collection::add);
+        Arrays.stream(array).map(item -> StringUtils.isBlank(item) ? item : FilenamePlainWraps.appendBackslash(item)).forEach(collection::add);
     }
 
     public static String prependSlash(@Nullable CharSequence sequence) {
@@ -114,7 +114,7 @@ public abstract class FilenamePlainWraps {
         }
         String[] array = collection.toArray(ArrayUtils.EMPTY_STRING_ARRAY);
         collection.clear();
-        Arrays.stream(array).map(element -> StringUtils.isEmpty(element) ? element : FilenamePlainWraps.prependSlash(element)).forEach(collection::add);
+        Arrays.stream(array).map(item -> StringUtils.isEmpty(item) ? item : FilenamePlainWraps.prependSlash(item)).forEach(collection::add);
     }
 
     public static void prependSlashIgnoreBlank(@Nullable Collection<String> collection) {
@@ -123,7 +123,7 @@ public abstract class FilenamePlainWraps {
         }
         String[] array = collection.toArray(ArrayUtils.EMPTY_STRING_ARRAY);
         collection.clear();
-        Arrays.stream(array).map(element -> StringUtils.isBlank(element) ? element : FilenamePlainWraps.prependSlash(element)).forEach(collection::add);
+        Arrays.stream(array).map(item -> StringUtils.isBlank(item) ? item : FilenamePlainWraps.prependSlash(item)).forEach(collection::add);
     }
 
     public static String prependBackslash(@Nullable CharSequence sequence) {
@@ -145,7 +145,7 @@ public abstract class FilenamePlainWraps {
         }
         String[] array = collection.toArray(ArrayUtils.EMPTY_STRING_ARRAY);
         collection.clear();
-        Arrays.stream(array).map(element -> StringUtils.isEmpty(element) ? element : FilenamePlainWraps.prependBackslash(element)).forEach(collection::add);
+        Arrays.stream(array).map(item -> StringUtils.isEmpty(item) ? item : FilenamePlainWraps.prependBackslash(item)).forEach(collection::add);
     }
 
     public static void prependBackslashIgnoreBlank(@Nullable Collection<String> collection) {
@@ -154,7 +154,7 @@ public abstract class FilenamePlainWraps {
         }
         String[] array = collection.toArray(ArrayUtils.EMPTY_STRING_ARRAY);
         collection.clear();
-        Arrays.stream(array).map(element -> StringUtils.isBlank(element) ? element : FilenamePlainWraps.prependBackslash(element)).forEach(collection::add);
+        Arrays.stream(array).map(item -> StringUtils.isBlank(item) ? item : FilenamePlainWraps.prependBackslash(item)).forEach(collection::add);
     }
 
     public static String removeStartSlash(@Nullable CharSequence sequence) {

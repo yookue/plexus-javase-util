@@ -32,11 +32,11 @@ import org.apache.commons.lang3.StringUtils;
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})
 public abstract class EnumPlainWraps {
     public static <E extends Enum<E>> boolean containsName(@Nullable Class<E> enumClazz, @Nullable String name) {
-        return enumClazz != null && ArrayUtils.isNotEmpty(enumClazz.getEnumConstants()) && Arrays.stream(enumClazz.getEnumConstants()).anyMatch(element -> Objects.equals(element.name(), name));
+        return enumClazz != null && ArrayUtils.isNotEmpty(enumClazz.getEnumConstants()) && Arrays.stream(enumClazz.getEnumConstants()).anyMatch(item -> Objects.equals(item.name(), name));
     }
 
     public static <E extends Enum<E>> boolean containsNameIgnoreCase(@Nullable Class<E> enumClazz, @Nullable String name) {
-        return enumClazz != null && ArrayUtils.isNotEmpty(enumClazz.getEnumConstants()) && Arrays.stream(enumClazz.getEnumConstants()).anyMatch(element -> StringUtils.equalsIgnoreCase(element.name(), name));
+        return enumClazz != null && ArrayUtils.isNotEmpty(enumClazz.getEnumConstants()) && Arrays.stream(enumClazz.getEnumConstants()).anyMatch(item -> StringUtils.equalsIgnoreCase(item.name(), name));
     }
 
     @Nullable
@@ -46,7 +46,7 @@ public abstract class EnumPlainWraps {
 
     @Nullable
     public static <E extends Enum<E>> E ofName(@Nullable Class<E> enumClazz, @Nullable String name, @Nullable E defaultValue) {
-        return (enumClazz == null || ArrayUtils.isEmpty(enumClazz.getEnumConstants())) ? defaultValue : Arrays.stream(enumClazz.getEnumConstants()).filter(element -> Objects.equals(element.name(), name)).findFirst().orElse(defaultValue);
+        return (enumClazz == null || ArrayUtils.isEmpty(enumClazz.getEnumConstants())) ? defaultValue : Arrays.stream(enumClazz.getEnumConstants()).filter(item -> Objects.equals(item.name(), name)).findFirst().orElse(defaultValue);
     }
 
     @Nullable
@@ -56,6 +56,6 @@ public abstract class EnumPlainWraps {
 
     @Nullable
     public static <E extends Enum<E>> E ofNameIgnoreCase(@Nullable Class<E> enumClazz, @Nullable String name, @Nullable E defaultValue) {
-        return (enumClazz == null || ArrayUtils.isEmpty(enumClazz.getEnumConstants())) ? defaultValue : Arrays.stream(enumClazz.getEnumConstants()).filter(element -> StringUtils.equalsIgnoreCase(element.name(), name)).findFirst().orElse(defaultValue);
+        return (enumClazz == null || ArrayUtils.isEmpty(enumClazz.getEnumConstants())) ? defaultValue : Arrays.stream(enumClazz.getEnumConstants()).filter(item -> StringUtils.equalsIgnoreCase(item.name(), name)).findFirst().orElse(defaultValue);
     }
 }

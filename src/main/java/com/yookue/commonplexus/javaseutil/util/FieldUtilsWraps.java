@@ -167,7 +167,7 @@ public abstract class FieldUtilsWraps {
     @Nullable
     public static List<String> getDeclaredFieldNamesToList(@Nullable Class<?> clazz, @Nullable Predicate<Field> filter) {
         List<String> result = new ArrayList<>();
-        doWithDeclaredFields(clazz, element -> result.add(element.getName()), filter);
+        doWithDeclaredFields(clazz, item -> result.add(item.getName()), filter);
         return CollectionPlainWraps.isEmpty(result) ? null : result;
     }
 
@@ -245,7 +245,7 @@ public abstract class FieldUtilsWraps {
     @Nullable
     public static List<String> getNestedFieldNamesToList(@Nullable Class<?> clazz, @Nullable Predicate<Field> filter) {
         List<String> result = new ArrayList<>();
-        doWithNestedFields(clazz, element -> result.add(element.getName()), filter);
+        doWithNestedFields(clazz, item -> result.add(item.getName()), filter);
         return CollectionPlainWraps.isEmpty(result) ? null : result;
     }
 
@@ -287,7 +287,7 @@ public abstract class FieldUtilsWraps {
             return null;
         }
         List<Field> fields = FieldUtils.getAllFieldsList(clazz);
-        return CollectionPlainWraps.isEmpty(fields) ? null : fields.stream().filter(element -> AnnotationUtilsWraps.allPresent(element, annotations)).collect(Collectors.toList());
+        return CollectionPlainWraps.isEmpty(fields) ? null : fields.stream().filter(item -> AnnotationUtilsWraps.allPresent(item, annotations)).collect(Collectors.toList());
     }
 
     @Nullable
@@ -329,7 +329,7 @@ public abstract class FieldUtilsWraps {
             return null;
         }
         List<Field> fields = FieldUtils.getAllFieldsList(clazz);
-        return CollectionPlainWraps.isEmpty(fields) ? null : fields.stream().filter(element -> AnnotationUtilsWraps.anyPresent(element, annotations)).collect(Collectors.toList());
+        return CollectionPlainWraps.isEmpty(fields) ? null : fields.stream().filter(item -> AnnotationUtilsWraps.anyPresent(item, annotations)).collect(Collectors.toList());
     }
 
     @Nullable

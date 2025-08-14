@@ -49,7 +49,7 @@ public abstract class ClassLoaderWraps {
         if (ArrayUtils.isEmpty(pathnames)) {
             return null;
         }
-        return Arrays.stream(pathnames).map(element -> extension ? FilenameUtils.getName(element) : FilenameUtils.getBaseName(element)).toArray(String[]::new);
+        return Arrays.stream(pathnames).map(item -> extension ? FilenameUtils.getName(item) : FilenameUtils.getBaseName(item)).toArray(String[]::new);
     }
 
     /**
@@ -67,7 +67,7 @@ public abstract class ClassLoaderWraps {
         if (ArrayUtils.isEmpty(pathnames)) {
             return null;
         }
-        return Arrays.stream(pathnames).map(element -> separator ? FilenameUtils.getPath(element) : FilenameUtils.getPathNoEndSeparator(element)).distinct().toArray(String[]::new);
+        return Arrays.stream(pathnames).map(item -> separator ? FilenameUtils.getPath(item) : FilenameUtils.getPathNoEndSeparator(item)).distinct().toArray(String[]::new);
     }
 
     /**

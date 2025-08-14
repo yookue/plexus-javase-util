@@ -221,8 +221,8 @@ public abstract class ChineseYuanUtils {
         }
         // Decimal part
         StringBuilder decimalBuilder = new StringBuilder();
-        StringUtilsWraps.forEachCharsIndexing(decimalText, (index, element) -> {
-            decimalBuilder.append(numberType.isSimplified() ? ChineseVariantConst.NUMBER_CAPITALS_CN[element - '0'] : ChineseVariantConst.NUMBER_CAPITALS_TW[element - '0']);
+        StringUtilsWraps.forEachCharsIndexing(decimalText, (index, item) -> {
+            decimalBuilder.append(numberType.isSimplified() ? ChineseVariantConst.NUMBER_CAPITALS_CN[item - '0'] : ChineseVariantConst.NUMBER_CAPITALS_TW[item - '0']);
             decimalBuilder.append(numberType.isSimplified() ? ChineseVariantConst.NEGATIVE_UNITS_CN[index] : ChineseVariantConst.NEGATIVE_UNITS_TW[index]);
         });
         String zeroRegex1 = ChineseVariantConst.ZERO + CharVariantConst.SQUARE_BRACKET_LEFT + StringUtils.join(numberType.isSimplified() ? ChineseVariantConst.NEGATIVE_UNITS_CN : ChineseVariantConst.NEGATIVE_UNITS_TW) + CharVariantConst.SQUARE_BRACKET_RIGHT;

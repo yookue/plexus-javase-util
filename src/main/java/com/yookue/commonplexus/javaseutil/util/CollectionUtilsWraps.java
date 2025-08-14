@@ -39,8 +39,8 @@ import org.apache.commons.lang3.ArrayUtils;
 public abstract class CollectionUtilsWraps {
     @SafeVarargs
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
-    public static <E> boolean containsAll(@Nullable Collection<?> collection, @Nullable E... elements) {
-        return CollectionUtils.isNotEmpty(collection) && ArrayUtils.isNotEmpty(elements) && CollectionUtils.containsAll(collection, ArrayUtilsWraps.asList(elements));
+    public static <E> boolean containsAll(@Nullable Collection<?> collection, @Nullable E... items) {
+        return CollectionUtils.isNotEmpty(collection) && ArrayUtils.isNotEmpty(items) && CollectionUtils.containsAll(collection, ArrayUtilsWraps.asList(items));
     }
 
     @Nullable

@@ -173,7 +173,7 @@ public abstract class StringUtilsWraps {
         }
         String[] array = collection.toArray(ArrayUtils.EMPTY_STRING_ARRAY);
         collection.clear();
-        Arrays.stream(array).map(element -> StringUtils.appendIfMissing(element, append, suffixes)).forEach(collection::add);
+        Arrays.stream(array).map(item -> StringUtils.appendIfMissing(item, append, suffixes)).forEach(collection::add);
     }
 
     /**
@@ -232,7 +232,7 @@ public abstract class StringUtilsWraps {
         }
         String[] array = collection.toArray(ArrayUtils.EMPTY_STRING_ARRAY);
         collection.clear();
-        Arrays.stream(array).map(element -> StringUtils.appendIfMissingIgnoreCase(element, append, suffixes)).forEach(collection::add);
+        Arrays.stream(array).map(item -> StringUtils.appendIfMissingIgnoreCase(item, append, suffixes)).forEach(collection::add);
     }
 
     public static String appendIfSequenceNotEmpty(@Nullable CharSequence sequence, @Nullable CharSequence append) {
@@ -292,7 +292,7 @@ public abstract class StringUtilsWraps {
     }
 
     public static boolean containsAny(@Nullable CharSequence sequence, @Nullable Collection<? extends CharSequence> comparisons) {
-        return StringUtils.isNotEmpty(sequence) && CollectionPlainWraps.isNotEmpty(comparisons) && comparisons.stream().anyMatch(element -> StringUtils.contains(sequence, element));
+        return StringUtils.isNotEmpty(sequence) && CollectionPlainWraps.isNotEmpty(comparisons) && comparisons.stream().anyMatch(item -> StringUtils.contains(sequence, item));
     }
 
     public static boolean containsAnyIgnoreCase(@Nullable CharSequence sequence, char... comparisons) {
@@ -304,7 +304,7 @@ public abstract class StringUtilsWraps {
     }
 
     public static boolean containsAnyIgnoreCase(@Nullable CharSequence sequence, @Nullable Collection<? extends CharSequence> comparisons) {
-        return StringUtils.isNotEmpty(sequence) && CollectionPlainWraps.isNotEmpty(comparisons) && comparisons.stream().anyMatch(element -> StringUtils.containsIgnoreCase(sequence, element));
+        return StringUtils.isNotEmpty(sequence) && CollectionPlainWraps.isNotEmpty(comparisons) && comparisons.stream().anyMatch(item -> StringUtils.containsIgnoreCase(sequence, item));
     }
 
     public static <T extends CharSequence> T defaultIfEquals(@Nullable T sequence, @Nullable CharSequence comparison, @Nullable T defaultValue) {
@@ -420,7 +420,7 @@ public abstract class StringUtilsWraps {
     }
 
     public static boolean equalsAny(@Nullable CharSequence sequence, @Nullable Collection<? extends CharSequence> comparisons) {
-        return sequence != null && CollectionPlainWraps.isNotEmpty(comparisons) && comparisons.stream().anyMatch(element -> StringUtils.equals(sequence, element));
+        return sequence != null && CollectionPlainWraps.isNotEmpty(comparisons) && comparisons.stream().anyMatch(item -> StringUtils.equals(sequence, item));
     }
 
     public static boolean equalsAnyIgnoreCase(@Nullable CharSequence sequence, char... comparisons) {
@@ -432,7 +432,7 @@ public abstract class StringUtilsWraps {
     }
 
     public static boolean equalsAnyIgnoreCase(@Nullable CharSequence sequence, @Nullable Collection<? extends CharSequence> comparisons) {
-        return sequence != null && CollectionPlainWraps.isNotEmpty(comparisons) && comparisons.stream().anyMatch(element -> StringUtils.equalsIgnoreCase(sequence, element));
+        return sequence != null && CollectionPlainWraps.isNotEmpty(comparisons) && comparisons.stream().anyMatch(item -> StringUtils.equalsIgnoreCase(sequence, item));
     }
 
     public static String encodeToString(@Nullable String text, @Nonnull Charset ofCharset, @Nonnull Charset toCharset) {
@@ -500,7 +500,7 @@ public abstract class StringUtilsWraps {
      * @see org.apache.commons.lang3.StringUtils#endsWithAny
      */
     public static boolean endsWithAnyIgnoreCase(@Nullable CharSequence sequence, @Nullable Collection<? extends CharSequence> comparisons) {
-        return StringUtils.isNotEmpty(sequence) && CollectionPlainWraps.isNotEmpty(comparisons) && comparisons.stream().anyMatch(element -> StringUtils.endsWithIgnoreCase(sequence, element));
+        return StringUtils.isNotEmpty(sequence) && CollectionPlainWraps.isNotEmpty(comparisons) && comparisons.stream().anyMatch(item -> StringUtils.endsWithIgnoreCase(sequence, item));
     }
 
     @Nullable
@@ -747,7 +747,7 @@ public abstract class StringUtilsWraps {
     }
 
     /**
-     * Returns the joined elements into a String containing the provided elements, with delimiter, prefix and suffix
+     * Returns the joined items into a String containing the provided items, with delimiter, prefix and suffix
      *
      * <pre>
      *     StringUtilsWraps.joinWith(Arrays.asList(new String[]{"a", "b", "c"}), null) = "abc"
@@ -757,10 +757,10 @@ public abstract class StringUtilsWraps {
      *
      * @param collection The varargs providing the values to join together
      * @param delimiter The separator character to use, null treated as empty string
-     * @param prefix The prefix for each element in the collection, null treated as empty string
-     * @param suffix The suffix for each element in the collection, null treated as empty string
+     * @param prefix The prefix for each item in the collection, null treated as empty string
+     * @param suffix The suffix for each item in the collection, null treated as empty string
      *
-     * @return the joined elements into a String containing the provided elements, with delimiter, prefix and suffix
+     * @return the joined items into a String containing the provided items, with delimiter, prefix and suffix
      *
      * @see org.apache.commons.lang3.StringUtils#joinWith
      */
@@ -771,8 +771,8 @@ public abstract class StringUtilsWraps {
         }
         StringBuilder builder = new StringBuilder();
         int index = 0, size = collection.size();
-        for (T element : collection) {
-            builder.append(defaultString(prefix)).append(ObjectUtilsWraps.toString(element, StringUtils.EMPTY)).append(defaultString(suffix));
+        for (T item : collection) {
+            builder.append(defaultString(prefix)).append(ObjectUtilsWraps.toString(item, StringUtils.EMPTY)).append(defaultString(suffix));
             if (index < size - 1) {
                 builder.append(defaultString(delimiter));
             }
@@ -882,7 +882,7 @@ public abstract class StringUtilsWraps {
     }
 
     /**
-     * Returns the joined elements into a single String containing the provided elements, with one single delimiter
+     * Returns the joined items into a single String containing the provided items, with one single delimiter
      *
      * <pre>
      *     StringUtilsWraps.joinWithOnce(null, "a", "b", "c") = "abc"
@@ -896,7 +896,7 @@ public abstract class StringUtilsWraps {
      * @param delimiter The separator character to use, null treated as empty string
      * @param sequences The varargs providing the values to join together
      *
-     * @return the joined elements into a single String containing the provided elements, with one single delimiter
+     * @return the joined items into a single String containing the provided items, with one single delimiter
      *
      * @see org.apache.commons.lang3.StringUtils#joinWith
      */
@@ -1145,7 +1145,7 @@ public abstract class StringUtilsWraps {
         }
         String[] array = collection.toArray(ArrayUtils.EMPTY_STRING_ARRAY);
         collection.clear();
-        Arrays.stream(array).map(element -> StringUtils.prependIfMissing(element, prepend, prefixes)).forEach(collection::add);
+        Arrays.stream(array).map(item -> StringUtils.prependIfMissing(item, prepend, prefixes)).forEach(collection::add);
     }
 
     /**
@@ -1204,7 +1204,7 @@ public abstract class StringUtilsWraps {
         }
         String[] array = collection.toArray(ArrayUtils.EMPTY_STRING_ARRAY);
         collection.clear();
-        Arrays.stream(array).map(element -> StringUtils.prependIfMissingIgnoreCase(element, prepend, prefixes)).forEach(collection::add);
+        Arrays.stream(array).map(item -> StringUtils.prependIfMissingIgnoreCase(item, prepend, prefixes)).forEach(collection::add);
     }
 
     public static String prependIfSequenceNotEmpty(@Nullable CharSequence sequence, @Nullable CharSequence prepend) {
@@ -1314,11 +1314,11 @@ public abstract class StringUtilsWraps {
     }
 
     /**
-     * Returns char sequences which every element is not blank
+     * Returns char sequences which every item is not blank
      *
      * @param sequences The source of char sequences
      *
-     * @return char sequences which every element is not blank
+     * @return char sequences which every item is not blank
      */
     @Nullable
     public static CharSequence[] removeBlankSequence(@Nullable Collection<? extends CharSequence> sequences) {
@@ -1330,11 +1330,11 @@ public abstract class StringUtilsWraps {
     }
 
     /**
-     * Returns char sequences which every element is not empty
+     * Returns char sequences which every item is not empty
      *
      * @param sequences The source of char sequences
      *
-     * @return char sequences which every element is not empty
+     * @return char sequences which every item is not empty
      */
     @Nullable
     public static CharSequence[] removeEmptySequences(@Nullable Collection<? extends CharSequence> sequences) {
@@ -1346,11 +1346,11 @@ public abstract class StringUtilsWraps {
     }
 
     /**
-     * Returns strings which every element is not blank
+     * Returns strings which every item is not blank
      *
      * @param texts The source of strings
      *
-     * @return strings which every element is not blank
+     * @return strings which every item is not blank
      */
     @Nullable
     public static String[] removeBlankString(@Nullable Collection<String> texts) {
@@ -1362,11 +1362,11 @@ public abstract class StringUtilsWraps {
     }
 
     /**
-     * Returns strings which every element is not empty
+     * Returns strings which every item is not empty
      *
      * @param texts The source of strings
      *
-     * @return strings which every element is not empty
+     * @return strings which every item is not empty
      */
     @Nullable
     public static String[] removeEmptyStrings(@Nullable Collection<String> texts) {
@@ -1429,7 +1429,7 @@ public abstract class StringUtilsWraps {
         }
         String[] array = collection.toArray(ArrayUtils.EMPTY_STRING_ARRAY);
         collection.clear();
-        Arrays.stream(array).map(element -> removeEnd(element, removes)).forEach(collection::add);
+        Arrays.stream(array).map(item -> removeEnd(item, removes)).forEach(collection::add);
     }
 
     public static String removeEndIgnoreCase(@Nullable CharSequence sequence, char remove) {
@@ -1481,7 +1481,7 @@ public abstract class StringUtilsWraps {
         }
         String[] array = collection.toArray(ArrayUtils.EMPTY_STRING_ARRAY);
         collection.clear();
-        Arrays.stream(array).map(element -> removeEndIgnoreCase(element, removes)).forEach(collection::add);
+        Arrays.stream(array).map(item -> removeEndIgnoreCase(item, removes)).forEach(collection::add);
     }
 
     public static String removeComma(@Nullable CharSequence sequence) {
@@ -1548,7 +1548,7 @@ public abstract class StringUtilsWraps {
         }
         String[] array = collection.toArray(ArrayUtils.EMPTY_STRING_ARRAY);
         collection.clear();
-        Arrays.stream(array).map(element -> removeStart(element, removes)).forEach(collection::add);
+        Arrays.stream(array).map(item -> removeStart(item, removes)).forEach(collection::add);
     }
 
     public static String removeStartIgnoreCase(@Nullable CharSequence sequence, char remove) {
@@ -1596,7 +1596,7 @@ public abstract class StringUtilsWraps {
         }
         String[] array = collection.toArray(ArrayUtils.EMPTY_STRING_ARRAY);
         collection.clear();
-        Arrays.stream(array).map(element -> removeStartIgnoreCase(element, removes)).forEach(collection::add);
+        Arrays.stream(array).map(item -> removeStartIgnoreCase(item, removes)).forEach(collection::add);
     }
 
     public static String replace(@Nullable String text, char search, char replacement) {
@@ -1760,8 +1760,8 @@ public abstract class StringUtilsWraps {
      *
      * @param text The string to split (potentially {@code null} or empty)
      * @param delimiter The separate string, {@code null} means use whitespace
-     * @param trim indicates whether trim the split elements or not
-     * @param max The maximum number of elements to include in the array. A zero or negative value implies no limit
+     * @param trim indicates whether trim the split items or not
+     * @param max The maximum number of items to include in the array. A zero or negative value implies no limit
      *
      * @return a split {@code String} array at the first occurrence of the delimiter
      */
@@ -1886,7 +1886,7 @@ public abstract class StringUtilsWraps {
      * @see org.apache.commons.lang3.StringUtils#startsWithAny
      */
     public static boolean startsWithAnyIgnoreCase(@Nullable CharSequence sequence, @Nullable Collection<? extends CharSequence> comparisons) {
-        return StringUtils.isNotEmpty(sequence) && CollectionPlainWraps.isNotEmpty(comparisons) && comparisons.stream().anyMatch(element -> StringUtils.startsWithIgnoreCase(sequence, element));
+        return StringUtils.isNotEmpty(sequence) && CollectionPlainWraps.isNotEmpty(comparisons) && comparisons.stream().anyMatch(item -> StringUtils.startsWithIgnoreCase(sequence, item));
     }
 
     public static String substringAfter(@Nullable String text, char separator, int length) {
@@ -2190,7 +2190,7 @@ public abstract class StringUtilsWraps {
         if (CollectionPlainWraps.isEmpty(sequences)) {
             return emptyAsNull ? null : CollectionPlainWraps.toElementArray(sequences, CharSequence.class);
         }
-        return sequences.stream().map(CharSequenceWraps::toStringIgnoreNull).map(element -> emptyAsNull ? StringUtils.trimToNull(element) : StringUtils.trim(element)).toArray(CharSequence[]::new);
+        return sequences.stream().map(CharSequenceWraps::toStringIgnoreNull).map(item -> emptyAsNull ? StringUtils.trimToNull(item) : StringUtils.trim(item)).toArray(CharSequence[]::new);
     }
 
     public static String[] trimStringArray(@Nullable String... texts) {
@@ -2213,7 +2213,7 @@ public abstract class StringUtilsWraps {
         if (CollectionPlainWraps.isEmpty(texts)) {
             return emptyAsNull ? null : CollectionPlainWraps.toElementArray(texts, String.class);
         }
-        return texts.stream().map(element -> emptyAsNull ? StringUtils.trimToNull(element) : StringUtils.trim(element)).toArray(String[]::new);
+        return texts.stream().map(item -> emptyAsNull ? StringUtils.trimToNull(item) : StringUtils.trim(item)).toArray(String[]::new);
     }
 
     public static void trimStringCollection(@Nullable Collection<String> texts) {
@@ -2224,9 +2224,9 @@ public abstract class StringUtilsWraps {
         if (CollectionPlainWraps.isEmpty(texts)) {
             return;
         }
-        String[] elements = texts.toArray(ArrayUtils.EMPTY_STRING_ARRAY);
+        String[] array = texts.toArray(ArrayUtils.EMPTY_STRING_ARRAY);
         texts.clear();
-        Arrays.stream(elements).map(element -> emptyAsNull ? StringUtils.trimToNull(element) : StringUtils.trim(element)).forEach(texts::add);
+        Arrays.stream(array).map(item -> emptyAsNull ? StringUtils.trimToNull(item) : StringUtils.trim(item)).forEach(texts::add);
     }
 
     public static String unquote(@Nullable CharSequence sequence) {

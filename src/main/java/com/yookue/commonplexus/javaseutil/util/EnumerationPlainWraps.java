@@ -47,10 +47,10 @@ import com.yookue.commonplexus.javaseutil.iterator.EnumerationIterator;
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})
 public abstract class EnumerationPlainWraps {
     /**
-     * Checks whether the given {@code enumeration} contains the given element
+     * Checks whether the given {@code enumeration} contains the given item
      *
      * @param enumeration The source enumeration to check
-     * @param comparison The target element to look for
+     * @param comparison The target item to look for
      *
      * @return {@code true} if found, {@code false} otherwise
      */
@@ -78,9 +78,9 @@ public abstract class EnumerationPlainWraps {
             return;
         }
         while (enumeration.hasMoreElements()) {
-            E element = enumeration.nextElement();
-            if (filter == null || filter.test(element)) {
-                action.accept(element);
+            E item = enumeration.nextElement();
+            if (filter == null || filter.test(item)) {
+                action.accept(item);
             }
         }
     }
@@ -95,8 +95,8 @@ public abstract class EnumerationPlainWraps {
             return;
         }
         while (enumeration.hasMoreElements()) {
-            E element = enumeration.nextElement();
-            if ((filter == null || filter.test(element)) && BooleanUtils.isNotTrue(action.apply(element))) {
+            E item = enumeration.nextElement();
+            if ((filter == null || filter.test(item)) && BooleanUtils.isNotTrue(action.apply(item))) {
                 break;
             }
         }
@@ -109,11 +109,11 @@ public abstract class EnumerationPlainWraps {
             return null;
         }
         while (enumeration.hasMoreElements()) {
-            E element = enumeration.nextElement();
+            E item = enumeration.nextElement();
             if (enumeration.hasMoreElements()) {
-                action.accept(element);
+                action.accept(item);
             } else {
-                return element;
+                return item;
             }
         }
         return null;
@@ -130,9 +130,9 @@ public abstract class EnumerationPlainWraps {
         }
         int index = 0;
         while (enumeration.hasMoreElements()) {
-            E element = enumeration.nextElement();
-            if (filter == null || filter.test(index, element)) {
-                action.accept(index, element);
+            E item = enumeration.nextElement();
+            if (filter == null || filter.test(index, item)) {
+                action.accept(index, item);
             }
             index++;
         }
@@ -149,8 +149,8 @@ public abstract class EnumerationPlainWraps {
         }
         int index = 0;
         while (enumeration.hasMoreElements()) {
-            E element = enumeration.nextElement();
-            if ((filter == null || filter.test(index, element)) && BooleanUtils.isNotTrue(action.apply(index, element))) {
+            E item = enumeration.nextElement();
+            if ((filter == null || filter.test(index, item)) && BooleanUtils.isNotTrue(action.apply(index, item))) {
                 break;
             }
             index++;
@@ -165,11 +165,11 @@ public abstract class EnumerationPlainWraps {
         }
         int index = 0;
         while (enumeration.hasMoreElements()) {
-            E element = enumeration.nextElement();
+            E item = enumeration.nextElement();
             if (enumeration.hasMoreElements()) {
-                action.accept(index, element);
+                action.accept(index, item);
             } else {
-                return element;
+                return item;
             }
             index++;
         }
@@ -209,7 +209,7 @@ public abstract class EnumerationPlainWraps {
      * Returns the component type of superclass in the enumeration
      *
      * @param enumeration The enumeration to check
-     * @param deepScan {@code true} means need to scan all the elements; false means by the first nonnull element
+     * @param deepScan {@code true} means need to scan all the items; false means by the first nonnull item
      *
      * @see "org.springframework.util.CollectionUtils#findCommonElementType"
      */
@@ -221,23 +221,23 @@ public abstract class EnumerationPlainWraps {
         }
         Class<?> candidate = null;
         while (enumeration.hasMoreElements()) {
-            Object element = enumeration.nextElement();
-            if (element == null) {
+            Object item = enumeration.nextElement();
+            if (item == null) {
                 continue;
             }
             if (!deepScan) {
-                return element.getClass();
+                return item.getClass();
             }
             if (candidate == null) {
-                candidate = element.getClass();
+                candidate = item.getClass();
             } else {
                 boolean assignable = false;
-                if (ClassUtils.isAssignable(candidate, element.getClass())) {
-                    candidate = element.getClass();
+                if (ClassUtils.isAssignable(candidate, item.getClass())) {
+                    candidate = item.getClass();
                     assignable = true;
                 }
                 if (!assignable) {
-                    assignable = ClassUtils.isAssignable(element.getClass(), candidate);
+                    assignable = ClassUtils.isAssignable(item.getClass(), candidate);
                 }
                 if (!assignable) {
                     return null;
@@ -343,7 +343,7 @@ public abstract class EnumerationPlainWraps {
             return false;
         }
         int size = size(ArrayUtils.get(enumerations, 0));
-        return Arrays.stream(enumerations).skip(1L).allMatch(element -> size(element) == size);
+        return Arrays.stream(enumerations).skip(1L).allMatch(item -> size(item) == size);
     }
 
     public static boolean isSingleton(@Nullable Enumeration<?> enumeration) {
@@ -382,11 +382,11 @@ public abstract class EnumerationPlainWraps {
     }
 
     /**
-     * Return an array containing all the elements in the enumeration
+     * Return an array containing all the items in the enumeration
      *
-     * @param enumeration The enumeration to convert, with element that can not be primitive types
+     * @param enumeration The enumeration to convert, with item that can not be primitive types
      *
-     * @return an array containing all the elements in the enumeration
+     * @return an array containing all the items in the enumeration
      *
      * @see "org.springframework.util.CollectionUtils#toArray"
      */

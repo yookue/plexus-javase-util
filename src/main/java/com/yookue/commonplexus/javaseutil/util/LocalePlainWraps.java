@@ -86,11 +86,11 @@ public abstract class LocalePlainWraps {
 
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
     public static boolean equalsAnyLanguages(@Nullable Locale locale, @Nullable String... languages) {
-        return locale != null && ArrayUtils.isNotEmpty(languages) && Arrays.stream(languages).filter(Objects::nonNull).anyMatch(element -> equalsLanguage(locale, element));
+        return locale != null && ArrayUtils.isNotEmpty(languages) && Arrays.stream(languages).filter(Objects::nonNull).anyMatch(item -> equalsLanguage(locale, item));
     }
 
     public static boolean equalsAnyLanguages(@Nullable Locale target, @Nullable Collection<Locale> comparisons) {
-        return target != null && CollectionPlainWraps.isNotEmpty(comparisons) && comparisons.stream().filter(Objects::nonNull).anyMatch(element -> equalsLanguage(target, element));
+        return target != null && CollectionPlainWraps.isNotEmpty(comparisons) && comparisons.stream().filter(Objects::nonNull).anyMatch(item -> equalsLanguage(target, item));
     }
 
     public static boolean equalsAnyLanguageTags(@Nullable Locale target, @Nullable Locale... comparisons) {
@@ -99,11 +99,11 @@ public abstract class LocalePlainWraps {
 
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
     public static boolean equalsAnyLanguageTags(@Nullable Locale locale, @Nullable String... languageTags) {
-        return locale != null && ArrayUtils.isNotEmpty(languageTags) && Arrays.stream(languageTags).filter(Objects::nonNull).anyMatch(element -> equalsLanguageTag(locale, element));
+        return locale != null && ArrayUtils.isNotEmpty(languageTags) && Arrays.stream(languageTags).filter(Objects::nonNull).anyMatch(item -> equalsLanguageTag(locale, item));
     }
 
     public static boolean equalsAnyLanguageTags(@Nullable Locale target, @Nullable Collection<Locale> comparisons) {
-        return target != null && CollectionPlainWraps.isNotEmpty(comparisons) && comparisons.stream().filter(Objects::nonNull).anyMatch(element -> equalsLanguageTag(target, element));
+        return target != null && CollectionPlainWraps.isNotEmpty(comparisons) && comparisons.stream().filter(Objects::nonNull).anyMatch(item -> equalsLanguageTag(target, item));
     }
 
     public static boolean isLanguageRangeParsable(@Nullable String ranges) {

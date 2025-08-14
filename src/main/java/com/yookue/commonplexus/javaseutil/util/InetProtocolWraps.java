@@ -52,7 +52,7 @@ public abstract class InetProtocolWraps {
     }
 
     public static boolean startsWithProtocol(@Nullable String path) {
-        return StringUtils.isNotBlank(path) && Arrays.stream(InetProtocolType.class.getEnumConstants()).anyMatch(element -> StringUtils.startsWithIgnoreCase(path, StringUtils.join(element.getValue(), SymbolVariantConst.PROTOCOL_DELIMITER)));
+        return StringUtils.isNotBlank(path) && Arrays.stream(InetProtocolType.class.getEnumConstants()).anyMatch(item -> StringUtils.startsWithIgnoreCase(path, StringUtils.join(item.getValue(), SymbolVariantConst.PROTOCOL_DELIMITER)));
     }
 
     public static String removeProtocolPrefix(@Nullable String text) {

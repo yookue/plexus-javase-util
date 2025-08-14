@@ -81,8 +81,8 @@ public abstract class CollectionPlainWraps {
             return false;
         }
         boolean changed = false;
-        for (E element : source) {
-            changed |= target.add(element);
+        for (E item : source) {
+            changed |= target.add(item);
         }
         return changed;
     }
@@ -127,11 +127,11 @@ public abstract class CollectionPlainWraps {
     }
 
     /**
-     * Adds all elements to the target collection if matched the filter
+     * Adds all items to the target collection if matched the filter
      *
      * @param target The collection to add to
-     * @param filter The filter to apply to the target collection and each element
-     * @param sources The elements to add
+     * @param filter The filter to apply to the target collection and each item
+     * @param sources The items to add
      *
      * @return {@code true} if the collection was changed, {@code false} otherwise
      */
@@ -149,11 +149,11 @@ public abstract class CollectionPlainWraps {
     }
 
     /**
-     * Adds all elements to the target collection if matched the filter
+     * Adds all items to the target collection if matched the filter
      *
      * @param target The target collection to merge the array into
-     * @param filter The filter to apply to the target collection and each element
-     * @param sources The element arrays to add
+     * @param filter The filter to apply to the target collection and each item
+     * @param sources The item arrays to add
      *
      * @return {@code true} if the collection was changed, {@code false} otherwise
      */
@@ -171,11 +171,11 @@ public abstract class CollectionPlainWraps {
     }
 
     /**
-     * Adds all elements to the target collection if matched the filter
+     * Adds all items to the target collection if matched the filter
      *
      * @param target The collection to add to
-     * @param filter The filter to apply to the target collection and each element
-     * @param source The element iterable to add
+     * @param filter The filter to apply to the target collection and each item
+     * @param source The item iterable to add
      *
      * @return {@code true} if the collection was changed, {@code false} otherwise
      */
@@ -185,18 +185,18 @@ public abstract class CollectionPlainWraps {
             return false;
         }
         boolean changed = false;
-        for (E element : source) {
-            changed |= addIf(target, element, filter);
+        for (E item : source) {
+            changed |= addIf(target, item, filter);
         }
         return changed;
     }
 
     /**
-     * Adds all elements to the target collection if matched the filter
+     * Adds all items to the target collection if matched the filter
      *
      * @param target The collection to add to
-     * @param filter The filter to apply to the target collection and each element
-     * @param sources The element iterables to add
+     * @param filter The filter to apply to the target collection and each item
+     * @param sources The item iterables to add
      *
      * @return {@code true} if the collection was changed, {@code false} otherwise
      */
@@ -210,19 +210,19 @@ public abstract class CollectionPlainWraps {
             if (source == null) {
                 continue;
             }
-            for (E element : source) {
-                changed |= addIf(target, element, filter);
+            for (E item : source) {
+                changed |= addIf(target, item, filter);
             }
         }
         return changed;
     }
 
     /**
-     * Adds all elements to the target collection if matched the filter
+     * Adds all items to the target collection if matched the filter
      *
      * @param target The collection to add to
-     * @param filter The filter to apply to the target collection and each element
-     * @param source The element iterator to add
+     * @param filter The filter to apply to the target collection and each item
+     * @param source The item iterator to add
      *
      * @return {@code true} if the collections was changed, {@code false} otherwise
      */
@@ -239,11 +239,11 @@ public abstract class CollectionPlainWraps {
     }
 
     /**
-     * Adds all elements to the target collection if matched the filter
+     * Adds all items to the target collection if matched the filter
      *
      * @param target The collection to add to
-     * @param filter The filter to apply to the target collection and each element
-     * @param sources The element iterators to add
+     * @param filter The filter to apply to the target collection and each item
+     * @param sources The item iterators to add
      *
      * @return {@code true} if the collections was changed, {@code false} otherwise
      */
@@ -266,11 +266,11 @@ public abstract class CollectionPlainWraps {
     }
 
     /**
-     * Adds all elements to the target collection if matched the filter
+     * Adds all items to the target collection if matched the filter
      *
      * @param target The collection to add to
-     * @param filter The filter to apply to the target collection and each element
-     * @param source The element enumeration to add
+     * @param filter The filter to apply to the target collection and each item
+     * @param source The item enumeration to add
      *
      * @return {@code true} if the collections was changed, {@code false} otherwise
      */
@@ -286,11 +286,11 @@ public abstract class CollectionPlainWraps {
     }
 
     /**
-     * Adds all elements to the target collection if matched the filter
+     * Adds all items to the target collection if matched the filter
      *
      * @param target The collection to add to
-     * @param filter The filter to apply to the target collection and each element
-     * @param sources The element enumerations to add
+     * @param filter The filter to apply to the target collection and each item
+     * @param sources The item enumerations to add
      *
      * @return {@code true} if the collections was changed, {@code false} otherwise
      */
@@ -313,141 +313,141 @@ public abstract class CollectionPlainWraps {
 
     @SafeVarargs
     public static <E> boolean addAllIfNotNull(@Nullable Collection<? super E> target, @Nullable E... sources) {
-        return addAllIf(target, (collection, element) -> element != null, sources);
+        return addAllIf(target, (collection, item) -> item != null, sources);
     }
 
     @SafeVarargs
     public static <E> boolean addAllIfNotNull(@Nullable Collection<E> target, @Nullable E[]... sources) {
-        return addAllIf(target, (collection, element) -> element != null, sources);
+        return addAllIf(target, (collection, item) -> item != null, sources);
     }
 
     public static <E> boolean addAllIfNotNull(@Nullable Collection<E> target, @Nullable Iterable<? extends E> source) {
-        return addAllIf(target, (collection, element) -> element != null, source);
+        return addAllIf(target, (collection, item) -> item != null, source);
     }
 
     @SafeVarargs
     public static <E> boolean addAllIfNotNull(@Nullable Collection<E> target, @Nullable Iterable<? extends E>... sources) {
-        return addAllIf(target, (collection, element) -> element != null, sources);
+        return addAllIf(target, (collection, item) -> item != null, sources);
     }
 
     public static <E> boolean addAllIfNotNull(@Nullable Collection<E> target, @Nullable Iterator<? extends E> source) {
-        return addAllIf(target, (collection, element) -> element != null, source);
+        return addAllIf(target, (collection, item) -> item != null, source);
     }
 
     @SafeVarargs
     public static <E> boolean addAllIfNotNull(@Nullable Collection<E> target, @Nullable Iterator<? extends E>... sources) {
-        return addAllIf(target, (collection, element) -> element != null, sources);
+        return addAllIf(target, (collection, item) -> item != null, sources);
     }
 
     public static <E> boolean addAllIfNotNull(@Nullable Collection<E> target, @Nullable Enumeration<? extends E> source) {
-        return addAllIf(target, (collection, element) -> element != null, source);
+        return addAllIf(target, (collection, item) -> item != null, source);
     }
 
     @SafeVarargs
     public static <E> boolean addAllIfNotNull(@Nullable Collection<E> target, @Nullable Enumeration<? extends E>... sources) {
-        return addAllIf(target, (collection, element) -> element != null, sources);
+        return addAllIf(target, (collection, item) -> item != null, sources);
     }
 
     @SafeVarargs
     public static <E> boolean addAllIfNotContains(@Nullable Collection<? super E> target, @Nullable E... sources) {
-        return addAllIf(target, (collection, element) -> !contains(collection, element), sources);
+        return addAllIf(target, (collection, item) -> !contains(collection, item), sources);
     }
 
     @SafeVarargs
     public static <E> boolean addAllIfNotContains(@Nullable Collection<E> target, @Nullable E[]... sources) {
-        return addAllIf(target, (collection, element) -> !contains(collection, element), sources);
+        return addAllIf(target, (collection, item) -> !contains(collection, item), sources);
     }
 
     public static <E> boolean addAllIfNotContains(@Nullable Collection<E> target, @Nullable Iterable<? extends E> source) {
-        return addAllIf(target, (collection, element) -> !contains(collection, element), source);
+        return addAllIf(target, (collection, item) -> !contains(collection, item), source);
     }
 
     @SafeVarargs
     public static <E> boolean addAllIfNotContains(@Nullable Collection<E> target, @Nullable Iterable<? extends E>... sources) {
-        return addAllIf(target, (collection, element) -> !contains(collection, element), sources);
+        return addAllIf(target, (collection, item) -> !contains(collection, item), sources);
     }
 
     public static <E> boolean addAllIfNotContains(@Nullable Collection<E> target, @Nullable Iterator<? extends E> source) {
-        return addAllIf(target, (collection, element) -> !contains(collection, element), source);
+        return addAllIf(target, (collection, item) -> !contains(collection, item), source);
     }
 
     @SafeVarargs
     public static <E> boolean addAllIfNotContains(@Nullable Collection<E> target, @Nullable Iterator<? extends E>... sources) {
-        return addAllIf(target, (collection, element) -> !contains(collection, element), sources);
+        return addAllIf(target, (collection, item) -> !contains(collection, item), sources);
     }
 
     @SafeVarargs
     public static <E> boolean addAllIfNotContains(@Nullable Collection<E> target, @Nullable Enumeration<? extends E>... sources) {
-        return addAllIf(target, (collection, element) -> !contains(collection, element), sources);
+        return addAllIf(target, (collection, item) -> !contains(collection, item), sources);
     }
 
     @SafeVarargs
     public static <E extends CharSequence> boolean addAllIfNotBlank(@Nullable Collection<? super E> target, @Nullable E... sources) {
-        return addAllIf(target, (collection, element) -> StringUtils.isNotBlank(element), sources);
+        return addAllIf(target, (collection, item) -> StringUtils.isNotBlank(item), sources);
     }
 
     public static <E extends CharSequence> boolean addAllIfNotBlank(@Nullable Collection<E> target, @Nullable Iterable<? extends E> source) {
-        return addAllIf(target, (collection, element) -> StringUtils.isNotBlank(element), source);
+        return addAllIf(target, (collection, item) -> StringUtils.isNotBlank(item), source);
     }
 
     @SafeVarargs
     public static <E extends CharSequence> boolean addAllIfNotBlank(@Nullable Collection<E> target, @Nullable Iterable<? extends E>... sources) {
-        return addAllIf(target, (collection, element) -> StringUtils.isNotBlank(element), sources);
+        return addAllIf(target, (collection, item) -> StringUtils.isNotBlank(item), sources);
     }
 
     public static <E extends CharSequence> boolean addAllIfNotBlank(@Nullable Collection<E> target, @Nullable Iterator<? extends E> source) {
-        return addAllIf(target, (collection, element) -> StringUtils.isNotBlank(element), source);
+        return addAllIf(target, (collection, item) -> StringUtils.isNotBlank(item), source);
     }
 
     @SafeVarargs
     public static <E extends CharSequence> boolean addAllIfNotBlank(@Nullable Collection<E> target, @Nullable Iterator<? extends E>... sources) {
-        return addAllIf(target, (collection, element) -> StringUtils.isNotBlank(element), sources);
+        return addAllIf(target, (collection, item) -> StringUtils.isNotBlank(item), sources);
     }
 
     public static <E extends CharSequence> boolean addAllIfNotBlank(@Nullable Collection<E> target, @Nullable Enumeration<? extends E> source) {
-        return addAllIf(target, (collection, element) -> StringUtils.isNotBlank(element), source);
+        return addAllIf(target, (collection, item) -> StringUtils.isNotBlank(item), source);
     }
 
     @SafeVarargs
     public static <E extends CharSequence> boolean addAllIfNotBlank(@Nullable Collection<E> target, @Nullable Enumeration<? extends E>... sources) {
-        return addAllIf(target, (collection, element) -> StringUtils.isNotBlank(element), sources);
+        return addAllIf(target, (collection, item) -> StringUtils.isNotBlank(item), sources);
     }
 
     @SafeVarargs
     public static <E> boolean addAllIfNotEmpty(@Nullable Collection<? super E> target, @Nullable E... sources) {
-        return addAllIf(target, (collection, element) -> ObjectUtils.isNotEmpty(element), sources);
+        return addAllIf(target, (collection, item) -> ObjectUtils.isNotEmpty(item), sources);
     }
 
     @SafeVarargs
     public static <E> boolean addAllIfNotEmpty(@Nullable Collection<E> target, @Nullable E[]... sources) {
-        return addAllIf(target, (collection, element) -> ObjectUtils.isNotEmpty(element), sources);
+        return addAllIf(target, (collection, item) -> ObjectUtils.isNotEmpty(item), sources);
     }
 
     public static <E> boolean addAllIfNotEmpty(@Nullable Collection<E> target, @Nullable Iterable<? extends E> source) {
-        return addAllIf(target, (collection, element) -> ObjectUtils.isNotEmpty(element), source);
+        return addAllIf(target, (collection, item) -> ObjectUtils.isNotEmpty(item), source);
     }
 
     @SafeVarargs
     public static <E> boolean addAllIfNotEmpty(@Nullable Collection<E> target, @Nullable Iterable<? extends E>... sources) {
-        return addAllIf(target, (collection, element) -> ObjectUtils.isNotEmpty(element), sources);
+        return addAllIf(target, (collection, item) -> ObjectUtils.isNotEmpty(item), sources);
     }
 
     public static <E> boolean addAllIfNotEmpty(@Nullable Collection<E> target, @Nullable Iterator<? extends E> source) {
-        return addAllIf(target, (collection, element) -> ObjectUtils.isNotEmpty(element), source);
+        return addAllIf(target, (collection, item) -> ObjectUtils.isNotEmpty(item), source);
     }
 
     @SafeVarargs
     public static <E> boolean addAllIfNotEmpty(@Nullable Collection<E> target, @Nullable Iterator<? extends E>... sources) {
-        return addAllIf(target, (collection, element) -> ObjectUtils.isNotEmpty(element), sources);
+        return addAllIf(target, (collection, item) -> ObjectUtils.isNotEmpty(item), sources);
     }
 
     public static <E> boolean addAllIfNotEmpty(@Nullable Collection<E> target, @Nullable Enumeration<? extends E> source) {
-        return addAllIf(target, (collection, element) -> ObjectUtils.isNotEmpty(element), source);
+        return addAllIf(target, (collection, item) -> ObjectUtils.isNotEmpty(item), source);
     }
 
     @SafeVarargs
     public static <E> boolean addAllIfNotEmpty(@Nullable Collection<E> target, @Nullable Enumeration<? extends E>... sources) {
-        return addAllIf(target, (collection, element) -> ObjectUtils.isNotEmpty(element), sources);
+        return addAllIf(target, (collection, item) -> ObjectUtils.isNotEmpty(item), sources);
     }
 
     public static <E> boolean addIf(@Nullable Collection<? super E> target, @Nullable E source, @Nullable BiPredicate<Collection<? super E>, E> filter) {
@@ -455,19 +455,19 @@ public abstract class CollectionPlainWraps {
     }
 
     public static <E> boolean addIfNotNull(@Nullable Collection<? super E> target, @Nullable E source) {
-        return addIf(target, source, (collection, element) -> element != null);
+        return addIf(target, source, (collection, item) -> item != null);
     }
 
     public static <E> boolean addIfNotContains(@Nullable Collection<? super E> target, @Nullable E source) {
-        return addIf(target, source, (collection, element) -> !contains(target, element));
+        return addIf(target, source, (collection, item) -> !contains(target, item));
     }
 
     public static <E extends CharSequence> boolean addIfNotBlank(@Nullable Collection<? super E> target, @Nullable E source) {
-        return addIf(target, source, (collection, element) -> StringUtils.isNotBlank(element));
+        return addIf(target, source, (collection, item) -> StringUtils.isNotBlank(item));
     }
 
     public static <E> boolean addIfNotEmpty(@Nullable Collection<? super E> target, @Nullable E source) {
-        return addIf(target, source, (collection, element) -> ObjectUtils.isNotEmpty(element));
+        return addIf(target, source, (collection, item) -> ObjectUtils.isNotEmpty(item));
     }
 
     public static boolean allNull(@Nullable Collection<?> collection) {
@@ -543,7 +543,7 @@ public abstract class CollectionPlainWraps {
         if (CollectionPlainWraps.isEmpty(sources) || expectType == null || expectType == Void.class) {
             return null;
         }
-        return sources.stream().map(element -> ObjectUtilsWraps.castAs(element, expectType)).filter(Objects::nonNull).collect(Collectors.toList());
+        return sources.stream().map(item -> ObjectUtilsWraps.castAs(item, expectType)).filter(Objects::nonNull).collect(Collectors.toList());
     }
 
     @Nullable
@@ -551,19 +551,19 @@ public abstract class CollectionPlainWraps {
         if (CollectionPlainWraps.isEmpty(sources) || expectType == null || expectType == Void.class) {
             return null;
         }
-        return sources.stream().map(element -> ObjectUtilsWraps.castAs(element, expectType)).filter(Objects::nonNull).collect(Collectors.toSet());
+        return sources.stream().map(item -> ObjectUtilsWraps.castAs(item, expectType)).filter(Objects::nonNull).collect(Collectors.toSet());
     }
 
     /**
-     * Returns {@code true} if the element is in collection
+     * Returns {@code true} if the item is in collection
      *
      * @param collection The collection to check
-     * @param element The element to look for
+     * @param item The item to look for
      *
-     * @return {@code true} if the element is in collection
+     * @return {@code true} if the item is in collection
      */
-    public static <E> boolean contains(@Nullable Collection<?> collection, @Nullable E element) {
-        return collection != null && collection.contains(element);
+    public static <E> boolean contains(@Nullable Collection<?> collection, @Nullable E item) {
+        return collection != null && collection.contains(item);
     }
 
     @SafeVarargs
@@ -572,12 +572,12 @@ public abstract class CollectionPlainWraps {
     }
 
     /**
-     * Returns {@code true} if all elements of {@code comparison} is in the {@code target} collection
+     * Returns {@code true} if all items of {@code comparison} is in the {@code target} collection
      *
      * @param target The target collection to check
-     * @param comparison The elements to look for
+     * @param comparison The items to look for
      *
-     * @return {@code true} if all elements of {@code comparison} is in the {@code target} collection
+     * @return {@code true} if all items of {@code comparison} is in the {@code target} collection
      */
     public static <E> boolean containsAll(@Nullable Collection<?> target, @Nullable Collection<?> comparison) {
         if (isEmpty(target) || size(target) < size(comparison)) {
@@ -586,8 +586,8 @@ public abstract class CollectionPlainWraps {
         if (isEmpty(comparison)) {
             return true;
         }
-        for (Object element : comparison) {
-            if (!target.contains(element)) {
+        for (Object item : comparison) {
+            if (!target.contains(item)) {
                 return false;
             }
         }
@@ -600,26 +600,26 @@ public abstract class CollectionPlainWraps {
     }
 
     /**
-     * Returns {@code true} if any elements of {@code comparison} is in the {@code target} collection
+     * Returns {@code true} if any items of {@code comparison} is in the {@code target} collection
      *
      * @param target The target collection to check
-     * @param comparison The elements to look for
+     * @param comparison The items to look for
      *
-     * @return {@code true} if any elements of {@code comparison} is in the {@code target} collection
+     * @return {@code true} if any items of {@code comparison} is in the {@code target} collection
      */
     public static <E> boolean containsAny(@Nullable Collection<?> target, @Nullable Collection<?> comparison) {
         if (isEmpty(target) || isEmpty(comparison)) {
             return false;
         }
         if (target.size() < comparison.size()) {
-            for (Object element : target) {
-                if (comparison.contains(element)) {
+            for (Object item : target) {
+                if (comparison.contains(item)) {
                     return true;
                 }
             }
         } else {
-            for (Object element : comparison) {
-                if (target.contains(element)) {
+            for (Object item : comparison) {
+                if (target.contains(item)) {
                     return true;
                 }
             }
@@ -628,19 +628,19 @@ public abstract class CollectionPlainWraps {
     }
 
     public static boolean containsString(@Nullable Collection<? extends CharSequence> collection, @Nullable CharSequence sequence) {
-        return isNotEmpty(collection) && collection.stream().anyMatch(element -> StringUtils.equals(element, sequence));
+        return isNotEmpty(collection) && collection.stream().anyMatch(item -> StringUtils.equals(item, sequence));
     }
 
     public static boolean containsStringIgnoreCase(@Nullable Collection<? extends CharSequence> collection, @Nullable CharSequence sequence) {
-        return isNotEmpty(collection) && collection.stream().anyMatch(element -> StringUtils.equalsIgnoreCase(element, sequence));
+        return isNotEmpty(collection) && collection.stream().anyMatch(item -> StringUtils.equalsIgnoreCase(item, sequence));
     }
 
     public static boolean containsSubstring(@Nullable Collection<? extends CharSequence> collection, @Nullable CharSequence sequence) {
-        return isNotEmpty(collection) && collection.stream().anyMatch(element -> StringUtils.contains(element, sequence));
+        return isNotEmpty(collection) && collection.stream().anyMatch(item -> StringUtils.contains(item, sequence));
     }
 
     public static boolean containsSubstringIgnoreCase(@Nullable Collection<? extends CharSequence> collection, @Nullable CharSequence sequence) {
-        return isNotEmpty(collection) && collection.stream().anyMatch(element -> StringUtils.containsIgnoreCase(element, sequence));
+        return isNotEmpty(collection) && collection.stream().anyMatch(item -> StringUtils.containsIgnoreCase(item, sequence));
     }
 
     public static <E> void forEach(@Nullable Collection<E> collection, @Nullable Consumer<? super E> action) {
@@ -651,9 +651,9 @@ public abstract class CollectionPlainWraps {
         if (isEmpty(collection) || action == null) {
             return;
         }
-        for (E element : collection) {
-            if (filter == null || filter.test(element)) {
-                action.accept(element);
+        for (E item : collection) {
+            if (filter == null || filter.test(item)) {
+                action.accept(item);
             }
         }
     }
@@ -666,8 +666,8 @@ public abstract class CollectionPlainWraps {
         if (isEmpty(collection) || action == null) {
             return;
         }
-        for (E element : collection) {
-            if ((filter == null || filter.test(element)) && BooleanUtils.isNotTrue(action.apply(element))) {
+        for (E item : collection) {
+            if ((filter == null || filter.test(item)) && BooleanUtils.isNotTrue(action.apply(item))) {
                 break;
             }
         }
@@ -682,9 +682,9 @@ public abstract class CollectionPlainWraps {
             return;
         }
         int index = 0;
-        for (E element : collection) {
-            if (filter == null || filter.test(index, element)) {
-                action.accept(index, element);
+        for (E item : collection) {
+            if (filter == null || filter.test(index, item)) {
+                action.accept(index, item);
             }
             index++;
         }
@@ -699,8 +699,8 @@ public abstract class CollectionPlainWraps {
             return;
         }
         int index = 0;
-        for (E element : collection) {
-            if ((filter == null || filter.test(index, element)) && BooleanUtils.isNotTrue(action.apply(index, element))) {
+        for (E item : collection) {
+            if ((filter == null || filter.test(index, item)) && BooleanUtils.isNotTrue(action.apply(index, item))) {
                 break;
             }
             index++;
@@ -713,11 +713,11 @@ public abstract class CollectionPlainWraps {
             return null;
         }
         int index = 0, size = collection.size();
-        for (E element : collection) {
+        for (E item : collection) {
             if (index < size - 1) {
-                action.accept(index, element);
+                action.accept(index, item);
             } else {
-                return element;
+                return item;
             }
             index++;
         }
@@ -730,11 +730,11 @@ public abstract class CollectionPlainWraps {
             return null;
         }
         int index = 0, size = collection.size();
-        for (E element : collection) {
+        for (E item : collection) {
             if (index < size - 1) {
-                action.accept(element);
+                action.accept(item);
             } else {
-                return element;
+                return item;
             }
             index++;
         }
@@ -874,7 +874,7 @@ public abstract class CollectionPlainWraps {
      *
      * @param collection The source to check
      * @param index The index to detect
-     * @param adding indicates whether trying to add an element to the source collection or not
+     * @param adding indicates whether trying to add an item to the source collection or not
      *
      * @return true if the index object exists in the collection
      *
@@ -890,7 +890,7 @@ public abstract class CollectionPlainWraps {
             return false;
         }
         int size = size(ArrayUtils.get(collections, 0));
-        return Arrays.stream(collections).skip(1L).allMatch(element -> size(element) == size);
+        return Arrays.stream(collections).skip(1L).allMatch(item -> size(item) == size);
     }
 
     public static boolean isSingleton(@Nullable Collection<?> collection) {
@@ -919,28 +919,28 @@ public abstract class CollectionPlainWraps {
     @Nonnull
     @SafeVarargs
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
-    public static <E> ArrayList<E> newArrayListWithin(@Nullable E... elements) {
-        return newArrayListWithin(false, elements);
+    public static <E> ArrayList<E> newArrayListWithin(@Nullable E... items) {
+        return newArrayListWithin(false, items);
     }
 
     @Nullable
     @SafeVarargs
-    public static <E> ArrayList<E> newArrayListWithin(boolean emptyAsNull, @Nullable E... elements) {
-        return newArrayListWithinAll(emptyAsNull, ArrayUtilsWraps.asList(elements));
+    public static <E> ArrayList<E> newArrayListWithin(boolean emptyAsNull, @Nullable E... items) {
+        return newArrayListWithinAll(emptyAsNull, ArrayUtilsWraps.asList(items));
     }
 
     @Nonnull
     @SafeVarargs
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
-    public static <E> ArrayList<E> newArrayListWithinAll(@Nullable Iterable<? extends E>... elements) {
-        return newArrayListWithinAll(false, elements);
+    public static <E> ArrayList<E> newArrayListWithinAll(@Nullable Iterable<? extends E>... items) {
+        return newArrayListWithinAll(false, items);
     }
 
     @Nullable
     @SafeVarargs
-    public static <E> ArrayList<E> newArrayListWithinAll(boolean emptyAsNull, @Nullable Iterable<? extends E>... elements) {
+    public static <E> ArrayList<E> newArrayListWithinAll(boolean emptyAsNull, @Nullable Iterable<? extends E>... items) {
         ArrayList<E> result = new ArrayList<>();
-        addAll(result, elements);
+        addAll(result, items);
         return (emptyAsNull && isEmpty(result)) ? null : result;
     }
 
@@ -957,28 +957,28 @@ public abstract class CollectionPlainWraps {
     @Nonnull
     @SafeVarargs
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
-    public static <E> CopyOnWriteArrayList<E> newCopyOnWriteArrayListWithin(@Nullable E... elements) {
-        return newCopyOnWriteArrayListWithin(false, elements);
+    public static <E> CopyOnWriteArrayList<E> newCopyOnWriteArrayListWithin(@Nullable E... items) {
+        return newCopyOnWriteArrayListWithin(false, items);
     }
 
     @Nullable
     @SafeVarargs
-    public static <E> CopyOnWriteArrayList<E> newCopyOnWriteArrayListWithin(boolean emptyAsNull, @Nullable E... elements) {
-        return newCopyOnWriteArrayListWithinAll(emptyAsNull, ArrayUtilsWraps.asList(elements));
+    public static <E> CopyOnWriteArrayList<E> newCopyOnWriteArrayListWithin(boolean emptyAsNull, @Nullable E... items) {
+        return newCopyOnWriteArrayListWithinAll(emptyAsNull, ArrayUtilsWraps.asList(items));
     }
 
     @Nonnull
     @SafeVarargs
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
-    public static <E> CopyOnWriteArrayList<E> newCopyOnWriteArrayListWithinAll(@Nullable Iterable<? extends E>... elements) {
-        return newCopyOnWriteArrayListWithinAll(false, elements);
+    public static <E> CopyOnWriteArrayList<E> newCopyOnWriteArrayListWithinAll(@Nullable Iterable<? extends E>... items) {
+        return newCopyOnWriteArrayListWithinAll(false, items);
     }
 
     @Nullable
     @SafeVarargs
-    public static <E> CopyOnWriteArrayList<E> newCopyOnWriteArrayListWithinAll(boolean emptyAsNull, @Nullable Iterable<? extends E>... elements) {
+    public static <E> CopyOnWriteArrayList<E> newCopyOnWriteArrayListWithinAll(boolean emptyAsNull, @Nullable Iterable<? extends E>... items) {
         CopyOnWriteArrayList<E> result = new CopyOnWriteArrayList<>();
-        addAll(result, elements);
+        addAll(result, items);
         return (emptyAsNull && isEmpty(result)) ? null : result;
     }
 
@@ -1000,28 +1000,28 @@ public abstract class CollectionPlainWraps {
     @Nonnull
     @SafeVarargs
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
-    public static <E> HashSet<E> newHashSetWithin(@Nullable E... elements) {
-        return newHashSetWithin(false, elements);
+    public static <E> HashSet<E> newHashSetWithin(@Nullable E... items) {
+        return newHashSetWithin(false, items);
     }
 
     @Nullable
     @SafeVarargs
-    public static <E> HashSet<E> newHashSetWithin(boolean emptyAsNull, @Nullable E... elements) {
-        return newHashSetWithinAll(emptyAsNull, ArrayUtilsWraps.asList(elements));
+    public static <E> HashSet<E> newHashSetWithin(boolean emptyAsNull, @Nullable E... items) {
+        return newHashSetWithinAll(emptyAsNull, ArrayUtilsWraps.asList(items));
     }
 
     @Nonnull
     @SafeVarargs
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
-    public static <E> HashSet<E> newHashSetWithinAll(@Nullable Iterable<? extends E>... elements) {
-        return newHashSetWithinAll(false, elements);
+    public static <E> HashSet<E> newHashSetWithinAll(@Nullable Iterable<? extends E>... items) {
+        return newHashSetWithinAll(false, items);
     }
 
     @Nullable
     @SafeVarargs
-    public static <E> HashSet<E> newHashSetWithinAll(boolean emptyAsNull, @Nullable Iterable<? extends E>... elements) {
+    public static <E> HashSet<E> newHashSetWithinAll(boolean emptyAsNull, @Nullable Iterable<? extends E>... items) {
         HashSet<E> result = new HashSet<>();
-        addAll(result, elements);
+        addAll(result, items);
         return (emptyAsNull && isEmpty(result)) ? null : result;
     }
 
@@ -1043,28 +1043,28 @@ public abstract class CollectionPlainWraps {
     @Nonnull
     @SafeVarargs
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
-    public static <E> LinkedHashSet<E> newLinkedHashSetWithin(@Nullable E... elements) {
-        return newLinkedHashSetWithin(false, elements);
+    public static <E> LinkedHashSet<E> newLinkedHashSetWithin(@Nullable E... items) {
+        return newLinkedHashSetWithin(false, items);
     }
 
     @Nullable
     @SafeVarargs
-    public static <E> LinkedHashSet<E> newLinkedHashSetWithin(boolean emptyAsNull, @Nullable E... elements) {
-        return newLinkedHashSetWithinAll(emptyAsNull, ArrayUtilsWraps.asList(elements));
+    public static <E> LinkedHashSet<E> newLinkedHashSetWithin(boolean emptyAsNull, @Nullable E... items) {
+        return newLinkedHashSetWithinAll(emptyAsNull, ArrayUtilsWraps.asList(items));
     }
 
     @Nonnull
     @SafeVarargs
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
-    public static <E> LinkedHashSet<E> newLinkedHashSetWithinAll(@Nullable Iterable<? extends E>... elements) {
-        return newLinkedHashSetWithinAll(false, elements);
+    public static <E> LinkedHashSet<E> newLinkedHashSetWithinAll(@Nullable Iterable<? extends E>... items) {
+        return newLinkedHashSetWithinAll(false, items);
     }
 
     @Nullable
     @SafeVarargs
-    public static <E> LinkedHashSet<E> newLinkedHashSetWithinAll(boolean emptyAsNull, @Nullable Iterable<? extends E>... elements) {
+    public static <E> LinkedHashSet<E> newLinkedHashSetWithinAll(boolean emptyAsNull, @Nullable Iterable<? extends E>... items) {
         LinkedHashSet<E> result = new LinkedHashSet<>();
-        addAll(result, elements);
+        addAll(result, items);
         return (emptyAsNull && isEmpty(result)) ? null : result;
     }
 
@@ -1081,28 +1081,28 @@ public abstract class CollectionPlainWraps {
     @Nonnull
     @SafeVarargs
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
-    public static <E> LinkedList<E> newLinkedListWithin(@Nullable E... elements) {
-        return newLinkedListWithin(false, elements);
+    public static <E> LinkedList<E> newLinkedListWithin(@Nullable E... items) {
+        return newLinkedListWithin(false, items);
     }
 
     @Nullable
     @SafeVarargs
-    public static <E> LinkedList<E> newLinkedListWithin(boolean emptyAsNull, @Nullable E... elements) {
-        return newLinkedListWithinAll(emptyAsNull, ArrayUtilsWraps.asList(elements));
+    public static <E> LinkedList<E> newLinkedListWithin(boolean emptyAsNull, @Nullable E... items) {
+        return newLinkedListWithinAll(emptyAsNull, ArrayUtilsWraps.asList(items));
     }
 
     @Nonnull
     @SafeVarargs
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
-    public static <E> LinkedList<E> newLinkedListWithinAll(@Nullable Iterable<? extends E>... elements) {
-        return newLinkedListWithinAll(false, elements);
+    public static <E> LinkedList<E> newLinkedListWithinAll(@Nullable Iterable<? extends E>... items) {
+        return newLinkedListWithinAll(false, items);
     }
 
     @Nullable
     @SafeVarargs
-    public static <E> LinkedList<E> newLinkedListWithinAll(boolean emptyAsNull, @Nullable Iterable<? extends E>... elements) {
+    public static <E> LinkedList<E> newLinkedListWithinAll(boolean emptyAsNull, @Nullable Iterable<? extends E>... items) {
         LinkedList<E> result = new LinkedList<>();
-        addAll(result, elements);
+        addAll(result, items);
         return (emptyAsNull && isEmpty(result)) ? null : result;
     }
 
@@ -1131,11 +1131,11 @@ public abstract class CollectionPlainWraps {
     }
 
     /**
-     * Return an array containing all the elements in the collection
+     * Return an array containing all the items in the collection
      *
-     * @param collection The collection to convert, with element that can not be primitive types
+     * @param collection The collection to convert, with item that can not be primitive types
      *
-     * @return an array containing all the elements in the collection
+     * @return an array containing all the items in the collection
      *
      * @see org.apache.commons.lang3.ArrayUtils#addAll
      * @see "org.springframework.util.CollectionUtils#toArray"
@@ -1171,13 +1171,13 @@ public abstract class CollectionPlainWraps {
     }
 
     @SafeVarargs
-    public static <E> Collection<E> unmodifiableCollection(@Nullable E... elements) {
-        return unmodifiableCollection(false, elements);
+    public static <E> Collection<E> unmodifiableCollection(@Nullable E... items) {
+        return unmodifiableCollection(false, items);
     }
 
     @SafeVarargs
-    public static <E> Collection<E> unmodifiableCollection(boolean emptyAsNull, @Nullable E... elements) {
-        return unmodifiableCollection(emptyAsNull, ArrayUtilsWraps.asList(elements));
+    public static <E> Collection<E> unmodifiableCollection(boolean emptyAsNull, @Nullable E... items) {
+        return unmodifiableCollection(emptyAsNull, ArrayUtilsWraps.asList(items));
     }
 
     @Nullable
@@ -1191,13 +1191,13 @@ public abstract class CollectionPlainWraps {
     }
 
     @SafeVarargs
-    public static <E> List<E> unmodifiableList(@Nullable E... elements) {
-        return unmodifiableList(false, elements);
+    public static <E> List<E> unmodifiableList(@Nullable E... items) {
+        return unmodifiableList(false, items);
     }
 
     @SafeVarargs
-    public static <E> List<E> unmodifiableList(boolean emptyAsNull, @Nullable E... elements) {
-        return unmodifiableList(emptyAsNull, ArrayUtilsWraps.asList(elements));
+    public static <E> List<E> unmodifiableList(boolean emptyAsNull, @Nullable E... items) {
+        return unmodifiableList(emptyAsNull, ArrayUtilsWraps.asList(items));
     }
 
     @Nullable
@@ -1211,13 +1211,13 @@ public abstract class CollectionPlainWraps {
     }
 
     @SafeVarargs
-    public static <E> Set<E> unmodifiableSet(@Nullable E... elements) {
-        return unmodifiableSet(false, elements);
+    public static <E> Set<E> unmodifiableSet(@Nullable E... items) {
+        return unmodifiableSet(false, items);
     }
 
     @SafeVarargs
-    public static <E> Set<E> unmodifiableSet(boolean emptyAsNull, @Nullable E... elements) {
-        return unmodifiableSet(emptyAsNull, ArrayUtilsWraps.asSet(elements));
+    public static <E> Set<E> unmodifiableSet(boolean emptyAsNull, @Nullable E... items) {
+        return unmodifiableSet(emptyAsNull, ArrayUtilsWraps.asSet(items));
     }
 
     @Nullable

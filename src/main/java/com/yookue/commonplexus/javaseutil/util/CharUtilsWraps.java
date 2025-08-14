@@ -57,7 +57,7 @@ public abstract class CharUtilsWraps {
     }
 
     public static boolean equalsAny(@Nullable Character character, @Nullable Collection<Character> comparisons) {
-        return CollectionPlainWraps.isNotEmpty(comparisons) && comparisons.stream().anyMatch(element -> equals(character, element));
+        return CollectionPlainWraps.isNotEmpty(comparisons) && comparisons.stream().anyMatch(item -> equals(character, item));
     }
 
     public static boolean equalsAnyIgnoreCase(@Nullable Character character, @Nullable Character... comparisons) {
@@ -65,7 +65,7 @@ public abstract class CharUtilsWraps {
     }
 
     public static boolean equalsAnyIgnoreCase(@Nullable Character character, @Nullable Collection<Character> comparisons) {
-        return CollectionPlainWraps.isNotEmpty(comparisons) && comparisons.stream().anyMatch(element -> equalsIgnoreCase(character, element));
+        return CollectionPlainWraps.isNotEmpty(comparisons) && comparisons.stream().anyMatch(item -> equalsIgnoreCase(character, item));
     }
 
     /**
@@ -88,7 +88,7 @@ public abstract class CharUtilsWraps {
             return null;
         }
         String[] result = new String[ArrayUtils.getLength(chars)];
-        ArrayUtilsWraps.forEachIndexing(chars, (index, element) -> result[index] = CharUtils.toString(chars[index]));
+        ArrayUtilsWraps.forEachIndexing(chars, (index, item) -> result[index] = CharUtils.toString(chars[index]));
         return result;
     }
 
@@ -98,7 +98,7 @@ public abstract class CharUtilsWraps {
             return null;
         }
         List<String> result = new ArrayList<>(ArrayUtils.getLength(chars));
-        ArrayUtilsWraps.forEach(chars, element -> result.add(CharUtils.toString(element)));
+        ArrayUtilsWraps.forEach(chars, item -> result.add(CharUtils.toString(item)));
         return result;
     }
 
@@ -108,7 +108,7 @@ public abstract class CharUtilsWraps {
             return null;
         }
         Set<String> result = new LinkedHashSet<>(ArrayUtils.getLength(chars));
-        ArrayUtilsWraps.forEach(chars, element -> result.add(CharUtils.toString(element)));
+        ArrayUtilsWraps.forEach(chars, item -> result.add(CharUtils.toString(item)));
         return result;
     }
 }

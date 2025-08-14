@@ -91,7 +91,7 @@ public abstract class BeanUtilsWraps {
             return false;
         }
         List<?> introspectors = FieldUtilsWraps.readDeclaredFieldAs(alias, "introspectors", true, List.class);    // $NON-NLS-1$
-        return CollectionPlainWraps.isNotEmpty(introspectors) && introspectors.stream().filter(Objects::nonNull).anyMatch(element -> ClassUtilsWraps.isAssignableValue(clazz, element));
+        return CollectionPlainWraps.isNotEmpty(introspectors) && introspectors.stream().filter(Objects::nonNull).anyMatch(item -> ClassUtilsWraps.isAssignableValue(clazz, item));
     }
 
     public static void copyProperties(@Nullable Object target, @Nullable Object source) throws BeanInvocationException {

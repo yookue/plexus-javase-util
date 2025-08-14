@@ -209,10 +209,10 @@ public abstract class ChineseNumberUtils {
         // Integer part
         StringBuilder integerBuilder = new StringBuilder();
         Map<Integer, Integer> remainderUnits = MapPlainWraps.newHashMapWithin(0, 2, 2, 0, 3, 1);
-        StringUtilsWraps.forEachCharsIndexing(integerText, (index, element) -> {
+        StringUtilsWraps.forEachCharsIndexing(integerText, (index, item) -> {
             int section = (StringUtils.length(integerText) - index) / 4, remainder = (StringUtils.length(integerText) - index) % 4;
-            if (!(element == '0' && remainder == 1) && (numberType.isFinance() || !(element == '1' && remainder == 2))) {
-                integerBuilder.append(numberType.isSimplified() ? ChineseVariantConst.NUMBER_CAPITALS_CN[element - '0'] : ChineseVariantConst.NUMBER_CAPITALS_TW[element - '0']);
+            if (!(item == '0' && remainder == 1) && (numberType.isFinance() || !(item == '1' && remainder == 2))) {
+                integerBuilder.append(numberType.isSimplified() ? ChineseVariantConst.NUMBER_CAPITALS_CN[item - '0'] : ChineseVariantConst.NUMBER_CAPITALS_TW[item - '0']);
             }
             if (MapPlainWraps.containsKey(remainderUnits, remainder)) {
                 int sectionValue = MapUtils.getIntValue(remainderUnits, remainder);
@@ -230,7 +230,7 @@ public abstract class ChineseNumberUtils {
         String integerPart = RegExUtils.replaceAll(RegExUtils.replaceAll(integerBuilder.toString(), zeroRegex1, ChineseVariantConst.ZERO), zeroRegex2, ChineseVariantConst.ZERO);
         // Decimal part
         StringBuilder decimalBuilder = new StringBuilder();
-        StringUtilsWraps.forEachChars(decimalText, element -> decimalBuilder.append(numberType.isSimplified() ? ChineseVariantConst.NUMBER_CAPITALS_CN[element - '0'] : ChineseVariantConst.NUMBER_CAPITALS_TW[element - '0']));
+        StringUtilsWraps.forEachChars(decimalText, item -> decimalBuilder.append(numberType.isSimplified() ? ChineseVariantConst.NUMBER_CAPITALS_CN[item - '0'] : ChineseVariantConst.NUMBER_CAPITALS_TW[item - '0']));
         return StringUtilsWraps.appendIfSuffixNotBlank(integerPart, decimalBuilder, (numberType.isZhCN() ? ChineseVariantConst.DOT_CN : ChineseVariantConst.DOT_TW));
     }
 

@@ -179,7 +179,7 @@ public abstract class ObjectUtilsWraps {
             }
             int length = ArrayUtilsWraps.getLength(source);
             Object[] result = (Object[]) Array.newInstance(clazz, length);
-            ArrayUtilsWraps.forEachObjectIndexing(source, (index, element) -> result[index] = element);
+            ArrayUtilsWraps.forEachObjectIndexing(source, (index, item) -> result[index] = item);
             return result;
         }
         if (!transform) {
@@ -522,7 +522,7 @@ public abstract class ObjectUtilsWraps {
             return false;
         }
         int size = size(ArrayUtils.get(objects, 0));
-        return Arrays.stream(objects).skip(1L).allMatch(element -> size(element) == size);
+        return Arrays.stream(objects).skip(1L).allMatch(item -> size(item) == size);
     }
 
     /**

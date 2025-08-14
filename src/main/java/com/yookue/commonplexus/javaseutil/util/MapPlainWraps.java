@@ -130,7 +130,7 @@ public abstract class MapPlainWraps {
     }
 
     public static <K extends CharSequence> boolean containsKeyIgnoreCase(@Nullable Map<K, ?> map, @Nullable K key) {
-        return isNotEmpty(map) && (map.containsKey(key) || map.keySet().stream().anyMatch(element -> StringUtils.equalsIgnoreCase(element, key)));
+        return isNotEmpty(map) && (map.containsKey(key) || map.keySet().stream().anyMatch(item -> StringUtils.equalsIgnoreCase(item, key)));
     }
 
     public static <V> boolean containsValue(@Nullable Map<?, ? super V> map, @Nullable V value) {
@@ -138,7 +138,7 @@ public abstract class MapPlainWraps {
     }
 
     public static <V extends CharSequence> boolean containsValueIgnoreCase(@Nullable Map<?, V> map, @Nullable V value) {
-        return isNotEmpty(map) && (map.containsValue(value) || map.values().stream().anyMatch(element -> StringUtils.equalsIgnoreCase(element, value)));
+        return isNotEmpty(map) && (map.containsValue(value) || map.values().stream().anyMatch(item -> StringUtils.equalsIgnoreCase(item, value)));
     }
 
     public static <K, V> boolean containsKeyValue(@Nullable Map<K, V> map, @Nullable K key, @Nullable V value) {
@@ -146,7 +146,7 @@ public abstract class MapPlainWraps {
     }
 
     public static <K extends CharSequence, V extends CharSequence> boolean containsKeyIgnoreCaseValueIgnoreCase(@Nullable Map<K, V> map, @Nullable K key, @Nullable V value) {
-        return isNotEmpty(map) && map.entrySet().stream().anyMatch(entry -> StringUtils.equalsIgnoreCase(entry.getKey(), key) && StringUtils.equalsIgnoreCase(entry.getValue(), value));
+        return isNotEmpty(map) && map.entrySet().stream().anyMatch(item -> StringUtils.equalsIgnoreCase(item.getKey(), key) && StringUtils.equalsIgnoreCase(item.getValue(), value));
     }
 
     @SafeVarargs
@@ -774,7 +774,7 @@ public abstract class MapPlainWraps {
             return false;
         }
         int size = size(ArrayUtils.get(maps, 0));
-        return Arrays.stream(maps).skip(1L).allMatch(element -> size(element) == size);
+        return Arrays.stream(maps).skip(1L).allMatch(item -> size(item) == size);
     }
 
     public static boolean isSingleton(@Nullable Map<?, ?> map) {

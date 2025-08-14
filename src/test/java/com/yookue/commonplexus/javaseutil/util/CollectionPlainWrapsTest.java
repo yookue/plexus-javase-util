@@ -32,8 +32,8 @@ import lombok.extern.slf4j.Slf4j;
 class CollectionPlainWrapsTest {
     @Test
     void toElementArray() {
-        List<String> elements = CollectionPlainWraps.newArrayListWithin("a", "b", "c");    // $NON-NLS-1$ // $NON-NLS-2$ // $NON-NLS-3$
-        String[] result = CollectionPlainWraps.toElementArray(elements);
+        List<String> items = CollectionPlainWraps.newArrayListWithin("a", "b", "c");    // $NON-NLS-1$ // $NON-NLS-2$ // $NON-NLS-3$
+        String[] result = CollectionPlainWraps.toElementArray(items);
         log.info("{}: {}", StackTraceWraps.getExecutingMethodName(), StringUtilsWraps.joinWithCommaSpace(result));
         Assertions.assertNotNull(result);
         Assertions.assertEquals(3, result.length);
