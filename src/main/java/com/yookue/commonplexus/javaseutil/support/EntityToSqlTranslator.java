@@ -48,7 +48,7 @@ import lombok.Setter;
 
 
 /**
- * Beans2SQL
+ * Translator for entity to SQL
  *
  * @author chkrr00k
  * @author David Hsing
@@ -58,7 +58,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @SuppressWarnings({"unused", "WeakerAccess", "JavadocDeclaration", "JavadocLinkAsPlainText"})
-public class Entity2SqlTranslator {
+public class EntityToSqlTranslator {
     private String dateFormat = TemporalFormatConst.ISO_YYYYMMDD;
     private String timeFormat = TemporalFormatConst.ISO_HHMMSS;
     private String dateTimeFormat = TemporalFormatConst.ISO_YYYYMMDD_HHMMSS;
