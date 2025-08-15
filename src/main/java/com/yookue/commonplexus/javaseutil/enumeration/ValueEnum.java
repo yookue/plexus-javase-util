@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Yookue Ltd. All rights reserved.
+ * Copyright (c) 2025 Yookue Ltd. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.yookue.commonplexus.javaseutil.support;
+package com.yookue.commonplexus.javaseutil.enumeration;
 
 
 import com.yookue.commonplexus.javaseutil.util.ObjectUtilsWraps;

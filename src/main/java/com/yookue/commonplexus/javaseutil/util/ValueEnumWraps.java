@@ -22,12 +22,12 @@ import java.util.Objects;
 import jakarta.annotation.Nullable;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
-import com.yookue.commonplexus.javaseutil.support.KeyValueEnum;
-import com.yookue.commonplexus.javaseutil.support.ValueEnum;
+import com.yookue.commonplexus.javaseutil.enumeration.KeyValueEnum;
+import com.yookue.commonplexus.javaseutil.enumeration.ValueEnum;
 
 
 /**
- * Utilities for {@link com.yookue.commonplexus.javaseutil.support.ValueEnum}
+ * Utilities for {@link com.yookue.commonplexus.javaseutil.enumeration.ValueEnum}
  *
  * @author David Hsing
  */

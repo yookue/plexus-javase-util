@@ -18,7 +18,6 @@ package com.yookue.commonplexus.javaseutil.enumeration;
 
 
 import com.yookue.commonplexus.javaseutil.constant.HttpMimeConst;
-import com.yookue.commonplexus.javaseutil.support.ValueEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
