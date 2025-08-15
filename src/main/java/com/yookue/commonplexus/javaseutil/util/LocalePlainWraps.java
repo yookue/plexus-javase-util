@@ -154,14 +154,14 @@ public abstract class LocalePlainWraps {
      * @return an IETF BCP47 language tag representing the locale, sheared some formats
      */
     @Nullable
-    @SuppressWarnings("SwitchStatementWithTooFewBranches")
     public static String toLanguageTagSheared(@Nullable Locale locale) {
         String result = toLanguageTag(locale);
         if (StringUtils.isBlank(result)) {
             return null;
         }
         return switch (result) {
-            case "en-CN" -> "en-US";    // $NON-NLS-1$ // $NON-NLS-2$
+            case "en-CN", "en-TW" -> "en-US";    // $NON-NLS-1$ // $NON-NLS-2$ // $NON-NLS-3$
+            case "zh-US" -> "zh-CN";    // $NON-NLS-1$ // $NON-NLS-2$ // $NON-NLS-3$
             default -> result;
         };
     }
