@@ -38,6 +38,7 @@ public abstract class StringVariantConst {
     public static final String ATTACHMENT = "attachment";    // $NON-NLS-1$
     public static final String AUTHORITIES = "authorities";    // $NON-NLS-1$
     public static final String AUTHORIZATION = "authorization";    // $NON-NLS-1$
+    public static final String BATCH = "batch";    // $NON-NLS-1$
     public static final String BEARER_SPACE = "Bearer ";    // $NON-NLS-1$
     public static final String CAPTCHA = "captcha";    // $NON-NLS-1$
     public static final String CHILDREN = "children";    // $NON-NLS-1$
