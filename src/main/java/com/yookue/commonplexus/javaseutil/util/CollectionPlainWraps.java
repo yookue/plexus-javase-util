@@ -945,6 +945,21 @@ public abstract class CollectionPlainWraps {
     }
 
     @Nonnull
+    @SafeVarargs
+    public static <E> ArrayList<E> newArrayListWithout(@Nullable Collection<E> source, @Nullable E... excludes) {
+        return newArrayListWithout(source, ArrayUtilsWraps.asSet(excludes));
+    }
+
+    @Nonnull
+    public static <E> ArrayList<E> newArrayListWithout(@Nullable Collection<E> source, @Nullable Collection<? extends E> excludes) {
+        ArrayList<E> result = newArrayListWithin(source);
+        if (isNotEmpty(excludes)) {
+            result.removeAll(excludes);
+        }
+        return result;
+    }
+
+    @Nonnull
     public static <E> CopyOnWriteArrayList<E> newCopyOnWriteArrayListIfNull(@Nullable Collection<E> collection) {
         return (collection instanceof CopyOnWriteArrayList<E> alias) ? alias : (collection == null ? new CopyOnWriteArrayList<>() : new CopyOnWriteArrayList<>(collection));
     }
@@ -980,6 +995,21 @@ public abstract class CollectionPlainWraps {
         CopyOnWriteArrayList<E> result = new CopyOnWriteArrayList<>();
         addAll(result, items);
         return (emptyAsNull && isEmpty(result)) ? null : result;
+    }
+
+    @Nonnull
+    @SafeVarargs
+    public static <E> CopyOnWriteArrayList<E> newCopyOnWriteArrayListWithout(@Nullable Collection<E> source, @Nullable E... excludes) {
+        return newCopyOnWriteArrayListWithout(source, ArrayUtilsWraps.asSet(excludes));
+    }
+
+    @Nonnull
+    public static <E> CopyOnWriteArrayList<E> newCopyOnWriteArrayListWithout(@Nullable Collection<E> source, @Nullable Collection<? extends E> excludes) {
+        CopyOnWriteArrayList<E> result = newCopyOnWriteArrayListWithin(source);
+        if (isNotEmpty(excludes)) {
+            result.removeAll(excludes);
+        }
+        return result;
     }
 
     @Nonnull
@@ -1026,6 +1056,21 @@ public abstract class CollectionPlainWraps {
     }
 
     @Nonnull
+    @SafeVarargs
+    public static <E> HashSet<E> newHashSetWithout(@Nullable Collection<E> source, @Nullable E... excludes) {
+        return newHashSetWithout(source, ArrayUtilsWraps.asSet(excludes));
+    }
+
+    @Nonnull
+    public static <E> HashSet<E> newHashSetWithout(@Nullable Collection<E> source, @Nullable Collection<? extends E> excludes) {
+        HashSet<E> result = newHashSetWithin(source);
+        if (isNotEmpty(excludes)) {
+            result.removeAll(excludes);
+        }
+        return result;
+    }
+
+    @Nonnull
     public static <E> LinkedHashSet<E> newLinkedHashSetIfNull(@Nullable Collection<E> collection) {
         return (collection instanceof LinkedHashSet<E> alias) ? alias : (collection == null ? new LinkedHashSet<>() : new LinkedHashSet<>(collection));
     }
@@ -1069,6 +1114,21 @@ public abstract class CollectionPlainWraps {
     }
 
     @Nonnull
+    @SafeVarargs
+    public static <E> LinkedHashSet<E> newLinkedHashSetWithout(@Nullable Collection<E> source, @Nullable E... excludes) {
+        return newLinkedHashSetWithout(source, ArrayUtilsWraps.asSet(excludes));
+    }
+
+    @Nonnull
+    public static <E> LinkedHashSet<E> newLinkedHashSetWithout(@Nullable Collection<E> source, @Nullable Collection<? extends E> excludes) {
+        LinkedHashSet<E> result = newLinkedHashSetWithin(source);
+        if (isNotEmpty(excludes)) {
+            result.removeAll(excludes);
+        }
+        return result;
+    }
+
+    @Nonnull
     public static <E> LinkedList<E> newLinkedListIfNull(@Nullable Collection<E> collection) {
         return (collection instanceof LinkedList<E> alias) ? alias : (collection == null ? new LinkedList<>() : new LinkedList<>(collection));
     }
@@ -1104,6 +1164,21 @@ public abstract class CollectionPlainWraps {
         LinkedList<E> result = new LinkedList<>();
         addAll(result, items);
         return (emptyAsNull && isEmpty(result)) ? null : result;
+    }
+
+    @Nonnull
+    @SafeVarargs
+    public static <E> LinkedList<E> newLinkedListWithout(@Nullable Collection<E> source, @Nullable E... excludes) {
+        return newLinkedListWithout(source, ArrayUtilsWraps.asSet(excludes));
+    }
+
+    @Nonnull
+    public static <E> LinkedList<E> newLinkedListWithout(@Nullable Collection<E> source, @Nullable Collection<? extends E> excludes) {
+        LinkedList<E> result = newLinkedListWithin(source);
+        if (isNotEmpty(excludes)) {
+            result.removeAll(excludes);
+        }
+        return result;
     }
 
     @Nullable
