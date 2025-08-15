@@ -139,7 +139,7 @@ public abstract class LocalePlainWraps {
      *
      * @param locale The source locale to convert
      *
-     * @return a BCP47 language tag representing the locale
+     * @return an IETF BCP47 language tag representing the locale
      */
     @Nullable
     public static String toLanguageTag(@Nullable Locale locale) {
@@ -151,16 +151,17 @@ public abstract class LocalePlainWraps {
      *
      * @param locale The source locale to convert
      *
-     * @return a BCP47 language tag representing the locale
+     * @return an IETF BCP47 language tag representing the locale, sheared some formats
      */
     @Nullable
+    @SuppressWarnings("SwitchStatementWithTooFewBranches")
     public static String toLanguageTagSheared(@Nullable Locale locale) {
         String result = toLanguageTag(locale);
         if (StringUtils.isBlank(result)) {
             return null;
         }
         return switch (result) {
-            case "en-CN", "en-GB" -> "en-US";    // $NON-NLS-1$ // $NON-NLS-2$ // $NON-NLS-3$
+            case "en-CN" -> "en-US";    // $NON-NLS-1$ // $NON-NLS-2$
             default -> result;
         };
     }
