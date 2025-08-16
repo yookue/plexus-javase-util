@@ -217,6 +217,14 @@ public abstract class ListPlainWraps {
         return listIterator(list, CollectionPlainWraps.size(list));    // Attention: NOT size - 1
     }
 
+    public static boolean isEmpty(@Nullable List<?> list) {
+        return (list == null || list.isEmpty());
+    }
+
+    public static boolean isNotEmpty(@Nullable List<?> list) {
+        return !isEmpty(list);
+    }
+
     /**
      * Reverse the order of the given list
      *
