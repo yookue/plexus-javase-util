@@ -45,4 +45,11 @@ class FilenamePlainWrapsTest {
         log.info("{}: {}", StackTraceWraps.getExecutingMethodName(), result);
         Assertions.assertTrue(result);
     }
+
+    @Test
+    void removeExtensionDot() {
+        String result = FilenamePlainWraps.removeExtensionDot("..tmp");    // $NON-NLS-1$
+        log.info("{}: {}", StackTraceWraps.getExecutingMethodName(), result);
+        Assertions.assertTrue(StringUtils.equals(result, "tmp"));    // $NON-NLS-1$
+    }
 }

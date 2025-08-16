@@ -248,4 +248,8 @@ public abstract class FilenamePlainWraps {
         collection.clear();
         Arrays.stream(array).map(FilenamePlainWraps::removeEndSlashes).forEach(collection::add);
     }
+
+    public static String removeExtensionDot(@Nullable String extension) {
+        return RegexUtilsWraps.removeStart(extension, CharVariantConst.DOT);
+    }
 }
