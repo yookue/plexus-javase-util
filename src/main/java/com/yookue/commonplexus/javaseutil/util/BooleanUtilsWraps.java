@@ -18,6 +18,7 @@ package com.yookue.commonplexus.javaseutil.util;
 
 
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.function.Consumer;
 import jakarta.annotation.Nullable;
 import org.apache.commons.lang3.ArrayUtils;
@@ -422,12 +423,38 @@ public abstract class BooleanUtilsWraps {
         return BooleanUtils.isTrue(BooleanUtils.toBooleanObject(value));
     }
 
+    public static boolean isTrue(@Nullable Object value) {
+        if (value == null) {
+            return false;
+        } else if (value instanceof Boolean alias) {
+            return BooleanUtils.isTrue(alias);
+        } else if (value instanceof String alias) {
+            return isTrue(alias);
+        } else if (value instanceof Integer alias) {
+            return isTrue(alias);
+        }
+        return isTrue(Objects.toString(value));
+    }
+
     public static boolean isFalse(@Nullable String value) {
         return BooleanUtils.isFalse(BooleanUtils.toBooleanObject(value));
     }
 
     public static boolean isFalse(@Nullable Integer value) {
         return BooleanUtils.isFalse(BooleanUtils.toBooleanObject(value));
+    }
+
+    public static boolean isFalse(@Nullable Object value) {
+        if (value == null) {
+            return false;
+        } else if (value instanceof Boolean alias) {
+            return BooleanUtils.isFalse(alias);
+        } else if (value instanceof String alias) {
+            return isFalse(alias);
+        } else if (value instanceof Integer alias) {
+            return isFalse(alias);
+        }
+        return isFalse(Objects.toString(value));
     }
 
     public static boolean isNotTrue(@Nullable String value) {
@@ -438,12 +465,38 @@ public abstract class BooleanUtilsWraps {
         return BooleanUtils.isNotTrue(BooleanUtils.toBooleanObject(value));
     }
 
+    public static boolean isNotTrue(@Nullable Object value) {
+        if (value == null) {
+            return true;
+        } else if (value instanceof Boolean alias) {
+            return BooleanUtils.isNotTrue(alias);
+        } else if (value instanceof String alias) {
+            return isNotTrue(alias);
+        } else if (value instanceof Integer alias) {
+            return isNotTrue(alias);
+        }
+        return isNotTrue(Objects.toString(value));
+    }
+
     public static boolean isNotFalse(@Nullable String value) {
         return BooleanUtils.isNotFalse(BooleanUtils.toBooleanObject(value));
     }
 
     public static boolean isNotFalse(@Nullable Integer value) {
         return BooleanUtils.isNotFalse(BooleanUtils.toBooleanObject(value));
+    }
+
+    public static boolean isNotFalse(@Nullable Object value) {
+        if (value == null) {
+            return true;
+        } else if (value instanceof Boolean alias) {
+            return BooleanUtils.isNotFalse(alias);
+        } else if (value instanceof String alias) {
+            return isNotFalse(alias);
+        } else if (value instanceof Integer alias) {
+            return isNotFalse(alias);
+        }
+        return isNotFalse(Objects.toString(value));
     }
 
     public static Boolean toBooleanObject(@Nullable String value, @Nullable String truthy, @Nullable String falsy) {
