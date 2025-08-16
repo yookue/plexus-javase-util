@@ -17,10 +17,13 @@
 package com.yookue.commonplexus.javaseutil.util;
 
 
+import java.nio.file.Path;
 import java.util.Collection;
 import jakarta.annotation.Nullable;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.SystemProperties;
+import com.yookue.commonplexus.javaseutil.constant.CharVariantConst;
 
 
 /**
@@ -56,5 +59,35 @@ public abstract class FilenameUtilsWraps {
         }
         String extension = FilenameUtils.getExtension(fileName);
         return (StringUtils.isEmpty(extension) && CollectionPlainWraps.isEmpty(extensions)) || StringUtilsWraps.equalsAnyIgnoreCase(extension, extensions);
+    }
+
+    @Nullable
+    public static String generateFileOfJavaIoTmp(@Nullable String fileName, @Nullable String extension) {
+        String extensionAlias = StringUtils.removeStart(extension, CharVariantConst.DOT);
+        String fullName = StringUtils.isBlank(extensionAlias) ? StringUtils.defaultString(fileName) : StringUtils.join(fileName, CharVariantConst.DOT, extensionAlias);
+        if (StringUtils.isBlank(fullName)) {
+            return null;
+        }
+        return Path.of(SystemProperties.getJavaIoTmpdir(), fullName).toString();
+    }
+
+    @Nullable
+    public static String generateFileOfUserDir(@Nullable String fileName, @Nullable String extension) {
+        String extensionAlias = StringUtils.removeStart(extension, CharVariantConst.DOT);
+        String fullName = StringUtils.isBlank(extensionAlias) ? StringUtils.defaultString(fileName) : StringUtils.join(fileName, CharVariantConst.DOT, extensionAlias);
+        if (StringUtils.isBlank(fullName)) {
+            return null;
+        }
+        return Path.of(SystemProperties.getUserDir(), fullName).toString();
+    }
+
+    @Nullable
+    public static String generateFileOfUserHome(@Nullable String fileName, @Nullable String extension) {
+        String extensionAlias = StringUtils.removeStart(extension, CharVariantConst.DOT);
+        String fullName = StringUtils.isBlank(extensionAlias) ? StringUtils.defaultString(fileName) : StringUtils.join(fileName, CharVariantConst.DOT, extensionAlias);
+        if (StringUtils.isBlank(fullName)) {
+            return null;
+        }
+        return Path.of(SystemProperties.getUserHome(), fullName).toString();
     }
 }

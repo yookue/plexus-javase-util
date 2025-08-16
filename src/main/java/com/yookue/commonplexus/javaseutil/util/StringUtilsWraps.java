@@ -287,6 +287,26 @@ public abstract class StringUtilsWraps {
         return StringUtils.capitalize(StringUtils.lowerCase(CharSequenceWraps.toStringIgnoreNull(sequence)));
     }
 
+    public static boolean containsAll(@Nullable CharSequence sequence, @Nullable CharSequence... comparisons) {
+        return containsAll(sequence, ArrayUtilsWraps.asList(comparisons));
+    }
+
+    public static boolean containsAll(@Nullable CharSequence sequence, @Nullable Collection<? extends CharSequence> comparisons) {
+        return StringUtils.isNotEmpty(sequence) && CollectionPlainWraps.isNotEmpty(comparisons) && comparisons.stream().allMatch(item -> StringUtils.contains(sequence, item));
+    }
+
+    public static boolean containsAllIgnoreCase(@Nullable CharSequence sequence, char... comparisons) {
+        return containsAllIgnoreCase(sequence, CharUtilsWraps.toStringArray(comparisons));
+    }
+
+    public static boolean containsAllIgnoreCase(@Nullable CharSequence sequence, @Nullable CharSequence... comparisons) {
+        return containsAllIgnoreCase(sequence, ArrayUtilsWraps.asList(comparisons));
+    }
+
+    public static boolean containsAllIgnoreCase(@Nullable CharSequence sequence, @Nullable Collection<? extends CharSequence> comparisons) {
+        return StringUtils.isNotEmpty(sequence) && CollectionPlainWraps.isNotEmpty(comparisons) && comparisons.stream().allMatch(item -> StringUtils.containsIgnoreCase(sequence, item));
+    }
+
     public static boolean containsAny(@Nullable CharSequence sequence, @Nullable CharSequence... comparisons) {
         return containsAny(sequence, ArrayUtilsWraps.asList(comparisons));
     }
