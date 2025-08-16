@@ -58,14 +58,14 @@ public abstract class StackTraceWraps {
     }
 
     @Nonnull
-    public static String getExecutingClassNameAndAppend(@Nullable String suffix) {
+    public static String getExecutingClassNameAppending(@Nullable String suffix) {
         StackTraceElement trace = ArrayUtils.get(Thread.currentThread().getStackTrace(), 2);
         Objects.requireNonNull(trace);
         return StringUtils.join(trace.getClassName(), suffix);
     }
 
     @Nonnull
-    public static String getExecutingClassNameAndAppend(boolean shortName, @Nullable String suffix) {
+    public static String getExecutingClassNameAppending(boolean shortName, @Nullable String suffix) {
         StackTraceElement trace = ArrayUtils.get(Thread.currentThread().getStackTrace(), 2);
         Objects.requireNonNull(trace);
         String className = shortName ? StringUtils.substringAfterLast(trace.getClassName(), CharVariantConst.DOT) : trace.getClassName();
@@ -73,14 +73,14 @@ public abstract class StackTraceWraps {
     }
 
     @Nonnull
-    public static String getExecutingClassNameAndPrepend(@Nullable String prefix) {
+    public static String getExecutingClassNamePrepending(@Nullable String prefix) {
         StackTraceElement trace = ArrayUtils.get(Thread.currentThread().getStackTrace(), 2);
         Objects.requireNonNull(trace);
         return StringUtils.join(prefix, trace.getClassName());
     }
 
     @Nonnull
-    public static String getExecutingClassNameAndPrepend(boolean shortName, @Nullable String prefix) {
+    public static String getExecutingClassNamePrepending(boolean shortName, @Nullable String prefix) {
         StackTraceElement trace = ArrayUtils.get(Thread.currentThread().getStackTrace(), 2);
         Objects.requireNonNull(trace);
         String className = shortName ? StringUtils.substringAfterLast(trace.getClassName(), CharVariantConst.DOT) : trace.getClassName();
@@ -103,14 +103,14 @@ public abstract class StackTraceWraps {
     }
 
     @Nonnull
-    public static String getExecutingClassMethodNameAndAppend(@Nullable String suffix) {
+    public static String getExecutingClassMethodNameAppending(@Nullable String suffix) {
         StackTraceElement trace = ArrayUtils.get(Thread.currentThread().getStackTrace(), 2);
         Objects.requireNonNull(trace);
         return StringUtils.join(trace.getClassName(), CharVariantConst.DOT, trace.getMethodName(), suffix);
     }
 
     @Nonnull
-    public static String getExecutingClassMethodNameAndAppend(boolean shortName, @Nullable String suffix) {
+    public static String getExecutingClassMethodNameAppending(boolean shortName, @Nullable String suffix) {
         StackTraceElement trace = ArrayUtils.get(Thread.currentThread().getStackTrace(), 2);
         Objects.requireNonNull(trace);
         String className = shortName ? StringUtils.substringAfterLast(trace.getClassName(), CharVariantConst.DOT) : trace.getClassName();
@@ -118,14 +118,14 @@ public abstract class StackTraceWraps {
     }
 
     @Nonnull
-    public static String getExecutingClassMethodNameAndPrepend(@Nullable String prefix) {
+    public static String getExecutingClassMethodNamePrepending(@Nullable String prefix) {
         StackTraceElement trace = ArrayUtils.get(Thread.currentThread().getStackTrace(), 2);
         Objects.requireNonNull(trace);
         return StringUtils.join(prefix, trace.getClassName(), CharVariantConst.DOT, trace.getMethodName());
     }
 
     @Nonnull
-    public static String getExecutingClassMethodNameAndPrepend(boolean shortName, @Nullable String prefix) {
+    public static String getExecutingClassMethodNamePrepending(boolean shortName, @Nullable String prefix) {
         StackTraceElement trace = ArrayUtils.get(Thread.currentThread().getStackTrace(), 2);
         Objects.requireNonNull(trace);
         String className = shortName ? StringUtils.substringAfterLast(trace.getClassName(), CharVariantConst.DOT) : trace.getClassName();
@@ -193,7 +193,7 @@ public abstract class StackTraceWraps {
 
     @Nullable
     @SuppressWarnings("ConstantValue")
-    public static String getTracingClassMethodNameAndAppend(int index, @Nullable String suffix) {
+    public static String getTracingClassMethodNameAppending(int index, @Nullable String suffix) {
         if (index < 0) {
             return null;
         }
@@ -203,7 +203,7 @@ public abstract class StackTraceWraps {
 
     @Nullable
     @SuppressWarnings({"ConstantValue", "DuplicatedCode"})
-    public static String getTracingClassMethodNameAndAppend(int index, boolean shortName, @Nullable String suffix) {
+    public static String getTracingClassMethodNameAppending(int index, boolean shortName, @Nullable String suffix) {
         if (index < 0) {
             return null;
         }
@@ -217,7 +217,7 @@ public abstract class StackTraceWraps {
 
     @Nullable
     @SuppressWarnings("ConstantValue")
-    public static String getTracingClassMethodNameAndPrepend(int index, @Nullable String prefix) {
+    public static String getTracingClassMethodNamePrepending(int index, @Nullable String prefix) {
         if (index < 0) {
             return null;
         }
@@ -227,7 +227,7 @@ public abstract class StackTraceWraps {
 
     @Nullable
     @SuppressWarnings({"ConstantValue", "DuplicatedCode"})
-    public static String getTracingClassMethodNameAndPrepend(int index, boolean shortName, @Nullable String prefix) {
+    public static String getTracingClassMethodNamePrepending(int index, boolean shortName, @Nullable String prefix) {
         if (index < 0) {
             return null;
         }
