@@ -349,7 +349,7 @@ public abstract class LocalDateWraps {
         try {
             parseDate(date, format);
             return true;
-        } catch (DateTimeParseException ignored) {
+        } catch (Exception ignored) {
         }
         return false;
     }
@@ -361,7 +361,7 @@ public abstract class LocalDateWraps {
         try {
             parseDateTime(dateTime, format);
             return true;
-        } catch (DateTimeParseException ignored) {
+        } catch (Exception ignored) {
         }
         return false;
     }
@@ -373,7 +373,7 @@ public abstract class LocalDateWraps {
         try {
             parseTime(time, format);
             return true;
-        } catch (DateTimeParseException ignored) {
+        } catch (Exception ignored) {
         }
         return false;
     }
@@ -412,7 +412,7 @@ public abstract class LocalDateWraps {
     public static LocalDate parseDateQuietly(@Nullable String date, @Nullable String format) {
         try {
             return parseDate(date, format);
-        } catch (DateTimeParseException ignored) {
+        } catch (Exception ignored) {
         }
         return null;
     }
@@ -445,7 +445,7 @@ public abstract class LocalDateWraps {
     public static LocalDateTime parseDateTimeQuietly(@Nullable String dateTime, @Nullable String format) {
         try {
             return parseDateTime(dateTime, format);
-        } catch (DateTimeParseException ignored) {
+        } catch (Exception ignored) {
         }
         return null;
     }
@@ -478,7 +478,7 @@ public abstract class LocalDateWraps {
     public static LocalTime parseTimeQuietly(@Nullable String time, @Nullable String format) {
         try {
             return parseTime(time, format);
-        } catch (DateTimeParseException ignored) {
+        } catch (Exception ignored) {
         }
         return null;
     }
