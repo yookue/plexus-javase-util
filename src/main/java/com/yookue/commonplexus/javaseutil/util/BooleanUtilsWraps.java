@@ -58,12 +58,32 @@ public abstract class BooleanUtilsWraps {
     }
 
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
+    public static boolean allTrue(@Nullable Integer... values) {
+        return ArrayUtils.isNotEmpty(values) && Arrays.stream(values).allMatch(BooleanUtilsWraps::isTrue);
+    }
+
+    @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
+    public static boolean allTrue(@Nullable Object... values) {
+        return ArrayUtils.isNotEmpty(values) && Arrays.stream(values).allMatch(BooleanUtilsWraps::isTrue);
+    }
+
+    @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
     public static boolean allNotTrue(@Nullable Boolean... values) {
         return ArrayUtils.isNotEmpty(values) && Arrays.stream(values).allMatch(BooleanUtils::isNotTrue);
     }
 
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
     public static boolean allNotTrue(@Nullable String... values) {
+        return ArrayUtils.isNotEmpty(values) && Arrays.stream(values).allMatch(BooleanUtilsWraps::isNotTrue);
+    }
+
+    @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
+    public static boolean allNotTrue(@Nullable Integer... values) {
+        return ArrayUtils.isNotEmpty(values) && Arrays.stream(values).allMatch(BooleanUtilsWraps::isNotTrue);
+    }
+
+    @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
+    public static boolean allNotTrue(@Nullable Object... values) {
         return ArrayUtils.isNotEmpty(values) && Arrays.stream(values).allMatch(BooleanUtilsWraps::isNotTrue);
     }
 
@@ -78,12 +98,32 @@ public abstract class BooleanUtilsWraps {
     }
 
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
+    public static boolean allFalse(@Nullable Integer... values) {
+        return ArrayUtils.isNotEmpty(values) && Arrays.stream(values).allMatch(BooleanUtilsWraps::isFalse);
+    }
+
+    @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
+    public static boolean allFalse(@Nullable Object... values) {
+        return ArrayUtils.isNotEmpty(values) && Arrays.stream(values).allMatch(BooleanUtilsWraps::isFalse);
+    }
+
+    @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
     public static boolean allNotFalse(@Nullable Boolean... values) {
         return ArrayUtils.isNotEmpty(values) && Arrays.stream(values).allMatch(BooleanUtils::isNotFalse);
     }
 
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
     public static boolean allNotFalse(@Nullable String... values) {
+        return ArrayUtils.isNotEmpty(values) && Arrays.stream(values).allMatch(BooleanUtilsWraps::isNotFalse);
+    }
+
+    @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
+    public static boolean allNotFalse(@Nullable Integer... values) {
+        return ArrayUtils.isNotEmpty(values) && Arrays.stream(values).allMatch(BooleanUtilsWraps::isNotFalse);
+    }
+
+    @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
+    public static boolean allNotFalse(@Nullable Object... values) {
         return ArrayUtils.isNotEmpty(values) && Arrays.stream(values).allMatch(BooleanUtilsWraps::isNotFalse);
     }
 
@@ -98,12 +138,32 @@ public abstract class BooleanUtilsWraps {
     }
 
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
+    public static boolean anyTrue(@Nullable Integer... values) {
+        return ArrayUtils.isNotEmpty(values) && Arrays.stream(values).anyMatch(BooleanUtilsWraps::isTrue);
+    }
+
+    @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
+    public static boolean anyTrue(@Nullable Object... values) {
+        return ArrayUtils.isNotEmpty(values) && Arrays.stream(values).anyMatch(BooleanUtilsWraps::isTrue);
+    }
+
+    @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
     public static boolean anyNotTrue(@Nullable Boolean... values) {
         return ArrayUtils.isNotEmpty(values) && Arrays.stream(values).anyMatch(BooleanUtils::isNotTrue);
     }
 
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
     public static boolean anyNotTrue(@Nullable String... values) {
+        return ArrayUtils.isNotEmpty(values) && Arrays.stream(values).anyMatch(BooleanUtilsWraps::isNotTrue);
+    }
+
+    @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
+    public static boolean anyNotTrue(@Nullable Integer... values) {
+        return ArrayUtils.isNotEmpty(values) && Arrays.stream(values).anyMatch(BooleanUtilsWraps::isNotTrue);
+    }
+
+    @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
+    public static boolean anyNotTrue(@Nullable Object... values) {
         return ArrayUtils.isNotEmpty(values) && Arrays.stream(values).anyMatch(BooleanUtilsWraps::isNotTrue);
     }
 
@@ -118,12 +178,32 @@ public abstract class BooleanUtilsWraps {
     }
 
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
+    public static boolean anyFalse(@Nullable Integer... values) {
+        return ArrayUtils.isNotEmpty(values) && Arrays.stream(values).anyMatch(BooleanUtilsWraps::isFalse);
+    }
+
+    @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
+    public static boolean anyFalse(@Nullable Object... values) {
+        return ArrayUtils.isNotEmpty(values) && Arrays.stream(values).anyMatch(BooleanUtilsWraps::isFalse);
+    }
+
+    @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
     public static boolean anyNotFalse(@Nullable Boolean... values) {
         return ArrayUtils.isNotEmpty(values) && Arrays.stream(values).anyMatch(BooleanUtils::isNotFalse);
     }
 
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
     public static boolean anyNotFalse(@Nullable String... values) {
+        return ArrayUtils.isNotEmpty(values) && Arrays.stream(values).anyMatch(BooleanUtilsWraps::isNotFalse);
+    }
+
+    @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
+    public static boolean anyNotFalse(@Nullable Integer... values) {
+        return ArrayUtils.isNotEmpty(values) && Arrays.stream(values).anyMatch(BooleanUtilsWraps::isNotFalse);
+    }
+
+    @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
+    public static boolean anyNotFalse(@Nullable Object... values) {
         return ArrayUtils.isNotEmpty(values) && Arrays.stream(values).anyMatch(BooleanUtilsWraps::isNotFalse);
     }
 
@@ -158,6 +238,18 @@ public abstract class BooleanUtilsWraps {
     }
 
     public static void ifTrue(@Nullable Integer value, @Nullable Runnable action) {
+        if (isTrue(value) && action != null) {
+            action.run();
+        }
+    }
+
+    public static void ifTrue(@Nullable Object value, @Nullable Consumer<Object> action) {
+        if (isTrue(value) && action != null) {
+            action.accept(value);
+        }
+    }
+
+    public static void ifTrue(@Nullable Object value, @Nullable Runnable action) {
         if (isTrue(value) && action != null) {
             action.run();
         }
@@ -235,6 +327,30 @@ public abstract class BooleanUtilsWraps {
         }
     }
 
+    public static void ifTrueOrElse(@Nullable Object value, @Nullable Consumer<Object> presentAction, @Nullable Consumer<Object> absentAction) {
+        if (isTrue(value)) {
+            if (presentAction != null) {
+                presentAction.accept(value);
+            }
+        } else {
+            if (absentAction != null) {
+                absentAction.accept(value);
+            }
+        }
+    }
+
+    public static void ifTrueOrElse(@Nullable Object value, @Nullable Runnable presentAction, @Nullable Runnable absentAction) {
+        if (isTrue(value)) {
+            if (presentAction != null) {
+                presentAction.run();
+            }
+        } else {
+            if (absentAction != null) {
+                absentAction.run();
+            }
+        }
+    }
+
     public static void ifFalse(@Nullable Boolean value, @Nullable Consumer<Boolean> action) {
         if (BooleanUtils.isFalse(value) && action != null) {
             action.accept(value);
@@ -266,6 +382,18 @@ public abstract class BooleanUtilsWraps {
     }
 
     public static void ifFalse(@Nullable Integer value, @Nullable Runnable action) {
+        if (isFalse(value) && action != null) {
+            action.run();
+        }
+    }
+
+    public static void ifFalse(@Nullable Object value, @Nullable Consumer<Object> action) {
+        if (isFalse(value) && action != null) {
+            action.accept(value);
+        }
+    }
+
+    public static void ifFalse(@Nullable Object value, @Nullable Runnable action) {
         if (isFalse(value) && action != null) {
             action.run();
         }
@@ -343,6 +471,30 @@ public abstract class BooleanUtilsWraps {
         }
     }
 
+    public static void ifFalseOrElse(@Nullable Object value, @Nullable Consumer<Object> absentAction, @Nullable Consumer<Object> presentAction) {
+        if (isFalse(value)) {
+            if (absentAction != null) {
+                absentAction.accept(value);
+            }
+        } else {
+            if (presentAction != null) {
+                presentAction.accept(value);
+            }
+        }
+    }
+
+    public static void ifFalseOrElse(@Nullable Object value, @Nullable Runnable absentAction, @Nullable Runnable presentAction) {
+        if (isFalse(value)) {
+            if (absentAction != null) {
+                absentAction.run();
+            }
+        } else {
+            if (presentAction != null) {
+                presentAction.run();
+            }
+        }
+    }
+
     public static void ifNotTrue(@Nullable Boolean value, @Nullable Consumer<Boolean> action) {
         if (BooleanUtils.isNotTrue(value) && action != null) {
             action.accept(value);
@@ -379,6 +531,18 @@ public abstract class BooleanUtilsWraps {
         }
     }
 
+    public static void ifNotTrue(@Nullable Object value, @Nullable Consumer<Object> action) {
+        if (isNotTrue(value) && action != null) {
+            action.accept(value);
+        }
+    }
+
+    public static void ifNotTrue(@Nullable Object value, @Nullable Runnable action) {
+        if (isNotTrue(value) && action != null) {
+            action.run();
+        }
+    }
+
     public static void ifNotFalse(@Nullable Boolean value, @Nullable Consumer<Boolean> action) {
         if (BooleanUtils.isNotFalse(value) && action != null) {
             action.accept(value);
@@ -410,6 +574,18 @@ public abstract class BooleanUtilsWraps {
     }
 
     public static void ifNotFalse(@Nullable Integer value, @Nullable Runnable action) {
+        if (isNotFalse(value) && action != null) {
+            action.run();
+        }
+    }
+
+    public static void ifNotFalse(@Nullable Object value, @Nullable Consumer<Object> action) {
+        if (isNotFalse(value) && action != null) {
+            action.accept(value);
+        }
+    }
+
+    public static void ifNotFalse(@Nullable Object value, @Nullable Runnable action) {
         if (isNotFalse(value) && action != null) {
             action.run();
         }
