@@ -17,6 +17,8 @@
 package com.yookue.commonplexus.javaseutil.enumeration;
 
 
+import jakarta.annotation.Nonnull;
+import com.yookue.commonplexus.javaseutil.constant.SymbolVariantConst;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -52,4 +54,9 @@ public enum InetProtocolType implements ValueEnum<String> {
     TLS("tls");    // $NON-NLS-1$
 
     private final String value;
+
+    @Nonnull
+    public String getValueWithDelimiter() {
+        return value + SymbolVariantConst.PROTOCOL_DELIMITER;
+    }
 }
