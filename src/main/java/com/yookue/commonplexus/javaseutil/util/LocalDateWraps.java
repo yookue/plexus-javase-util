@@ -315,7 +315,7 @@ public abstract class LocalDateWraps {
     }
 
     @Nullable
-    public static String formatDate(LocalDate date) {
+    public static String formatDate(@Nullable LocalDate date) {
         return formatDate(date, TemporalFormatConst.ISO_YYYYMMDD);
     }
 
