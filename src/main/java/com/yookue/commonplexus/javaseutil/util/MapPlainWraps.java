@@ -500,6 +500,46 @@ public abstract class MapPlainWraps {
         return (result == null) ? defaultValue : result;
     }
 
+    public static <K> Boolean getObjectAsBoolean(@Nullable Map<? super K, ?> map, @Nullable K key) {
+        return getObjectAs(map, key, Boolean.class, null);
+    }
+
+    public static <K> Boolean getObjectAsBoolean(@Nullable Map<? super K, ?> map, @Nullable K key, @Nullable Boolean defaultValue) {
+        return getObjectAs(map, key, Boolean.class, defaultValue);
+    }
+
+    public static <K> String getObjectAsString(@Nullable Map<? super K, ?> map, @Nullable K key) {
+        return getObjectAs(map, key, String.class, null);
+    }
+
+    public static <K> String getObjectAsString(@Nullable Map<? super K, ?> map, @Nullable K key, @Nullable String defaultValue) {
+        return getObjectAs(map, key, String.class, defaultValue);
+    }
+
+    public static <K> Integer getObjectAsInteger(@Nullable Map<? super K, ?> map, @Nullable K key) {
+        return getObjectAs(map, key, Integer.class, null);
+    }
+
+    public static <K> Integer getObjectAsInteger(@Nullable Map<? super K, ?> map, @Nullable K key, @Nullable Integer defaultValue) {
+        return getObjectAs(map, key, Integer.class, defaultValue);
+    }
+
+    public static <K> Long getObjectAsLong(@Nullable Map<? super K, ?> map, @Nullable K key) {
+        return getObjectAs(map, key, Long.class, null);
+    }
+
+    public static <K> Long getObjectAsLong(@Nullable Map<? super K, ?> map, @Nullable K key, @Nullable Long defaultValue) {
+        return getObjectAs(map, key, Long.class, defaultValue);
+    }
+
+    public static <K> Double getObjectAsDouble(@Nullable Map<? super K, ?> map, @Nullable K key) {
+        return getObjectAs(map, key, Double.class, null);
+    }
+
+    public static <K> Double getObjectAsDouble(@Nullable Map<? super K, ?> map, @Nullable K key, @Nullable Double defaultValue) {
+        return getObjectAs(map, key, Double.class, defaultValue);
+    }
+
     @Nullable
     public static <K> Object[] getObjectArray(@Nullable Map<? super K, ?> map, @Nullable K key) {
         return getObjectArray(map, key, null);
