@@ -109,4 +109,19 @@ public class BooleanDataStruct<T> extends DataTextStruct<T> {
     public static BooleanDataStruct<?> ofFailure(@Nullable Collection<String> texts) {
         return new BooleanDataStruct<>(false, null, texts);
     }
+
+    @Nonnull
+    public static <T> BooleanDataStruct<T> ofFailureWithin(@Nullable T data) {
+        return new BooleanDataStruct<>(false, data);
+    }
+
+    @Nonnull
+    public static <T> BooleanDataStruct<T> ofFailureWithin(@Nullable T data, @Nullable String... texts) {
+        return new BooleanDataStruct<>(false, data, texts);
+    }
+
+    @Nonnull
+    public static <T> BooleanDataStruct<T> ofFailureWithin(@Nullable T data, @Nullable Collection<String> texts) {
+        return new BooleanDataStruct<>(false, data, texts);
+    }
 }
