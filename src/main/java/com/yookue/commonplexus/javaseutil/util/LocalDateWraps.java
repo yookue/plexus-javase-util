@@ -639,7 +639,22 @@ public abstract class LocalDateWraps {
     }
 
     @Nullable
+    public static LocalDate toLocalDate(@Nullable LocalDateTime dateTime) {
+        return (dateTime == null) ? null : dateTime.toLocalDate();
+    }
+
+    @Nullable
+    public static LocalTime toLocalTime(@Nullable LocalDateTime dateTime) {
+        return (dateTime == null) ? null : dateTime.toLocalTime();
+    }
+
+    @Nullable
     public static LocalDateTime toLocalDateTime(@Nullable LocalDate date) {
         return (date == null) ? null : LocalDateTime.of(date, LocalTime.MIDNIGHT);
+    }
+
+    @Nullable
+    public static LocalDateTime toLocalDateTime(@Nullable LocalTime time) {
+        return (time == null) ? null : LocalDateTime.of(LocalDate.now(), time);
     }
 }
