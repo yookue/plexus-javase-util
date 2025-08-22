@@ -37,6 +37,14 @@ import org.apache.commons.lang3.time.DurationUtils;
  */
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue", "JavadocReference"})
 public abstract class TemporalUtilsWraps {
+    public static boolean isChronoUnit(@Nullable CharSequence sequence) {
+        return toChronoUnit(sequence) != null;
+    }
+
+    public static boolean isTimeUnit(@Nullable CharSequence sequence) {
+        return toTimeUnit(sequence) != null;
+    }
+
     @Nullable
     public static ChronoUnit toChronoUnit(@Nullable CharSequence sequence) {
         if (StringUtils.isBlank(sequence)) {
