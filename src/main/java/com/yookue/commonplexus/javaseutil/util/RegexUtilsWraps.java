@@ -20,7 +20,9 @@ package com.yookue.commonplexus.javaseutil.util;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -503,6 +505,25 @@ public abstract class RegexUtilsWraps {
 
     public static boolean isCompilable(@Nullable String regex) {
         return compilePattern(regex) != null;
+    }
+
+    public static String removeAll(@Nullable String text, char character) {
+        if (StringUtils.isEmpty(text)) {
+            return text;
+        }
+        String regex = StringUtils.join((isEscapeChar(character) ? SymbolVariantConst.BACKSLASHES : null), character, CharVariantConst.CROSS);
+        return RegExUtils.removeAll(text, regex);
+    }
+
+    public static String removeAll(@Nullable String text, char... characters) {
+        if (StringUtils.isEmpty(text) || ArrayUtils.isEmpty(characters)) {
+            return text;
+        }
+        Set<String> regexes = new LinkedHashSet<>();
+        for (char character : characters) {
+            regexes.add(StringUtils.join((isEscapeChar(character) ? SymbolVariantConst.BACKSLASHES : null), character, CharVariantConst.CROSS));
+        }
+        return removeAll(text, regexes);
     }
 
     public static String removeAll(@Nullable String text, @Nullable String... regexes) {

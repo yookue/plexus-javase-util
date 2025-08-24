@@ -20,6 +20,7 @@ package com.yookue.commonplexus.javaseutil.util;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import com.yookue.commonplexus.javaseutil.constant.CharVariantConst;
 import com.yookue.commonplexus.javaseutil.constant.RegexVariantConst;
 import lombok.extern.slf4j.Slf4j;
 
@@ -47,6 +48,12 @@ class RegexUtilsWrapsTest {
         boolean result = RegexUtilsWraps.isWordHyphen("12345ABC-DEF");    // $NON-NLS-1$
         log.info("{}: {}", StackTraceWraps.getExecutingMethodName(), result);
         Assertions.assertTrue(result);
+    }
+
+    @Test
+    void removeAll() {
+        Assertions.assertEquals("8613800138000", RegexUtilsWraps.removeAll("+8613800138000", CharVariantConst.CROSS));    // $NON-NLS-1$ // $NON-NLS-2$
+        Assertions.assertEquals("8613800138000", RegexUtilsWraps.removeAll("+86-13800138000", CharVariantConst.CROSS, CharVariantConst.HYPHEN));    // $NON-NLS-1$ // $NON-NLS-2$
     }
 
     @Test
