@@ -602,6 +602,16 @@ public abstract class LocalDateWraps {
     }
 
     @Nullable
+    public static LocalDateTime ofEpochSecond(long second) {
+        return ofEpochSecond(second, null);
+    }
+
+    @Nullable
+    public static LocalDateTime ofEpochSecond(long second, @Nullable ZoneId zoneId) {
+        return (second <= 0L) ? null : ofJdkDateTime(new Date(second * 1000L), zoneId);
+    }
+
+    @Nullable
     public static LocalDate ofJdkDate(@Nullable Date date) {
         return ofJdkDate(date, null);
     }
