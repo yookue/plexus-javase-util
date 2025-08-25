@@ -477,4 +477,14 @@ public abstract class JdkDateWraps {
     public static Date plusTemporal(@Nullable Date date, @Nullable Duration duration) {
         return (duration == null || duration.isZero()) ? date : plusTemporal(date, Calendar.MILLISECOND, (int) duration.toMillis());
     }
+
+    @Nullable
+    public static Long toEpochSecond(@Nullable Date date) {
+        return (date == null) ? null : date.getTime() / 1000L;
+    }
+
+    @Nullable
+    public static Long toEpochMillisecond(@Nullable Date date) {
+        return (date == null) ? null : date.getTime();
+    }
 }
