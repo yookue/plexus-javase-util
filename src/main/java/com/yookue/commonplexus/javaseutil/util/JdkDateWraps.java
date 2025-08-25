@@ -479,12 +479,12 @@ public abstract class JdkDateWraps {
     }
 
     @Nullable
-    public static Long toEpochSecond(@Nullable Date date) {
-        return (date == null) ? null : date.getTime() / 1000L;
+    public static Long toEpochMilli(@Nullable Date date) {
+        return (date == null) ? null : date.getTime();
     }
 
     @Nullable
-    public static Long toEpochMillisecond(@Nullable Date date) {
-        return (date == null) ? null : date.getTime();
+    public static Long toEpochSecond(@Nullable Date date) {
+        return (date == null) ? null : date.getTime() / 1000L;
     }
 }

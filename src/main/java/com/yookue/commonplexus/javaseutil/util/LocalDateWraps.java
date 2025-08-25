@@ -633,20 +633,20 @@ public abstract class LocalDateWraps {
         return (dateTime == null) ? null : dateTime.toLocalTime();
     }
 
+    public static Long toEpochMilli(@Nullable LocalDateTime dateTime) {
+        return toEpochMilli(dateTime, null);
+    }
+
+    public static Long toEpochMilli(@Nullable LocalDateTime dateTime, @Nullable ZoneId zoneId) {
+        return (dateTime == null) ? null : dateTime.atZone(ObjectUtils.defaultIfNull(zoneId, ZoneId.systemDefault())).toInstant().toEpochMilli();
+    }
+
     public static Long toEpochSecond(@Nullable LocalDateTime dateTime) {
         return toEpochSecond(dateTime, null);
     }
 
     public static Long toEpochSecond(@Nullable LocalDateTime dateTime, @Nullable ZoneId zoneId) {
         return (dateTime == null) ? null : dateTime.atZone(ObjectUtils.defaultIfNull(zoneId, ZoneId.systemDefault())).toEpochSecond();
-    }
-
-    public static Long toEpochMillisecond(@Nullable LocalDateTime dateTime) {
-        return toEpochMillisecond(dateTime, null);
-    }
-
-    public static Long toEpochMillisecond(@Nullable LocalDateTime dateTime, @Nullable ZoneId zoneId) {
-        return (dateTime == null) ? null : dateTime.atZone(ObjectUtils.defaultIfNull(zoneId, ZoneId.systemDefault())).toInstant().toEpochMilli();
     }
 
     @Nullable
