@@ -119,13 +119,18 @@ public abstract class LocalDateWraps {
     }
 
     @Nonnull
+    public static LocalDate getMinDate() {
+        return LocalDate.of(0, 1, 1);
+    }
+
+    @Nonnull
     public static LocalDate getMaxDate() {
         return LocalDate.of(9999, 12, 31);
     }
 
     @Nonnull
-    public static LocalDate getMinDate() {
-        return LocalDate.of(0, 1, 1);
+    public static LocalDateTime getMinDateTime() {
+        return LocalDateTime.of(0, 1, 1, 0, 0);
     }
 
     @Nonnull
@@ -133,9 +138,24 @@ public abstract class LocalDateWraps {
         return LocalDateTime.of(9999, 12, 31, 23, 59, 59, 999);
     }
 
-    @Nonnull
-    public static LocalDateTime getMinDateTime() {
-        return LocalDateTime.of(0, 1, 1, 0, 0);
+    @Nullable
+    public static LocalDateTime getDayStartDateTime(@Nullable LocalDate date) {
+        return (date == null) ? null : LocalDateTime.of(date, LocalTime.MIN);
+    }
+
+    @Nullable
+    public static LocalDateTime getDayStartDateTime(@Nullable LocalDateTime dateTime) {
+        return (dateTime == null) ? null : LocalDateTime.of(dateTime.toLocalDate(), LocalTime.MIN);
+    }
+
+    @Nullable
+    public static LocalDateTime getDayEndDateTime(@Nullable LocalDate date) {
+        return (date == null) ? null : LocalDateTime.of(date, LocalTime.MAX);
+    }
+
+    @Nullable
+    public static LocalDateTime getDayEndDateTime(@Nullable LocalDateTime dateTime) {
+        return (dateTime == null) ? null : LocalDateTime.of(dateTime.toLocalDate(), LocalTime.MAX);
     }
 
     @Nullable

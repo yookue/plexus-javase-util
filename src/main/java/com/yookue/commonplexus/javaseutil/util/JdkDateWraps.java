@@ -182,13 +182,68 @@ public abstract class JdkDateWraps {
     }
 
     @Nonnull
+    public static Date getMinDateTime() {
+        return getSpecificDateTime(0, 1, 1, 0, 0, 0, 0);
+    }
+
+    @Nonnull
     public static Date getMaxDateTime() {
         return getSpecificDateTime(9999, 12, 31, 23, 59, 59, 999);
     }
 
-    @Nonnull
-    public static Date getMinDateTime() {
-        return getSpecificDateTime(0, 1, 1, 0, 0, 0, 0);
+    @Nullable
+    public static Date getDayStartDate(@Nullable Date date) {
+        return getDayStartDate(date, null, null);
+    }
+
+    public static Date getDayStartDate(@Nullable Date date, @Nullable TimeZone zone) {
+        return getDayStartDate(date, zone, null);
+    }
+
+    public static Date getDayStartDate(@Nullable Date date, @Nullable Locale locale) {
+        return getDayStartDate(date, null, locale);
+    }
+
+    @Nullable
+    public static Date getDayStartDate(@Nullable Date date, @Nullable TimeZone zone, @Nullable Locale locale) {
+        if (date == null) {
+            return null;
+        }
+        Calendar calendar = Calendar.getInstance(ObjectUtils.defaultIfNull(zone, TimeZone.getDefault()), ObjectUtils.defaultIfNull(locale, Locale.getDefault(Locale.Category.FORMAT)));
+        calendar.setLenient(false);
+        calendar.setTime(date);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        return calendar.getTime();
+    }
+
+    public static Date getDayEndDate(@Nullable Date date) {
+        return getDayEndDate(date, null, null);
+    }
+
+    public static Date getDayEndDate(@Nullable Date date, @Nullable TimeZone zone) {
+        return getDayEndDate(date, zone, null);
+    }
+
+    public static Date getDayEndDate(@Nullable Date date, @Nullable Locale locale) {
+        return getDayEndDate(date, null, locale);
+    }
+
+    @Nullable
+    public static Date getDayEndDate(@Nullable Date date, @Nullable TimeZone zone, @Nullable Locale locale) {
+        if (date == null) {
+            return null;
+        }
+        Calendar calendar = Calendar.getInstance(ObjectUtils.defaultIfNull(zone, TimeZone.getDefault()), ObjectUtils.defaultIfNull(locale, Locale.getDefault(Locale.Category.FORMAT)));
+        calendar.setLenient(false);
+        calendar.setTime(date);
+        calendar.set(Calendar.HOUR_OF_DAY, 23);
+        calendar.set(Calendar.MINUTE, 59);
+        calendar.set(Calendar.SECOND, 59);
+        calendar.set(Calendar.MILLISECOND, 999);
+        return calendar.getTime();
     }
 
     @Nullable
@@ -421,60 +476,5 @@ public abstract class JdkDateWraps {
     @Nullable
     public static Date plusTemporal(@Nullable Date date, @Nullable Duration duration) {
         return (duration == null || duration.isZero()) ? date : plusTemporal(date, Calendar.MILLISECOND, (int) duration.toMillis());
-    }
-
-    @Nullable
-    public static Date getDayStartDate(@Nullable Date date) {
-        return getDayStartDate(date, null, null);
-    }
-
-    public static Date getDayStartDate(@Nullable Date date, @Nullable TimeZone zone) {
-        return getDayStartDate(date, zone, null);
-    }
-
-    public static Date getDayStartDate(@Nullable Date date, @Nullable Locale locale) {
-        return getDayStartDate(date, null, locale);
-    }
-
-    @Nullable
-    public static Date getDayStartDate(@Nullable Date date, @Nullable TimeZone zone, @Nullable Locale locale) {
-        if (date == null) {
-            return null;
-        }
-        Calendar calendar = Calendar.getInstance(ObjectUtils.defaultIfNull(zone, TimeZone.getDefault()), ObjectUtils.defaultIfNull(locale, Locale.getDefault(Locale.Category.FORMAT)));
-        calendar.setLenient(false);
-        calendar.setTime(date);
-        calendar.set(Calendar.HOUR_OF_DAY, 0);
-        calendar.set(Calendar.MINUTE, 0);
-        calendar.set(Calendar.SECOND, 0);
-        calendar.set(Calendar.MILLISECOND, 0);
-        return calendar.getTime();
-    }
-
-    public static Date getDayEndDate(@Nullable Date date) {
-        return getDayEndDate(date, null, null);
-    }
-
-    public static Date getDayEndDate(@Nullable Date date, @Nullable TimeZone zone) {
-        return getDayEndDate(date, zone, null);
-    }
-
-    public static Date getDayEndDate(@Nullable Date date, @Nullable Locale locale) {
-        return getDayEndDate(date, null, locale);
-    }
-
-    @Nullable
-    public static Date getDayEndDate(@Nullable Date date, @Nullable TimeZone zone, @Nullable Locale locale) {
-        if (date == null) {
-            return null;
-        }
-        Calendar calendar = Calendar.getInstance(ObjectUtils.defaultIfNull(zone, TimeZone.getDefault()), ObjectUtils.defaultIfNull(locale, Locale.getDefault(Locale.Category.FORMAT)));
-        calendar.setLenient(false);
-        calendar.setTime(date);
-        calendar.set(Calendar.HOUR_OF_DAY, 23);
-        calendar.set(Calendar.MINUTE, 59);
-        calendar.set(Calendar.SECOND, 59);
-        calendar.set(Calendar.MILLISECOND, 999);
-        return calendar.getTime();
     }
 }
