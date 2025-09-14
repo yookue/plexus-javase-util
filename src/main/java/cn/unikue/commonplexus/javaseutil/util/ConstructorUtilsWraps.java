@@ -1,0 +1,565 @@
+/*
+ * Copyright (c) 2016 Unikue Ltd. All rights reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package cn.unikue.commonplexus.javaseutil.util;
+
+
+import java.lang.reflect.Constructor;
+import jakarta.annotation.Nullable;
+import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.ClassUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.reflect.ConstructorUtils;
+
+
+/**
+ * Utilities for {@link org.apache.commons.lang3.reflect.ConstructorUtils}
+ *
+ * @author David Hsing
+ *
+ * @see org.apache.commons.lang3.reflect.ConstructorUtils
+ */
+@SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})
+public abstract class ConstructorUtilsWraps {
+    /**
+     * Returns a new instance of the given class
+     *
+     * <p>
+     * This locates and calls a constructor
+     * <p>
+     * The constructor signature must match the argument types by assignment compatibility
+     *
+     * @param <T> The required type to be constructed
+     * @param clazz The class to be constructed, not {@code null}
+     *
+     * @return a new instance of the given class
+     */
+    public static <T> T invokeConstructor(@Nullable Class<T> clazz) {
+        return invokeConstructor(clazz, null, null);
+    }
+
+    /**
+     * Returns a new instance of the given class with the arguments
+     *
+     * <p>
+     * This locates and calls a constructor
+     * <p>
+     * The constructor signature must match the argument types by assignment compatibility
+     *
+     * @param <T> the required type to be constructed
+     * @param clazz The class to be constructed, not {@code null}
+     * @param args The array of arguments, may be {@code null}
+     *
+     * @return a new instance of the given class with the arguments
+     */
+    public static <T> T invokeConstructor(@Nullable Class<T> clazz, @Nullable Object... args) {
+        return invokeConstructor(clazz, args, ClassUtils.toClass(args));
+    }
+
+    /**
+     * Returns a new instance of the given class with the arguments of the specified parameter types
+     *
+     * <p>
+     * This locates and calls a constructor
+     * <p>
+     * The constructor signature must match the argument types by assignment compatibility
+     *
+     * @param <T> the required type to be constructed
+     * @param clazz The class to be constructed, not {@code null}
+     * @param args The array of arguments, may be {@code null}
+     * @param paramTypes The array of parameter types, may be {@code null}
+     *
+     * @return a new instance of the given class with the arguments of the specified parameter types
+     */
+    public static <T> T invokeConstructor(@Nullable Class<T> clazz, @Nullable Object[] args, @Nullable Class<?>[] paramTypes) {
+        if (clazz == null) {
+            return null;
+        }
+        try {
+            return ConstructorUtils.invokeConstructor(clazz, args, paramTypes);
+        } catch (Exception ignored) {
+        }
+        return null;
+    }
+
+    /**
+     * Returns a new instance of the given class name
+     *
+     * <p>
+     * This locates and calls a constructor
+     * <p>
+     * The constructor signature must match the argument types by assignment compatibility
+     *
+     * @param <T> the required type to be constructed
+     * @param className The class name to be constructed, not {@code null}
+     * @param expectType The expected type to be converted, not {@code null}
+     *
+     * @return a new instance of the given class name
+     */
+    public static <T> T invokeConstructor(@Nullable String className, @Nullable Class<T> expectType) {
+        return invokeConstructor(className, null, expectType, null, null);
+    }
+
+    /**
+     * Returns a new instance of the given class name with the arguments
+     *
+     * <p>
+     * This locates and calls a constructor
+     * <p>
+     * The constructor signature must match the argument types by assignment compatibility
+     *
+     * @param <T> the required type to be constructed
+     * @param className The class name to be constructed, not {@code null}
+     * @param expectType The expected type to be converted, not {@code null}
+     * @param args The array of arguments, may be {@code null}
+     *
+     * @return a new instance of the given class name with the arguments
+     */
+    public static <T> T invokeConstructor(@Nullable String className, @Nullable Class<T> expectType, @Nullable Object... args) {
+        return invokeConstructor(className, null, expectType, args);
+    }
+
+    /**
+     * Returns a new instance of the given class name with the arguments
+     *
+     * <p>
+     * This locates and calls a constructor
+     * <p>
+     * The constructor signature must match the argument types by assignment compatibility
+     *
+     * @param <T> the required type to be constructed
+     * @param className The class name to be constructed, not {@code null}
+     * @param classLoader The class loader to be used, may be {@code null}
+     * @param expectType The expected type to be converted, not {@code null}
+     * @param args The array of arguments, may be {@code null}
+     *
+     * @return a new instance of the given class name with the arguments
+     */
+    public static <T> T invokeConstructor(@Nullable String className, @Nullable ClassLoader classLoader, @Nullable Class<T> expectType, @Nullable Object... args) {
+        return invokeConstructor(className, classLoader, expectType, args, ClassUtils.toClass(args));
+    }
+
+    /**
+     * Returns a new instance of the given class with the arguments of the specified parameter types
+     *
+     * <p>
+     * This locates and calls a constructor
+     * <p>
+     * The constructor signature must match the argument types by assignment compatibility
+     *
+     * @param <T> the required type to be constructed
+     * @param className The class name to be constructed, not {@code null}
+     * @param args The array of arguments, may be {@code null}
+     * @param paramTypes The array of parameter types, may be {@code null}
+     *
+     * @return a new instance of the given class with the arguments of the specified parameter types
+     */
+    public static <T> T invokeConstructor(@Nullable String className, @Nullable Class<T> expectType, @Nullable Object[] args, @Nullable Class<?>[] paramTypes) {
+        return invokeConstructor(className, null, expectType, args, paramTypes);
+    }
+
+    /**
+     * Returns a new instance of the given class with the arguments of the specified parameter types
+     *
+     * <p>
+     * This locates and calls a constructor
+     * <p>
+     * The constructor signature must match the argument types by assignment compatibility
+     *
+     * @param <T> the required type to be constructed
+     * @param className The class name to be constructed, not {@code null}
+     * @param classLoader The class loader to be used, may be {@code null}
+     * @param args The array of arguments, may be {@code null}
+     * @param paramTypes The array of parameter types, may be {@code null}
+     *
+     * @return a new instance of the given class with the arguments of the specified parameter types
+     */
+    @Nullable
+    public static <T> T invokeConstructor(@Nullable String className, @Nullable ClassLoader classLoader, @Nullable Class<T> expectType, @Nullable Object[] args, @Nullable Class<?>[] paramTypes) {
+        if (StringUtils.isBlank(className) || expectType == null) {
+            return null;
+        }
+        Class<?> clazz = ClassUtilsWraps.forNameQuietly(className, classLoader);
+        if (clazz == null) {
+            return null;
+        }
+        try {
+            Object instance = ConstructorUtils.invokeConstructor(clazz, args, paramTypes);
+            return ObjectUtilsWraps.castAs(instance, expectType);
+        } catch (Exception ignored) {
+        }
+        return null;
+    }
+
+    /**
+     * Returns a new instance of the given class with the arguments
+     *
+     * <p>
+     * This locates and calls a constructor
+     * <p>
+     * The constructor signature must match the argument types exactly
+     *
+     * @param <T> the required type to be constructed
+     * @param clazz The class to be constructed, not {@code null}
+     * @param args The array of arguments, may be {@code null}
+     *
+     * @return a new instance of the given class with the arguments
+     */
+    public static <T> T invokeExactConstructor(@Nullable Class<T> clazz, @Nullable Object... args) {
+        return invokeExactConstructor(clazz, args, ClassUtils.toClass(args));
+    }
+
+    /**
+     * Returns a new instance of the given class
+     *
+     * <p>
+     * This locates and calls a constructor
+     * <p>
+     * The constructor signature must match the argument types exactly
+     *
+     * @param <T> the required type to be constructed
+     * @param clazz The class to be constructed, not {@code null}
+     *
+     * @return a new instance of the given class
+     */
+    public static <T> T invokeExactConstructor(@Nullable Class<T> clazz) {
+        return invokeExactConstructor(clazz, null, null);
+    }
+
+    /**
+     * Returns a new instance of the given class with the arguments of the specified parameter types
+     *
+     * <p>
+     * This locates and calls a constructor
+     * <p>
+     * The constructor signature must match the argument types exactly
+     *
+     * @param <T> the required type to be constructed
+     * @param clazz The class to be constructed, not {@code null}
+     * @param args The array of arguments, may be {@code null}
+     * @param paramTypes The array of parameter types, may be {@code null}
+     *
+     * @return a new instance of the given class with the arguments of the specified parameter types
+     */
+    public static <T> T invokeExactConstructor(@Nullable Class<T> clazz, @Nullable Object[] args, @Nullable Class<?>[] paramTypes) {
+        if (clazz == null) {
+            return null;
+        }
+        try {
+            return ConstructorUtils.invokeExactConstructor(clazz, args, paramTypes);
+        } catch (Exception ignored) {
+        }
+        return null;
+    }
+
+    /**
+     * Returns a new instance of the given class name
+     *
+     * <p>
+     * This locates and calls a constructor
+     * <p>
+     * The constructor signature must match the argument types exactly
+     *
+     * @param <T> the required type to be constructed
+     * @param className The class name to be constructed, not {@code null}
+     * @param expectType The expected type to be converted, not {@code null}
+     *
+     * @return a new instance of the given class name
+     */
+    public static <T> T invokeExactConstructor(@Nullable String className, @Nullable Class<T> expectType) {
+        return invokeExactConstructor(className, null, expectType, null, null);
+    }
+
+    /**
+     * Returns a new instance of the given class name with the arguments
+     *
+     * <p>
+     * This locates and calls a constructor
+     * <p>
+     * The constructor signature must match the argument types exactly
+     *
+     * @param <T> the required type to be constructed
+     * @param className The class name to be constructed, not {@code null}
+     * @param expectType The expected type to be converted, not {@code null}
+     * @param args The array of arguments, may be {@code null}
+     *
+     * @return a new instance of the given class name with the arguments
+     */
+    public static <T> T invokeExactConstructor(@Nullable String className, @Nullable Class<T> expectType, @Nullable Object... args) {
+        return invokeExactConstructor(className, null, expectType, args);
+    }
+
+    /**
+     * Returns a new instance of the given class name with the arguments
+     *
+     * <p>
+     * This locates and calls a constructor
+     * <p>
+     * The constructor signature must match the argument types exactly
+     *
+     * @param <T> the required type to be constructed
+     * @param className The class name to be constructed, not {@code null}
+     * @param classLoader The class loader to be used, may be {@code null}
+     * @param expectType The expected type to be converted, not {@code null}
+     * @param args The array of arguments, may be {@code null}
+     *
+     * @return a new instance of the given class name with the arguments
+     */
+    public static <T> T invokeExactConstructor(@Nullable String className, @Nullable ClassLoader classLoader, @Nullable Class<T> expectType, @Nullable Object... args) {
+        return invokeExactConstructor(className, classLoader, expectType, args, ClassUtils.toClass(args));
+    }
+
+    /**
+     * Returns a new instance of the given class with the arguments of the specified parameter types
+     *
+     * <p>
+     * This locates and calls a constructor
+     * <p>
+     * The constructor signature must match the argument types exactly
+     *
+     * @param <T> the required type to be constructed
+     * @param className The class name to be constructed, not {@code null}
+     * @param args The array of arguments, may be {@code null}
+     * @param paramTypes The array of parameter types, may be {@code null}
+     *
+     * @return a new instance of the given class with the arguments of the specified parameter types
+     */
+    public static <T> T invokeExactConstructor(@Nullable String className, @Nullable Class<T> expectType, @Nullable Object[] args, @Nullable Class<?>[] paramTypes) {
+        return invokeExactConstructor(className, null, expectType, args, paramTypes);
+    }
+
+    /**
+     * Returns a new instance of the given class with the arguments of the specified parameter types
+     *
+     * <p>
+     * This locates and calls a constructor
+     * <p>
+     * The constructor signature must match the argument types exactly
+     *
+     * @param <T> the required type to be constructed
+     * @param className The class name to be constructed, not {@code null}
+     * @param classLoader The class loader to be used, may be {@code null}
+     * @param args The array of arguments, may be {@code null}
+     * @param paramTypes The array of parameter types, may be {@code null}
+     *
+     * @return a new instance of the given class with the arguments of the specified parameter types
+     */
+    @Nullable
+    public static <T> T invokeExactConstructor(@Nullable String className, @Nullable ClassLoader classLoader, @Nullable Class<T> expectType, @Nullable Object[] args, @Nullable Class<?>[] paramTypes) {
+        if (StringUtils.isBlank(className) || expectType == null) {
+            return null;
+        }
+        Class<?> clazz = ClassUtilsWraps.forNameQuietly(className, classLoader);
+        if (clazz == null) {
+            return null;
+        }
+        try {
+            Object instance = ConstructorUtils.invokeExactConstructor(clazz, args, paramTypes);
+            return ObjectUtilsWraps.castAs(instance, expectType);
+        } catch (Exception ignored) {
+        }
+        return null;
+    }
+
+    /**
+     * Returns the constructor of the given class with the specified parameter types, checking accessibility
+     *
+     * <p>
+     * This finds the constructor and ensures that it is accessible
+     * <p>
+     * The constructor signature must match the parameter types exactly
+     *
+     * @param <T> the required type to be constructed
+     * @param clazz The class to find a constructor for, not {@code null}
+     * @param paramTypes The array of parameter types, may be {@code null}
+     *
+     * @return the constructor of the given class with the specified parameter types, checking accessibility
+     */
+    public static <T> Constructor<T> getAccessibleConstructor(@Nullable Class<T> clazz, @Nullable Class<?>... paramTypes) {
+        if (clazz == null) {
+            return null;
+        }
+        try {
+            return ConstructorUtils.getAccessibleConstructor(clazz, paramTypes);
+        } catch (Exception ignored) {
+        }
+        return null;
+    }
+
+    /**
+     * Returns the constructor of the given class with the specified parameter types, checking accessibility
+     *
+     * <p>
+     * This finds the constructor and ensures that it is accessible
+     * <p>
+     * The constructor signature must match the parameter types exactly
+     *
+     * @param <T> the required type to be constructed
+     * @param className The class name to be constructed, not {@code null}
+     * @param expectType The expected type to be converted, not {@code null}
+     * @param paramTypes The array of parameter types, may be {@code null}
+     *
+     * @return the constructor of the given class with the specified parameter types, checking accessibility
+     */
+    public static <T> Constructor<T> getAccessibleConstructor(@Nullable String className, @Nullable Class<T> expectType, @Nullable Class<?>... paramTypes) {
+        return getAccessibleConstructor(className, null, expectType, paramTypes);
+    }
+
+    /**
+     * Returns the constructor of the given class with the specified parameter types, checking accessibility
+     *
+     * <p>
+     * This finds the constructor and ensures that it is accessible
+     * <p>
+     * The constructor signature must match the parameter types exactly
+     *
+     * @param <T> the required type to be constructed
+     * @param className The class name to be constructed, not {@code null}
+     * @param classLoader The class loader to be used, may be {@code null}
+     * @param expectType The expected type to be converted, not {@code null}
+     * @param paramTypes The array of parameter types, may be {@code null}
+     *
+     * @return the constructor of the given class with the specified parameter types, checking accessibility
+     */
+    @Nullable
+    @SuppressWarnings("unchecked")
+    public static <T> Constructor<T> getAccessibleConstructor(@Nullable String className, @Nullable ClassLoader classLoader, @Nullable Class<T> expectType, @Nullable Class<?>... paramTypes) {
+        if (StringUtils.isBlank(className) || expectType == null) {
+            return null;
+        }
+        Class<?> clazz = ClassUtilsWraps.forNameQuietly(className, classLoader);
+        if (clazz == null) {
+            return null;
+        }
+        try {
+            Constructor<?> result = ConstructorUtils.getAccessibleConstructor(clazz, paramTypes);
+            if (result != null && ClassUtils.isAssignable(result.getDeclaringClass(), expectType)) {
+                return (Constructor<T>) result;
+            }
+        } catch (Exception ignored) {
+        }
+        return null;
+    }
+
+    /**
+     * Returns the constructor of the given class with compatible parameter types, checking accessibility
+     *
+     * <p>
+     * This finds the constructor and ensures that it is accessible
+     * <p>
+     * This checks all the constructor and finds one with compatible parameters<br/>
+     * This requires that every parameter is assignable from the given parameter types<br/>
+     * This is a more flexible search than the normal exact matching algorithm
+     *
+     * @param <T> the required type to be constructed
+     * @param clazz The class to find a constructor for, not {@code null}
+     * @param paramTypes The array of parameter types, may be {@code null}
+     *
+     * @return the constructor of the given class with compatible parameter types, checking accessibility
+     */
+    public static <T> Constructor<T> getMatchingAccessibleConstructor(@Nullable Class<T> clazz, @Nullable Class<?>... paramTypes) {
+        if (clazz == null) {
+            return null;
+        }
+        try {
+            return ConstructorUtils.getMatchingAccessibleConstructor(clazz, paramTypes);
+        } catch (Exception ignored) {
+        }
+        return null;
+    }
+
+    /**
+     * Returns the constructor of the given class with compatible parameter types, checking accessibility
+     *
+     * <p>
+     * This finds the constructor and ensures that it is accessible
+     * <p>
+     * This checks all the constructor and finds one with compatible parameters<br/>
+     * This requires that every parameter is assignable from the given parameter types<br/>
+     * This is a more flexible search than the normal exact matching algorithm
+     *
+     * @param <T> the required type to be constructed
+     * @param className The class name to be constructed, not {@code null}
+     * @param expectType The expected type to be converted, not {@code null}
+     * @param paramTypes The array of parameter types, may be {@code null}
+     *
+     * @return the constructor of the given class with compatible parameter types, checking accessibility
+     */
+    public static <T> Constructor<T> getMatchingAccessibleConstructor(@Nullable String className, @Nullable Class<T> expectType, @Nullable Class<?>... paramTypes) {
+        return getMatchingAccessibleConstructor(className, null, expectType, paramTypes);
+    }
+
+    /**
+     * Returns the constructor of the given class with compatible parameter types, checking accessibility
+     *
+     * <p>
+     * This finds the constructor and ensures that it is accessible
+     * <p>
+     * This checks all the constructor and finds one with compatible parameters<br/>
+     * This requires that every parameter is assignable from the given parameter types<br/>
+     * This is a more flexible search than the normal exact matching algorithm
+     *
+     * @param <T> the required type to be constructed
+     * @param className The class name to be constructed, not {@code null}
+     * @param classLoader The class loader to be used, may be {@code null}
+     * @param expectType The expected type to be converted, not {@code null}
+     * @param paramTypes The array of parameter types, may be {@code null}
+     *
+     * @return the constructor of the given class with compatible parameter types, checking accessibility
+     */
+    @Nullable
+    @SuppressWarnings("unchecked")
+    public static <T> Constructor<T> getMatchingAccessibleConstructor(@Nullable String className, @Nullable ClassLoader classLoader, @Nullable Class<T> expectType, @Nullable Class<?>... paramTypes) {
+        if (StringUtils.isBlank(className) || expectType == null) {
+            return null;
+        }
+        Class<?> clazz = ClassUtilsWraps.forNameQuietly(className, classLoader);
+        if (clazz == null) {
+            return null;
+        }
+        try {
+            Constructor<?> result = ConstructorUtils.getMatchingAccessibleConstructor(clazz, paramTypes);
+            if (result != null && ClassUtils.isAssignable(result.getDeclaringClass(), expectType)) {
+                return (Constructor<T>) result;
+            }
+        } catch (Exception ignored) {
+        }
+        return null;
+    }
+
+    public static <T> T newInstance(@Nullable Constructor<T> constructor) {
+        return newInstance(constructor, ArrayUtils.EMPTY_OBJECT_ARRAY);
+    }
+
+    /**
+     * Returns a new instance of the constructor's declaring class
+     *
+     * @param constructor The given constructor method
+     * @param args array of objects to be passed as arguments to the constructor call
+     *
+     * @return a new instance of the constructor's declaring class
+     */
+    public static <T> T newInstance(@Nullable Constructor<T> constructor, @Nullable Object... args) {
+        if (constructor == null) {
+            return null;
+        }
+        try {
+            return constructor.newInstance(args != null ? args : ArrayUtils.EMPTY_OBJECT_ARRAY);
+        } catch (Exception ignored) {
+        }
+        return null;
+    }
+}

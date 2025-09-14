@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- * Copyright (c) 2016 Yookue Ltd. All rights reserved.
+ * Copyright (c) 2016 Unikue Ltd. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,18 +20,18 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.yookue.commonplexus</groupId>
+    <groupId>cn.unikue.commonplexus</groupId>
     <artifactId>plexus-javase-util</artifactId>
-    <version>2.1.1</version>
+    <version>2.2.0</version>
 
     <name>${project.artifactId}</name>
-    <description>Yookue Plexus JavaSE Util provides many easy-to-use utilities for JavaSE</description>
-    <url>https://github.com/yookue/plexus-javase-util</url>
+    <description>Unikue Plexus JavaSE Util provides many easy-to-use utilities for JavaSE</description>
+    <url>https://github.com/unikueltd/plexus-javase-util</url>
     <inceptionYear>2016</inceptionYear>
 
     <organization>
-        <name>Yookue Ltd</name>
-        <url>https://yookue.com</url>
+        <name>Unikue Ltd</name>
+        <url>https://unikue.cn</url>
     </organization>
 
     <properties>
@@ -47,7 +47,7 @@
         <project.build.resourceEncoding>${file.encoding}</project.build.resourceEncoding>
         <project.reporting.outputEncoding>${file.encoding}</project.reporting.outputEncoding>
 
-        <commons-beanutils2.version>2.0.2</commons-beanutils2.version>
+        <commons-beanutils2.version>2.0.0-M2</commons-beanutils2.version>
         <commons-codec.version>1.18.0</commons-codec.version>
         <commons-collections4.version>4.5.0</commons-collections4.version>
         <commons-io.version>2.20.0</commons-io.version>
@@ -61,19 +61,19 @@
         <jakarta-persistence.version>3.1.0</jakarta-persistence.version>
         <jakarta-validation.version>3.0.2</jakarta-validation.version>
         <jnanoid.version>2.0.0</jnanoid.version>
-        <jsoup.version>1.21.1</jsoup.version>
+        <jsoup.version>1.21.2</jsoup.version>
         <jsqlparser.version>5.3</jsqlparser.version>
         <lombok.version>1.18.38</lombok.version>
-        <pinyin4j.version>2.6.1</pinyin4j.version>
+        <pinyin4j.version>2.7.0</pinyin4j.version>
         <slf4j.version>2.0.17</slf4j.version>
 
         <junit-jupiter.version>5.12.2</junit-jupiter.version>
 
-        <javadoc-docent-maven-plugin.version>2.0.2</javadoc-docent-maven-plugin.version>
+        <javadoc-docent-maven-plugin.version>2.1.0</javadoc-docent-maven-plugin.version>
         <maven-compiler-plugin.version>3.14.0</maven-compiler-plugin.version>
         <maven-install-plugin.version>3.1.4</maven-install-plugin.version>
         <maven-jar-plugin.version>3.4.2</maven-jar-plugin.version>
-        <maven-javadoc-plugin.version>3.11.2</maven-javadoc-plugin.version>
+        <maven-javadoc-plugin.version>3.11.3</maven-javadoc-plugin.version>
         <maven-resources-plugin.version>3.3.1</maven-resources-plugin.version>
         <maven-source-plugin.version>3.3.1</maven-source-plugin.version>
         <maven-surefire-plugin.version>3.5.3</maven-surefire-plugin.version>
@@ -95,7 +95,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.yookue.forkextension.apache</groupId>
+            <groupId>org.apache.commons</groupId>
             <artifactId>commons-beanutils2</artifactId>
             <version>${commons-beanutils2.version}</version>
             <optional>true</optional>
@@ -240,7 +240,7 @@
             <optional>true</optional>
         </dependency>
         <dependency>
-            <groupId>com.yookue.forkextension.pinyin4j</groupId>
+            <groupId>cn.unikue.forkextension.pinyin4j</groupId>
             <artifactId>pinyin4j</artifactId>
             <version>${pinyin4j.version}</version>
             <optional>true</optional>
@@ -341,14 +341,14 @@
                     </links>
                     <taglets>
                         <taglet>
-                            <tagletClass>com.yookue.mavenplugin.javadocdocent.taglet.ReferenceTaglet</tagletClass>
+                            <tagletClass>cn.unikue.mavenplugin.javadocdocent.taglet.ReferenceTaglet</tagletClass>
                         </taglet>
                         <taglet>
-                            <tagletClass>com.yookue.mavenplugin.javadocdocent.taglet.WarningTaglet</tagletClass>
+                            <tagletClass>cn.unikue.mavenplugin.javadocdocent.taglet.WarningTaglet</tagletClass>
                         </taglet>
                     </taglets>
                     <tagletArtifact>
-                        <groupId>com.yookue.mavenplugin</groupId>
+                        <groupId>cn.unikue.mavenplugin</groupId>
                         <artifactId>javadoc-docent-maven-plugin</artifactId>
                         <version>${javadoc-docent-maven-plugin.version}</version>
                     </tagletArtifact>
@@ -423,14 +423,14 @@
     </build>
 
     <scm>
-        <url>https://github.com/yookue/plexus-javase-util</url>
-        <connection>scm:git:https://github.com/yookue/plexus-javase-util.git</connection>
-        <developerConnection>scm:git:https://github.com/yookue/plexus-javase-util.git</developerConnection>
+        <url>https://github.com/unikueltd/plexus-javase-util</url>
+        <connection>scm:git:https://github.com/unikueltd/plexus-javase-util.git</connection>
+        <developerConnection>scm:git:https://github.com/unikueltd/plexus-javase-util.git</developerConnection>
     </scm>
 
     <issueManagement>
         <system>Github</system>
-        <url>https://github.com/yookue/plexus-javase-util/issues</url>
+        <url>https://github.com/unikueltd/plexus-javase-util/issues</url>
     </issueManagement>
 
     <licenses>
@@ -443,7 +443,7 @@
 
     <developers>
         <developer>
-            <name>Yookue Ltd</name>
+            <name>Unikue Ltd</name>
         </developer>
         <developer>
             <id>davidhsing</id>
@@ -455,8 +455,8 @@
             <roles>
                 <role>developer</role>
             </roles>
-            <organization>Yookue Ltd</organization>
-            <organizationUrl>https://yookue.com</organizationUrl>
+            <organization>Unikue Ltd</organization>
+            <organizationUrl>https://unikue.cn</organizationUrl>
             <timezone>China/Beijing</timezone>
         </developer>
     </developers>
