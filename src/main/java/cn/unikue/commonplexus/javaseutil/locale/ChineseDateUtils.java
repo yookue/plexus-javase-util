@@ -126,7 +126,7 @@ public abstract class ChineseDateUtils {
         if (monthOfYear < 1 || monthOfYear > 12 || dayOfMonth < 1 || dayOfMonth > 31) {
             throw new IllegalArgumentException();
         }
-        ChineseNumberType numberType = ObjectUtils.defaultIfNull(type, ChineseNumberType.ZH_CN_GENERAL);
+        ChineseNumberType numberType = ObjectUtils.getIfNull(type, ChineseNumberType.ZH_CN_GENERAL);
         // Calculate year
         StringBuilder yearBuilder = new StringBuilder();
         if (year < 0) {

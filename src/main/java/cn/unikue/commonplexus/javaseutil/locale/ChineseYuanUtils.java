@@ -203,7 +203,7 @@ public abstract class ChineseYuanUtils {
         if (fraction < 0 || fraction > 4) {
             throw new IllegalArgumentException("fraction can not be less than 0 or greater than 4");    // $NON-NLS-1$
         }
-        ChineseNumberType numberType = ObjectUtils.defaultIfNull(type, ChineseNumberType.ZH_CN_GENERAL);
+        ChineseNumberType numberType = ObjectUtils.getIfNull(type, ChineseNumberType.ZH_CN_GENERAL);
         String plainAmount = amount.toPlainString();
         boolean negative = StringUtilsWraps.startsWith(plainAmount, CharVariantConst.HYPHEN);
         String integerText = negative ? StringUtilsWraps.substringBetween(plainAmount, CharVariantConst.HYPHEN, CharVariantConst.DOT) : StringUtils.substringBefore(plainAmount, CharVariantConst.DOT);

@@ -507,6 +507,37 @@ public abstract class RegexUtilsWraps {
         return compilePattern(regex) != null;
     }
 
+    /**
+     * Removes each substring of the text String that matches the given regular expression pattern.
+     *
+     * This method is a {@code null} safe equivalent to:
+     * <ul>
+     *  <li>{@code pattern.matcher(text).replaceAll(StringUtils.EMPTY)}</li>
+     * </ul>
+     *
+     * <p>A {@code null} reference passed to this method is a no-op.</p>
+     *
+     * <pre>{@code
+     * RegExUtilsWraps.removeAll(null, *)      = null
+     * RegExUtilsWraps.removeAll("any", (Pattern) null)  = "any"
+     * RegExUtilsWraps.removeAll("any", Pattern.compile(""))    = "any"
+     * RegExUtilsWraps.removeAll("any", Pattern.compile(".*"))  = ""
+     * RegExUtilsWraps.removeAll("any", Pattern.compile(".+"))  = ""
+     * RegExUtilsWraps.removeAll("abc", Pattern.compile(".?"))  = ""
+     * RegExUtilsWraps.removeAll("A<__>\n<__>B", Pattern.compile("<.*>"))      = "A\nB"
+     * RegExUtilsWraps.removeAll("A<__>\n<__>B", Pattern.compile("(?s)<.*>"))  = "AB"
+     * RegExUtilsWraps.removeAll("A<__>\n<__>B", Pattern.compile("<.*>", Pattern.DOTALL))  = "AB"
+     * RegExUtilsWraps.removeAll("ABCabc123abc", Pattern.compile("[a-z]"))     = "ABC123"
+     * }</pre>
+     *
+     * @param text  text to remove from, may be null
+     * @param regex  the regular expression to which this string is to be matched
+     * @return the text with any removes processed, {@code null} if null String input
+     */
+    public static String removeAll(@Nullable String text, @Nullable Pattern regex) {
+        return (StringUtils.isEmpty(text) || regex == null) ? text : RegExUtils.replaceAll((CharSequence) text, regex, StringUtils.EMPTY);
+    }
+
     public static String removeAll(@Nullable String text, char character) {
         if (StringUtils.isEmpty(text)) {
             return text;
@@ -551,7 +582,7 @@ public abstract class RegexUtilsWraps {
             return text;
         }
         AtomicReference<String> result = new AtomicReference<>(text);
-        regexes.stream().filter(StringUtils::isNotEmpty).forEach(regex -> result.set(RegExUtils.removeAll(result.get(), Pattern.compile(regex, Pattern.CASE_INSENSITIVE))));
+        regexes.stream().filter(StringUtils::isNotEmpty).forEach(regex -> result.set(removeAll(result.get(), Pattern.compile(regex, Pattern.CASE_INSENSITIVE))));
         return result.get();
     }
 
@@ -595,7 +626,7 @@ public abstract class RegexUtilsWraps {
             return text;
         }
         AtomicReference<String> result = new AtomicReference<>(text);
-        regexes.stream().filter(StringUtils::isNotEmpty).forEach(regex -> result.set(RegExUtils.removeAll(result.get(), Pattern.compile(StringUtilsWraps.prependIfMissing(regex, CharVariantConst.CARET), Pattern.CASE_INSENSITIVE))));
+        regexes.stream().filter(StringUtils::isNotEmpty).forEach(regex -> result.set(removeAll(result.get(), Pattern.compile(StringUtilsWraps.prependIfMissing(regex, CharVariantConst.CARET), Pattern.CASE_INSENSITIVE))));
         return result.get();
     }
 
@@ -635,8 +666,12 @@ public abstract class RegexUtilsWraps {
             return text;
         }
         AtomicReference<String> result = new AtomicReference<>(text);
-        regexes.stream().filter(StringUtils::isNotEmpty).forEach(regex -> result.set(RegExUtils.removeAll(result.get(), Pattern.compile(StringUtilsWraps.appendIfMissing(regex, CharVariantConst.DOLLAR), Pattern.CASE_INSENSITIVE))));
+        regexes.stream().filter(StringUtils::isNotEmpty).forEach(regex -> result.set(removeAll(result.get(), Pattern.compile(StringUtilsWraps.appendIfMissing(regex, CharVariantConst.DOLLAR), Pattern.CASE_INSENSITIVE))));
         return result.get();
+    }
+
+    public static String replaceAll(@Nullable String text, @Nullable Pattern regex, @Nullable String replacement) {
+        return (StringUtilsWraps.anyEmpty(text, replacement) || regex == null) ? text : RegExUtils.replaceAll((CharSequence) text, regex, replacement);
     }
 
     public static String replaceAllIgnoreCase(@Nullable String text, @Nullable String regex, char replacement) {
@@ -651,7 +686,11 @@ public abstract class RegexUtilsWraps {
             return text;
         }
         Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
-        return RegExUtils.replaceAll(text, pattern, StringUtils.defaultString(replacement));
+        return replaceAll(text, pattern, StringUtils.defaultString(replacement));
+    }
+
+    public static String replaceFirst(@Nullable String text, @Nullable Pattern regex, @Nullable String replacement) {
+        return (StringUtilsWraps.anyEmpty(text, replacement) || regex == null) ? text : RegExUtils.replaceFirst((CharSequence) text, regex, replacement);
     }
 
     public static String replaceFirstIgnoreCase(@Nullable String text, @Nullable String regex, char replacement) {
@@ -666,7 +705,7 @@ public abstract class RegexUtilsWraps {
             return text;
         }
         Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
-        return RegExUtils.replaceFirst(text, pattern, StringUtils.defaultString(replacement));
+        return replaceFirst(text, pattern, StringUtils.defaultString(replacement));
     }
 
     public static String reserveAlphabetic(@Nullable String text) {

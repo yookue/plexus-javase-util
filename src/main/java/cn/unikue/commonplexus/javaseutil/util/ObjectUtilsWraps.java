@@ -286,13 +286,6 @@ public abstract class ObjectUtilsWraps {
     }
 
     /**
-     * @see org.apache.commons.lang3.ObjectUtils#defaultIfNull
-     */
-    public static <T> T defaultIfEquals(@Nullable T target, @Nullable T comparison, @Nullable T defaultValue) {
-        return Objects.equals(target, comparison) ? defaultValue : target;
-    }
-
-    /**
      * Determines if the given objects are equal
      * <p>
      * Returning {@code true} if both are {@code null}, {@code false} if only one is {@code null}
@@ -379,6 +372,13 @@ public abstract class ObjectUtilsWraps {
             return ArrayUtilsWraps.getComponentType(source);
         }
         return null;
+    }
+
+    /**
+     * @see org.apache.commons.lang3.ObjectUtils#getIfNull
+     */
+    public static <T> T getIfEquals(@Nullable T target, @Nullable T comparison, @Nullable T defaultValue) {
+        return Objects.equals(target, comparison) ? defaultValue : target;
     }
 
     public static <T> void ifEmpty(@Nullable T source, @Nullable Consumer<? super T> action) {

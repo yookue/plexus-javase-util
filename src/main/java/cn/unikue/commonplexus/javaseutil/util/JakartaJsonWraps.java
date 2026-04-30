@@ -65,7 +65,7 @@ public abstract class JakartaJsonWraps {
     @Nullable
     public static JsonStructure ofJson(@Nullable File file, @Nullable Charset charset) {
         try {
-            return (file == null) ? null : ofJson(new FileReader(file, ObjectUtils.defaultIfNull(charset, StandardCharsets.UTF_8)));
+            return (file == null) ? null : ofJson(new FileReader(file, ObjectUtils.getIfNull(charset, StandardCharsets.UTF_8)));
         } catch (Exception ignored) {
         }
         return null;
@@ -79,7 +79,7 @@ public abstract class JakartaJsonWraps {
     @Nullable
     public static JsonStructure ofJson(@Nullable InputStream stream, @Nullable Charset charset) {
         try {
-            return (stream == null) ? null : ofJson(new InputStreamReader(stream, ObjectUtils.defaultIfNull(charset, StandardCharsets.UTF_8)));
+            return (stream == null) ? null : ofJson(new InputStreamReader(stream, ObjectUtils.getIfNull(charset, StandardCharsets.UTF_8)));
         } catch (Exception ignored) {
         }
         return null;
@@ -129,7 +129,7 @@ public abstract class JakartaJsonWraps {
         if (ObjectUtils.anyNull(file, expectType)) {
             return null;
         }
-        String content = FileUtilsWraps.readFileToString(file, ObjectUtils.defaultIfNull(charset, StandardCharsets.UTF_8));
+        String content = FileUtilsWraps.readFileToString(file, ObjectUtils.getIfNull(charset, StandardCharsets.UTF_8));
         if (StringUtils.isBlank(content)) {
             return null;
         }

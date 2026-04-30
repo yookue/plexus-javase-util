@@ -629,7 +629,7 @@ public abstract class LocalDateWraps {
 
     @Nullable
     public static LocalDateTime ofJdkDateTime(@Nullable Date date, @Nullable ZoneId zoneId) {
-        return (date == null) ? null : LocalDateTime.ofInstant(date.toInstant(), ObjectUtils.defaultIfNull(zoneId, ZoneId.systemDefault()));
+        return (date == null) ? null : LocalDateTime.ofInstant(date.toInstant(), ObjectUtils.getIfNull(zoneId, ZoneId.systemDefault()));
     }
 
     @Nullable
@@ -648,7 +648,7 @@ public abstract class LocalDateWraps {
     }
 
     public static Long toEpochMilli(@Nullable LocalDateTime dateTime, @Nullable ZoneId zoneId) {
-        return (dateTime == null) ? null : dateTime.atZone(ObjectUtils.defaultIfNull(zoneId, ZoneId.systemDefault())).toInstant().toEpochMilli();
+        return (dateTime == null) ? null : dateTime.atZone(ObjectUtils.getIfNull(zoneId, ZoneId.systemDefault())).toInstant().toEpochMilli();
     }
 
     public static Long toEpochSecond(@Nullable LocalDateTime dateTime) {
@@ -656,7 +656,7 @@ public abstract class LocalDateWraps {
     }
 
     public static Long toEpochSecond(@Nullable LocalDateTime dateTime, @Nullable ZoneId zoneId) {
-        return (dateTime == null) ? null : dateTime.atZone(ObjectUtils.defaultIfNull(zoneId, ZoneId.systemDefault())).toEpochSecond();
+        return (dateTime == null) ? null : dateTime.atZone(ObjectUtils.getIfNull(zoneId, ZoneId.systemDefault())).toEpochSecond();
     }
 
     @Nullable
@@ -666,7 +666,7 @@ public abstract class LocalDateWraps {
 
     @Nullable
     public static Date toJdkDate(@Nullable LocalDate date, @Nullable ZoneId zoneId) {
-        return (date == null) ? null : Date.from(date.atStartOfDay().atZone(ObjectUtils.defaultIfNull(zoneId, ZoneId.systemDefault())).toInstant());
+        return (date == null) ? null : Date.from(date.atStartOfDay().atZone(ObjectUtils.getIfNull(zoneId, ZoneId.systemDefault())).toInstant());
     }
 
     @Nullable
@@ -676,7 +676,7 @@ public abstract class LocalDateWraps {
 
     @Nullable
     public static Date toJdkDate(@Nullable LocalDateTime dateTime, @Nullable ZoneId zoneId) {
-        return (dateTime == null) ? null : Date.from(dateTime.atZone(ObjectUtils.defaultIfNull(zoneId, ZoneId.systemDefault())).toInstant());
+        return (dateTime == null) ? null : Date.from(dateTime.atZone(ObjectUtils.getIfNull(zoneId, ZoneId.systemDefault())).toInstant());
     }
 
     @Nullable

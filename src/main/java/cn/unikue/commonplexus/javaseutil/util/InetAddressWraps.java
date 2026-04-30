@@ -149,7 +149,7 @@ public abstract class InetAddressWraps {
     }
 
     public static boolean isLanAddress(@Nullable String address) {
-        return StringUtils.isNotBlank(address) && (StringUtils.equalsIgnoreCase(address, InetAddressConst.LOCALHOST_NAME) || Pattern.matches(RegexVariantConst.LAN_ADDRESS_IPV4, address));
+        return StringUtils.isNotBlank(address) && (StringUtilsWraps.equalsIgnoreCase(address, InetAddressConst.LOCALHOST_NAME) || Pattern.matches(RegexVariantConst.LAN_ADDRESS_IPV4, address));
     }
 
     /**
@@ -160,7 +160,7 @@ public abstract class InetAddressWraps {
      * @return an ip address of LAN from localhost one
      */
     public static String toLanAddress(@Nullable String address) {
-        return StringUtils.equalsAny(address, InetAddressConst.LOCALHOST_NAME, InetAddressConst.LOCALHOST_IPV4, InetAddressConst.LOCALHOST_IPV6) ? getLocalIpAddress() : address;
+        return StringUtilsWraps.equalsAny(address, InetAddressConst.LOCALHOST_NAME, InetAddressConst.LOCALHOST_IPV4, InetAddressConst.LOCALHOST_IPV6) ? getLocalIpAddress() : address;
     }
 
     /**

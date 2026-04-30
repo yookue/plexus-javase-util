@@ -102,7 +102,7 @@ public class EntityToSqlTranslator {
         return builder.toString();
     }
 
-    @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
+    @SuppressWarnings({"deprecation", "DataFlowIssue", "RedundantSuppression"})
     protected SchemaTableColumns buildColumnStruct(@Nullable Object entity, @Nullable String schema, @Nullable String table) {
         if (entity == null) {
             return null;

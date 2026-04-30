@@ -31,7 +31,7 @@ import org.apache.commons.text.lookup.StringLookup;
  * @see org.apache.commons.text.StringSubstitutor#StringSubstitutor(org.apache.commons.text.lookup.StringLookup)
  * @see "org.apache.commons.text.StrLookup.MapStrLookup"
  */
-@SuppressWarnings({"unused", "ClassCanBeRecord"})
+@SuppressWarnings("unused")
 public class MapStringLookup<V> implements StringLookup {
     private final Map<String, V> map;
     private final boolean nullKeyAsPlaceholder;
@@ -54,7 +54,7 @@ public class MapStringLookup<V> implements StringLookup {
     }
 
     @Override
-    public String lookup(@Nullable String key) {
+    public String apply(@Nullable String key) {
         if (map == null) {
             return null;
         }
@@ -66,5 +66,18 @@ public class MapStringLookup<V> implements StringLookup {
             return nullValueAsPlaceholder ? placeholder : null;
         }
         return value.toString();
+    }
+
+    /**
+     * Looks up a String key to provide a String value.
+     *
+     * @return The matching value, null if no match.
+     *
+     * @deprecated Use {@link #apply(String)}.
+     */
+    @Override
+    @Deprecated
+    public String lookup(String key) {
+        return apply(key);
     }
 }

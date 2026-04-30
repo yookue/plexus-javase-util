@@ -378,18 +378,6 @@ public abstract class IoUtilsWraps {
         }
     }
 
-    @Nullable
-    public static byte[] readFully(@Nullable InputStream input, int length) {
-        if (input == null || length <= 0) {
-            return null;
-        }
-        try {
-            return IOUtils.readFully(input, length);
-        } catch (Exception ignored) {
-        }
-        return null;
-    }
-
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
     public static void readFully(@Nullable ReadableByteChannel input, @Nullable ByteBuffer buffer) {
         if (ObjectUtils.anyNull(input, buffer)) {

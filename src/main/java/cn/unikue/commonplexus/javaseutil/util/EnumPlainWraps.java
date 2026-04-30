@@ -21,7 +21,6 @@ import java.util.Arrays;
 import java.util.Objects;
 import jakarta.annotation.Nullable;
 import org.apache.commons.lang3.ArrayUtils;
-import org.apache.commons.lang3.StringUtils;
 
 
 /**
@@ -36,7 +35,7 @@ public abstract class EnumPlainWraps {
     }
 
     public static <E extends Enum<E>> boolean containsNameIgnoreCase(@Nullable Class<E> enumClazz, @Nullable String name) {
-        return enumClazz != null && ArrayUtils.isNotEmpty(enumClazz.getEnumConstants()) && Arrays.stream(enumClazz.getEnumConstants()).anyMatch(item -> StringUtils.equalsIgnoreCase(item.name(), name));
+        return enumClazz != null && ArrayUtils.isNotEmpty(enumClazz.getEnumConstants()) && Arrays.stream(enumClazz.getEnumConstants()).anyMatch(item -> StringUtilsWraps.equalsIgnoreCase(item.name(), name));
     }
 
     @Nullable
@@ -56,6 +55,6 @@ public abstract class EnumPlainWraps {
 
     @Nullable
     public static <E extends Enum<E>> E ofNameIgnoreCase(@Nullable Class<E> enumClazz, @Nullable String name, @Nullable E defaultValue) {
-        return (enumClazz == null || ArrayUtils.isEmpty(enumClazz.getEnumConstants())) ? defaultValue : Arrays.stream(enumClazz.getEnumConstants()).filter(item -> StringUtils.equalsIgnoreCase(item.name(), name)).findFirst().orElse(defaultValue);
+        return (enumClazz == null || ArrayUtils.isEmpty(enumClazz.getEnumConstants())) ? defaultValue : Arrays.stream(enumClazz.getEnumConstants()).filter(item -> StringUtilsWraps.equalsIgnoreCase(item.name(), name)).findFirst().orElse(defaultValue);
     }
 }

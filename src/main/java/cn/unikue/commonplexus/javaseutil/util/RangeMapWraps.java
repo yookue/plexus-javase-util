@@ -34,12 +34,10 @@ import com.google.common.collect.TreeRangeMap;
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})
 public abstract class RangeMapWraps {
     @SafeVarargs
-    @SuppressWarnings("NullableProblems")
     public static <T extends Comparable<T>> boolean anyOverlap(@Nullable Range<T>... ranges) {
         return anyOverlap(ArrayUtilsWraps.asList(ranges));
     }
 
-    @SuppressWarnings("NullableProblems")
     public static <T extends Comparable<T>> boolean anyOverlap(@Nullable Collection<Range<T>> ranges) {
         if (ranges == null || ranges.size() < 2) {
             return false;

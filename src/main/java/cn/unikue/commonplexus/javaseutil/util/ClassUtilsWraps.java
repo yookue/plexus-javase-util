@@ -401,6 +401,6 @@ public abstract class ClassUtilsWraps {
         if (ObjectUtils.anyNull(clazz1, clazz2) || clazz1.getClassLoader() != clazz2.getClassLoader()) {
             return false;
         }
-        return StringUtils.equals(ClassUtils.getPackageName(clazz1), ClassUtils.getPackageName(clazz2));
+        return StringUtilsWraps.equals(ClassUtils.getPackageName(clazz1), ClassUtils.getPackageName(clazz2));
     }
 }

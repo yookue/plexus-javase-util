@@ -201,7 +201,7 @@ public abstract class ChineseNumberUtils {
         if (amount == null) {
             return null;
         }
-        ChineseNumberType numberType = ObjectUtils.defaultIfNull(type, ChineseNumberType.ZH_CN_GENERAL);
+        ChineseNumberType numberType = ObjectUtils.getIfNull(type, ChineseNumberType.ZH_CN_GENERAL);
         String plainAmount = amount.toPlainString();
         boolean negative = StringUtilsWraps.startsWith(plainAmount, CharVariantConst.HYPHEN);
         String integerText = negative ? StringUtilsWraps.substringBetween(plainAmount, CharVariantConst.HYPHEN, CharVariantConst.DOT) : StringUtils.substringBefore(plainAmount, CharVariantConst.DOT);
