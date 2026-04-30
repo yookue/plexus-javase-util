@@ -32,11 +32,11 @@ import org.apache.commons.lang3.StringUtils;
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})
 public abstract class CharSequenceWraps {
     public static CharSequence emptyIfEquals(@Nullable CharSequence sequence, @Nullable CharSequence comparison) {
-        return StringUtilsWraps.equals(sequence, comparison) ? StringUtils.EMPTY : sequence;
+        return StringUtils.equals(sequence, comparison) ? StringUtils.EMPTY : sequence;
     }
 
     public static CharSequence emptyIfEqualsIgnoreCase(@Nullable CharSequence sequence, @Nullable CharSequence comparison) {
-        return StringUtilsWraps.equalsIgnoreCase(sequence, comparison) ? StringUtils.EMPTY : sequence;
+        return StringUtils.equalsIgnoreCase(sequence, comparison) ? StringUtils.EMPTY : sequence;
     }
 
     public static String toStringIgnoreNull(@Nullable CharSequence sequence) {

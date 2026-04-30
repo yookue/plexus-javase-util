@@ -321,7 +321,7 @@ public abstract class BeanUtilsWraps {
             if (entry.getKey() == null || (!allowEmptyValue && ObjectUtils.isEmpty(entry.getValue()))) {
                 continue;
             }
-            if (StringUtilsWraps.equals(entry.getKey(), JavaKeywordConst.CLASS)) {
+            if (StringUtils.equals(entry.getKey(), JavaKeywordConst.CLASS)) {
                 if (allowClassKey) {
                     properties.put(entry.getKey(), entry.getValue());
                 }
@@ -354,7 +354,7 @@ public abstract class BeanUtilsWraps {
         }
         Properties properties = new Properties();
         for (Map.Entry<String, Object> entry : map.entrySet()) {
-            if (entry.getKey() == null || (!allowClassKey && StringUtilsWraps.equals(entry.getKey(), JavaKeywordConst.CLASS)) || (!allowEmptyValue && ObjectUtils.isEmpty(entry.getValue()))) {
+            if (entry.getKey() == null || (!allowClassKey && StringUtils.equals(entry.getKey(), JavaKeywordConst.CLASS)) || (!allowEmptyValue && ObjectUtils.isEmpty(entry.getValue()))) {
                 continue;
             }
             if (!StringUtilsWraps.equalsAny(entry.getKey(), fields)) {
@@ -386,7 +386,7 @@ public abstract class BeanUtilsWraps {
         }
         Properties properties = new Properties();
         for (Map.Entry<String, Object> entry : map.entrySet()) {
-            if (entry.getKey() == null || (!allowClassKey && StringUtilsWraps.equals(entry.getKey(), JavaKeywordConst.CLASS)) || (!allowEmptyValue && ObjectUtils.isEmpty(entry.getValue()))) {
+            if (entry.getKey() == null || (!allowClassKey && StringUtils.equals(entry.getKey(), JavaKeywordConst.CLASS)) || (!allowEmptyValue && ObjectUtils.isEmpty(entry.getValue()))) {
                 continue;
             }
             if (StringUtilsWraps.equalsAny(entry.getKey(), fields)) {
@@ -455,7 +455,7 @@ public abstract class BeanUtilsWraps {
             return;
         }
         for (Map.Entry<String, ?> entry : map.entrySet()) {
-            if (StringUtils.isBlank(entry.getKey()) || StringUtilsWraps.equals(entry.getKey(), JavaKeywordConst.CLASS) || (!allowEmptyValue && ObjectUtils.isEmpty(entry.getValue()))) {
+            if (StringUtils.isBlank(entry.getKey()) || StringUtils.equals(entry.getKey(), JavaKeywordConst.CLASS) || (!allowEmptyValue && ObjectUtils.isEmpty(entry.getValue()))) {
                 continue;
             }
             if (!StringUtilsWraps.equalsAny(entry.getKey(), fields)) {
@@ -481,7 +481,7 @@ public abstract class BeanUtilsWraps {
             return;
         }
         for (Map.Entry<String, ?> entry : map.entrySet()) {
-            if (StringUtils.isBlank(entry.getKey()) || StringUtilsWraps.equals(entry.getKey(), JavaKeywordConst.CLASS) || (!allowEmptyValue && ObjectUtils.isEmpty(entry.getValue()))) {
+            if (StringUtils.isBlank(entry.getKey()) || StringUtils.equals(entry.getKey(), JavaKeywordConst.CLASS) || (!allowEmptyValue && ObjectUtils.isEmpty(entry.getValue()))) {
                 continue;
             }
             if (StringUtilsWraps.equalsAny(entry.getKey(), fields)) {

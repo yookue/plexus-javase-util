@@ -59,7 +59,7 @@ class RegexUtilsWrapsTest {
     @Test
     void reserveNumeric() {
         String text = RegexUtilsWraps.reserveNumeric("ABC_123_456-DEF");    // $NON-NLS-1$
-        boolean result = StringUtilsWraps.equals(text, "123456");    // $NON-NLS-1$
+        boolean result = StringUtils.equals(text, "123456");    // $NON-NLS-1$
         log.info("{}: {}", StackTraceWraps.getExecutingMethodName(), result);
         Assertions.assertTrue(result);
     }
@@ -67,7 +67,7 @@ class RegexUtilsWrapsTest {
     @Test
     void reserveNumericHyphen() {
         String text = RegexUtilsWraps.reserveNumericHyphen("ABC_123_456-DEF");    // $NON-NLS-1$
-        boolean result = StringUtilsWraps.equals(text, "123456-");    // $NON-NLS-1$
+        boolean result = StringUtils.equals(text, "123456-");    // $NON-NLS-1$
         log.info("{}: {}", StackTraceWraps.getExecutingMethodName(), result);
         Assertions.assertTrue(result);
     }
@@ -75,7 +75,7 @@ class RegexUtilsWrapsTest {
     @Test
     void reserveWord() {
         String text = RegexUtilsWraps.reserveWord("ABC#_123@_456-DEF");    // $NON-NLS-1$
-        boolean result = StringUtilsWraps.equals(text, "ABC_123_456DEF");    // $NON-NLS-1$
+        boolean result = StringUtils.equals(text, "ABC_123_456DEF");    // $NON-NLS-1$
         log.info("{}: {}", StackTraceWraps.getExecutingMethodName(), result);
         Assertions.assertTrue(result);
     }
@@ -83,7 +83,7 @@ class RegexUtilsWrapsTest {
     @Test
     void reserveWordHyphen() {
         String text = RegexUtilsWraps.reserveWordHyphen("ABC#_123@_456-DEF");    // $NON-NLS-1$
-        boolean result = StringUtilsWraps.equals(text, "ABC_123_456-DEF");    // $NON-NLS-1$
+        boolean result = StringUtils.equals(text, "ABC_123_456-DEF");    // $NON-NLS-1$
         log.info("{}: {}", StackTraceWraps.getExecutingMethodName(), result);
         Assertions.assertTrue(result);
     }

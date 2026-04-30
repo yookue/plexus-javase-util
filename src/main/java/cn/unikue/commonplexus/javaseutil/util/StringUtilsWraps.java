@@ -118,43 +118,6 @@ public abstract class StringUtilsWraps {
     }
 
     /**
-     * Appends the suffix to the end of the string if the string does not already end with any of the suffixes.
-     *
-     * <pre>
-     * StringUtilsWraps.appendIfMissing(null, null)      = null
-     * StringUtilsWraps.appendIfMissing("abc", null)     = "abc"
-     * StringUtilsWraps.appendIfMissing("", "xyz"        = "xyz"
-     * StringUtilsWraps.appendIfMissing("abc", "xyz")    = "abcxyz"
-     * StringUtilsWraps.appendIfMissing("abcxyz", "xyz") = "abcxyz"
-     * StringUtilsWraps.appendIfMissing("abcXYZ", "xyz") = "abcXYZxyz"
-     * </pre>
-     * <p>
-     * With additional suffixes,
-     * </p>
-     *
-     * <pre>
-     * StringUtilsWraps.appendIfMissing(null, null, null)       = null
-     * StringUtilsWraps.appendIfMissing("abc", null, null)      = "abc"
-     * StringUtilsWraps.appendIfMissing("", "xyz", null)        = "xyz"
-     * StringUtilsWraps.appendIfMissing("abc", "xyz", new CharSequence[]{null}) = "abcxyz"
-     * StringUtilsWraps.appendIfMissing("abc", "xyz", "")       = "abc"
-     * StringUtilsWraps.appendIfMissing("abc", "xyz", "mno")    = "abcxyz"
-     * StringUtilsWraps.appendIfMissing("abcxyz", "xyz", "mno") = "abcxyz"
-     * StringUtilsWraps.appendIfMissing("abcmno", "xyz", "mno") = "abcmno"
-     * StringUtilsWraps.appendIfMissing("abcXYZ", "xyz", "mno") = "abcXYZxyz"
-     * StringUtilsWraps.appendIfMissing("abcMNO", "xyz", "mno") = "abcMNOxyz"
-     * </pre>
-     *
-     * @param str The string.
-     * @param suffix The suffix to append to the end of the string.
-     * @param suffixes Additional suffixes that are valid terminators.
-     * @return A new String if suffix was appended, the same string otherwise.
-     */
-    public static String appendIfMissing(@Nullable String str, @Nullable CharSequence suffix, @Nullable CharSequence... suffixes) {
-        return StringUtils.appendIfMissing(str, suffix, suffixes);
-    }
-
-    /**
      * Returns a string that appends the suffix to the end of the sequence if the sequence does not already end with the suffix
      *
      * @param sequence The source char sequence to be appended
@@ -175,7 +138,7 @@ public abstract class StringUtilsWraps {
      * @return a string that appends the suffix to the end of the string if the string does not already end with the suffix
      */
     public static String appendIfMissing(@Nullable CharSequence sequence, @Nullable CharSequence append) {
-        return appendIfMissing(CharSequenceWraps.toStringIgnoreNull(sequence), append, append);
+        return StringUtils.appendIfMissing(CharSequenceWraps.toStringIgnoreNull(sequence), append, append);
     }
 
     public static void appendIfMissing(@Nullable Collection<String> collection, char append, char... suffixes) {
@@ -210,42 +173,7 @@ public abstract class StringUtilsWraps {
         }
         String[] array = collection.toArray(ArrayUtils.EMPTY_STRING_ARRAY);
         collection.clear();
-        Arrays.stream(array).map(item -> appendIfMissing(item, append, suffixes)).forEach(collection::add);
-    }
-
-    /**
-     * Appends the suffix to the end of the string if the string does not
-     * already end, case-insensitive, with any of the suffixes.
-     *
-     * <pre>
-     * StringUtilsWrps.appendIfMissingIgnoreCase(null, null)      = null
-     * StringUtilsWrps.appendIfMissingIgnoreCase("abc", null)     = "abc"
-     * StringUtilsWrps.appendIfMissingIgnoreCase("", "xyz")       = "xyz"
-     * StringUtilsWrps.appendIfMissingIgnoreCase("abc", "xyz")    = "abcxyz"
-     * StringUtilsWrps.appendIfMissingIgnoreCase("abcxyz", "xyz") = "abcxyz"
-     * StringUtilsWrps.appendIfMissingIgnoreCase("abcXYZ", "xyz") = "abcXYZ"
-     * </pre>
-     * <p>With additional suffixes,</p>
-     * <pre>
-     * StringUtilsWrps.appendIfMissingIgnoreCase(null, null, null)       = null
-     * StringUtilsWrps.appendIfMissingIgnoreCase("abc", null, null)      = "abc"
-     * StringUtilsWrps.appendIfMissingIgnoreCase("", "xyz", null)        = "xyz"
-     * StringUtilsWrps.appendIfMissingIgnoreCase("abc", "xyz", new CharSequence[]{null}) = "abcxyz"
-     * StringUtilsWrps.appendIfMissingIgnoreCase("abc", "xyz", "")       = "abc"
-     * StringUtilsWrps.appendIfMissingIgnoreCase("abc", "xyz", "mno")    = "abcxyz"
-     * StringUtilsWrps.appendIfMissingIgnoreCase("abcxyz", "xyz", "mno") = "abcxyz"
-     * StringUtilsWrps.appendIfMissingIgnoreCase("abcmno", "xyz", "mno") = "abcmno"
-     * StringUtilsWrps.appendIfMissingIgnoreCase("abcXYZ", "xyz", "mno") = "abcXYZ"
-     * StringUtilsWrps.appendIfMissingIgnoreCase("abcMNO", "xyz", "mno") = "abcMNO"
-     * </pre>
-     *
-     * @param str The string.
-     * @param suffix The suffix to append to the end of the string.
-     * @param suffixes Additional suffixes that are valid terminators.
-     * @return A new String if suffix was appended, the same string otherwise.
-     */
-    public static String appendIfMissingIgnoreCase(@Nullable String str, @Nullable CharSequence suffix, @Nullable CharSequence... suffixes) {
-        return StringUtils.appendIfMissing(str, suffix, suffixes);
+        Arrays.stream(array).map(item -> StringUtils.appendIfMissing(item, append, suffixes)).forEach(collection::add);
     }
 
     /**
@@ -269,7 +197,7 @@ public abstract class StringUtilsWraps {
      * @return a string that appends the suffix to the end of the string if the string does not already end with the suffix
      */
     public static String appendIfMissingIgnoreCase(@Nullable CharSequence sequence, @Nullable CharSequence append) {
-        return appendIfMissingIgnoreCase(CharSequenceWraps.toStringIgnoreNull(sequence), append, append);
+        return StringUtils.appendIfMissingIgnoreCase(CharSequenceWraps.toStringIgnoreNull(sequence), append, append);
     }
 
     public static void appendIfMissingIgnoreCase(@Nullable Collection<String> collection, @Nullable CharSequence append) {
@@ -296,6 +224,7 @@ public abstract class StringUtilsWraps {
      * @param suffixes The additional suffixes that are valid terminators
      *
      * @throws java.lang.UnsupportedOperationException if the <tt>clear</tt> operation is not supported by this collection
+     * @see org.apache.commons.lang3.StringUtils#appendIfMissingIgnoreCase
      */
     public static void appendIfMissingIgnoreCase(@Nullable Collection<String> collection, @Nullable CharSequence append, @Nullable CharSequence... suffixes) {
         if (CollectionPlainWraps.isEmpty(collection)) {
@@ -303,7 +232,7 @@ public abstract class StringUtilsWraps {
         }
         String[] array = collection.toArray(ArrayUtils.EMPTY_STRING_ARRAY);
         collection.clear();
-        Arrays.stream(array).map(item -> appendIfMissingIgnoreCase(item, append, suffixes)).forEach(collection::add);
+        Arrays.stream(array).map(item -> StringUtils.appendIfMissingIgnoreCase(item, append, suffixes)).forEach(collection::add);
     }
 
     public static String appendIfSequenceNotEmpty(@Nullable CharSequence sequence, @Nullable CharSequence append) {
@@ -358,59 +287,12 @@ public abstract class StringUtilsWraps {
         return StringUtils.capitalize(StringUtils.lowerCase(CharSequenceWraps.toStringIgnoreNull(sequence)));
     }
 
-    /**
-     * Tests if CharSequence contains a search CharSequence, handling {@code null}.
-     *
-     * <p>A {@code null} CharSequence will return {@code false}.</p>
-     *
-     * <pre>
-     * StringUtilsWraps.contains(null, *)     = false
-     * StringUtilsWraps.contains(*, null)     = false
-     * StringUtilsWraps.contains("", "")      = true
-     * StringUtilsWraps.contains("abc", "")   = true
-     * StringUtilsWraps.contains("abc", "a")  = true
-     * StringUtilsWraps.contains("abc", "z")  = false
-     * </pre>
-     *
-     * @param seq  the CharSequence to check, may be null
-     * @param searchSeq  the CharSequence to find, may be null
-     * @return true if the CharSequence contains the search CharSequence, false if not or {@code null} string input
-     */
-    public static boolean contains(@Nullable CharSequence seq, @Nullable CharSequence searchSeq) {
-        return StringUtils.contains(seq, searchSeq);
-    }
-
-    /**
-     * Tests if CharSequence contains a search CharSequence irrespective of case, handling {@code null}.
-     *
-     * <p>
-     * A {@code null} CharSequence will return {@code false}.
-     *
-     * <pre>
-     * StringUtilsWraps.containsIgnoreCase(null, *)    = false
-     * StringUtilsWraps.containsIgnoreCase(*, null)    = false
-     * StringUtilsWraps.containsIgnoreCase("", "")     = true
-     * StringUtilsWraps.containsIgnoreCase("abc", "")  = true
-     * StringUtilsWraps.containsIgnoreCase("abc", "a") = true
-     * StringUtilsWraps.containsIgnoreCase("abc", "z") = false
-     * StringUtilsWraps.containsIgnoreCase("abc", "A") = true
-     * StringUtilsWraps.containsIgnoreCase("abc", "Z") = false
-     * </pre>
-     *
-     * @param str the CharSequence to check, may be null.
-     * @param searchStr the CharSequence to find, may be null.
-     * @return true if the CharSequence contains the search CharSequence irrespective of case or false if not or {@code null} string input.
-     */
-    public static boolean containsIgnoreCase(@Nullable CharSequence str, @Nullable CharSequence searchStr) {
-        return StringUtils.contains(str, searchStr);
-    }
-
     public static boolean containsAll(@Nullable CharSequence sequence, @Nullable CharSequence... comparisons) {
         return containsAll(sequence, ArrayUtilsWraps.asList(comparisons));
     }
 
     public static boolean containsAll(@Nullable CharSequence sequence, @Nullable Collection<? extends CharSequence> comparisons) {
-        return StringUtils.isNotEmpty(sequence) && CollectionPlainWraps.isNotEmpty(comparisons) && comparisons.stream().allMatch(item -> StringUtilsWraps.contains(sequence, item));
+        return StringUtils.isNotEmpty(sequence) && CollectionPlainWraps.isNotEmpty(comparisons) && comparisons.stream().allMatch(item -> StringUtils.contains(sequence, item));
     }
 
     public static boolean containsAllIgnoreCase(@Nullable CharSequence sequence, char... comparisons) {
@@ -422,7 +304,7 @@ public abstract class StringUtilsWraps {
     }
 
     public static boolean containsAllIgnoreCase(@Nullable CharSequence sequence, @Nullable Collection<? extends CharSequence> comparisons) {
-        return StringUtils.isNotEmpty(sequence) && CollectionPlainWraps.isNotEmpty(comparisons) && comparisons.stream().allMatch(item -> StringUtilsWraps.containsIgnoreCase(sequence, item));
+        return StringUtils.isNotEmpty(sequence) && CollectionPlainWraps.isNotEmpty(comparisons) && comparisons.stream().allMatch(item -> StringUtils.containsIgnoreCase(sequence, item));
     }
 
     public static boolean containsAny(@Nullable CharSequence sequence, @Nullable CharSequence... comparisons) {
@@ -430,11 +312,11 @@ public abstract class StringUtilsWraps {
     }
 
     public static boolean containsAny(@Nullable CharSequence sequence, @Nullable Collection<? extends CharSequence> comparisons) {
-        return StringUtils.isNotEmpty(sequence) && CollectionPlainWraps.isNotEmpty(comparisons) && comparisons.stream().anyMatch(item -> StringUtilsWraps.contains(sequence, item));
+        return StringUtils.isNotEmpty(sequence) && CollectionPlainWraps.isNotEmpty(comparisons) && comparisons.stream().anyMatch(item -> StringUtils.contains(sequence, item));
     }
 
     public static boolean containsAnyIgnoreCase(@Nullable CharSequence sequence, char... comparisons) {
-        return containsAnyIgnoreCase(sequence, CharUtilsWraps.toStringArray(comparisons));
+        return StringUtils.containsAnyIgnoreCase(sequence, CharUtilsWraps.toStringArray(comparisons));
     }
 
     public static boolean containsAnyIgnoreCase(@Nullable CharSequence sequence, @Nullable CharSequence... comparisons) {
@@ -442,15 +324,15 @@ public abstract class StringUtilsWraps {
     }
 
     public static boolean containsAnyIgnoreCase(@Nullable CharSequence sequence, @Nullable Collection<? extends CharSequence> comparisons) {
-        return StringUtils.isNotEmpty(sequence) && CollectionPlainWraps.isNotEmpty(comparisons) && comparisons.stream().anyMatch(item -> StringUtilsWraps.containsIgnoreCase(sequence, item));
+        return StringUtils.isNotEmpty(sequence) && CollectionPlainWraps.isNotEmpty(comparisons) && comparisons.stream().anyMatch(item -> StringUtils.containsIgnoreCase(sequence, item));
     }
 
     public static <T extends CharSequence> T defaultIfEquals(@Nullable T sequence, @Nullable CharSequence comparison, @Nullable T defaultValue) {
-        return StringUtilsWraps.equals(sequence, comparison) ? defaultValue : sequence;
+        return StringUtils.equals(sequence, comparison) ? defaultValue : sequence;
     }
 
     public static <T extends CharSequence> T defaultIfEqualsIgnoreCase(@Nullable T sequence, @Nullable CharSequence comparison, @Nullable T defaultValue) {
-        return StringUtilsWraps.equalsIgnoreCase(sequence, comparison) ? defaultValue : sequence;
+        return StringUtils.equalsIgnoreCase(sequence, comparison) ? defaultValue : sequence;
     }
 
     public static String defaultString(@Nullable CharSequence sequence) {
@@ -553,57 +435,24 @@ public abstract class StringUtilsWraps {
         return CollectionPlainWraps.isEmpty(texts) ? null : texts.stream().filter(StringUtils::isNotBlank).collect(Collectors.toSet());
     }
 
-    /**
-     * Compares given {@code sequence} to a CharSequences vararg of {@code searchStrings}, returning {@code true} if the {@code string} is equal to any of the {@code comparisons}.
-     *
-     * <pre>
-     * StringUtilsWraps.equalsAny(null, (CharSequence[]) null) = false
-     * StringUtilsWraps.equalsAny(null, null, null)    = true
-     * StringUtilsWraps.equalsAny(null, "abc", "def")  = false
-     * StringUtilsWraps.equalsAny("abc", null, "def")  = false
-     * StringUtilsWraps.equalsAny("abc", "abc", "def") = true
-     * StringUtilsWraps.equalsAny("abc", "ABC", "DEF") = false
-     * </pre>
-     *
-     * @param sequence to compare, may be {@code null}.
-     * @param comparisons a vararg of strings, may be {@code null}.
-     * @return {@code true} if the string is equal (case-sensitive) to any other element of {@code searchStrings}; {@code false} if {@code searchStrings} is null or contains no matches.
-     */
     public static boolean equalsAny(@Nullable CharSequence sequence, @Nullable CharSequence... comparisons) {
-        return StringUtils.equalsAny(sequence, comparisons);
+        return equalsAny(sequence, ArrayUtilsWraps.asList(comparisons));
     }
 
     public static boolean equalsAny(@Nullable CharSequence sequence, @Nullable Collection<? extends CharSequence> comparisons) {
-        return sequence != null && CollectionPlainWraps.isNotEmpty(comparisons) && comparisons.stream().anyMatch(item -> StringUtilsWraps.equals(sequence, item));
-    }
-
-    /**
-     * Compares given {@code string} to a CharSequences vararg of {@code searchStrings},
-     * returning {@code true} if the {@code string} is equal to any of the {@code searchStrings}, ignoring case.
-     *
-     * <pre>
-     * StringUtilsWraps.equalsAnyIgnoreCase(null, (CharSequence[]) null) = false
-     * StringUtilsWraps.equalsAnyIgnoreCase(null, null, null)    = true
-     * StringUtilsWraps.equalsAnyIgnoreCase(null, "abc", "def")  = false
-     * StringUtilsWraps.equalsAnyIgnoreCase("abc", null, "def")  = false
-     * StringUtilsWraps.equalsAnyIgnoreCase("abc", "abc", "def") = true
-     * StringUtilsWraps.equalsAnyIgnoreCase("abc", "ABC", "DEF") = true
-     * </pre>
-     *
-     * @param sequence to compare, may be {@code null}.
-     * @param comparisons a vararg of strings, may be {@code null}.
-     * @return {@code true} if the string is equal (case-insensitive) to any other element of {@code searchStrings};
-     */
-    public static boolean equalsAnyIgnoreCase(@Nullable CharSequence sequence, @Nullable CharSequence... comparisons) {
-        return StringUtils.equalsAny(sequence, comparisons);
+        return sequence != null && CollectionPlainWraps.isNotEmpty(comparisons) && comparisons.stream().anyMatch(item -> StringUtils.equals(sequence, item));
     }
 
     public static boolean equalsAnyIgnoreCase(@Nullable CharSequence sequence, char... comparisons) {
-        return equalsAnyIgnoreCase(sequence, CharUtilsWraps.toStringArray(comparisons));
+        return StringUtils.equalsAnyIgnoreCase(sequence, CharUtilsWraps.toStringArray(comparisons));
+    }
+
+    public static boolean equalsAnyIgnoreCase(@Nullable CharSequence sequence, @Nullable CharSequence... comparisons) {
+        return StringUtils.equalsAnyIgnoreCase(sequence, comparisons);
     }
 
     public static boolean equalsAnyIgnoreCase(@Nullable CharSequence sequence, @Nullable Collection<? extends CharSequence> comparisons) {
-        return sequence != null && CollectionPlainWraps.isNotEmpty(comparisons) && comparisons.stream().anyMatch(item -> StringUtilsWraps.equalsIgnoreCase(sequence, item));
+        return sequence != null && CollectionPlainWraps.isNotEmpty(comparisons) && comparisons.stream().anyMatch(item -> StringUtils.equalsIgnoreCase(sequence, item));
     }
 
     public static String encodeToString(@Nullable String text, @Nonnull Charset ofCharset, @Nonnull Charset toCharset) {
@@ -646,83 +495,12 @@ public abstract class StringUtilsWraps {
         return ArrayUtils.isEmpty(bytes) ? null : StringUtils.toEncodedString(bytes, StandardCharsets.UTF_8);
     }
 
-    /**
-     * Tests if a CharSequence ends with a specified suffix.
-     *
-     * <p>
-     * {@code null}s are handled without exceptions. Two {@code null} references are considered to be equal. The comparison is case-sensitive.
-     * </p>
-     *
-     * <pre>
-     * StringUtilsWraps.endsWith(null, null)      = true
-     * StringUtilsWraps.endsWith(null, "def")     = false
-     * StringUtilsWraps.endsWith("abcdef", null)  = false
-     * StringUtilsWraps.endsWith("abcdef", "def") = true
-     * StringUtilsWraps.endsWith("ABCDEF", "def") = false
-     * StringUtilsWraps.endsWith("ABCDEF", "cde") = false
-     * StringUtilsWraps.endsWith("ABCDEF", "")    = true
-     * </pre>
-     *
-     * @param str the CharSequence to check, may be null.
-     * @param suffix the suffix to find, may be null.
-     * @return {@code true} if the CharSequence ends with the suffix, case-sensitive, or both {@code null}.
-     */
-    public static boolean endsWith(@Nullable CharSequence str, @Nullable CharSequence suffix) {
-        return StringUtils.endsWith(str, suffix);
-    }
-
     public static boolean endsWith(@Nullable CharSequence sequence, char comparison) {
-        return endsWith(sequence, CharUtils.toString(comparison));
-    }
-
-    /**
-     * Case-insensitive check if a CharSequence ends with a specified suffix.
-     *
-     * <p>
-     * {@code null}s are handled without exceptions. Two {@code null} references are considered to be equal. The comparison is case insensitive.
-     * </p>
-     *
-     * <pre>
-     * StringUtilsWraps.endsWithIgnoreCase(null, null)      = true
-     * StringUtilsWraps.endsWithIgnoreCase(null, "def")     = false
-     * StringUtilsWraps.endsWithIgnoreCase("abcdef", null)  = false
-     * StringUtilsWraps.endsWithIgnoreCase("abcdef", "def") = true
-     * StringUtilsWraps.endsWithIgnoreCase("ABCDEF", "def") = true
-     * StringUtilsWraps.endsWithIgnoreCase("ABCDEF", "cde") = false
-     * </pre>
-     *
-     * @param str the CharSequence to check, may be null
-     * @param suffix the suffix to find, may be null
-     * @return {@code true} if the CharSequence ends with the suffix, case-insensitive, or both {@code null}
-     */
-    public static boolean endsWithIgnoreCase(@Nullable CharSequence str, @Nullable CharSequence suffix) {
-        return StringUtils.endsWith(str, suffix);
-    }
-
-    /**
-     * Tests if a CharSequence ends with any of the provided case-sensitive suffixes.
-     *
-     * <pre>
-     * StringUtilsWraps.endsWithAny(null, null)                  = false
-     * StringUtilsWraps.endsWithAny(null, new String[] {"abc"})  = false
-     * StringUtilsWraps.endsWithAny("abcxyz", null)              = false
-     * StringUtilsWraps.endsWithAny("abcxyz", new String[] {""}) = true
-     * StringUtilsWraps.endsWithAny("abcxyz", new String[] {"xyz"}) = true
-     * StringUtilsWraps.endsWithAny("abcxyz", new String[] {null, "xyz", "abc"}) = true
-     * StringUtilsWraps.endsWithAny("abcXYZ", "def", "XYZ")      = true
-     * StringUtilsWraps.endsWithAny("abcXYZ", "def", "xyz")      = false
-     * </pre>
-     *
-     * @param sequence the CharSequence to check, may be null.
-     * @param searchStrings the case-sensitive CharSequences to find, may be empty or contain {@code null}.
-     * @return {@code true} if the input {@code sequence} is {@code null} AND no {@code searchStrings} are provided, or the input {@code sequence} ends in any of the provided case-sensitive {@code searchStrings}.
-     */
-    public static boolean endsWithAny(@Nullable CharSequence sequence, @Nullable CharSequence... searchStrings) {
-        return StringUtils.endsWithAny(sequence, searchStrings);
+        return StringUtils.endsWith(sequence, CharUtils.toString(comparison));
     }
 
     public static boolean endsWithAny(@Nullable CharSequence sequence, char... comparisons) {
-        return endsWithAny(sequence, CharUtilsWraps.toStringArray(comparisons));
+        return StringUtils.endsWithAny(sequence, CharUtilsWraps.toStringArray(comparisons));
     }
 
     public static boolean endsWithAnyIgnoreCase(@Nullable CharSequence sequence, char... comparisons) {
@@ -738,55 +516,11 @@ public abstract class StringUtilsWraps {
      *
      * @param sequence The CharSequence to check
      * @param comparisons The case-insensitive CharSequence suffixes, may be empty or contain {@code null}
+     *
+     * @see org.apache.commons.lang3.StringUtils#endsWithAny
      */
     public static boolean endsWithAnyIgnoreCase(@Nullable CharSequence sequence, @Nullable Collection<? extends CharSequence> comparisons) {
-        return StringUtils.isNotEmpty(sequence) && CollectionPlainWraps.isNotEmpty(comparisons) && comparisons.stream().anyMatch(item -> endsWithIgnoreCase(sequence, item));
-    }
-
-    /**
-     * Compares two CharSequences, returning {@code true} if they represent equal sequences of characters.
-     *
-     * <p>
-     * {@code null}s are handled without exceptions. Two {@code null} references are considered to be equal. The comparison is <strong>case-sensitive</strong>.
-     * </p>
-     *
-     * <pre>
-     * StringUtilsWraps.equals(null, null)   = true
-     * StringUtilsWraps.equals(null, "abc")  = false
-     * StringUtilsWraps.equals("abc", null)  = false
-     * StringUtilsWraps.equals("abc", "abc") = true
-     * StringUtilsWraps.equals("abc", "ABC") = false
-     * </pre>
-     *
-     * @param cs1 the first CharSequence, may be {@code null}.
-     * @param cs2 the second CharSequence, may be {@code null}.
-     * @return {@code true} if the CharSequences are equal (case-sensitive), or both {@code null}.
-     */
-    public static boolean equals(@Nullable CharSequence cs1, @Nullable CharSequence cs2) {
-        return StringUtils.equals(cs1, cs2);
-    }
-
-    /**
-     * Compares two CharSequences, returning {@code true} if they represent equal sequences of characters, ignoring case.
-     *
-     * <p>
-     * {@code null}s are handled without exceptions. Two {@code null} references are considered equal. The comparison is <strong>case insensitive</strong>.
-     * </p>
-     *
-     * <pre>
-     * StringUtilsWraps.equalsIgnoreCase(null, null)   = true
-     * StringUtilsWraps.equalsIgnoreCase(null, "abc")  = false
-     * StringUtilsWraps.equalsIgnoreCase("abc", null)  = false
-     * StringUtilsWraps.equalsIgnoreCase("abc", "abc") = true
-     * StringUtilsWraps.equalsIgnoreCase("abc", "ABC") = true
-     * </pre>
-     *
-     * @param cs1 the first CharSequence, may be {@code null}.
-     * @param cs2 the second CharSequence, may be {@code null}.
-     * @return {@code true} if the CharSequences are equal (case-insensitive), or both {@code null}.
-     */
-    public static boolean equalsIgnoreCase(@Nullable CharSequence cs1, @Nullable CharSequence cs2) {
-        return StringUtils.equals(cs1, cs2);
+        return StringUtils.isNotEmpty(sequence) && CollectionPlainWraps.isNotEmpty(comparisons) && comparisons.stream().anyMatch(item -> StringUtils.endsWithIgnoreCase(sequence, item));
     }
 
     @Nullable
@@ -985,7 +719,7 @@ public abstract class StringUtilsWraps {
     }
 
     public static boolean isWrappedWith(@Nullable CharSequence sequence, @Nullable CharSequence delimiter) {
-        return StringUtils.isNoneEmpty(sequence, delimiter) && StringUtils.length(sequence) >= 2 * StringUtils.length(delimiter) && startsWith(sequence, delimiter) && endsWith(sequence, delimiter);
+        return StringUtils.isNoneEmpty(sequence, delimiter) && StringUtils.length(sequence) >= 2 * StringUtils.length(delimiter) && StringUtils.startsWith(sequence, delimiter) && StringUtils.endsWith(sequence, delimiter);
     }
 
     public static boolean isWrappedWithIgnoreCase(@Nullable CharSequence sequence, char delimiter) {
@@ -993,7 +727,7 @@ public abstract class StringUtilsWraps {
     }
 
     public static boolean isWrappedWithIgnoreCase(@Nullable CharSequence sequence, @Nullable CharSequence delimiter) {
-        return StringUtils.isNoneEmpty(sequence, delimiter) && StringUtils.length(sequence) >= 2 * StringUtils.length(delimiter) && startsWithIgnoreCase(sequence, delimiter) && endsWithIgnoreCase(sequence, delimiter);
+        return StringUtils.isNoneEmpty(sequence, delimiter) && StringUtils.length(sequence) >= 2 * StringUtils.length(delimiter) && StringUtils.startsWithIgnoreCase(sequence, delimiter) && StringUtils.endsWithIgnoreCase(sequence, delimiter);
     }
 
     public static <T> String joinWith(@Nullable T[] objects, char delimiter) {
@@ -1322,14 +1056,6 @@ public abstract class StringUtilsWraps {
         return joinWith(collection, StringUtils.EMPTY);
     }
 
-    public static int lastIndexOf(@Nullable CharSequence sequence, @Nullable CharSequence search) {
-        return StringUtils.lastIndexOf(sequence, search);
-    }
-
-    public static int lastIndexOf(@Nullable CharSequence sequence, @Nullable CharSequence search, int startPos) {
-        return StringUtils.lastIndexOf(sequence, search, startPos);
-    }
-
     public static String lastSubstringBetween(@Nullable String text, char tag) {
         return lastSubstringBetween(text, tag, tag);
     }
@@ -1358,8 +1084,8 @@ public abstract class StringUtilsWraps {
         if (StringUtils.isAnyEmpty(text, open, close)) {
             return null;
         }
-        int start = lastIndexOf(text, open), length = StringUtils.length(open);
-        int end = lastIndexOf(text, close, start + length);
+        int start = StringUtils.lastIndexOf(text, open), length = StringUtils.length(open);
+        int end = StringUtils.lastIndexOf(text, close, start + length);
         return (start != -1 && end != -1) ? StringUtils.substring(text, start + length, end) : null;
     }
 
@@ -1375,49 +1101,12 @@ public abstract class StringUtilsWraps {
 
     @Nullable
     public static CharSequence nullIfEquals(@Nullable CharSequence sequence, @Nullable CharSequence comparison) {
-        return StringUtilsWraps.equals(sequence, comparison) ? null : sequence;
+        return StringUtils.equals(sequence, comparison) ? null : sequence;
     }
 
     @Nullable
     public static CharSequence nullIfEqualsIgnoreCase(@Nullable CharSequence sequence, @Nullable CharSequence comparison) {
-        return StringUtilsWraps.equalsIgnoreCase(sequence, comparison) ? null : sequence;
-    }
-
-    /**
-     * Prepends the prefix to the start of the string if the string does not already start with any of the prefixes.
-     *
-     * <pre>
-     * StringUtils.prependIfMissing(null, null) = null
-     * StringUtils.prependIfMissing("abc", null) = "abc"
-     * StringUtils.prependIfMissing("", "xyz") = "xyz"
-     * StringUtils.prependIfMissing("abc", "xyz") = "xyzabc"
-     * StringUtils.prependIfMissing("xyzabc", "xyz") = "xyzabc"
-     * StringUtils.prependIfMissing("XYZabc", "xyz") = "xyzXYZabc"
-     * </pre>
-     * <p>
-     * With additional prefixes,
-     * </p>
-     *
-     * <pre>
-     * StringUtils.prependIfMissing(null, null, null) = null
-     * StringUtils.prependIfMissing("abc", null, null) = "abc"
-     * StringUtils.prependIfMissing("", "xyz", null) = "xyz"
-     * StringUtils.prependIfMissing("abc", "xyz", new CharSequence[]{null}) = "xyzabc"
-     * StringUtils.prependIfMissing("abc", "xyz", "") = "abc"
-     * StringUtils.prependIfMissing("abc", "xyz", "mno") = "xyzabc"
-     * StringUtils.prependIfMissing("xyzabc", "xyz", "mno") = "xyzabc"
-     * StringUtils.prependIfMissing("mnoabc", "xyz", "mno") = "mnoabc"
-     * StringUtils.prependIfMissing("XYZabc", "xyz", "mno") = "xyzXYZabc"
-     * StringUtils.prependIfMissing("MNOabc", "xyz", "mno") = "xyzMNOabc"
-     * </pre>
-     *
-     * @param str The string.
-     * @param prefix The prefix to prepend to the start of the string.
-     * @param prefixes Additional prefixes that are valid.
-     * @return A new String if prefix was prepended, the same string otherwise.
-     */
-    public static String prependIfMissing(@Nullable String str, @Nullable CharSequence prefix, @Nullable CharSequence... prefixes) {
-        return StringUtils.prependIfMissing(str, prefix, prefixes);
+        return StringUtils.equalsIgnoreCase(sequence, comparison) ? null : sequence;
     }
 
     /**
@@ -1441,7 +1130,7 @@ public abstract class StringUtilsWraps {
      * @return a string that prepends the prefix to the start of the string if the string does not already start with any of the prefixes
      */
     public static String prependIfMissing(@Nullable CharSequence sequence, @Nullable CharSequence prepend) {
-        return prependIfMissing(CharSequenceWraps.toStringIgnoreNull(sequence), prepend, prepend);
+        return StringUtils.prependIfMissing(CharSequenceWraps.toStringIgnoreNull(sequence), prepend, prepend);
     }
 
     public static void prependIfMissing(@Nullable Collection<String> collection, @Nullable CharSequence prepend) {
@@ -1476,44 +1165,7 @@ public abstract class StringUtilsWraps {
         }
         String[] array = collection.toArray(ArrayUtils.EMPTY_STRING_ARRAY);
         collection.clear();
-        Arrays.stream(array).map(item -> prependIfMissing(item, prepend, prefixes)).forEach(collection::add);
-    }
-
-    /**
-     * Prepends the prefix to the start of the string if the string does not already start, case-insensitive, with any of the prefixes.
-     *
-     * <pre>
-     * StringUtils.prependIfMissingIgnoreCase(null, null) = null
-     * StringUtils.prependIfMissingIgnoreCase("abc", null) = "abc"
-     * StringUtils.prependIfMissingIgnoreCase("", "xyz") = "xyz"
-     * StringUtils.prependIfMissingIgnoreCase("abc", "xyz") = "xyzabc"
-     * StringUtils.prependIfMissingIgnoreCase("xyzabc", "xyz") = "xyzabc"
-     * StringUtils.prependIfMissingIgnoreCase("XYZabc", "xyz") = "XYZabc"
-     * </pre>
-     * <p>
-     * With additional prefixes,
-     * </p>
-     *
-     * <pre>
-     * StringUtilsWraps.prependIfMissingIgnoreCase(null, null, null) = null
-     * StringUtilsWraps.prependIfMissingIgnoreCase("abc", null, null) = "abc"
-     * StringUtilsWraps.prependIfMissingIgnoreCase("", "xyz", null) = "xyz"
-     * StringUtilsWraps.prependIfMissingIgnoreCase("abc", "xyz", new CharSequence[]{null}) = "xyzabc"
-     * StringUtilsWraps.prependIfMissingIgnoreCase("abc", "xyz", "") = "abc"
-     * StringUtilsWraps.prependIfMissingIgnoreCase("abc", "xyz", "mno") = "xyzabc"
-     * StringUtilsWraps.prependIfMissingIgnoreCase("xyzabc", "xyz", "mno") = "xyzabc"
-     * StringUtilsWraps.prependIfMissingIgnoreCase("mnoabc", "xyz", "mno") = "mnoabc"
-     * StringUtilsWraps.prependIfMissingIgnoreCase("XYZabc", "xyz", "mno") = "XYZabc"
-     * StringUtilsWraps.prependIfMissingIgnoreCase("MNOabc", "xyz", "mno") = "MNOabc"
-     * </pre>
-     *
-     * @param str The string.
-     * @param prefix The prefix to prepend to the start of the string.
-     * @param prefixes Additional prefixes that are valid (optional).
-     * @return A new String if prefix was prepended, the same string otherwise.
-     */
-    public static String prependIfMissingIgnoreCase(@Nullable String str, @Nullable CharSequence prefix, @Nullable CharSequence... prefixes) {
-        return StringUtils.prependIfMissing(str, prefix, prefixes);
+        Arrays.stream(array).map(item -> StringUtils.prependIfMissing(item, prepend, prefixes)).forEach(collection::add);
     }
 
     /**
@@ -1537,7 +1189,7 @@ public abstract class StringUtilsWraps {
      * @return a string that prepends the prefix to the start of the string if the string does not already start with any of the prefixes
      */
     public static String prependIfMissingIgnoreCase(@Nullable CharSequence sequence, @Nullable CharSequence prepend) {
-        return prependIfMissingIgnoreCase(CharSequenceWraps.toStringIgnoreNull(sequence), prepend, prepend);
+        return StringUtils.prependIfMissingIgnoreCase(CharSequenceWraps.toStringIgnoreNull(sequence), prepend, prepend);
     }
 
     public static void prependIfMissingIgnoreCase(@Nullable Collection<String> collection, @Nullable CharSequence prepend) {
@@ -1572,7 +1224,7 @@ public abstract class StringUtilsWraps {
         }
         String[] array = collection.toArray(ArrayUtils.EMPTY_STRING_ARRAY);
         collection.clear();
-        Arrays.stream(array).map(item -> prependIfMissingIgnoreCase(item, prepend, prefixes)).forEach(collection::add);
+        Arrays.stream(array).map(item -> StringUtils.prependIfMissingIgnoreCase(item, prepend, prefixes)).forEach(collection::add);
     }
 
     public static String prependIfSequenceNotEmpty(@Nullable CharSequence sequence, @Nullable CharSequence prepend) {
@@ -1648,31 +1300,6 @@ public abstract class StringUtilsWraps {
         return wrapWith(sequence, CharVariantConst.DOUBLE_QUOTE, emptyAsNull);
     }
 
-    /**
-     * Removes all occurrences of a substring from within the source string.
-     *
-     * <p>
-     * A {@code null} source string will return {@code null}. An empty ("") source string will return the empty string. A {@code null} remove string will return
-     * the source string. An empty ("") remove string will return the source string.
-     * </p>
-     *
-     * <pre>
-     * StringUtilsWraps.remove(null, *)        = null
-     * StringUtilsWraps.remove("", *)          = ""
-     * StringUtilsWraps.remove(*, null)        = *
-     * StringUtilsWraps.remove(*, "")          = *
-     * StringUtilsWraps.remove("queued", "ue") = "qd"
-     * StringUtilsWraps.remove("queued", "zz") = "queued"
-     * </pre>
-     *
-     * @param str    the source String to search, may be null.
-     * @param remove the String to search for and remove, may be null.
-     * @return the substring with the string removed if found, {@code null} if null String input.
-     */
-    public static String remove(@Nullable String str, @Nullable String remove) {
-        return StringUtils.remove(str, remove);
-    }
-
     public static String removeAll(@Nullable CharSequence sequence, char... removes) {
         return removeAll(sequence, CharUtilsWraps.toStringArray(removes));
     }
@@ -1697,7 +1324,7 @@ public abstract class StringUtilsWraps {
             return text;
         }
         for (CharSequence remove : removes) {
-            text = remove(text, CharSequenceWraps.toStringIgnoreNull(remove));
+            text = StringUtils.remove(text, CharSequenceWraps.toStringIgnoreNull(remove));
         }
         return text;
     }
@@ -1766,38 +1393,12 @@ public abstract class StringUtilsWraps {
         return CollectionPlainWraps.isEmpty(texts) ? null : texts.stream().filter(StringUtils::isNotEmpty).toArray(String[]::new);
     }
 
-    /**
-     * Removes a substring only if it is at the end of a source string, otherwise returns the source string.
-     *
-     * <p>
-     * A {@code null} source string will return {@code null}. An empty ("") source string will return the empty string. A {@code null} search string will return
-     * the source string.
-     * </p>
-     *
-     * <pre>
-     * StringUtilsWraps.removeEnd(null, *)      = null
-     * StringUtilsWraps.removeEnd("", *)        = ""
-     * StringUtilsWraps.removeEnd(*, null)      = *
-     * StringUtilsWraps.removeEnd("www.domain.com", ".com.")  = "www.domain.com"
-     * StringUtilsWraps.removeEnd("www.domain.com", ".com")   = "www.domain"
-     * StringUtilsWraps.removeEnd("www.domain.com", "domain") = "www.domain.com"
-     * StringUtilsWraps.removeEnd("abc", "")    = "abc"
-     * </pre>
-     *
-     * @param str    the source String to search, may be null.
-     * @param remove the String to search for and remove, may be null.
-     * @return the substring with the string removed if found, {@code null} if null String input.
-     */
-    public static String removeEnd(@Nullable String str, @Nullable String remove) {
-        return StringUtils.removeEnd(str, remove);
-    }
-
     public static String removeEnd(@Nullable CharSequence sequence, char remove) {
         return removeEnd(sequence, CharUtils.toString(remove));
     }
 
     public static String removeEnd(@Nullable CharSequence sequence, @Nullable CharSequence remove) {
-        return removeEnd(CharSequenceWraps.toStringIgnoreNull(sequence), CharSequenceWraps.toStringIgnoreNull(remove));
+        return StringUtils.removeEnd(CharSequenceWraps.toStringIgnoreNull(sequence), CharSequenceWraps.toStringIgnoreNull(remove));
     }
 
     public static String removeEnd(@Nullable CharSequence sequence, char... removes) {
@@ -1815,6 +1416,8 @@ public abstract class StringUtilsWraps {
      * @param removes some Strings to search for and remove
      *
      * @return a string that removed some substrings only if at end of the source string
+     *
+     * @see org.apache.commons.lang3.StringUtils#removeEnd
      */
     public static String removeEnd(@Nullable CharSequence sequence, @Nullable Collection<? extends CharSequence> removes) {
         String text = CharSequenceWraps.toStringIgnoreNull(sequence);
@@ -1822,7 +1425,7 @@ public abstract class StringUtilsWraps {
             return text;
         }
         for (CharSequence remove : removes) {
-            text = removeEnd(text, CharSequenceWraps.toStringIgnoreNull(remove));
+            text = StringUtils.removeEnd(text, CharSequenceWraps.toStringIgnoreNull(remove));
         }
         return text;
     }
@@ -1849,40 +1452,12 @@ public abstract class StringUtilsWraps {
         Arrays.stream(array).map(item -> removeEnd(item, removes)).forEach(collection::add);
     }
 
-    /**
-     * Case-insensitive removal of a substring if it is at the end of a source string, otherwise returns the source string.
-     *
-     * <p>
-     * A {@code null} source string will return {@code null}. An empty ("") source string will return the empty string. A {@code null} search string will return
-     * the source string.
-     * </p>
-     *
-     * <pre>
-     * StringUtilsWraps.removeEndIgnoreCase(null, *)      = null
-     * StringUtilsWraps.removeEndIgnoreCase("", *)        = ""
-     * StringUtilsWraps.removeEndIgnoreCase(*, null)      = *
-     * StringUtilsWraps.removeEndIgnoreCase("www.domain.com", ".com.")  = "www.domain.com"
-     * StringUtilsWraps.removeEndIgnoreCase("www.domain.com", ".com")   = "www.domain"
-     * StringUtilsWraps.removeEndIgnoreCase("www.domain.com", "domain") = "www.domain.com"
-     * StringUtilsWraps.removeEndIgnoreCase("abc", "")    = "abc"
-     * StringUtilsWraps.removeEndIgnoreCase("www.domain.com", ".COM") = "www.domain")
-     * StringUtilsWraps.removeEndIgnoreCase("www.domain.COM", ".com") = "www.domain")
-     * </pre>
-     *
-     * @param str the source String to search, may be null.
-     * @param remove the String to search for (case-insensitive) and remove, may be null.
-     * @return the substring with the string removed if found, {@code null} if null String input.
-     */
-    public static String removeEndIgnoreCase(@Nullable String str, @Nullable String remove) {
-        return StringUtils.removeEnd(str, remove);
-    }
-
     public static String removeEndIgnoreCase(@Nullable CharSequence sequence, char remove) {
         return removeEndIgnoreCase(sequence, CharUtils.toString(remove));
     }
 
     public static String removeEndIgnoreCase(@Nullable CharSequence sequence, @Nullable CharSequence remove) {
-        return removeEnd(CharSequenceWraps.toStringIgnoreNull(sequence), CharSequenceWraps.toStringIgnoreNull(remove));
+        return StringUtils.removeEnd(CharSequenceWraps.toStringIgnoreNull(sequence), CharSequenceWraps.toStringIgnoreNull(remove));
     }
 
     public static String removeEndIgnoreCase(@Nullable CharSequence sequence, char... removes) {
@@ -1893,13 +1468,16 @@ public abstract class StringUtilsWraps {
         return removeEndIgnoreCase(sequence, ArrayUtilsWraps.asList(removes));
     }
 
+    /**
+     * @see org.apache.commons.lang3.StringUtils#removeEndIgnoreCase
+     */
     public static String removeEndIgnoreCase(@Nullable CharSequence sequence, @Nullable Collection<? extends CharSequence> removes) {
         String text = CharSequenceWraps.toStringIgnoreNull(sequence);
         if (StringUtils.isEmpty(text) || CollectionPlainWraps.isEmpty(removes)) {
             return text;
         }
         for (CharSequence remove : removes) {
-            text = removeEndIgnoreCase(text, CharSequenceWraps.toStringIgnoreNull(remove));
+            text = StringUtils.removeEndIgnoreCase(text, CharSequenceWraps.toStringIgnoreNull(remove));
         }
         return text;
     }
@@ -1934,38 +1512,12 @@ public abstract class StringUtilsWraps {
         return StringUtils.remove(CharSequenceWraps.toStringIgnoreNull(sequence), CharVariantConst.SPACE);
     }
 
-    /**
-     * Removes a substring only if it is at the beginning of a source string, otherwise returns the source string.
-     *
-     * <p>
-     * A {@code null} source string will return {@code null}. An empty ("") source string will return the empty string. A {@code null} search string will return
-     * the source string.
-     * </p>
-     *
-     * <pre>
-     * StringUtilsWraps.removeStart(null, *)                    = null
-     * StringUtilsWraps.removeStart("", *)                      = ""
-     * StringUtilsWraps.removeStart(*, null)                    = *
-     * StringUtilsWraps.removeStart("www.domain.com", "www.")   = "domain.com"
-     * StringUtilsWraps.removeStart("domain.com", "www.")       = "domain.com"
-     * StringUtilsWraps.removeStart("www.domain.com", "domain") = "www.domain.com"
-     * StringUtilsWraps.removeStart("abc", "")                  = "abc"
-     * </pre>
-     *
-     * @param str the source String to search, may be null.
-     * @param remove the String to search for and remove, may be null.
-     * @return the substring with the string removed if found, {@code null} if null String input.
-     */
-    public static String removeStart(final String str, final String remove) {
-        return StringUtils.removeStart(str, remove);
-    }
-
     public static String removeStart(@Nullable CharSequence sequence, char remove) {
         return removeStart(sequence, CharUtils.toString(remove));
     }
 
     public static String removeStart(@Nullable CharSequence sequence, CharSequence remove) {
-        return removeStart(CharSequenceWraps.toStringIgnoreNull(sequence), CharSequenceWraps.toStringIgnoreNull(remove));
+        return StringUtils.removeStart(CharSequenceWraps.toStringIgnoreNull(sequence), CharSequenceWraps.toStringIgnoreNull(remove));
     }
 
     public static String removeStart(@Nullable CharSequence sequence, char... removes) {
@@ -1992,7 +1544,7 @@ public abstract class StringUtilsWraps {
             return text;
         }
         for (CharSequence remove : removes) {
-            text = removeStart(text, CharSequenceWraps.toStringIgnoreNull(remove));
+            text = StringUtils.removeStart(text, CharSequenceWraps.toStringIgnoreNull(remove));
         }
         return text;
     }
@@ -2020,7 +1572,7 @@ public abstract class StringUtilsWraps {
     }
 
     public static String removeStartIgnoreCase(@Nullable CharSequence sequence, char remove) {
-        return removeStartIgnoreCase(CharSequenceWraps.toStringIgnoreNull(sequence), CharUtils.toString(remove));
+        return StringUtils.removeStartIgnoreCase(CharSequenceWraps.toStringIgnoreNull(sequence), CharUtils.toString(remove));
     }
 
     public static String removeStartIgnoreCase(@Nullable CharSequence sequence, @Nullable char... removes) {
@@ -2031,13 +1583,16 @@ public abstract class StringUtilsWraps {
         return removeStartIgnoreCase(sequence, ArrayUtilsWraps.asList(removes));
     }
 
+    /**
+     * @see org.apache.commons.lang3.StringUtils#removeStartIgnoreCase
+     */
     public static String removeStartIgnoreCase(@Nullable CharSequence sequence, @Nullable Collection<? extends CharSequence> removes) {
         String text = CharSequenceWraps.toStringIgnoreNull(sequence);
         if (StringUtils.isEmpty(text) || CollectionPlainWraps.isEmpty(removes)) {
             return text;
         }
         for (CharSequence remove : removes) {
-            text = removeStartIgnoreCase(text, CharSequenceWraps.toStringIgnoreNull(remove));
+            text = StringUtils.removeStartIgnoreCase(text, CharSequenceWraps.toStringIgnoreNull(remove));
         }
         return text;
     }
@@ -2064,44 +1619,12 @@ public abstract class StringUtilsWraps {
         Arrays.stream(array).map(item -> removeStartIgnoreCase(item, removes)).forEach(collection::add);
     }
 
-    /**
-     * Replaces a String with another String inside a larger String, for the first {@code max} values of the search String.
-     *
-     * <p>
-     * A {@code null} reference passed to this method is a no-op.
-     * </p>
-     *
-     * <pre>
-     * StringUtilsWraps.replace(null, *, *, *)         = null
-     * StringUtilsWraps.replace("", *, *, *)           = ""
-     * StringUtilsWraps.replace("any", null, *, *)     = "any"
-     * StringUtilsWraps.replace("any", *, null, *)     = "any"
-     * StringUtilsWraps.replace("any", "", *, *)       = "any"
-     * StringUtilsWraps.replace("any", *, *, 0)        = "any"
-     * StringUtilsWraps.replace("abaa", "a", null, -1) = "abaa"
-     * StringUtilsWraps.replace("abaa", "a", "", -1)   = "b"
-     * StringUtilsWraps.replace("abaa", "a", "z", 0)   = "abaa"
-     * StringUtilsWraps.replace("abaa", "a", "z", 1)   = "zbaa"
-     * StringUtilsWraps.replace("abaa", "a", "z", 2)   = "zbza"
-     * StringUtilsWraps.replace("abaa", "a", "z", -1)  = "zbzz"
-     * </pre>
-     *
-     * @param text text to search and replace in, may be null.
-     * @param searchString the String to search for, may be null.
-     * @param replacement the String to replace it with, may be null.
-     * @param max maximum number of values to replace, or {@code -1} if no maximum.
-     * @return the text with any replacements processed, {@code null} if null String input.
-     */
-    public static String replace(@Nullable String text, @Nullable String searchString, @Nullable String replacement, int max) {
-        return StringUtils.replace(text, searchString, replacement, max);
-    }
-
     public static String replace(@Nullable String text, char search, char replacement) {
         return replace(text, search, replacement, -1);
     }
 
     public static String replace(@Nullable String text, char search, char replacement, int max) {
-        return StringUtils.isEmpty(text) ? text : replace(text, CharUtils.toString(search), CharUtils.toString(replacement), max);
+        return StringUtils.isEmpty(text) ? text : StringUtils.replace(text, CharUtils.toString(search), CharUtils.toString(replacement), max);
     }
 
     public static String replace(@Nullable String text, @Nullable CharSequence search, @Nullable CharSequence replacement) {
@@ -2109,39 +1632,7 @@ public abstract class StringUtilsWraps {
     }
 
     public static String replace(@Nullable String text, @Nullable CharSequence search, @Nullable CharSequence replacement, int max) {
-        return StringUtils.isAnyEmpty(text, search) ? text : replace(text, CharSequenceWraps.toStringIgnoreNull(search), CharSequenceWraps.toStringIgnoreNull(replacement), max);
-    }
-
-    /**
-     * Case insensitively replaces a String with another String inside a larger String, for the first {@code max} values of the search String.
-     *
-     * <p>
-     * A {@code null} reference passed to this method is a no-op.
-     * </p>
-     *
-     * <pre>
-     * StringUtilsWraps.replaceIgnoreCase(null, *, *, *)         = null
-     * StringUtilsWraps.replaceIgnoreCase("", *, *, *)           = ""
-     * StringUtilsWraps.replaceIgnoreCase("any", null, *, *)     = "any"
-     * StringUtilsWraps.replaceIgnoreCase("any", *, null, *)     = "any"
-     * StringUtilsWraps.replaceIgnoreCase("any", "", *, *)       = "any"
-     * StringUtilsWraps.replaceIgnoreCase("any", *, *, 0)        = "any"
-     * StringUtilsWraps.replaceIgnoreCase("abaa", "a", null, -1) = "abaa"
-     * StringUtilsWraps.replaceIgnoreCase("abaa", "a", "", -1)   = "b"
-     * StringUtilsWraps.replaceIgnoreCase("abaa", "a", "z", 0)   = "abaa"
-     * StringUtilsWraps.replaceIgnoreCase("abaa", "A", "z", 1)   = "zbaa"
-     * StringUtilsWraps.replaceIgnoreCase("abAa", "a", "z", 2)   = "zbza"
-     * StringUtilsWraps.replaceIgnoreCase("abAa", "a", "z", -1)  = "zbzz"
-     * </pre>
-     *
-     * @param text text to search and replace in, may be null.
-     * @param searchString the String to search for (case-insensitive), may be null.
-     * @param replacement the String to replace it with, may be null.
-     * @param max maximum number of values to replace, or {@code -1} if no maximum.
-     * @return the text with any replacements processed, {@code null} if null String input.
-     */
-    public static String replaceIgnoreCase(@Nullable String text, @Nullable String searchString, @Nullable String replacement, int max) {
-        return StringUtils.replace(text, searchString, replacement, max);
+        return StringUtils.isAnyEmpty(text, search) ? text : StringUtils.replace(text, CharSequenceWraps.toStringIgnoreNull(search), CharSequenceWraps.toStringIgnoreNull(replacement), max);
     }
 
     public static String replaceIgnoreCase(@Nullable String text, char search, char replacement) {
@@ -2149,7 +1640,7 @@ public abstract class StringUtilsWraps {
     }
 
     public static String replaceIgnoreCase(@Nullable String text, char search, char replacement, int max) {
-        return StringUtils.isEmpty(text) ? text : replaceIgnoreCase(text, CharUtils.toString(search), CharUtils.toString(replacement), max);
+        return StringUtils.isEmpty(text) ? text : StringUtils.replaceIgnoreCase(text, CharUtils.toString(search), CharUtils.toString(replacement), max);
     }
 
     public static String replaceIgnoreCase(@Nullable String text, @Nullable CharSequence search, @Nullable CharSequence replacement) {
@@ -2157,7 +1648,7 @@ public abstract class StringUtilsWraps {
     }
 
     public static String replaceIgnoreCase(@Nullable String text, @Nullable CharSequence search, @Nullable CharSequence replacement, int max) {
-        return StringUtils.isAnyEmpty(text, search) ? text : replaceIgnoreCase(text, CharSequenceWraps.toStringIgnoreNull(search), CharSequenceWraps.toStringIgnoreNull(replacement), max);
+        return StringUtils.isAnyEmpty(text, search) ? text : StringUtils.replaceIgnoreCase(text, CharSequenceWraps.toStringIgnoreNull(search), CharSequenceWraps.toStringIgnoreNull(replacement), max);
     }
 
     public static String replaceAll(@Nullable String text, char replacement, char... searches) {
@@ -2390,58 +1881,12 @@ public abstract class StringUtilsWraps {
         return ArrayUtilsWraps.asSet(splitByComma(text, trim, max));
     }
 
-    /**
-     * Tests if a CharSequence starts with a specified prefix.
-     *
-     * <p>
-     * {@code null}s are handled without exceptions. Two {@code null} references are considered to be equal. The comparison is case-sensitive.
-     * </p>
-     *
-     * <pre>
-     * StringUtilsWraps.startsWith(null, null)      = true
-     * StringUtilsWraps.startsWith(null, "abc")     = false
-     * StringUtilsWraps.startsWith("abcdef", null)  = false
-     * StringUtilsWraps.startsWith("abcdef", "abc") = true
-     * StringUtilsWraps.startsWith("ABCDEF", "abc") = false
-     * </pre>
-     *
-     * @param str the CharSequence to check, may be null.
-     * @param prefix the prefix to find, may be null.
-     * @return {@code true} if the CharSequence starts with the prefix, case-sensitive, or both {@code null}.
-     */
-    public static boolean startsWith(@Nullable CharSequence str, @Nullable CharSequence prefix) {
-        return StringUtils.startsWith(str, prefix);
-    }
-
     public static boolean startsWith(@Nullable CharSequence sequence, char comparison) {
-        return startsWith(sequence, CharUtils.toString(comparison));
-    }
-
-    /**
-     * Case-insensitive check if a CharSequence starts with a specified prefix.
-     *
-     * <p>
-     * {@code null}s are handled without exceptions. Two {@code null} references are considered to be equal. The comparison is case insensitive.
-     * </p>
-     *
-     * <pre>
-     * StringUtilsWraps.startsWithIgnoreCase(null, null)      = true
-     * StringUtilsWraps.startsWithIgnoreCase(null, "abc")     = false
-     * StringUtilsWraps.startsWithIgnoreCase("abcdef", null)  = false
-     * StringUtilsWraps.startsWithIgnoreCase("abcdef", "abc") = true
-     * StringUtilsWraps.startsWithIgnoreCase("ABCDEF", "abc") = true
-     * </pre>
-     *
-     * @param str    the CharSequence to check, may be null.
-     * @param prefix the prefix to find, may be null.
-     * @return {@code true} if the CharSequence starts with the prefix, case-insensitive, or both {@code null}.
-     */
-    public static boolean startsWithIgnoreCase(@Nullable CharSequence str, @Nullable CharSequence prefix) {
-        return StringUtils.startsWith(str, prefix);
+        return StringUtils.startsWith(sequence, CharUtils.toString(comparison));
     }
 
     public static boolean startsWithIgnoreCase(@Nullable CharSequence sequence, char comparison) {
-        return startsWithIgnoreCase(sequence, CharUtils.toString(comparison));
+        return StringUtils.startsWithIgnoreCase(sequence, CharUtils.toString(comparison));
     }
 
     public static boolean startsWithAnyIgnoreCase(@Nullable CharSequence sequence, char... comparisons) {
@@ -2457,9 +1902,11 @@ public abstract class StringUtilsWraps {
      *
      * @param sequence The CharSequence to check
      * @param comparisons The case-insensitive CharSequence prefixes
+     *
+     * @see org.apache.commons.lang3.StringUtils#startsWithAny
      */
     public static boolean startsWithAnyIgnoreCase(@Nullable CharSequence sequence, @Nullable Collection<? extends CharSequence> comparisons) {
-        return StringUtils.isNotEmpty(sequence) && CollectionPlainWraps.isNotEmpty(comparisons) && comparisons.stream().anyMatch(item -> startsWithIgnoreCase(sequence, item));
+        return StringUtils.isNotEmpty(sequence) && CollectionPlainWraps.isNotEmpty(comparisons) && comparisons.stream().anyMatch(item -> StringUtils.startsWithIgnoreCase(sequence, item));
     }
 
     public static String substringAfter(@Nullable String text, char separator, int length) {
@@ -2516,7 +1963,7 @@ public abstract class StringUtilsWraps {
      */
     @Nullable
     public static String substringAfterIncluding(@Nullable String text, @Nullable String separator) {
-        if (StringUtils.isAnyEmpty(text, separator) || !StringUtilsWraps.contains(text, separator)) {
+        if (StringUtils.isAnyEmpty(text, separator) || !StringUtils.contains(text, separator)) {
             return null;
         }
         return StringUtils.join(separator, StringUtils.substringAfter(text, separator));
@@ -2546,7 +1993,7 @@ public abstract class StringUtilsWraps {
      */
     @Nullable
     public static String substringAfterLastIncluding(@Nullable String text, @Nullable String separator) {
-        if (StringUtils.isAnyEmpty(text, separator) || !StringUtilsWraps.contains(text, separator)) {
+        if (StringUtils.isAnyEmpty(text, separator) || !StringUtils.contains(text, separator)) {
             return null;
         }
         return StringUtils.join(separator, StringUtils.substringAfterLast(text, separator));
@@ -2636,7 +2083,7 @@ public abstract class StringUtilsWraps {
      */
     @Nullable
     public static String substringBeforeIncluding(@Nullable String text, @Nullable String separator) {
-        if (StringUtils.isAnyEmpty(text, separator) || !StringUtilsWraps.contains(text, separator)) {
+        if (StringUtils.isAnyEmpty(text, separator) || !StringUtils.contains(text, separator)) {
             return null;
         }
         return StringUtils.join(StringUtils.substringBefore(text, separator), separator);
@@ -2700,7 +2147,7 @@ public abstract class StringUtilsWraps {
      */
     @Nullable
     public static String substringBeforeLastIncluding(@Nullable String text, @Nullable String separator) {
-        if (StringUtils.isAnyEmpty(text, separator) || !StringUtilsWraps.contains(text, separator)) {
+        if (StringUtils.isAnyEmpty(text, separator) || !StringUtils.contains(text, separator)) {
             return null;
         }
         return StringUtils.join(StringUtils.substringBeforeLast(text, separator), separator);

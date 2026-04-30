@@ -35,20 +35,20 @@ class FilenameUtilsWrapsTest {
     void generateFileOfJavaIoTmp() {
         String result = FilenameUtilsWraps.generateFileOfJavaIoTmp("generateFileOfJavaIoTmp", ".ext");    // $NON-NLS-1$ // $NON-NLS-2$
         log.info("{}: {}", StackTraceWraps.getExecutingMethodName(), result);
-        Assertions.assertTrue(StringUtilsWraps.containsAll(result, "generateFileOfJavaIoTmp", ".ext"));    // $NON-NLS-1$ // $NON-NLS-2$
+        Assertions.assertTrue(StringUtils.containsAll(result, "generateFileOfJavaIoTmp", ".ext"));    // $NON-NLS-1$ // $NON-NLS-2$
     }
 
     @Test
     void generateFileOfUserDir() {
         String result = FilenameUtilsWraps.generateFileOfUserDir("generateFileOfUserDir", null);    // $NON-NLS-1$
         log.info("{}: {}", StackTraceWraps.getExecutingMethodName(), result);
-        Assertions.assertTrue(StringUtilsWraps.contains(result, "generateFileOfUserDir") && !StringUtilsWraps.contains(result, CharVariantConst.DOT));    // $NON-NLS-1$
+        Assertions.assertTrue(StringUtils.contains(result, "generateFileOfUserDir") && !StringUtils.contains(result, CharVariantConst.DOT));    // $NON-NLS-1$
     }
 
     @Test
     void generateFileOfUserHome() {
         String result = FilenameUtilsWraps.generateFileOfUserHome(null, ".ext");    // $NON-NLS-1$
         log.info("{}: {}", StackTraceWraps.getExecutingMethodName(), result);
-        Assertions.assertTrue(StringUtilsWraps.contains(result, ".ext"));    // $NON-NLS-1$
+        Assertions.assertTrue(StringUtils.contains(result, ".ext"));    // $NON-NLS-1$
     }
 }

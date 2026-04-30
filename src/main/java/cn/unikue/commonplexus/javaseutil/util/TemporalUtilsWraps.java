@@ -51,7 +51,7 @@ public abstract class TemporalUtilsWraps {
             return null;
         }
         ChronoUnit[] units = ChronoUnit.class.getEnumConstants();
-        return Arrays.stream(units).filter(item -> StringUtilsWraps.equalsIgnoreCase(item.name(), sequence)).findFirst().orElse(null);
+        return Arrays.stream(units).filter(item -> StringUtils.equalsIgnoreCase(item.name(), sequence)).findFirst().orElse(null);
     }
 
     /**
@@ -72,7 +72,7 @@ public abstract class TemporalUtilsWraps {
             return null;
         }
         TimeUnit[] units = TimeUnit.class.getEnumConstants();
-        return Arrays.stream(units).filter(item -> StringUtilsWraps.equalsIgnoreCase(item.name(), sequence)).findFirst().orElse(null);
+        return Arrays.stream(units).filter(item -> StringUtils.equalsIgnoreCase(item.name(), sequence)).findFirst().orElse(null);
     }
 
     @Nullable

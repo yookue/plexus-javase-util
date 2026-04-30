@@ -46,7 +46,7 @@ public abstract class LocalePlainWraps {
         if (ObjectUtils.anyNull(target, comparison)) {
             return false;
         }
-        return StringUtilsWraps.equals(target.getLanguage(), comparison.getLanguage());
+        return StringUtils.equals(target.getLanguage(), comparison.getLanguage());
     }
 
     public static boolean equalsLanguage(@Nullable Locale locale, @Nullable String language) {
@@ -56,7 +56,7 @@ public abstract class LocalePlainWraps {
         if (locale == null || StringUtils.isBlank(language)) {
             return false;
         }
-        return StringUtilsWraps.equals(locale.getLanguage(), language);
+        return StringUtils.equals(locale.getLanguage(), language);
     }
 
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
@@ -67,7 +67,7 @@ public abstract class LocalePlainWraps {
         if (ObjectUtils.anyNull(target, comparison)) {
             return false;
         }
-        return StringUtilsWraps.equals(target.toLanguageTag(), comparison.toLanguageTag());
+        return StringUtils.equals(target.toLanguageTag(), comparison.toLanguageTag());
     }
 
     public static boolean equalsLanguageTag(@Nullable Locale locale, @Nullable String languageTag) {
@@ -77,7 +77,7 @@ public abstract class LocalePlainWraps {
         if (locale == null || StringUtils.isBlank(languageTag)) {
             return false;
         }
-        return StringUtilsWraps.equals(locale.toLanguageTag(), languageTag);
+        return StringUtils.equals(locale.toLanguageTag(), languageTag);
     }
 
     public static boolean equalsAnyLanguages(@Nullable Locale target, @Nullable Locale... comparisons) {

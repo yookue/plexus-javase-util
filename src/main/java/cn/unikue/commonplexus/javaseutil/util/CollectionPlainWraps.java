@@ -628,19 +628,19 @@ public abstract class CollectionPlainWraps {
     }
 
     public static boolean containsString(@Nullable Collection<? extends CharSequence> collection, @Nullable CharSequence sequence) {
-        return isNotEmpty(collection) && collection.stream().anyMatch(item -> StringUtilsWraps.equals(item, sequence));
+        return isNotEmpty(collection) && collection.stream().anyMatch(item -> StringUtils.equals(item, sequence));
     }
 
     public static boolean containsStringIgnoreCase(@Nullable Collection<? extends CharSequence> collection, @Nullable CharSequence sequence) {
-        return isNotEmpty(collection) && collection.stream().anyMatch(item -> StringUtilsWraps.equalsIgnoreCase(item, sequence));
+        return isNotEmpty(collection) && collection.stream().anyMatch(item -> StringUtils.equalsIgnoreCase(item, sequence));
     }
 
     public static boolean containsSubstring(@Nullable Collection<? extends CharSequence> collection, @Nullable CharSequence sequence) {
-        return isNotEmpty(collection) && collection.stream().anyMatch(item -> StringUtilsWraps.contains(item, sequence));
+        return isNotEmpty(collection) && collection.stream().anyMatch(item -> StringUtils.contains(item, sequence));
     }
 
     public static boolean containsSubstringIgnoreCase(@Nullable Collection<? extends CharSequence> collection, @Nullable CharSequence sequence) {
-        return isNotEmpty(collection) && collection.stream().anyMatch(item -> StringUtilsWraps.containsIgnoreCase(item, sequence));
+        return isNotEmpty(collection) && collection.stream().anyMatch(item -> StringUtils.containsIgnoreCase(item, sequence));
     }
 
     public static <E> void forEach(@Nullable Collection<E> collection, @Nullable Consumer<? super E> action) {

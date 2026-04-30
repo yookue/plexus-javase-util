@@ -192,22 +192,22 @@ public abstract class ArrayUtilsWraps {
 
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
     public static boolean containsString(@Nullable CharSequence[] sequences, @Nullable CharSequence sequence) {
-        return ArrayUtils.isNotEmpty(sequences) && StringUtils.isNotEmpty(sequence) && Arrays.stream(sequences).anyMatch(item -> StringUtilsWraps.contains(item, sequence));
+        return ArrayUtils.isNotEmpty(sequences) && StringUtils.isNotEmpty(sequence) && Arrays.stream(sequences).anyMatch(item -> StringUtils.contains(item, sequence));
     }
 
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
     public static boolean containsStringIgnoreCase(@Nullable CharSequence[] sequences, @Nullable CharSequence sequence) {
-        return ArrayUtils.isNotEmpty(sequences) && StringUtils.isNotEmpty(sequence) && Arrays.stream(sequences).anyMatch(item -> StringUtilsWraps.containsIgnoreCase(item, sequence));
+        return ArrayUtils.isNotEmpty(sequences) && StringUtils.isNotEmpty(sequence) && Arrays.stream(sequences).anyMatch(item -> StringUtils.containsIgnoreCase(item, sequence));
     }
 
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
     public static boolean equalsString(@Nullable CharSequence[] sequences, @Nullable CharSequence sequence) {
-        return ArrayUtils.isNotEmpty(sequences) && StringUtils.isNotEmpty(sequence) && Arrays.stream(sequences).anyMatch(item -> StringUtilsWraps.equals(item, sequence));
+        return ArrayUtils.isNotEmpty(sequences) && StringUtils.isNotEmpty(sequence) && Arrays.stream(sequences).anyMatch(item -> StringUtils.equals(item, sequence));
     }
 
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
     public static boolean equalsStringIgnoreCase(@Nullable CharSequence[] sequences, @Nullable CharSequence sequence) {
-        return ArrayUtils.isNotEmpty(sequences) && StringUtils.isNotEmpty(sequence) && Arrays.stream(sequences).anyMatch(item -> StringUtilsWraps.equalsIgnoreCase(item, sequence));
+        return ArrayUtils.isNotEmpty(sequences) && StringUtils.isNotEmpty(sequence) && Arrays.stream(sequences).anyMatch(item -> StringUtils.equalsIgnoreCase(item, sequence));
     }
 
     public static void forEach(@Nullable boolean[] array, @Nullable Consumer<Boolean> action) {

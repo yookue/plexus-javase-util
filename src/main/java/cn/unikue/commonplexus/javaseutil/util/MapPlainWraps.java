@@ -116,7 +116,7 @@ public abstract class MapPlainWraps {
     @Nullable
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
     public static <K, V extends CharSequence> V computeIfEqualsIgnoreCase(@Nullable Map<K, V> map, @Nullable K key, @Nullable CharSequence comparison, @Nullable BiFunction<? super K, ? super V, ? extends V> action) {
-        return (ObjectUtils.anyNull(map, action) || !StringUtilsWraps.equalsIgnoreCase(map.get(key), comparison)) ? null : map.compute(key, action);
+        return (ObjectUtils.anyNull(map, action) || !StringUtils.equalsIgnoreCase(map.get(key), comparison)) ? null : map.compute(key, action);
     }
 
     @Nullable
@@ -130,7 +130,7 @@ public abstract class MapPlainWraps {
     }
 
     public static <K extends CharSequence> boolean containsKeyIgnoreCase(@Nullable Map<K, ?> map, @Nullable K key) {
-        return isNotEmpty(map) && (map.containsKey(key) || map.keySet().stream().anyMatch(item -> StringUtilsWraps.equalsIgnoreCase(item, key)));
+        return isNotEmpty(map) && (map.containsKey(key) || map.keySet().stream().anyMatch(item -> StringUtils.equalsIgnoreCase(item, key)));
     }
 
     public static <V> boolean containsValue(@Nullable Map<?, ? super V> map, @Nullable V value) {
@@ -138,7 +138,7 @@ public abstract class MapPlainWraps {
     }
 
     public static <V extends CharSequence> boolean containsValueIgnoreCase(@Nullable Map<?, V> map, @Nullable V value) {
-        return isNotEmpty(map) && (map.containsValue(value) || map.values().stream().anyMatch(item -> StringUtilsWraps.equalsIgnoreCase(item, value)));
+        return isNotEmpty(map) && (map.containsValue(value) || map.values().stream().anyMatch(item -> StringUtils.equalsIgnoreCase(item, value)));
     }
 
     public static <K, V> boolean containsKeyValue(@Nullable Map<K, V> map, @Nullable K key, @Nullable V value) {
@@ -146,7 +146,7 @@ public abstract class MapPlainWraps {
     }
 
     public static <K extends CharSequence, V extends CharSequence> boolean containsKeyIgnoreCaseValueIgnoreCase(@Nullable Map<K, V> map, @Nullable K key, @Nullable V value) {
-        return isNotEmpty(map) && map.entrySet().stream().anyMatch(item -> StringUtilsWraps.equalsIgnoreCase(item.getKey(), key) && StringUtilsWraps.equalsIgnoreCase(item.getValue(), value));
+        return isNotEmpty(map) && map.entrySet().stream().anyMatch(item -> StringUtils.equalsIgnoreCase(item.getKey(), key) && StringUtils.equalsIgnoreCase(item.getValue(), value));
     }
 
     @SafeVarargs
@@ -476,7 +476,7 @@ public abstract class MapPlainWraps {
             return result;
         }
         for (Map.Entry<K, V> entry : map.entrySet()) {
-            if (StringUtilsWraps.equalsIgnoreCase(entry.getKey(), key)) {
+            if (StringUtils.equalsIgnoreCase(entry.getKey(), key)) {
                 return entry.getValue();
             }
         }
