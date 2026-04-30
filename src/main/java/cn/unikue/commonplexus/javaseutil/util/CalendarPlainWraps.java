@@ -67,7 +67,7 @@ public abstract class CalendarPlainWraps {
         if (date == null || field < 0) {
             return null;
         }
-        Calendar calendar = Calendar.getInstance(ObjectUtils.getIfNull(zone, TimeZone.getDefault()), ObjectUtils.getIfNull(locale, Locale.getDefault(Locale.Category.FORMAT)));
+        Calendar calendar = Calendar.getInstance(ObjectUtils.defaultIfNull(zone, TimeZone.getDefault()), ObjectUtils.defaultIfNull(locale, Locale.getDefault(Locale.Category.FORMAT)));
         calendar.setLenient(false);
         calendar.setTime(date);
         return calendar.get(field);

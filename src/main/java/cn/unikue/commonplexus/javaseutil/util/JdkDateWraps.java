@@ -209,7 +209,7 @@ public abstract class JdkDateWraps {
         if (date == null) {
             return null;
         }
-        Calendar calendar = Calendar.getInstance(ObjectUtils.getIfNull(zone, TimeZone.getDefault()), ObjectUtils.getIfNull(locale, Locale.getDefault(Locale.Category.FORMAT)));
+        Calendar calendar = Calendar.getInstance(ObjectUtils.defaultIfNull(zone, TimeZone.getDefault()), ObjectUtils.defaultIfNull(locale, Locale.getDefault(Locale.Category.FORMAT)));
         calendar.setLenient(false);
         calendar.setTime(date);
         calendar.set(Calendar.HOUR_OF_DAY, 0);
@@ -236,7 +236,7 @@ public abstract class JdkDateWraps {
         if (date == null) {
             return null;
         }
-        Calendar calendar = Calendar.getInstance(ObjectUtils.getIfNull(zone, TimeZone.getDefault()), ObjectUtils.getIfNull(locale, Locale.getDefault(Locale.Category.FORMAT)));
+        Calendar calendar = Calendar.getInstance(ObjectUtils.defaultIfNull(zone, TimeZone.getDefault()), ObjectUtils.defaultIfNull(locale, Locale.getDefault(Locale.Category.FORMAT)));
         calendar.setLenient(false);
         calendar.setTime(date);
         calendar.set(Calendar.HOUR_OF_DAY, 23);

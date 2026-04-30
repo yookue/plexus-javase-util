@@ -186,7 +186,7 @@ public abstract class ListPlainWraps {
     }
 
     public static <E> E get(@Nullable List<E> list, int index, E defaultValue) {
-        return (list == null || index < 0 || index > list.size() - 1) ? defaultValue : ObjectUtils.getIfNull(list.get(index), defaultValue);
+        return (list == null || index < 0 || index > list.size() - 1) ? defaultValue : ObjectUtils.defaultIfNull(list.get(index), defaultValue);
     }
 
     public static <E> E getFirst(@Nullable List<E> list) {

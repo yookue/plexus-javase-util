@@ -535,7 +535,7 @@ public abstract class RegexUtilsWraps {
      * @return the text with any removes processed, {@code null} if null String input
      */
     public static String removeAll(@Nullable String text, @Nullable Pattern regex) {
-        return (StringUtils.isEmpty(text) || regex == null) ? text : RegExUtils.replaceAll((CharSequence) text, regex, StringUtils.EMPTY);
+        return (StringUtils.isEmpty(text) || regex == null) ? text : RegExUtils.removeAll(text, regex);
     }
 
     public static String removeAll(@Nullable String text, char character) {
@@ -671,7 +671,7 @@ public abstract class RegexUtilsWraps {
     }
 
     public static String replaceAll(@Nullable String text, @Nullable Pattern regex, @Nullable String replacement) {
-        return (StringUtilsWraps.anyEmpty(text, replacement) || regex == null) ? text : RegExUtils.replaceAll((CharSequence) text, regex, replacement);
+        return (StringUtilsWraps.anyEmpty(text, replacement) || regex == null) ? text : RegExUtils.replaceAll(text, regex, replacement);
     }
 
     public static String replaceAllIgnoreCase(@Nullable String text, @Nullable String regex, char replacement) {
@@ -690,7 +690,7 @@ public abstract class RegexUtilsWraps {
     }
 
     public static String replaceFirst(@Nullable String text, @Nullable Pattern regex, @Nullable String replacement) {
-        return (StringUtilsWraps.anyEmpty(text, replacement) || regex == null) ? text : RegExUtils.replaceFirst((CharSequence) text, regex, replacement);
+        return (StringUtilsWraps.anyEmpty(text, replacement) || regex == null) ? text : RegExUtils.replaceFirst(text, regex, replacement);
     }
 
     public static String replaceFirstIgnoreCase(@Nullable String text, @Nullable String regex, char replacement) {

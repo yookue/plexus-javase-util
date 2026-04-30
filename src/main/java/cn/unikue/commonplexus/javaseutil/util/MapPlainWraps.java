@@ -672,7 +672,7 @@ public abstract class MapPlainWraps {
             result = alias;
         } else if (value instanceof String alias) {
             if (CollectionPlainWraps.isEmpty(formats)) {
-                result = ObjectUtils.getIfNull(JdkDateWraps.parseDateTimeGuessing(alias), JdkDateWraps.parseDateGuessing(alias));
+                result = ObjectUtils.defaultIfNull(JdkDateWraps.parseDateTimeGuessing(alias), JdkDateWraps.parseDateGuessing(alias));
             } else {
                 result = JdkDateWraps.parseDateFormats(alias, formats);
             }

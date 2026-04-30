@@ -40,7 +40,6 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.CharUtils;
 import org.apache.commons.lang3.RegExUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.Strings;
 import cn.unikue.commonplexus.javaseutil.constant.CharVariantConst;
 import cn.unikue.commonplexus.javaseutil.constant.SymbolVariantConst;
 
@@ -152,7 +151,7 @@ public abstract class StringUtilsWraps {
      * @return A new String if suffix was appended, the same string otherwise.
      */
     public static String appendIfMissing(@Nullable String str, @Nullable CharSequence suffix, @Nullable CharSequence... suffixes) {
-        return Strings.CS.appendIfMissing(str, suffix, suffixes);
+        return StringUtils.appendIfMissing(str, suffix, suffixes);
     }
 
     /**
@@ -246,7 +245,7 @@ public abstract class StringUtilsWraps {
      * @return A new String if suffix was appended, the same string otherwise.
      */
     public static String appendIfMissingIgnoreCase(@Nullable String str, @Nullable CharSequence suffix, @Nullable CharSequence... suffixes) {
-        return Strings.CI.appendIfMissing(str, suffix, suffixes);
+        return StringUtils.appendIfMissing(str, suffix, suffixes);
     }
 
     /**
@@ -378,7 +377,7 @@ public abstract class StringUtilsWraps {
      * @return true if the CharSequence contains the search CharSequence, false if not or {@code null} string input
      */
     public static boolean contains(@Nullable CharSequence seq, @Nullable CharSequence searchSeq) {
-        return Strings.CS.contains(seq, searchSeq);
+        return StringUtils.contains(seq, searchSeq);
     }
 
     /**
@@ -403,7 +402,7 @@ public abstract class StringUtilsWraps {
      * @return true if the CharSequence contains the search CharSequence irrespective of case or false if not or {@code null} string input.
      */
     public static boolean containsIgnoreCase(@Nullable CharSequence str, @Nullable CharSequence searchStr) {
-        return Strings.CI.contains(str, searchStr);
+        return StringUtils.contains(str, searchStr);
     }
 
     public static boolean containsAll(@Nullable CharSequence sequence, @Nullable CharSequence... comparisons) {
@@ -446,7 +445,7 @@ public abstract class StringUtilsWraps {
         return StringUtils.isNotEmpty(sequence) && CollectionPlainWraps.isNotEmpty(comparisons) && comparisons.stream().anyMatch(item -> StringUtilsWraps.containsIgnoreCase(sequence, item));
     }
 
-    public static <T extends CharSequence> T getIfEquals(@Nullable T sequence, @Nullable CharSequence comparison, @Nullable T defaultValue) {
+    public static <T extends CharSequence> T defaultIfEquals(@Nullable T sequence, @Nullable CharSequence comparison, @Nullable T defaultValue) {
         return StringUtilsWraps.equals(sequence, comparison) ? defaultValue : sequence;
     }
 
@@ -571,7 +570,7 @@ public abstract class StringUtilsWraps {
      * @return {@code true} if the string is equal (case-sensitive) to any other element of {@code searchStrings}; {@code false} if {@code searchStrings} is null or contains no matches.
      */
     public static boolean equalsAny(@Nullable CharSequence sequence, @Nullable CharSequence... comparisons) {
-        return Strings.CS.equalsAny(sequence, comparisons);
+        return StringUtils.equalsAny(sequence, comparisons);
     }
 
     public static boolean equalsAny(@Nullable CharSequence sequence, @Nullable Collection<? extends CharSequence> comparisons) {
@@ -596,7 +595,7 @@ public abstract class StringUtilsWraps {
      * @return {@code true} if the string is equal (case-insensitive) to any other element of {@code searchStrings};
      */
     public static boolean equalsAnyIgnoreCase(@Nullable CharSequence sequence, @Nullable CharSequence... comparisons) {
-        return Strings.CI.equalsAny(sequence, comparisons);
+        return StringUtils.equalsAny(sequence, comparisons);
     }
 
     public static boolean equalsAnyIgnoreCase(@Nullable CharSequence sequence, char... comparisons) {
@@ -669,7 +668,7 @@ public abstract class StringUtilsWraps {
      * @return {@code true} if the CharSequence ends with the suffix, case-sensitive, or both {@code null}.
      */
     public static boolean endsWith(@Nullable CharSequence str, @Nullable CharSequence suffix) {
-        return Strings.CS.endsWith(str, suffix);
+        return StringUtils.endsWith(str, suffix);
     }
 
     public static boolean endsWith(@Nullable CharSequence sequence, char comparison) {
@@ -697,7 +696,7 @@ public abstract class StringUtilsWraps {
      * @return {@code true} if the CharSequence ends with the suffix, case-insensitive, or both {@code null}
      */
     public static boolean endsWithIgnoreCase(@Nullable CharSequence str, @Nullable CharSequence suffix) {
-        return Strings.CI.endsWith(str, suffix);
+        return StringUtils.endsWith(str, suffix);
     }
 
     /**
@@ -719,7 +718,7 @@ public abstract class StringUtilsWraps {
      * @return {@code true} if the input {@code sequence} is {@code null} AND no {@code searchStrings} are provided, or the input {@code sequence} ends in any of the provided case-sensitive {@code searchStrings}.
      */
     public static boolean endsWithAny(@Nullable CharSequence sequence, @Nullable CharSequence... searchStrings) {
-        return Strings.CS.endsWithAny(sequence, searchStrings);
+        return StringUtils.endsWithAny(sequence, searchStrings);
     }
 
     public static boolean endsWithAny(@Nullable CharSequence sequence, char... comparisons) {
@@ -764,7 +763,7 @@ public abstract class StringUtilsWraps {
      * @return {@code true} if the CharSequences are equal (case-sensitive), or both {@code null}.
      */
     public static boolean equals(@Nullable CharSequence cs1, @Nullable CharSequence cs2) {
-        return Strings.CS.equals(cs1, cs2);
+        return StringUtils.equals(cs1, cs2);
     }
 
     /**
@@ -787,7 +786,7 @@ public abstract class StringUtilsWraps {
      * @return {@code true} if the CharSequences are equal (case-insensitive), or both {@code null}.
      */
     public static boolean equalsIgnoreCase(@Nullable CharSequence cs1, @Nullable CharSequence cs2) {
-        return Strings.CI.equals(cs1, cs2);
+        return StringUtils.equals(cs1, cs2);
     }
 
     @Nullable
@@ -1324,11 +1323,11 @@ public abstract class StringUtilsWraps {
     }
 
     public static int lastIndexOf(@Nullable CharSequence sequence, @Nullable CharSequence search) {
-        return Strings.CS.lastIndexOf(sequence, search);
+        return StringUtils.lastIndexOf(sequence, search);
     }
 
     public static int lastIndexOf(@Nullable CharSequence sequence, @Nullable CharSequence search, int startPos) {
-        return Strings.CS.lastIndexOf(sequence, search, startPos);
+        return StringUtils.lastIndexOf(sequence, search, startPos);
     }
 
     public static String lastSubstringBetween(@Nullable String text, char tag) {
@@ -1418,7 +1417,7 @@ public abstract class StringUtilsWraps {
      * @return A new String if prefix was prepended, the same string otherwise.
      */
     public static String prependIfMissing(@Nullable String str, @Nullable CharSequence prefix, @Nullable CharSequence... prefixes) {
-        return Strings.CS.prependIfMissing(str, prefix, prefixes);
+        return StringUtils.prependIfMissing(str, prefix, prefixes);
     }
 
     /**
@@ -1514,7 +1513,7 @@ public abstract class StringUtilsWraps {
      * @return A new String if prefix was prepended, the same string otherwise.
      */
     public static String prependIfMissingIgnoreCase(@Nullable String str, @Nullable CharSequence prefix, @Nullable CharSequence... prefixes) {
-        return Strings.CI.prependIfMissing(str, prefix, prefixes);
+        return StringUtils.prependIfMissing(str, prefix, prefixes);
     }
 
     /**
@@ -1671,7 +1670,7 @@ public abstract class StringUtilsWraps {
      * @return the substring with the string removed if found, {@code null} if null String input.
      */
     public static String remove(@Nullable String str, @Nullable String remove) {
-        return Strings.CS.remove(str, remove);
+        return StringUtils.remove(str, remove);
     }
 
     public static String removeAll(@Nullable CharSequence sequence, char... removes) {
@@ -1790,7 +1789,7 @@ public abstract class StringUtilsWraps {
      * @return the substring with the string removed if found, {@code null} if null String input.
      */
     public static String removeEnd(@Nullable String str, @Nullable String remove) {
-        return Strings.CS.removeEnd(str, remove);
+        return StringUtils.removeEnd(str, remove);
     }
 
     public static String removeEnd(@Nullable CharSequence sequence, char remove) {
@@ -1875,7 +1874,7 @@ public abstract class StringUtilsWraps {
      * @return the substring with the string removed if found, {@code null} if null String input.
      */
     public static String removeEndIgnoreCase(@Nullable String str, @Nullable String remove) {
-        return Strings.CI.removeEnd(str, remove);
+        return StringUtils.removeEnd(str, remove);
     }
 
     public static String removeEndIgnoreCase(@Nullable CharSequence sequence, char remove) {
@@ -1958,7 +1957,7 @@ public abstract class StringUtilsWraps {
      * @return the substring with the string removed if found, {@code null} if null String input.
      */
     public static String removeStart(final String str, final String remove) {
-        return Strings.CS.removeStart(str, remove);
+        return StringUtils.removeStart(str, remove);
     }
 
     public static String removeStart(@Nullable CharSequence sequence, char remove) {
@@ -2094,7 +2093,7 @@ public abstract class StringUtilsWraps {
      * @return the text with any replacements processed, {@code null} if null String input.
      */
     public static String replace(@Nullable String text, @Nullable String searchString, @Nullable String replacement, int max) {
-        return Strings.CS.replace(text, searchString, replacement, max);
+        return StringUtils.replace(text, searchString, replacement, max);
     }
 
     public static String replace(@Nullable String text, char search, char replacement) {
@@ -2142,7 +2141,7 @@ public abstract class StringUtilsWraps {
      * @return the text with any replacements processed, {@code null} if null String input.
      */
     public static String replaceIgnoreCase(@Nullable String text, @Nullable String searchString, @Nullable String replacement, int max) {
-        return Strings.CI.replace(text, searchString, replacement, max);
+        return StringUtils.replace(text, searchString, replacement, max);
     }
 
     public static String replaceIgnoreCase(@Nullable String text, char search, char replacement) {
@@ -2411,7 +2410,7 @@ public abstract class StringUtilsWraps {
      * @return {@code true} if the CharSequence starts with the prefix, case-sensitive, or both {@code null}.
      */
     public static boolean startsWith(@Nullable CharSequence str, @Nullable CharSequence prefix) {
-        return Strings.CS.startsWith(str, prefix);
+        return StringUtils.startsWith(str, prefix);
     }
 
     public static boolean startsWith(@Nullable CharSequence sequence, char comparison) {
@@ -2438,7 +2437,7 @@ public abstract class StringUtilsWraps {
      * @return {@code true} if the CharSequence starts with the prefix, case-insensitive, or both {@code null}.
      */
     public static boolean startsWithIgnoreCase(@Nullable CharSequence str, @Nullable CharSequence prefix) {
-        return Strings.CI.startsWith(str, prefix);
+        return StringUtils.startsWith(str, prefix);
     }
 
     public static boolean startsWithIgnoreCase(@Nullable CharSequence sequence, char comparison) {

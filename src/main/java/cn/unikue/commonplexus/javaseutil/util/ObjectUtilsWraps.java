@@ -374,10 +374,7 @@ public abstract class ObjectUtilsWraps {
         return null;
     }
 
-    /**
-     * @see org.apache.commons.lang3.ObjectUtils#getIfNull
-     */
-    public static <T> T getIfEquals(@Nullable T target, @Nullable T comparison, @Nullable T defaultValue) {
+    public static <T> T defaultIfEquals(@Nullable T target, @Nullable T comparison, @Nullable T defaultValue) {
         return Objects.equals(target, comparison) ? defaultValue : target;
     }
 
