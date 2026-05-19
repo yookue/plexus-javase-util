@@ -829,6 +829,15 @@ public abstract class StringUtilsWraps {
     }
 
     @SafeVarargs
+    public static <T> String joinWithDot(@Nullable T... objects) {
+        return joinWithDot(ArrayUtilsWraps.asList(objects));
+    }
+
+    public static String joinWithDot(@Nullable Collection<?> collection) {
+        return joinWith(collection, CharVariantConst.DOT);
+    }
+
+    @SafeVarargs
     public static <T> String joinWithSemicolon(@Nullable T... objects) {
         return joinWithSemicolon(ArrayUtilsWraps.asList(objects));
     }
