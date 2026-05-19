@@ -17,45 +17,80 @@
 package cn.unikue.commonplexus.javaseutil.util;
 
 
-import org.apache.commons.lang3.StringUtils;
-import lombok.Getter;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import org.apache.commons.lang3.SystemUtils;
 
 
 /**
  * Utilities for detecting docker
  *
  * @author David Hsing
- *
- * @see "com.baidu.fsg.uid.utils.DockerUtils"
  */
-@SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})
+@SuppressWarnings("unused")
 public abstract class DockerDetectionWraps {
-    private static final String JPAAS_HOST = "JPAAS_HOST";
-    private static final String JPAAS_HTTP_PORT = "JPAAS_HTTP_PORT";
-    private static final String JPAAS_HOST_PORT = "JPAAS_HOST_PORT_8080";
+    private static final String DOCKER_ENV_FILE = "/.dockerenv";    // $NON-NLS-1$
+    private static final String DOCKER_CGROUP_FILE = "/proc/1/cgroup";    // $NON-NLS-1$
+    private static final String DOCKER_ENV = "docker";    // $NON-NLS-1$
+    private static final String CONTAINER_ENV = "containerd";    // $NON-NLS-1$
+    private static final String PODMAN_ENV = "container";    // $NON-NLS-1$
 
-    @Getter
-    private static String dockerHost;
+    private static final String DOCKER_HOST = "DOCKER_HOST";    // $NON-NLS-1$
+    private static final String DOCKER_CONTAINER = "DOCKER_CONTAINER";    // $NON-NLS-1$
+    private static final String CONTAINER = "CONTAINER";    // $NON-NLS-1$
 
-    @Getter
-    private static String dockerPort;
-
-    @Getter
-    private static boolean underDocker;
-
-    static {
-        detectEnvironment();
+    /**
+     * Check if current process is running inside a Docker container
+     *
+     * @return true if running in Docker, false otherwise
+     */
+    public static boolean isUnderDocker() {
+        return checkDockerEnvFile() || checkCgroupFile()  || checkContainerEnvVars();
     }
 
     /**
-     * Retrieve host & port from environment
+     * Retrieve Docker host from environment
+     *
+     * @return Docker host or null if not available
      */
-    private static void detectEnvironment() {
-        dockerHost = SystemUtilsWraps.getVariable(JPAAS_HOST);
-        dockerPort = SystemUtilsWraps.getVariable(JPAAS_HTTP_PORT);
-        if (StringUtils.isBlank(dockerPort)) {
-            dockerPort = SystemUtilsWraps.getVariable(JPAAS_HOST_PORT);
+    public static String getDockerHost() {
+        return SystemUtils.getEnvironmentVariable(DOCKER_HOST, null);
+    }
+
+    /**
+     * Check for /.dockerenv file (most reliable method)
+     */
+    private static boolean checkDockerEnvFile() {
+        return new File(DOCKER_ENV_FILE).exists();
+    }
+
+    /**
+     * Check /proc/1/cgroup for docker/containerd keywords
+     */
+    private static boolean checkCgroupFile() {
+        File cgroupFile = new File(DOCKER_CGROUP_FILE);
+        if (!cgroupFile.exists() || !cgroupFile.canRead()) {
+            return false;
         }
-        underDocker = StringUtils.isNoneBlank(dockerHost, dockerPort);
+        try (BufferedReader reader = new BufferedReader(new FileReader(cgroupFile))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (StringUtilsWraps.containsAnyIgnoreCase(line, DOCKER_ENV, CONTAINER_ENV, PODMAN_ENV)) {
+                    return true;
+                }
+            }
+        } catch (Exception ignored) {
+        }
+        return false;
+    }
+
+    /**
+     * Check for Docker-specific environment variables
+     */
+    private static boolean checkContainerEnvVars() {
+        String dockerContainer = SystemUtils.getEnvironmentVariable(DOCKER_CONTAINER, null);
+        String container = SystemUtils.getEnvironmentVariable(CONTAINER, null);
+        return StringUtilsWraps.anyNotBlank(dockerContainer, container);
     }
 }
