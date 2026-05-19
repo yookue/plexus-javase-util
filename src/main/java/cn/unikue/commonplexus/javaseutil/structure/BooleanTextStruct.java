@@ -38,7 +38,7 @@ import lombok.NoArgsConstructor;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @SuppressWarnings("unused")
-public class BooleanTextStruct extends PureTextStruct {
+public class BooleanTextStruct extends TextStampStruct {
     private boolean success = false;
 
     public BooleanTextStruct(boolean success, @Nullable String... texts) {

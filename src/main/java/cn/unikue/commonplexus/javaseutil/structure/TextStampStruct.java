@@ -18,6 +18,7 @@ package cn.unikue.commonplexus.javaseutil.structure;
 
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -37,7 +38,7 @@ import lombok.NoArgsConstructor;
 
 
 /**
- * Structure with a string list
+ * Structure with a string list and a timestamp
  *
  * @author David Hsing
  */
@@ -46,38 +47,39 @@ import lombok.NoArgsConstructor;
 @Data
 @Slf4j
 @SuppressWarnings({"unused", "WeakerAccess", "UnusedReturnValue"})
-public class PureTextStruct implements Serializable {
+public class TextStampStruct implements Serializable {
     private final List<String> texts = new ArrayList<>();
+    private LocalDateTime timestamp = LocalDateTime.now();
 
-    public PureTextStruct(@Nullable String... texts) {
+    public TextStampStruct(@Nullable String... texts) {
         addText(texts);
     }
 
-    public PureTextStruct(@Nullable Collection<String> texts) {
+    public TextStampStruct(@Nullable Collection<String> texts) {
         addText(texts);
     }
 
-    public PureTextStruct addText(@Nullable String... texts) {
+    public TextStampStruct addText(@Nullable String... texts) {
         return addText(ArrayUtilsWraps.asList(texts));
     }
 
-    public PureTextStruct addText(@Nullable Collection<String> texts) {
+    public TextStampStruct addText(@Nullable Collection<String> texts) {
         texts = CollectionPlainWraps.newArrayListIfNull(texts);
         CollectionPlainWraps.addAllIfNotEmpty(this.texts, texts);
         return this;
     }
 
-    public PureTextStruct addTextAt(int index, @Nullable String... texts) {
+    public TextStampStruct addTextAt(int index, @Nullable String... texts) {
         return addTextAt(index, ArrayUtilsWraps.asList(texts));
     }
 
-    public PureTextStruct addTextAt(int index, @Nullable Collection<String> texts) {
+    public TextStampStruct addTextAt(int index, @Nullable Collection<String> texts) {
         texts = CollectionPlainWraps.newArrayListIfNull(texts);
         ListPlainWraps.addAllIfNotEmpty(this.texts, index, texts);
         return this;
     }
 
-    public PureTextStruct clearTexts() {
+    public TextStampStruct clearTexts() {
         texts.clear();
         return this;
     }
@@ -146,7 +148,7 @@ public class PureTextStruct implements Serializable {
         return CollectionPlainWraps.isEmpty(texts);
     }
 
-    public PureTextStruct removeText(int index) {
+    public TextStampStruct removeText(int index) {
         if (CollectionPlainWraps.isIndexBound(texts, index)) {
             texts.remove(index);
         }

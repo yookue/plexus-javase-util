@@ -37,7 +37,7 @@ import lombok.NoArgsConstructor;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @SuppressWarnings("unused")
-public class StatusTextStruct extends PureTextStruct {
+public class StatusTextStruct extends TextStampStruct {
     private Integer status;
 
     public StatusTextStruct(@Nullable Integer status, @Nullable String... texts) {

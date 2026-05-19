@@ -39,7 +39,7 @@ import lombok.NoArgsConstructor;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @SuppressWarnings("unused")
-public class DataTextStruct<T> extends PureTextStruct {
+public class DataTextStruct<T> extends TextStampStruct {
     private T data;
 
     public DataTextStruct(@Nullable T data, @Nullable String... texts) {
