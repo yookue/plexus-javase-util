@@ -57,6 +57,7 @@ public abstract class StringVariantConst {
     public static final String ERROR = "error";    // $NON-NLS-1$
     // @see "org.springframework.util.ResourceUtils#URL_PROTOCOL_FILE"
     public static final String FILE = "file";    // $NON-NLS-1$
+    public static final String FILE_COLON = FILE + CharVariantConst.COLON;
     public static final String FILENAME = "filename";    // $NON-NLS-1$
     public static final String FORWARD = "forward";    // $NON-NLS-1$
     public static final String INSTANCE = "instance";    // $NON-NLS-1$
