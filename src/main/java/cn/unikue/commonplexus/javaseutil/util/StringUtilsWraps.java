@@ -54,7 +54,7 @@ import cn.unikue.commonplexus.javaseutil.constant.SymbolVariantConst;
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})
 public abstract class StringUtilsWraps {
     public static boolean allEmpty(@Nullable CharSequence... sequences) {
-        return allEmpty(ArrayUtilsWraps.asList(sequences));
+        return StringUtils.isAllEmpty(sequences);
     }
 
     public static boolean allEmpty(@Nullable Collection<? extends CharSequence> sequences) {
@@ -70,7 +70,7 @@ public abstract class StringUtilsWraps {
     }
 
     public static boolean allBlank(@Nullable CharSequence... sequences) {
-        return allBlank(ArrayUtilsWraps.asList(sequences));
+        return StringUtils.isAllBlank(sequences);
     }
 
     public static boolean allBlank(@Nullable Collection<? extends CharSequence> sequences) {
@@ -86,7 +86,7 @@ public abstract class StringUtilsWraps {
     }
 
     public static boolean anyEmpty(@Nullable CharSequence... sequences) {
-        return anyEmpty(ArrayUtilsWraps.asList(sequences));
+        return StringUtils.isAnyEmpty(sequences);
     }
 
     public static boolean anyEmpty(@Nullable Collection<? extends CharSequence> sequences) {
@@ -102,7 +102,7 @@ public abstract class StringUtilsWraps {
     }
 
     public static boolean anyBlank(@Nullable CharSequence... sequences) {
-        return anyBlank(ArrayUtilsWraps.asList(sequences));
+        return StringUtils.isAnyBlank(sequences);
     }
 
     public static boolean anyBlank(@Nullable Collection<? extends CharSequence> sequences) {
