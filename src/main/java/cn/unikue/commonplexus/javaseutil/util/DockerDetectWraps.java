@@ -29,13 +29,12 @@ import org.apache.commons.lang3.SystemUtils;
  * @author David Hsing
  */
 @SuppressWarnings("unused")
-public abstract class DockerDetectionWraps {
+public abstract class DockerDetectWraps {
     private static final String DOCKER_ENV_FILE = "/.dockerenv";    // $NON-NLS-1$
     private static final String DOCKER_CGROUP_FILE = "/proc/1/cgroup";    // $NON-NLS-1$
     private static final String DOCKER_ENV = "docker";    // $NON-NLS-1$
     private static final String CONTAINER_ENV = "containerd";    // $NON-NLS-1$
     private static final String PODMAN_ENV = "container";    // $NON-NLS-1$
-
     private static final String DOCKER_HOST = "DOCKER_HOST";    // $NON-NLS-1$
     private static final String DOCKER_CONTAINER = "DOCKER_CONTAINER";    // $NON-NLS-1$
     private static final String CONTAINER = "CONTAINER";    // $NON-NLS-1$
@@ -45,7 +44,7 @@ public abstract class DockerDetectionWraps {
      *
      * @return true if running in Docker, false otherwise
      */
-    public static boolean isUnderDocker() {
+    public static boolean isInDocker() {
         return checkDockerEnvFile() || checkCgroupFile()  || checkContainerEnvVars();
     }
 
