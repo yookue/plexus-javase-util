@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import jakarta.annotation.Nonnull;
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import cn.unikue.commonplexus.javaseutil.constant.CharVariantConst;
 import oshi.SystemInfo;
@@ -81,7 +82,7 @@ public abstract class OshiDetectWraps {
     public static List<String> getCpuSerials() {
         if (isInContainer()) {
             List<String> hostSerials = detectCpuSerialsFromHost();
-            if (!hostSerials.isEmpty()) {
+            if (CollectionPlainWraps.isNotEmpty(hostSerials)) {
                 return hostSerials;
             }
         }
@@ -122,7 +123,7 @@ public abstract class OshiDetectWraps {
             HardwareAbstractionLayer hal = SYSTEM_INFO.getHardware();
             CentralProcessor processor = hal.getProcessor();
             String processorId = processor.getProcessorIdentifier().getProcessorID();
-            if (processorId != null && !processorId.isBlank()) {
+            if (StringUtils.isNotBlank(processorId)) {
                 List<String> result = new ArrayList<>();
                 result.add(processorId);
                 return result;
@@ -179,11 +180,9 @@ public abstract class OshiDetectWraps {
     private static List<String> detectBaseboardSerialsFromNative() {
         try {
             HardwareAbstractionLayer hal = SYSTEM_INFO.getHardware();
-            String serialNumber = hal.getComputerSystem().getBaseboard().getSerialNumber();
-            if (serialNumber != null && !serialNumber.isBlank()) {
-                List<String> result = new ArrayList<>();
-                result.add(serialNumber);
-                return result;
+            String serial = hal.getComputerSystem().getBaseboard().getSerialNumber();
+            if (StringUtils.isNotBlank(serial)) {
+                return CollectionPlainWraps.newArrayListWithin(serial);
             }
         } catch (Exception ignored) {
         }
@@ -207,7 +206,7 @@ public abstract class OshiDetectWraps {
     public static List<String> getMacAddresses() {
         if (isInContainer()) {
             List<String> hostMacs = detectMacAddressesFromHost();
-            if (!hostMacs.isEmpty()) {
+            if (CollectionPlainWraps.isNotEmpty(hostMacs)) {
                 return hostMacs;
             }
         }
@@ -218,13 +217,14 @@ public abstract class OshiDetectWraps {
      * Read MAC addresses from host-mapped {@code /sys/class/net}
      */
     @Nonnull
+    @SuppressWarnings("DataFlowIssue")
     private static List<String> detectMacAddressesFromHost() {
         File netDir = new File(HOST_SYS_NET_DIR);
         if (!netDir.exists() || !netDir.isDirectory()) {
             return Collections.emptyList();
         }
         File[] interfaceDirs = netDir.listFiles(File::isDirectory);
-        if (interfaceDirs == null || interfaceDirs.length == 0) {
+        if (ArrayUtils.isEmpty(interfaceDirs)) {
             return Collections.emptyList();
         }
         List<String> macAddresses = new ArrayList<>();
@@ -234,8 +234,8 @@ public abstract class OshiDetectWraps {
                 continue;
             }
             File addressFile = new File(ifaceDir, "address");    // $NON-NLS-1$
-            String content = FileUtilsWraps.readFileToString(addressFile, StandardCharsets.UTF_8);
-            if (content != null && !(content = content.trim()).isEmpty()) {
+            String content = StringUtils.trim(FileUtilsWraps.readFileToString(addressFile, StandardCharsets.UTF_8));
+            if (StringUtils.isNotBlank(content)) {
                 macAddresses.add(content);
             }
         }
