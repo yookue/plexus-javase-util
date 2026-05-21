@@ -35,7 +35,7 @@ class FilenameUtilsWrapsTest {
     void generateFileOfJavaIoTmp() {
         String result = FilenameUtilsWraps.generateFileOfJavaIoTmp("generateFileOfJavaIoTmp", ".ext");    // $NON-NLS-1$ // $NON-NLS-2$
         log.info("{}: {}", StackTraceWraps.getExecutingMethodName(), result);
-        Assertions.assertTrue(StringUtils.containsAll(result, "generateFileOfJavaIoTmp", ".ext"));    // $NON-NLS-1$ // $NON-NLS-2$
+        Assertions.assertTrue(StringUtilsWraps.containsAll(result, "generateFileOfJavaIoTmp", ".ext"));    // $NON-NLS-1$ // $NON-NLS-2$
     }
 
     @Test

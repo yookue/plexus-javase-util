@@ -64,6 +64,7 @@
         <jsoup.version>1.22.2</jsoup.version>
         <jsqlparser.version>5.3</jsqlparser.version>
         <lombok.version>1.18.46</lombok.version>
+        <oshi.version>7.1.0</oshi.version>
         <pinyin4j.version>2.7.2</pinyin4j.version>
         <slf4j.version>2.0.17</slf4j.version>
 
@@ -237,6 +238,12 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>${lombok.version}</version>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>com.github.oshi</groupId>
+            <artifactId>oshi-core</artifactId>
+            <version>${oshi.version}</version>
             <optional>true</optional>
         </dependency>
         <dependency>

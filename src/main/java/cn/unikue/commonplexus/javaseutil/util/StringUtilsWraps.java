@@ -1521,6 +1521,10 @@ public abstract class StringUtilsWraps {
         return StringUtils.remove(CharSequenceWraps.toStringIgnoreNull(sequence), CharVariantConst.SPACE);
     }
 
+    public static String removeHexPrefix(@Nullable CharSequence sequence) {
+        return removeStartIgnoreCase(sequence, SymbolVariantConst.HEX_PREFIX);
+    }
+
     public static String removeStart(@Nullable CharSequence sequence, char remove) {
         return removeStart(sequence, CharUtils.toString(remove));
     }
