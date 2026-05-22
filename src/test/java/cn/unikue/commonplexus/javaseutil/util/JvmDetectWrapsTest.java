@@ -16,7 +16,6 @@
 
 package cn.unikue.commonplexus.javaseutil.util;
 
-
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

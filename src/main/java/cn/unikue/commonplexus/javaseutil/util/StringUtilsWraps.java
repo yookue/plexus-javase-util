@@ -1939,17 +1939,20 @@ public abstract class StringUtilsWraps {
     }
 
     /**
-     * Returns the substring after the first occurrence of a separator, with specified length, the separator is not returned
+     * Returns the substring after the first occurrence of a separator, with specified length, the separator is not returned.
+     * If length is negative, no length limit is applied (returns all characters after separator).
      *
      * <pre>
      *     StringUtilsWraps.substringAfter("foo.bar.bar", ".", 3) = "bar"
      *     StringUtilsWraps.substringAfter("foo.foobar.bar", ".", 3) = "foo"
      *     StringUtilsWraps.substringAfter("foo.foobar.bar", "*", 3) = null
+     *     StringUtilsWraps.substringAfter("foo.bar.baz", ".", -1) = "bar.baz"
+     *     StringUtilsWraps.substringAfter("foo.longtext", ".", -1) = "longtext"
      * </pre>
      *
      * @param text The String to get a substring from
      * @param separator The String to search for
-     * @param length The max length of substring
+     * @param length The max length of substring, or negative value for no limit
      *
      * @return the substring after the first occurrence of a separator, with specified length, the separator is not returned
      *
@@ -1958,14 +1961,63 @@ public abstract class StringUtilsWraps {
     @Nullable
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
     public static String substringAfter(@Nullable String text, @Nullable String separator, int length) {
-        if (StringUtils.isAnyEmpty(text, separator) || length <= 0) {
+        if (StringUtils.isAnyEmpty(text, separator)) {
             return null;
         }
         int index = text.indexOf(separator);
         if (index == -1 || index == text.length() - separator.length()) {
             return null;
         }
-        return text.substring(index + separator.length(), index + separator.length() + length);
+        // If length is negative, no limit; otherwise apply length constraint
+        if (length < 0) {
+            return text.substring(index + separator.length());
+        }
+        if (length == 0) {
+            return null;
+        }
+        int endIndex = Math.min(index + separator.length() + length, text.length());
+        return text.substring(index + separator.length(), endIndex);
+    }
+
+    public static String substringAfterIgnoreCase(@Nullable String text, char separator) {
+        return substringAfterIgnoreCase(text, CharUtils.toString(separator));
+    }
+
+    /**
+     * Returns the substring after the first occurrence of a separator (case-insensitive), the separator is not returned.
+     * <p>
+     * A {@code null} input String will return {@code null}.
+     * A {@code null} separator will return the original string.
+     *
+     * <pre>
+     *     StringUtilsWraps.substringAfterIgnoreCase("foo.BAR.baz", "bar") = ".baz"
+     *     StringUtilsWraps.substringAfterIgnoreCase("foo.bar.baz", "BAR") = ".baz"
+     *     StringUtilsWraps.substringAfterIgnoreCase("foo.bar.baz", "xyz") = null
+     *     StringUtilsWraps.substringAfterIgnoreCase(null, "bar") = null
+     *     StringUtilsWraps.substringAfterIgnoreCase("foo.bar", null) = "foo.bar"
+     * </pre>
+     *
+     * @param text The String to get a substring from
+     * @param separator The String to search for (case-insensitive)
+     *
+     * @return the substring after the first occurrence of a separator, the separator is not returned
+     *         or {@code null} if separator not found
+     *
+     * @see org.apache.commons.lang3.StringUtils#substringAfter(String, String)
+     * @see org.apache.commons.lang3.StringUtils#containsIgnoreCase(CharSequence, CharSequence)
+     */
+    @Nullable
+    public static String substringAfterIgnoreCase(@Nullable String text, @Nullable String separator) {
+        if (StringUtils.isEmpty(text) || StringUtils.isEmpty(separator)) {
+            return text;
+        }
+        String lowerText = text.toLowerCase();
+        String lowerSeparator = separator.toLowerCase();
+        int index = lowerText.indexOf(lowerSeparator);
+        if (index == -1) {
+            return null;
+        }
+        return text.substring(index + separator.length());
     }
 
     public static String substringAfterIncluding(@Nullable String text, char separator) {
@@ -2025,17 +2077,20 @@ public abstract class StringUtilsWraps {
     }
 
     /**
-     * Returns the substring after the last occurrence of a separator, with specified length, the separator is not returned
+     * Returns the substring after the last occurrence of a separator, with specified length, the separator is not returned.
+     * If length is negative, no length limit is applied (returns all characters after separator).
      *
      * <pre>
      *     StringUtilsWraps.substringAfterLast("foo.bar.bar", ".", 3) = "bar"
      *     StringUtilsWraps.substringAfterLast("foo.bar.foobar", ".", 3) = "foo"
      *     StringUtilsWraps.substringAfterLast("foo.bar.foobar", "*", 3) = null
+     *     StringUtilsWraps.substringAfterLast("foo.bar.baz", ".", -1) = "baz"
+     *     StringUtilsWraps.substringAfterLast("foo.longtext", ".", -1) = "longtext"
      * </pre>
      *
      * @param text The String to get a substring from
      * @param separator The String to search for
-     * @param length The max length of substring
+     * @param length The max length of substring, or negative value for no limit
      *
      * @return the substring after the last occurrence of a separator, with specified length, the separator is not returned
      *
@@ -2044,14 +2099,22 @@ public abstract class StringUtilsWraps {
     @Nullable
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
     public static String substringAfterLast(@Nullable String text, @Nullable String separator, int length) {
-        if (StringUtils.isAnyEmpty(text, separator) || length <= 0) {
+        if (StringUtils.isAnyEmpty(text, separator)) {
             return null;
         }
         int index = text.lastIndexOf(separator);
         if (index == -1 || index == text.length() - separator.length()) {
             return null;
         }
-        return text.substring(index + separator.length(), index + separator.length() + length);
+        // If length is negative, no limit; otherwise apply length constraint
+        if (length < 0) {
+            return text.substring(index + separator.length());
+        }
+        if (length == 0) {
+            return null;
+        }
+        int endIndex = Math.min(index + separator.length() + length, text.length());
+        return text.substring(index + separator.length(), endIndex);
     }
 
     public static String substringBefore(@Nullable String text, char separator, int length) {
@@ -2059,17 +2122,20 @@ public abstract class StringUtilsWraps {
     }
 
     /**
-     * Returns the substring before the first occurrence of a separator, with specified length, the separator is not returned
+     * Returns the substring before the first occurrence of a separator, with specified length, the separator is not returned.
+     * If length is negative, no length limit is applied (returns all characters before separator).
      *
      * <pre>
      *     StringUtilsWraps.substringBefore("foo.foobar.bar", ".", 3) = "foo"
      *     StringUtilsWraps.substringBefore("foobar.foo.bar", ".", 3) = "bar"
      *     StringUtilsWraps.substringBefore("foo.foobar.bar", "*", 3) = null
+     *     StringUtilsWraps.substringBefore("foo.bar.baz", ".", -1) = "foo"
+     *     StringUtilsWraps.substringBefore("longtext.bar", ".", -1) = "longtext"
      * </pre>
      *
      * @param text The String to get a substring from
      * @param separator The String to search for
-     * @param length The max length of substring
+     * @param length The max length of substring, or negative value for no limit
      *
      * @return the substring before the first occurrence of a separator, with specified length, the separator is not returned
      *
@@ -2078,14 +2144,62 @@ public abstract class StringUtilsWraps {
     @Nullable
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
     public static String substringBefore(@Nullable String text, @Nullable String separator, int length) {
-        if (StringUtils.isAnyEmpty(text, separator) || length <= 0) {
+        if (StringUtils.isAnyEmpty(text, separator)) {
             return null;
         }
         int index = text.indexOf(separator);
         if (index == -1) {
             return null;
         }
+        // If length is negative, no limit; otherwise apply length constraint
+        if (length < 0) {
+            return text.substring(0, index);
+        }
+        if (length == 0 || index < length) {
+            return null;
+        }
         return text.substring(index - length, index);
+    }
+
+    public static String substringBeforeIgnoreCase(@Nullable String text, char separator) {
+        return substringBeforeIgnoreCase(text, CharUtils.toString(separator));
+    }
+
+    /**
+     * Returns the substring before the first occurrence of a separator (case-insensitive), the separator is not returned.
+     * <p>
+     * A {@code null} input String will return {@code null}.
+     * A {@code null} separator will return the original string.
+     *
+     * <pre>
+     *     StringUtilsWraps.substringBeforeIgnoreCase("foo.BAR.baz", "bar") = "foo."
+     *     StringUtilsWraps.substringBeforeIgnoreCase("foo.bar.baz", "BAR") = "foo."
+     *     StringUtilsWraps.substringBeforeIgnoreCase("foo.bar.baz", "xyz") = null
+     *     StringUtilsWraps.substringBeforeIgnoreCase(null, "bar") = null
+     *     StringUtilsWraps.substringBeforeIgnoreCase("foo.bar", null) = "foo.bar"
+     * </pre>
+     *
+     * @param text The String to get a substring from
+     * @param separator The String to search for (case-insensitive)
+     *
+     * @return the substring before the first occurrence of a separator, the separator is not returned
+     *         or {@code null} if separator not found
+     *
+     * @see org.apache.commons.lang3.StringUtils#substringBefore(String, String)
+     * @see org.apache.commons.lang3.StringUtils#containsIgnoreCase(CharSequence, CharSequence)
+     */
+    @Nullable
+    public static String substringBeforeIgnoreCase(@Nullable String text, @Nullable String separator) {
+        if (StringUtils.isEmpty(text) || StringUtils.isEmpty(separator)) {
+            return text;
+        }
+        String lowerText = text.toLowerCase();
+        String lowerSeparator = separator.toLowerCase();
+        int index = lowerText.indexOf(lowerSeparator);
+        if (index == -1) {
+            return null;
+        }
+        return text.substring(0, index);
     }
 
     public static String substringBeforeIncluding(@Nullable String text, char separator) {
@@ -2123,17 +2237,20 @@ public abstract class StringUtilsWraps {
     }
 
     /**
-     * Returns the substring before the last occurrence of a separator, with specified length, the separator is not returned
+     * Returns the substring before the last occurrence of a separator, with specified length, the separator is not returned.
+     * If length is negative, no length limit is applied (returns all characters before separator).
      *
      * <pre>
      *     StringUtilsWraps.substringBeforeLast("foo.bar", ".", 3) = "foo"
      *     StringUtilsWraps.substringBeforeLast("foobar.bar", ".", 3) = "bar"
      *     StringUtilsWraps.substringBeforeLast("foobar.bar", "*", 3) = null
+     *     StringUtilsWraps.substringBeforeLast("foo.bar.baz", ".", -1) = "foo.bar"
+     *     StringUtilsWraps.substringBeforeLast("longtext.bar", ".", -1) = "longtext"
      * </pre>
      *
      * @param text The String to get a substring from
      * @param separator The String to search for
-     * @param length The max length of substring
+     * @param length The max length of substring, or negative value for no limit
      *
      * @return the substring before the last occurrence of a separator, with specified length, the separator is not returned
      *
@@ -2142,11 +2259,18 @@ public abstract class StringUtilsWraps {
     @Nullable
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
     public static String substringBeforeLast(@Nullable String text, @Nullable String separator, int length) {
-        if (StringUtils.isAnyEmpty(text, separator) || length <= 0) {
+        if (StringUtils.isAnyEmpty(text, separator)) {
             return null;
         }
         int index = text.lastIndexOf(separator);
         if (index == -1) {
+            return null;
+        }
+        // If length is negative, no limit; otherwise apply length constraint
+        if (length < 0) {
+            return text.substring(0, index);
+        }
+        if (length == 0 || index < length) {
             return null;
         }
         return text.substring(index - length, index);

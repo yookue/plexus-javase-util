@@ -49,4 +49,11 @@ class OshiDetectWrapsTest {
         log.info("{}: {}", StackTraceWraps.getExecutingMethodName(), StringUtilsWraps.joinWithCommaSpace(result));
         Assertions.assertTrue(CollectionPlainWraps.isNotEmpty(result));
     }
+
+    @Test
+    void getDiskSerials() {
+        List<String> result = OshiDetectWraps.getDiskSerials();
+        log.info("{}: {}", StackTraceWraps.getExecutingMethodName(), StringUtilsWraps.joinWithCommaSpace(result));
+        Assertions.assertTrue(CollectionPlainWraps.isNotEmpty(result));
+    }
 }
