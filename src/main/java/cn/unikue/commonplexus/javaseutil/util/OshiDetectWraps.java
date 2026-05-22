@@ -20,6 +20,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.InputStreamReader;
+import java.net.NetworkInterface;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -235,7 +236,7 @@ public abstract class OshiDetectWraps {
         List<String> macAddresses = new ArrayList<>();
         for (File ifaceDir : interfaceDirs) {
             String ifaceName = ifaceDir.getName();
-            if (LOOPBACK_IFACE.equals(ifaceName)) {
+            if (StringUtils.equalsIgnoreCase(ifaceName, LOOPBACK_IFACE)) {
                 continue;
             }
             File addressFile = new File(ifaceDir, "address");    // $NON-NLS-1$
@@ -260,6 +261,10 @@ public abstract class OshiDetectWraps {
             }
             List<String> macAddresses = new ArrayList<>();
             for (NetworkIF networkIF : networkIFs) {
+                NetworkInterface iface = networkIF.queryNetworkInterface();
+                if (iface == null || iface.isLoopback() || iface.isVirtual()) {
+                    continue;
+                }
                 String mac = networkIF.getMacaddr();
                 if (StringUtils.isNotBlank(mac)) {
                     macAddresses.add(mac);
@@ -296,8 +301,7 @@ public abstract class OshiDetectWraps {
         if (CollectionPlainWraps.isNotEmpty(nativeSerials)) {
             return nativeSerials;
         }
-        // macOS fallback: OSHI requires root for NVMe serials,
-        // system_profiler works without elevated privileges.
+        // macOS fallback: OSHI requires root for NVMe serials, system_profiler works without elevated privileges.
         if (SystemUtils.IS_OS_MAC) {
             return detectDiskSerialsOnMac();
         }
