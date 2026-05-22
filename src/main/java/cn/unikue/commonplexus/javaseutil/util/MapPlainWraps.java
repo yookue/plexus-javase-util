@@ -551,7 +551,7 @@ public abstract class MapPlainWraps {
             return defaultValue;
         }
         Object[] result = ObjectUtilsWraps.castAsArray(map.get(key));
-        return (result == null) ? defaultValue : result;
+        return ArrayUtils.isEmpty(result) ? defaultValue : result;
     }
 
     @Nullable
@@ -564,22 +564,20 @@ public abstract class MapPlainWraps {
         if (isEmpty(map) || expectType == null) {
             return defaultValue;
         }
-        T[] result = ArrayUtilsWraps.castAs(getObjectArray(map, key), expectType);
-        return (result == null) ? defaultValue : result;
+        return ObjectUtilsWraps.castAsArray(map.get(key), expectType, defaultValue);
     }
 
     @Nullable
-    public static <K> List<?> getObjectList(@Nullable Map<? super K, ?> map, @Nullable K key) {
+    public static <K> List<Object> getObjectList(@Nullable Map<? super K, ?> map, @Nullable K key) {
         return getObjectList(map, key, null);
     }
 
     @Nullable
-    public static <K> List<?> getObjectList(@Nullable Map<? super K, ?> map, @Nullable K key, @Nullable List<Object> defaultValue) {
+    public static <K> List<Object> getObjectList(@Nullable Map<? super K, ?> map, @Nullable K key, @Nullable List<Object> defaultValue) {
         if (isEmpty(map)) {
             return defaultValue;
         }
-        List<?> result = ObjectUtilsWraps.castAsList(map.get(key));
-        return (result == null) ? defaultValue : result;
+        return ObjectUtilsWraps.castAsList(map.get(key), Object.class, defaultValue);
     }
 
     @Nullable
@@ -593,18 +591,7 @@ public abstract class MapPlainWraps {
         if (isEmpty(map) || expectType == null) {
             return defaultValue;
         }
-        List<?> rawList = ObjectUtilsWraps.castAsList(map.get(key));
-        if (rawList == null) {
-            return defaultValue;
-        }
-        for (Object item : rawList) {
-            if (item != null && !expectType.isInstance(item)) {
-                return defaultValue;
-            }
-        }
-        @SuppressWarnings("unchecked")
-        final List<V> result = (List<V>) rawList;
-        return result;
+        return ObjectUtilsWraps.castAsList(map.get(key), expectType, defaultValue);
     }
 
     public static <K> LocalDate getLocalDate(@Nullable Map<? super K, ?> map, @Nullable K key) {
