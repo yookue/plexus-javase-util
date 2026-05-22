@@ -31,82 +31,202 @@ import com.google.common.base.CaseFormat;
  */
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})
 public abstract class CaseFormatWraps {
+    /**
+     * Convert lower-hyphen format to lower_underscore format.
+     *
+     * @param text the text to convert
+     * @return the converted text, or original if blank
+     */
     public static String lowerHyphen2LowerUnderscore(@Nullable String text) {
         return StringUtils.isBlank(text) ? text : CaseFormat.LOWER_HYPHEN.to(CaseFormat.LOWER_UNDERSCORE, text);
     }
 
+    /**
+     * Convert lower-hyphen format to lowerCamel format.
+     *
+     * @param text the text to convert
+     * @return the converted text, or original if blank
+     */
     public static String lowerHyphen2LowerCamel(@Nullable String text) {
         return StringUtils.isBlank(text) ? text : CaseFormat.LOWER_HYPHEN.to(CaseFormat.LOWER_CAMEL, text);
     }
 
+    /**
+     * Convert lower-hyphen format to UpperCamel format.
+     *
+     * @param text the text to convert
+     * @return the converted text, or original if blank
+     */
     public static String lowerHyphen2UpperCamel(@Nullable String text) {
         return StringUtils.isBlank(text) ? text : CaseFormat.LOWER_HYPHEN.to(CaseFormat.UPPER_CAMEL, text);
     }
 
+    /**
+     * Convert lower-hyphen format to UPPER_UNDERSCORE format.
+     *
+     * @param text the text to convert
+     * @return the converted text, or original if blank
+     */
     public static String lowerHyphen2UpperUnderscore(@Nullable String text) {
         return StringUtils.isBlank(text) ? text : CaseFormat.LOWER_HYPHEN.to(CaseFormat.UPPER_UNDERSCORE, text);
     }
 
+    /**
+     * Convert lower_underscore format to lower-hyphen format.
+     *
+     * @param text the text to convert
+     * @return the converted text, or original if blank
+     */
     public static String lowerUnderscore2LowerHyphen(@Nullable String text) {
         return StringUtils.isBlank(text) ? text : CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_HYPHEN, text);
     }
 
+    /**
+     * Convert lower_underscore format to lowerCamel format.
+     *
+     * @param text the text to convert
+     * @return the converted text, or original if blank
+     */
     public static String lowerUnderscore2LowerCamel(@Nullable String text) {
         return StringUtils.isBlank(text) ? text : CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, text);
     }
 
+    /**
+     * Convert lower_underscore format to UpperCamel format.
+     *
+     * @param text the text to convert
+     * @return the converted text, or original if blank
+     */
     public static String lowerUnderscore2UpperCamel(@Nullable String text) {
         return StringUtils.isBlank(text) ? text : CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, text);
     }
 
+    /**
+     * Convert lower_underscore format to UPPER_UNDERSCORE format.
+     *
+     * @param text the text to convert
+     * @return the converted text, or original if blank
+     */
     public static String lowerUnderscore2UpperUnderscore(@Nullable String text) {
         return StringUtils.isBlank(text) ? text : CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.UPPER_UNDERSCORE, text);
     }
 
+    /**
+     * Convert lowerCamel format to lower-hyphen format.
+     *
+     * @param text the text to convert
+     * @return the converted text, or original if blank
+     */
     public static String lowerCamel2LowerHyphen(@Nullable String text) {
         return StringUtils.isBlank(text) ? text : CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_HYPHEN, text);
     }
 
+    /**
+     * Convert lowerCamel format to lower_underscore format.
+     *
+     * @param text the text to convert
+     * @return the converted text, or original if blank
+     */
     public static String lowerCamel2LowerUnderscore(@Nullable String text) {
         return StringUtils.isBlank(text) ? text : CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, text);
     }
 
+    /**
+     * Convert lowerCamel format to UpperCamel format.
+     *
+     * @param text the text to convert
+     * @return the converted text, or original if blank
+     */
     public static String lowerCamel2UpperCamel(@Nullable String text) {
         return StringUtils.isBlank(text) ? text : CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_CAMEL, text);
     }
 
+    /**
+     * Convert lowerCamel format to UPPER_UNDERSCORE format.
+     *
+     * @param text the text to convert
+     * @return the converted text, or original if blank
+     */
     public static String lowerCamel2UpperUnderscore(@Nullable String text) {
         return StringUtils.isBlank(text) ? text : CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_UNDERSCORE, text);
     }
 
+    /**
+     * Convert UpperCamel format to lower-hyphen format.
+     *
+     * @param text the text to convert
+     * @return the converted text, or original if blank
+     */
     public static String upperCamel2LowerHyphen(@Nullable String text) {
         return StringUtils.isBlank(text) ? text : CaseFormat.UPPER_CAMEL.to(CaseFormat.LOWER_HYPHEN, text);
     }
 
+    /**
+     * Convert UpperCamel format to lower_underscore format.
+     *
+     * @param text the text to convert
+     * @return the converted text, or original if blank
+     */
     public static String upperCamel2LowerUnderscore(@Nullable String text) {
         return StringUtils.isBlank(text) ? text : CaseFormat.UPPER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, text);
     }
 
+    /**
+     * Convert UpperCamel format to lowerCamel format.
+     *
+     * @param text the text to convert
+     * @return the converted text, or original if blank
+     */
     public static String upperCamel2LowerCamel(@Nullable String text) {
         return StringUtils.isBlank(text) ? text : CaseFormat.UPPER_CAMEL.to(CaseFormat.LOWER_CAMEL, text);
     }
 
+    /**
+     * Convert UpperCamel format to UPPER_UNDERSCORE format.
+     *
+     * @param text the text to convert
+     * @return the converted text, or original if blank
+     */
     public static String upperCamel2UpperUnderscore(@Nullable String text) {
         return StringUtils.isBlank(text) ? text : CaseFormat.UPPER_CAMEL.to(CaseFormat.UPPER_UNDERSCORE, text);
     }
 
+    /**
+     * Convert UPPER_UNDERSCORE format to lower-hyphen format.
+     *
+     * @param text the text to convert
+     * @return the converted text, or original if blank
+     */
     public static String upperUnderscore2LowerHyphen(@Nullable String text) {
         return StringUtils.isBlank(text) ? text : CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.LOWER_HYPHEN, text);
     }
 
+    /**
+     * Convert UPPER_UNDERSCORE format to lower_underscore format.
+     *
+     * @param text the text to convert
+     * @return the converted text, or original if blank
+     */
     public static String upperUnderscore2LowerUnderscore(@Nullable String text) {
         return StringUtils.isBlank(text) ? text : CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.LOWER_UNDERSCORE, text);
     }
 
+    /**
+     * Convert UPPER_UNDERSCORE format to lowerCamel format.
+     *
+     * @param text the text to convert
+     * @return the converted text, or original if blank
+     */
     public static String upperUnderscore2LowerCamel(@Nullable String text) {
         return StringUtils.isBlank(text) ? text : CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, text);
     }
 
+    /**
+     * Convert UPPER_UNDERSCORE format to UpperCamel format.
+     *
+     * @param text the text to convert
+     * @return the converted text, or original if blank
+     */
     public static String upperUnderscore2UpperCamel(@Nullable String text) {
         return StringUtils.isBlank(text) ? text : CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, text);
     }

@@ -38,10 +38,24 @@ import org.apache.commons.lang3.CharUtils;
  */
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})
 public abstract class CharUtilsWraps {
+    /**
+     * Check if two Character objects are equal.
+     *
+     * @param character the first character
+     * @param comparison the character to compare with
+     * @return true if both characters are equal, false otherwise
+     */
     public static boolean equals(@Nullable Character character, @Nullable Character comparison) {
         return Objects.equals(character, comparison);
     }
 
+    /**
+     * Check if two Character objects are equal ignoring case.
+     *
+     * @param character the first character
+     * @param comparison the character to compare with
+     * @return true if both characters are equal ignoring case, false otherwise
+     */
     public static boolean equalsIgnoreCase(@Nullable Character character, @Nullable Character comparison) {
         if (character == comparison) {
             return true;
@@ -52,23 +66,55 @@ public abstract class CharUtilsWraps {
         return Character.toLowerCase(character) == comparison || Character.toUpperCase(character) == comparison;
     }
 
+    /**
+     * Check if the character equals any of the comparison characters.
+     *
+     * @param character the character to check
+     * @param comparisons the characters to compare with
+     * @return true if character equals any comparison, false otherwise
+     */
     public static boolean equalsAny(@Nullable Character character, @Nullable Character... comparisons) {
         return equalsAny(character, ArrayUtilsWraps.asList(comparisons));
     }
 
+    /**
+     * Check if the character equals any character in the collection.
+     *
+     * @param character the character to check
+     * @param comparisons the collection of characters to compare with
+     * @return true if character equals any in collection, false otherwise
+     */
     public static boolean equalsAny(@Nullable Character character, @Nullable Collection<Character> comparisons) {
         return CollectionPlainWraps.isNotEmpty(comparisons) && comparisons.stream().anyMatch(item -> equals(character, item));
     }
 
+    /**
+     * Check if the character equals any of the comparison characters ignoring case.
+     *
+     * @param character the character to check
+     * @param comparisons the characters to compare with
+     * @return true if character equals any comparison ignoring case, false otherwise
+     */
     public static boolean equalsAnyIgnoreCase(@Nullable Character character, @Nullable Character... comparisons) {
         return equalsAnyIgnoreCase(character, ArrayUtilsWraps.asList(comparisons));
     }
 
+    /**
+     * Check if the character equals any character in the collection ignoring case.
+     *
+     * @param character the character to check
+     * @param comparisons the collection of characters to compare with
+     * @return true if character equals any in collection ignoring case, false otherwise
+     */
     public static boolean equalsAnyIgnoreCase(@Nullable Character character, @Nullable Collection<Character> comparisons) {
         return CollectionPlainWraps.isNotEmpty(comparisons) && comparisons.stream().anyMatch(item -> equalsIgnoreCase(character, item));
     }
 
     /**
+     * Convert char array to String.
+     *
+     * @param chars the char array to convert
+     * @return the String representation, or null if array is empty
      * @see org.apache.commons.lang3.CharSequenceUtils#toCharArray
      */
     @Nullable
@@ -81,6 +127,12 @@ public abstract class CharUtilsWraps {
         return builder.toString();
     }
 
+    /**
+     * Convert char array to String array (each char becomes a String).
+     *
+     * @param chars the char array to convert
+     * @return the String array, or null if input is empty
+     */
     @Nullable
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
     public static String[] toStringArray(@Nullable char... chars) {
@@ -92,6 +144,12 @@ public abstract class CharUtilsWraps {
         return result;
     }
 
+    /**
+     * Convert char array to List of Strings (each char becomes a String).
+     *
+     * @param chars the char array to convert
+     * @return the List of Strings, or null if input is empty
+     */
     @Nullable
     public static List<String> toStringList(@Nullable char... chars) {
         if (ArrayUtils.isEmpty(chars)) {
@@ -102,6 +160,12 @@ public abstract class CharUtilsWraps {
         return result;
     }
 
+    /**
+     * Convert char array to Set of Strings (each char becomes a String, duplicates removed).
+     *
+     * @param chars the char array to convert
+     * @return the Set of Strings, or null if input is empty
+     */
     @Nullable
     public static Set<String> toStringSet(@Nullable char... chars) {
         if (ArrayUtils.isEmpty(chars)) {

@@ -87,11 +87,22 @@ public abstract class ClassLoaderWraps {
         return CollectionPlainWraps.isEmpty(result) ? null : result.toArray(ArrayUtils.EMPTY_STRING_ARRAY);
     }
 
+    /**
+     * Get the context ClassLoader for the current thread.
+     *
+     * @return the context ClassLoader for the current thread, or null if not set
+     */
     @Nullable
     public static ClassLoader getTreadContextClassLoader() {
         return Thread.currentThread().getContextClassLoader();
     }
 
+    /**
+     * Convert ClassLoader to String representation.
+     *
+     * @param loader the ClassLoader to convert
+     * @return the String representation, or null if loader is null
+     */
     @Nullable
     public static String toString(@Nullable ClassLoader loader) {
         return (loader == null) ? null : ClassLoaderUtils.toString(loader);

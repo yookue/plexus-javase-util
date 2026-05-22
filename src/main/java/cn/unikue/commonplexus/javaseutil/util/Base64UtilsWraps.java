@@ -44,34 +44,81 @@ import cn.unikue.commonplexus.javaseutil.constant.RegexVariantConst;
  */
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})
 public abstract class Base64UtilsWraps {
+    /**
+     * Decode Base64 encoded string to UTF-8 string.
+     *
+     * @param text the Base64 encoded string
+     * @return decoded string, or null if input is empty
+     */
     public static String decodeToString(@Nullable String text) {
         return decodeToString(text, StandardCharsets.UTF_8);
     }
 
+    /**
+     * Decode Base64 encoded string to string with specified charset.
+     *
+     * @param text the Base64 encoded string
+     * @param charset the charset to use for decoding
+     * @return decoded string, or null if input is empty
+     */
     public static String decodeToString(@Nullable String text, @Nullable Charset charset) {
         return StringUtils.isEmpty(text) ? text : StringUtils.toEncodedString(Base64.decodeBase64(text), charset);
     }
 
+    /**
+     * Encode string to Base64 using UTF-8 charset.
+     *
+     * @param text the string to encode
+     * @return Base64 encoded string, or null if input is empty
+     */
     public static String encodeToString(@Nullable String text) {
         return encodeToString(text, StandardCharsets.UTF_8);
     }
 
+    /**
+     * Encode string to Base64 using specified charset.
+     *
+     * @param text the string to encode
+     * @param charset the charset to use for encoding
+     * @return Base64 encoded string, or null if input is empty
+     */
     public static String encodeToString(@Nullable String text, @Nullable Charset charset) {
         return StringUtils.isEmpty(text) ? text : Base64.encodeBase64String(text.getBytes(Charsets.toCharset(charset)));
     }
 
+    /**
+     * Encode string to Base64 bytes using UTF-8 charset.
+     *
+     * @param text the string to encode
+     * @return Base64 encoded bytes, or null if input is empty
+     */
     @Nullable
     public static byte[] encodeToBytes(@Nullable String text) {
         return encodeToBytes(text, StandardCharsets.UTF_8);
     }
 
+    /**
+     * Encode string to Base64 bytes using specified charset.
+     *
+     * @param text the string to encode
+     * @param charset the charset to use for encoding
+     * @return Base64 encoded bytes, or null if input is empty
+     */
     @Nullable
     public static byte[] encodeToBytes(@Nullable String text, @Nullable Charset charset) {
         return StringUtils.isEmpty(text) ? null : Base64.encodeBase64(text.getBytes(Charsets.toCharset(charset)));
     }
 
     /**
-     * @reference "http://snv.iteye.com/blog/1968740"
+     * Save Base64 encoded image to output stream with optional resizing.
+     * Supports data URI format (e.g., "data:image/png;base64,...").
+     *
+     * @param base64 the Base64 encoded image data (with data URI prefix)
+     * @param stream the output stream to write the image
+     * @param width the target width, or null to keep original size
+     * @param height the target height, or null to keep original size
+     * @return true if image was saved successfully, false otherwise
+     * @throws IOException if an I/O error occurs
      */
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression", "JavadocDeclaration", "JavadocLinkAsPlainText"})
     public static boolean saveImage(@Nullable String base64, @Nullable ImageOutputStream stream, @Nullable Integer width, @Nullable Integer height) throws IOException {
@@ -97,14 +144,42 @@ public abstract class Base64UtilsWraps {
         return true;
     }
 
+    /**
+     * Save Base64 encoded image to file without resizing.
+     *
+     * @param base64 the Base64 encoded image data
+     * @param file the target file
+     * @return true if image was saved successfully, false otherwise
+     * @throws IOException if an I/O error occurs
+     */
     public static boolean saveImage(@Nullable String base64, @Nullable File file) throws IOException {
         return saveImage(base64, file, false, null, null);
     }
 
+    /**
+     * Save Base64 encoded image to file without resizing.
+     *
+     * @param base64 the Base64 encoded image data
+     * @param file the target file
+     * @param append whether to append to existing file
+     * @return true if image was saved successfully, false otherwise
+     * @throws IOException if an I/O error occurs
+     */
     public static boolean saveImage(@Nullable String base64, @Nullable File file, boolean append) throws IOException {
         return saveImage(base64, file, append, null, null);
     }
 
+    /**
+     * Save Base64 encoded image to file with optional resizing.
+     *
+     * @param base64 the Base64 encoded image data
+     * @param file the target file
+     * @param append whether to append to existing file
+     * @param width the target width, or null to keep original size
+     * @param height the target height, or null to keep original size
+     * @return true if image was saved successfully, false otherwise
+     * @throws IOException if an I/O error occurs
+     */
     public static boolean saveImage(@Nullable String base64, @Nullable File file, boolean append, @Nullable Integer width, @Nullable Integer height) throws IOException {
         if (StringUtils.isBlank(base64) || file == null) {
             return false;
@@ -113,14 +188,39 @@ public abstract class Base64UtilsWraps {
         return saveImage(base64, FileUtilsWraps.openImageOutputStream(file, true), width, height);
     }
 
+    /**
+     * Save Base64 encoded image to file quietly (suppresses exceptions).
+     *
+     * @param base64 the Base64 encoded image data
+     * @param file the target file
+     * @return true if image was saved successfully, false otherwise
+     */
     public static boolean saveImageQuietly(@Nullable String base64, @Nullable File file) {
         return saveImageQuietly(base64, file, false, null, null);
     }
 
+    /**
+     * Save Base64 encoded image to file quietly (suppresses exceptions).
+     *
+     * @param base64 the Base64 encoded image data
+     * @param file the target file
+     * @param append whether to append to existing file
+     * @return true if image was saved successfully, false otherwise
+     */
     public static boolean saveImageQuietly(@Nullable String base64, @Nullable File file, boolean append) {
         return saveImageQuietly(base64, file, append, null, null);
     }
 
+    /**
+     * Save Base64 encoded image to file quietly with optional resizing (suppresses exceptions).
+     *
+     * @param base64 the Base64 encoded image data
+     * @param file the target file
+     * @param append whether to append to existing file
+     * @param width the target width, or null to keep original size
+     * @param height the target height, or null to keep original size
+     * @return true if image was saved successfully, false otherwise
+     */
     public static boolean saveImageQuietly(@Nullable String base64, @Nullable File file, boolean append, @Nullable Integer width, @Nullable Integer height) {
         try {
             return saveImage(base64, file, append, width, height);
@@ -129,14 +229,38 @@ public abstract class Base64UtilsWraps {
         return false;
     }
 
+    /**
+     * Save Base64 encoded image to output stream without resizing.
+     *
+     * @param base64 the Base64 encoded image data
+     * @param stream the output stream to write the image
+     * @return true if image was saved successfully, false otherwise
+     * @throws IOException if an I/O error occurs
+     */
     public static boolean saveImage(@Nullable String base64, @Nullable ImageOutputStream stream) throws IOException {
         return saveImage(base64, stream, null, null);
     }
 
+    /**
+     * Save Base64 encoded image to output stream quietly (suppresses exceptions).
+     *
+     * @param base64 the Base64 encoded image data
+     * @param stream the output stream to write the image
+     * @return true if image was saved successfully, false otherwise
+     */
     public static boolean saveImageQuietly(@Nullable String base64, @Nullable ImageOutputStream stream) {
         return saveImageQuietly(base64, stream, null, null);
     }
 
+    /**
+     * Save Base64 encoded image to output stream quietly with optional resizing (suppresses exceptions).
+     *
+     * @param base64 the Base64 encoded image data
+     * @param stream the output stream to write the image
+     * @param width the target width, or null to keep original size
+     * @param height the target height, or null to keep original size
+     * @return true if image was saved successfully, false otherwise
+     */
     public static boolean saveImageQuietly(@Nullable String base64, @Nullable ImageOutputStream stream, @Nullable Integer width, @Nullable Integer height) {
         try {
             return saveImage(base64, stream, width, height);

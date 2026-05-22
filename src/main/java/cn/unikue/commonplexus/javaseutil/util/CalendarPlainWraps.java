@@ -36,18 +36,41 @@ import org.apache.commons.lang3.ObjectUtils;
  */
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})
 public abstract class CalendarPlainWraps {
+    /**
+     * Get the value of the specified calendar field from the date.
+     *
+     * @param date the date to extract from
+     * @param field the calendar field to get
+     * @return the field value, or null if date is null or field is invalid
+     */
     @Nullable
     public static Integer getCalendarField(@Nullable Date date, int field) {
         return getCalendarField(date, field, null, null);
     }
 
+    /**
+     * Get the value of the specified calendar field from the date with timezone.
+     *
+     * @param date the date to extract from
+     * @param field the calendar field to get
+     * @param zone the timezone to use
+     * @return the field value, or null if date is null or field is invalid
+     */
     @Nullable
     public static Integer getCalendarField(@Nullable Date date, int field, @Nullable TimeZone zone) {
         return getCalendarField(date, field, zone, null);
     }
 
+    /**
+     * Get the value of the specified calendar field from the date with locale.
+     *
+     * @param date the date to extract from
+     * @param field the calendar field to get
+     * @param locale the locale to use
+     * @return the field value, or null if date is null or field is invalid
+     */
     public static Integer getCalendarField(@Nullable Date date, int field, @Nullable Locale locale) {
-        return getCalendarField(date, field, null, null);
+        return getCalendarField(date, field, null, locale);
     }
 
     /**
@@ -73,21 +96,51 @@ public abstract class CalendarPlainWraps {
         return calendar.get(field);
     }
 
+    /**
+     * Get the display name of the month.
+     *
+     * @param month the month value (1-12)
+     * @param style the text style to use
+     * @return the month display name, or null if invalid
+     */
     @Nullable
     public static String getMonthDisplayName(int month, @Nullable TextStyle style) {
         return getMonthDisplayName(month, style, Locale.getDefault());
     }
 
+    /**
+     * Get the display name of the month with locale.
+     *
+     * @param month the month value (1-12)
+     * @param style the text style to use
+     * @param locale the locale to use
+     * @return the month display name, or null if invalid
+     */
     @Nullable
     public static String getMonthDisplayName(int month, @Nullable TextStyle style, @Nullable Locale locale) {
         return (month < 1 || month > 12 || ObjectUtils.anyNull(style, locale)) ? null : getMonthDisplayName(Month.of(month), style, locale);
     }
 
+    /**
+     * Get the display name of the Month enum.
+     *
+     * @param month the Month enum
+     * @param style the text style to use
+     * @return the month display name, or null if invalid
+     */
     @Nullable
     public static String getMonthDisplayName(@Nullable Month month, @Nullable TextStyle style) {
         return getMonthDisplayName(month, style, Locale.getDefault());
     }
 
+    /**
+     * Get the display name of the Month enum with locale.
+     *
+     * @param month the Month enum
+     * @param style the text style to use
+     * @param locale the locale to use
+     * @return the month display name, or null if any parameter is null
+     */
     @Nullable
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
     public static String getMonthDisplayName(@Nullable Month month, @Nullable TextStyle style, @Nullable Locale locale) {

@@ -68,141 +68,315 @@ public abstract class AssertMessageWraps {
         return String.format(HAS_LENGTH, argument);
     }
 
+    /**
+     * Generate assertion message for text with content requirement.
+     *
+     * @param argument the argument name
+     * @return formatted assertion message
+     */
     @Nonnull
     public static String hasText(@Nullable String argument) {
         return String.format(HAS_TEXT, argument);
     }
 
+    /**
+     * Generate assertion message for instance type check.
+     *
+     * @param argument the argument name
+     * @param superclass the expected superclass name
+     * @return formatted assertion message
+     */
     @Nonnull
     public static String isInstanceOf(@Nullable String argument, @Nullable String superclass) {
         return String.format(IS_INSTANCE_OF, argument, superclass);
     }
 
+    /**
+     * Generate assertion message for type assignability check.
+     *
+     * @param argument the argument name
+     * @param subclass the expected subclass name
+     * @return formatted assertion message
+     */
     @Nonnull
     public static String isAssignable(@Nullable String argument, @Nullable String subclass) {
         return String.format(IS_ASSIGNABLE, argument, subclass);
     }
 
+    /**
+     * Generate assertion message for null check.
+     *
+     * @param argument the argument name
+     * @return formatted assertion message
+     */
     @Nonnull
     public static String isNull(@Nullable String argument) {
         return String.format(IS_NULL, argument);
     }
 
+    /**
+     * Generate assertion message for boolean expression check.
+     *
+     * @param expression the expression description
+     * @return formatted assertion message
+     */
     @Nonnull
     public static String isTrue(@Nullable String expression) {
         return String.format(IS_TRUE, expression);
     }
 
+    /**
+     * Generate assertion message for not-contains check.
+     *
+     * @param argument the argument name
+     * @param comparison the value that should not be contained
+     * @return formatted assertion message
+     */
     @Nonnull
     public static String notContains(@Nullable String argument, @Nullable String comparison) {
         return String.format(NOT_CONTAINS, argument, comparison);
     }
 
+    /**
+     * Generate assertion message for not-empty check.
+     *
+     * @param argument the argument name
+     * @return formatted assertion message
+     */
     @Nonnull
     public static String notEmpty(@Nullable String argument) {
         return String.format(NOT_EMPTY, argument);
     }
 
+    /**
+     * Generate assertion message for inequality check.
+     *
+     * @param argument the argument name
+     * @param comparison the value to compare against
+     * @return formatted assertion message
+     */
     @Nonnull
     public static String notEquals(@Nullable String argument, @Nullable String comparison) {
         return String.format(NOT_EQUALS, argument, comparison);
     }
 
+    /**
+     * Generate assertion message for not-null check.
+     *
+     * @param argument the argument name
+     * @return formatted assertion message
+     */
     @Nonnull
     public static String notNull(@Nullable String argument) {
         return String.format(NOT_NULL, argument);
     }
 
+    /**
+     * Generate assertion message for no-null-elements check.
+     *
+     * @param argument the argument name
+     * @return formatted assertion message
+     */
     @Nonnull
     public static String notNullElements(@Nullable String argument) {
         return String.format(NOT_NULL_ELEMENTS, argument);
     }
 
+    /**
+     * Generate assertion message for state invariant check.
+     *
+     * @param expression the state expression description
+     * @return formatted assertion message
+     */
     @Nonnull
     public static String state(@Nullable String expression) {
         return String.format(STATE, expression);
     }
 
+    /**
+     * Generate assertion message for contains check.
+     *
+     * @param argument the argument name
+     * @param comparison the value that should be contained
+     * @return formatted assertion message
+     */
     @Nonnull
     public static String contains(@Nullable String argument, @Nullable String comparison) {
         return String.format(CONTAINS, argument, comparison);
     }
 
+    /**
+     * Generate assertion message for empty check.
+     *
+     * @param argument the argument name
+     * @return formatted assertion message
+     */
     @Nonnull
     public static String empty(@Nullable String argument) {
         return String.format(EMPTY, argument);
     }
 
+    /**
+     * Generate assertion message for equality check.
+     *
+     * @param argument the argument name
+     * @param comparison the value to compare against
+     * @return formatted assertion message
+     */
     @Nonnull
     public static String equals(@Nullable String argument, @Nullable String comparison) {
         return String.format(EQUALS, argument, comparison);
     }
 
+    /**
+     * Generate assertion message for existence check.
+     *
+     * @param argument the argument name
+     * @return formatted assertion message
+     */
     @Nonnull
     public static String exists(@Nullable String argument) {
         return String.format(EXISTS, argument);
     }
 
+    /**
+     * Generate assertion message for non-existence check.
+     *
+     * @param argument the argument name
+     * @return formatted assertion message
+     */
     @Nonnull
     public static String notExists(@Nullable String argument) {
         return String.format(NOT_EXISTS, argument);
     }
 
+    /**
+     * Generate assertion message for year validation.
+     *
+     * @param argument the argument name
+     * @return formatted assertion message
+     */
     @Nonnull
     public static String isYear(@Nullable String argument) {
         return String.format(IS_YEAR, argument);
     }
 
+    /**
+     * Generate assertion message for month validation.
+     *
+     * @param argument the argument name
+     * @return formatted assertion message
+     */
     @Nonnull
     public static String isMonth(@Nullable String argument) {
         return String.format(IS_MONTH, argument);
     }
 
+    /**
+     * Generate assertion message for day validation.
+     *
+     * @param argument the argument name
+     * @return formatted assertion message
+     */
     @Nonnull
     public static String isDay(@Nullable String argument) {
         return String.format(IS_DAY, argument);
     }
 
+    /**
+     * Generate assertion message for directory check.
+     *
+     * @param argument the argument name
+     * @return formatted assertion message
+     */
     @Nonnull
     public static String isDirectory(@Nullable String argument) {
         return String.format(IS_DIRECTORY, argument);
     }
 
+    /**
+     * Generate assertion message for file check.
+     *
+     * @param argument the argument name
+     * @return formatted assertion message
+     */
     @Nonnull
     public static String isFile(@Nullable String argument) {
         return String.format(IS_FILE, argument);
     }
 
+    /**
+     * Generate assertion message for positive number check.
+     *
+     * @param argument the argument name
+     * @return formatted assertion message
+     */
     @Nonnull
     public static String isPositive(@Nullable String argument) {
         return String.format(IS_POSITIVE, argument);
     }
 
+    /**
+     * Generate assertion message for negative number check.
+     *
+     * @param argument the argument name
+     * @return formatted assertion message
+     */
     @Nonnull
     public static String isNegative(@Nullable String argument) {
         return String.format(IS_NEGATIVE, argument);
     }
 
+    /**
+     * Generate assertion message for executable permission check.
+     *
+     * @param argument the argument name
+     * @return formatted assertion message
+     */
     @Nonnull
     public static String isExecutable(@Nullable String argument) {
         return String.format(IS_EXECUTABLE, argument);
     }
 
+    /**
+     * Generate assertion message for readable permission check.
+     *
+     * @param argument the argument name
+     * @return formatted assertion message
+     */
     @Nonnull
     public static String isReadable(@Nullable String argument) {
         return String.format(IS_READABLE, argument);
     }
 
+    /**
+     * Generate assertion message for writable permission check.
+     *
+     * @param argument the argument name
+     * @return formatted assertion message
+     */
     @Nonnull
     public static String isWritable(@Nullable String argument) {
         return String.format(IS_WRITABLE, argument);
     }
 
+    /**
+     * Generate assertion message for non-positive number check.
+     *
+     * @param argument the argument name
+     * @return formatted assertion message
+     */
     @Nonnull
     public static String notPositive(@Nullable String argument) {
         return String.format(NOT_POSITIVE, argument);
     }
 
+    /**
+     * Generate assertion message for non-negative number check.
+     *
+     * @param argument the argument name
+     * @return formatted assertion message
+     */
     @Nonnull
     public static String notNegative(@Nullable String argument) {
         return String.format(NOT_NEGATIVE, argument);

@@ -33,11 +33,21 @@ import cn.unikue.commonplexus.javaseutil.structure.HtmlTagStruct;
  */
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})
 public abstract class HtmlEscapeWraps {
+    /**
+     * Get HTML line break tag as String representation.
+     *
+     * @return the String "&lt;br&gt;" representing an HTML line break
+     */
     @Nonnull
     public static String getBrAsString() {
         return new HtmlTagStruct(Tag.BR).toString();
     }
 
+    /**
+     * Get HTML horizontal rule tag as String representation.
+     *
+     * @return the String "&lt;hr&gt;" representing an HTML horizontal rule
+     */
     @Nonnull
     public static String getHrAsString() {
         return new HtmlTagStruct(Tag.HR).toString();

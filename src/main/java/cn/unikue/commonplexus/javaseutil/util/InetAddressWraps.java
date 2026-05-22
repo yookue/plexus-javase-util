@@ -41,11 +41,24 @@ import cn.unikue.commonplexus.javaseutil.constant.RegexVariantConst;
  */
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})
 public abstract class InetAddressWraps {
+    /**
+     * Get InetAddress from byte array address without host name.
+     *
+     * @param address the raw IP address in network byte order
+     * @return the InetAddress object, or null if address is invalid
+     */
     @Nullable
     public static InetAddress getInetAddressByHost(@Nullable byte[] address) {
         return getInetAddressByHost(null, address);
     }
 
+    /**
+     * Get InetAddress from host name and byte array address.
+     *
+     * @param host the host name associated with the address
+     * @param address the raw IP address in network byte order
+     * @return the InetAddress object, or null if address is invalid
+     */
     @Nullable
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
     public static InetAddress getInetAddressByHost(@Nullable String host, @Nullable byte[] address) {
@@ -59,6 +72,12 @@ public abstract class InetAddressWraps {
         return null;
     }
 
+    /**
+     * Get InetAddress by resolving host name.
+     *
+     * @param host the host name to resolve
+     * @return the InetAddress object, or null if host is blank or resolution fails
+     */
     @Nullable
     public static InetAddress getInetAddressByName(@Nullable String host) {
         if (StringUtils.isBlank(host)) {
@@ -71,6 +90,12 @@ public abstract class InetAddressWraps {
         return null;
     }
 
+    /**
+     * Get all InetAddresses by resolving host name.
+     *
+     * @param host the host name to resolve
+     * @return array of InetAddress objects, or null if host is blank or resolution fails
+     */
     @Nullable
     public static InetAddress[] getInetAddressesByName(@Nullable String host) {
         if (StringUtils.isBlank(host)) {
@@ -83,10 +108,21 @@ public abstract class InetAddressWraps {
         return null;
     }
 
+    /**
+     * Get local IP address (first available).
+     *
+     * @return the local IP address, or null if not found
+     */
     public static String getLocalIpAddress() {
         return getLocalIpAddress(false);
     }
 
+    /**
+     * Get local IP address (first available) with fallback option.
+     *
+     * @param useDefault whether to return default localhost if no address found
+     * @return the local IP address, or null/127.0.0.1 based on useDefault parameter
+     */
     @Nullable
     public static String getLocalIpAddress(boolean useDefault) {
         List<String> outcome = getLocalIpAddresses();
@@ -100,6 +136,12 @@ public abstract class InetAddressWraps {
         return !useDefault ? null : InetAddressConst.LOCALHOST_IPV4;
     }
 
+    /**
+     * Get all local IP addresses from active network interfaces.
+     * Excludes loopback, virtual, point-to-point, and down interfaces.
+     *
+     * @return list of unique local IP addresses, or null if none found
+     */
     @Nullable
     public static List<String> getLocalIpAddresses() {
         List<String> result = new ArrayList<>();
@@ -123,6 +165,12 @@ public abstract class InetAddressWraps {
         return result.isEmpty() ? null : result.stream().distinct().collect(Collectors.toList());
     }
 
+    /**
+     * Get all local MAC addresses from active network interfaces.
+     * Excludes loopback, virtual, point-to-point, and down interfaces.
+     *
+     * @return list of unique MAC addresses in uppercase hex format (XX-XX-XX-XX-XX-XX), or null if none found
+     */
     @Nullable
     public static List<String> getLocalMacAddresses() {
         List<String> result = new ArrayList<>();
@@ -148,6 +196,12 @@ public abstract class InetAddressWraps {
         return result.isEmpty() ? null : result.stream().distinct().collect(Collectors.toList());
     }
 
+    /**
+     * Check if the address is a LAN address (localhost or private IPv4).
+     *
+     * @param address the IP address to check
+     * @return true if the address is a LAN address, false otherwise
+     */
     public static boolean isLanAddress(@Nullable String address) {
         return StringUtils.isNotBlank(address) && (StringUtils.equalsIgnoreCase(address, InetAddressConst.LOCALHOST_NAME) || Pattern.matches(RegexVariantConst.LAN_ADDRESS_IPV4, address));
     }
@@ -208,6 +262,7 @@ public abstract class InetAddressWraps {
      * @param inet4 The address of {@link String} representation
      *
      * @return a {@link Long} that represents an inet4 address from it's {@link String} representation
+     * @throws NumberFormatException if the IP address format is invalid
      */
     @Nullable
     public static Long toLongByInet4(@Nullable String inet4) throws NumberFormatException {
@@ -228,6 +283,7 @@ public abstract class InetAddressWraps {
      * @param port The port number
      *
      * @return a {@link Long} that represents an inet4 address with port from it's {@link String} representation
+     * @throws NumberFormatException if the IP address format is invalid
      */
     @Nullable
     public static Long toLongByInet4Port(@Nullable String inet4, int port) throws NumberFormatException {
