@@ -36,12 +36,26 @@ import org.apache.commons.collections4.SetUtils;
  */
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})
 public abstract class SetUtilsWraps {
+    /**
+     * Computes the intersection of all given sets
+     *
+     * @param sets the sets to compute intersection for
+     *
+     * @return a set containing elements present in all input sets, or {@code null} if any set is empty or null
+     */
     @Nullable
     @SafeVarargs
     public static <E> Set<E> intersectionAll(@Nullable Set<E>... sets) {
         return intersectionAll(ArrayUtilsWraps.asList(sets));
     }
 
+    /**
+     * Computes the intersection of all sets in the collection
+     *
+     * @param sets the collection of sets to compute intersection for
+     *
+     * @return a set containing elements present in all input sets, or {@code null} if the collection is empty, any set is empty, or the result is empty
+     */
     @Nullable
     public static <E> Set<E> intersectionAll(@Nullable Collection<Set<E>> sets) {
         if (CollectionUtils.isEmpty(sets) || sets.stream().anyMatch(CollectionUtils::isEmpty)) {
@@ -65,6 +79,13 @@ public abstract class SetUtilsWraps {
         return CollectionUtils.isEmpty(result) ? null : result;
     }
 
+    /**
+     * Computes the union of all given sets
+     *
+     * @param sets the sets to compute union for
+     *
+     * @return a set containing all elements from all input sets, or {@code null} if the input is null or empty
+     */
     @Nullable
     @SafeVarargs
     public static <E> Set<E> unionAll(@Nullable Set<E>... sets) {
@@ -72,6 +93,12 @@ public abstract class SetUtilsWraps {
     }
 
     /**
+     * Computes the union of all sets in the collection
+     *
+     * @param sets the collection of sets to compute union for
+     *
+     * @return a set containing all elements from all input sets, or {@code null} if the collection is empty or the result is empty
+     *
      * @see org.apache.commons.collections4.SetUtils#union
      */
     @Nullable

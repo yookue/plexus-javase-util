@@ -29,6 +29,13 @@ import org.apache.commons.lang3.StringUtils;
  */
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})
 public abstract class PackagePlainWraps {
+    /**
+     * Checks whether a package with the given name exists
+     *
+     * @param name The package name to check
+     *
+     * @return {@code true} if the package exists, {@code false} otherwise
+     */
     public static boolean existsPackage(@Nullable CharSequence name) {
         if (StringUtils.isBlank(name)) {
             return false;
@@ -40,18 +47,46 @@ public abstract class PackagePlainWraps {
         return StringUtils.isNotBlank(name) && loader.getDefinedPackage(CharSequenceWraps.toStringIgnoreNull(name)) != null;
     }
 
+    /**
+     * Checks whether all given packages exist
+     *
+     * @param packages The package names to check
+     *
+     * @return {@code true} if all packages exist, {@code false} otherwise
+     */
     public static boolean existsAllPackages(@Nullable CharSequence... packages) {
         return existsAllPackages(ArrayUtilsWraps.asList(packages));
     }
 
+    /**
+     * Checks whether all packages in the collection exist
+     *
+     * @param packages The collection of package names to check
+     *
+     * @return {@code true} if all packages exist and collection is not empty, {@code false} otherwise
+     */
     public static boolean existsAllPackages(@Nullable Collection<? extends CharSequence> packages) {
         return CollectionPlainWraps.isNotEmpty(packages) && packages.stream().allMatch(PackagePlainWraps::existsPackage);
     }
 
+    /**
+     * Checks whether any of the given packages exists
+     *
+     * @param packages The package names to check
+     *
+     * @return {@code true} if any package exists, {@code false} otherwise
+     */
     public static boolean existsAnyPackages(@Nullable CharSequence... packages) {
         return existsAnyPackages(ArrayUtilsWraps.asList(packages));
     }
 
+    /**
+     * Checks whether any package in the collection exists
+     *
+     * @param packages The collection of package names to check
+     *
+     * @return {@code true} if any package exists and collection is not empty, {@code false} otherwise
+     */
     public static boolean existsAnyPackages(@Nullable Collection<? extends CharSequence> packages) {
         return CollectionPlainWraps.isNotEmpty(packages) && packages.stream().anyMatch(PackagePlainWraps::existsPackage);
     }

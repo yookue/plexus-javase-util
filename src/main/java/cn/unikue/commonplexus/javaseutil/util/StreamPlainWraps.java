@@ -56,6 +56,13 @@ public abstract class StreamPlainWraps {
         return (input == null) ? 0 : input.available();
     }
 
+    /**
+     * Returns an estimate of the number of bytes that can be read from this stream, or 0 if an error occurs
+     *
+     * @param input The {@link java.io.InputStream} object to check
+     *
+     * @return an estimate of the number of bytes available, or 0 if input is null or an error occurs
+     */
     public int availableQuietly(@Nullable InputStream input) {
         try {
             return available(input);
@@ -64,6 +71,13 @@ public abstract class StreamPlainWraps {
         return 0;
     }
 
+    /**
+     * Returns a sequential stream from the given array
+     *
+     * @param array The source array
+     *
+     * @return a sequential stream, or an empty stream if array is null or empty
+     */
     @Nonnull
     public static <E> Stream<E> stream(@Nullable E[] array) {
         return stream(array, false);
@@ -82,6 +96,13 @@ public abstract class StreamPlainWraps {
         return ArrayUtils.isEmpty(array) ? Stream.empty() : StreamSupport.stream(Spliterators.spliteratorUnknownSize(new ArrayIterator<>(array), Spliterator.ORDERED), parallel);
     }
 
+    /**
+     * Returns a sequential stream from the given enumeration
+     *
+     * @param enumeration The source enumeration
+     *
+     * @return a sequential stream, or an empty stream if enumeration is null
+     */
     @Nonnull
     public static <E> Stream<E> stream(@Nullable Enumeration<E> enumeration) {
         return stream(enumeration, false);

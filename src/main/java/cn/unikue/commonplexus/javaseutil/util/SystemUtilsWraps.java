@@ -32,26 +32,68 @@ import org.apache.commons.lang3.SystemUtils;
  */
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})
 public abstract class SystemUtilsWraps {
+    /**
+     * Checks whether all given environment variables exist
+     *
+     * @param variables The variable names to check
+     *
+     * @return {@code true} if all variables exist, {@code false} otherwise
+     */
     public static boolean existsAllVariables(@Nullable CharSequence... variables) {
         return existsAllVariables(ArrayUtilsWraps.asList(variables));
     }
 
+    /**
+     * Checks whether all environment variables in the collection exist
+     *
+     * @param variables The collection of variable names to check
+     *
+     * @return {@code true} if all variables exist and collection is not empty, {@code false} otherwise
+     */
     public static boolean existsAllVariables(@Nullable Collection<? extends CharSequence> variables) {
         return CollectionPlainWraps.isNotEmpty(variables) && variables.stream().allMatch(SystemUtilsWraps::existsVariable);
     }
 
+    /**
+     * Checks whether any of the given environment variables exists
+     *
+     * @param variables The variable names to check
+     *
+     * @return {@code true} if any variable exists, {@code false} otherwise
+     */
     public static boolean existsAnyVariables(@Nullable CharSequence... variables) {
         return existsAnyVariables(ArrayUtilsWraps.asList(variables));
     }
 
+    /**
+     * Checks whether any environment variable in the collection exists
+     *
+     * @param variables The collection of variable names to check
+     *
+     * @return {@code true} if any variable exists and collection is not empty, {@code false} otherwise
+     */
     public static boolean existsAnyVariables(@Nullable Collection<? extends CharSequence> variables) {
         return CollectionPlainWraps.isNotEmpty(variables) && variables.stream().anyMatch(SystemUtilsWraps::existsVariable);
     }
 
+    /**
+     * Checks whether an environment variable with the given name exists
+     *
+     * @param name The variable name to check
+     *
+     * @return {@code true} if the variable exists, {@code false} otherwise
+     */
     public static boolean existsVariable(@Nullable CharSequence name) {
         return getVariable(name) != null;
     }
 
+    /**
+     * Returns the value of the environment variable with the given name
+     *
+     * @param name The variable name to look up
+     *
+     * @return the variable value, or null if name is blank or variable doesn't exist
+     */
     @Nullable
     public static String getVariable(@Nullable CharSequence name) {
         return StringUtils.isBlank(name) ? null : SystemUtils.getEnvironmentVariable(CharSequenceWraps.toStringIgnoreNull(name), null);

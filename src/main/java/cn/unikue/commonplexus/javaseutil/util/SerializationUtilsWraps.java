@@ -34,6 +34,13 @@ import org.apache.commons.lang3.SerializationUtils;
  */
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})
 public abstract class SerializationUtilsWraps {
+    /**
+     * Serializes an object to a byte array
+     *
+     * @param object the object to serialize, must implement {@link Serializable}
+     *
+     * @return the serialized byte array, or {@code null} if the object is null or serialization fails
+     */
     @Nullable
     public static byte[] serialize(@Nullable Serializable object) {
         if (object == null) {
@@ -46,6 +53,12 @@ public abstract class SerializationUtilsWraps {
         return null;
     }
 
+    /**
+     * Serializes an object to an output stream
+     *
+     * @param object the object to serialize, must implement {@link Serializable}
+     * @param output the output stream to write the serialized data to
+     */
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
     public static void serialize(@Nullable Serializable object, @Nullable OutputStream output) {
         if (ObjectUtils.anyNull(object, output)) {
@@ -57,6 +70,13 @@ public abstract class SerializationUtilsWraps {
         }
     }
 
+    /**
+     * Clones an object by serializing and deserializing it
+     *
+     * @param object the object to clone, must implement {@link Serializable}
+     *
+     * @return a deep copy of the object, or {@code null} if the object is null or cloning fails
+     */
     @Nullable
     public static <T extends Serializable> T clone(@Nullable T object) {
         try {
@@ -66,6 +86,13 @@ public abstract class SerializationUtilsWraps {
         return null;
     }
 
+    /**
+     * Deserializes a byte array to an object
+     *
+     * @param input the byte array containing the serialized data
+     *
+     * @return the deserialized object, or {@code null} if the input is null or deserialization fails
+     */
     @Nullable
     public static <T> T deserialize(@Nullable byte[] input) {
         if (input == null) {
@@ -78,6 +105,13 @@ public abstract class SerializationUtilsWraps {
         return null;
     }
 
+    /**
+     * Deserializes an object from an input stream
+     *
+     * @param input the input stream containing the serialized data
+     *
+     * @return the deserialized object, or {@code null} if the input is null or deserialization fails
+     */
     @Nullable
     public static <T> T deserialize(@Nullable InputStream input) {
         if (input == null) {

@@ -33,6 +33,11 @@ import cn.unikue.commonplexus.javaseutil.enumeration.ServerContainerType;
  */
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})
 public abstract class ServerContainerWraps {
+    /**
+     * Detects the type of server container by querying MBean names
+     *
+     * @return the detected server container type, or {@link cn.unikue.commonplexus.javaseutil.enumeration.ServerContainerType#UNKNOWN} if not detected
+     */
     @Nonnull
     public static ServerContainerType detectContainerType() {
         MBeanServer server = ManagementFactory.getPlatformMBeanServer();
@@ -51,6 +56,11 @@ public abstract class ServerContainerWraps {
         return ServerContainerType.UNKNOWN;
     }
 
+    /**
+     * Gets the Tomcat MBean object names for connectors
+     *
+     * @return a set of Tomcat connector object names, or {@code null} if Tomcat is not present or an error occurs
+     */
     @Nullable
     public static Set<ObjectName> getTomcatObjectNames() {
         try {
@@ -61,10 +71,20 @@ public abstract class ServerContainerWraps {
         return null;
     }
 
+    /**
+     * Checks if Tomcat server container is present
+     *
+     * @return {@code true} if Tomcat is NOT present (no connectors found), {@code false} otherwise
+     */
     public static boolean isTomcatPresent() {
         return CollectionPlainWraps.isEmpty(getTomcatObjectNames());
     }
 
+    /**
+     * Checks if SSL is enabled in Tomcat server container
+     *
+     * @return {@code true} if any Tomcat connector has SSL enabled, {@code false} otherwise
+     */
     public static boolean isTomcatSslEnabled() {
         try {
             MBeanServer server = ManagementFactory.getPlatformMBeanServer();

@@ -37,14 +37,35 @@ import org.apache.commons.lang3.time.DurationUtils;
  */
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue", "JavadocReference"})
 public abstract class TemporalUtilsWraps {
+    /**
+     * Checks whether the given sequence can be converted to a ChronoUnit
+     *
+     * @param sequence The sequence to check, may be null or blank
+     *
+     * @return {@code true} if the sequence can be converted to a ChronoUnit, {@code false} otherwise
+     */
     public static boolean isChronoUnit(@Nullable CharSequence sequence) {
         return toChronoUnit(sequence) != null;
     }
 
+    /**
+     * Checks whether the given sequence can be converted to a TimeUnit
+     *
+     * @param sequence The sequence to check, may be null or blank
+     *
+     * @return {@code true} if the sequence can be converted to a TimeUnit, {@code false} otherwise
+     */
     public static boolean isTimeUnit(@Nullable CharSequence sequence) {
         return toTimeUnit(sequence) != null;
     }
 
+    /**
+     * Converts a CharSequence to a ChronoUnit enum value (case-insensitive)
+     *
+     * @param sequence The sequence to convert, may be null or blank
+     *
+     * @return the corresponding ChronoUnit, or null if sequence is blank or not matched
+     */
     @Nullable
     public static ChronoUnit toChronoUnit(@Nullable CharSequence sequence) {
         if (StringUtils.isBlank(sequence)) {
@@ -55,7 +76,11 @@ public abstract class TemporalUtilsWraps {
     }
 
     /**
-     * @see org.apache.commons.lang3.time.DurationUtils#toChronoUnit
+     * Converts a TimeUnit to a ChronoUnit using reflection
+     *
+     * @param unit The TimeUnit to convert, may be null
+     *
+     * @return the corresponding ChronoUnit, or null if conversion fails
      */
     @Nullable
     public static ChronoUnit toChronoUnit(@Nullable TimeUnit unit) {
@@ -66,6 +91,13 @@ public abstract class TemporalUtilsWraps {
         return null;
     }
 
+    /**
+     * Converts a CharSequence to a TimeUnit enum value (case-insensitive)
+     *
+     * @param sequence The sequence to convert, may be null or blank
+     *
+     * @return the corresponding TimeUnit, or null if sequence is blank or not matched
+     */
     @Nullable
     public static TimeUnit toTimeUnit(@Nullable CharSequence sequence) {
         if (StringUtils.isBlank(sequence)) {
@@ -75,6 +107,13 @@ public abstract class TemporalUtilsWraps {
         return Arrays.stream(units).filter(item -> StringUtils.equalsIgnoreCase(item.name(), sequence)).findFirst().orElse(null);
     }
 
+    /**
+     * Converts a ChronoUnit to a TimeUnit
+     *
+     * @param unit The ChronoUnit to convert, may be null
+     *
+     * @return the corresponding TimeUnit, or null if the ChronoUnit cannot be converted
+     */
     @Nullable
     public static TimeUnit toTimeUnit(@Nullable ChronoUnit unit) {
         if (unit == null) {

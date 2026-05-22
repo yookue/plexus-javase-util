@@ -33,6 +33,13 @@ import org.apache.commons.lang3.ObjectUtils;
  */
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})
 public abstract class PropertyPlainWraps {
+    /**
+     * Creates a Properties object from the given map
+     *
+     * @param map The map to convert, may be null or empty
+     *
+     * @return a Properties object containing all entries from the map, or null if map is null or empty
+     */
     @Nullable
     public static Properties ofMap(@Nullable Map<?, ?> map) {
         if (MapPlainWraps.isEmpty(map)) {
@@ -43,6 +50,14 @@ public abstract class PropertyPlainWraps {
         return result;
     }
 
+    /**
+     * Creates a new Properties object with a single key-value pair
+     *
+     * @param key The key, may be null
+     * @param value The value, may be null
+     *
+     * @return a new Properties object containing the key-value pair if both are not null, otherwise an empty Properties
+     */
     @Nonnull
     public static Properties newPropertiesWithin(@Nullable Object key, @Nullable Object value) {
         Properties result = new Properties();
@@ -52,6 +67,16 @@ public abstract class PropertyPlainWraps {
         return result;
     }
 
+    /**
+     * Creates a new Properties object with two key-value pairs
+     *
+     * @param key1 The first key, may be null
+     * @param value1 The first value, may be null
+     * @param key2 The second key, may be null
+     * @param value2 The second value, may be null
+     *
+     * @return a new Properties object containing the non-null key-value pairs
+     */
     @Nonnull
     public static Properties newPropertiesWithin(@Nullable Object key1, @Nullable Object value1, @Nullable Object key2, @Nullable Object value2) {
         Properties result = newPropertiesWithin(key1, value1);
@@ -61,6 +86,18 @@ public abstract class PropertyPlainWraps {
         return result;
     }
 
+    /**
+     * Creates a new Properties object with three key-value pairs
+     *
+     * @param key1 The first key, may be null
+     * @param value1 The first value, may be null
+     * @param key2 The second key, may be null
+     * @param value2 The second value, may be null
+     * @param key3 The third key, may be null
+     * @param value3 The third value, may be null
+     *
+     * @return a new Properties object containing the non-null key-value pairs
+     */
     @Nonnull
     public static Properties newPropertiesWithin(@Nullable Object key1, @Nullable Object value1, @Nullable Object key2, @Nullable Object value2, @Nullable Object key3, @Nullable Object value3) {
         Properties result = newPropertiesWithin(key1, value1, key2, value2);

@@ -37,30 +37,82 @@ import net.sf.jsqlparser.statement.Statement;
  */
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})
 public abstract class SqlParserWraps {
+    /**
+     * Checks whether the SQL statement from InputStream is parsable
+     *
+     * @param input The input stream containing SQL statement
+     *
+     * @return {@code true} if the SQL is parsable, {@code false} otherwise
+     */
     public static boolean isStatementParsable(@Nullable InputStream input) {
         return parseStatement(input) != null;
     }
 
+    /**
+     * Checks whether the SQL statement from InputStream with encoding is parsable
+     *
+     * @param input The input stream containing SQL statement
+     * @param encoding The charset encoding to use
+     *
+     * @return {@code true} if the SQL is parsable, {@code false} otherwise
+     */
     public static boolean isStatementParsable(@Nullable InputStream input, @Nullable Charset encoding) {
         return parseStatement(input, encoding) != null;
     }
 
+    /**
+     * Checks whether the SQL statement from InputStream with encoding name is parsable
+     *
+     * @param input The input stream containing SQL statement
+     * @param encoding The encoding name to use
+     *
+     * @return {@code true} if the SQL is parsable, {@code false} otherwise
+     */
     public static boolean isStatementParsable(@Nullable InputStream input, @Nullable String encoding) {
         return parseStatement(input, encoding) != null;
     }
 
+    /**
+     * Checks whether the SQL statement from Reader is parsable
+     *
+     * @param reader The reader containing SQL statement
+     *
+     * @return {@code true} if the SQL is parsable, {@code false} otherwise
+     */
     public static boolean isStatementParsable(@Nullable Reader reader) {
         return parseStatement(reader) != null;
     }
 
+    /**
+     * Checks whether the SQL string is parsable
+     *
+     * @param sql The SQL statement string
+     *
+     * @return {@code true} if the SQL is parsable, {@code false} otherwise
+     */
     public static boolean isStatementParsable(@Nullable String sql) {
         return parseStatement(sql) != null;
     }
 
+    /**
+     * Checks whether the SQL string is parsable with parser customization
+     *
+     * @param sql The SQL statement string
+     * @param action The consumer to customize the parser
+     *
+     * @return {@code true} if the SQL is parsable, {@code false} otherwise
+     */
     public static boolean isStatementParsable(@Nullable String sql, @Nullable Consumer<CCJSqlParser> action) {
         return parseStatement(sql, action) != null;
     }
 
+    /**
+     * Parses SQL statement from InputStream
+     *
+     * @param input The input stream containing SQL statement
+     *
+     * @return the parsed Statement object, or null if parsing fails
+     */
     @Nullable
     public static Statement parseStatement(@Nullable InputStream input) {
         if (input == null) {
@@ -73,6 +125,14 @@ public abstract class SqlParserWraps {
         return null;
     }
 
+    /**
+     * Parses SQL statement from InputStream with specified encoding
+     *
+     * @param input The input stream containing SQL statement
+     * @param encoding The charset encoding to use
+     *
+     * @return the parsed Statement object, or null if parsing fails
+     */
     @Nullable
     public static Statement parseStatement(@Nullable InputStream input, @Nullable Charset encoding) {
         if (input == null || encoding == null) {
@@ -85,6 +145,14 @@ public abstract class SqlParserWraps {
         return null;
     }
 
+    /**
+     * Parses SQL statement from InputStream with encoding name
+     *
+     * @param input The input stream containing SQL statement
+     * @param encoding The encoding name to use (defaults to UTF-8 if null)
+     *
+     * @return the parsed Statement object, or null if parsing fails
+     */
     @Nullable
     public static Statement parseStatement(@Nullable InputStream input, @Nullable String encoding) {
         if (input == null) {
@@ -97,6 +165,13 @@ public abstract class SqlParserWraps {
         return null;
     }
 
+    /**
+     * Parses SQL statement from Reader
+     *
+     * @param reader The reader containing SQL statement
+     *
+     * @return the parsed Statement object, or null if parsing fails
+     */
     @Nullable
     public static Statement parseStatement(@Nullable Reader reader) {
         if (reader == null) {
@@ -109,6 +184,13 @@ public abstract class SqlParserWraps {
         return null;
     }
 
+    /**
+     * Parses SQL statement from string
+     *
+     * @param sql The SQL statement string
+     *
+     * @return the parsed Statement object, or null if parsing fails
+     */
     @Nullable
     public static Statement parseStatement(@Nullable String sql) {
         if (StringUtils.isBlank(sql)) {
@@ -121,6 +203,14 @@ public abstract class SqlParserWraps {
         return null;
     }
 
+    /**
+     * Parses SQL statement from string with parser customization
+     *
+     * @param sql The SQL statement string
+     * @param action The consumer to customize the parser before parsing
+     *
+     * @return the parsed Statement object, or null if parsing fails
+     */
     @Nullable
     public static Statement parseStatement(@Nullable String sql, @Nullable Consumer<CCJSqlParser> action) {
         if (StringUtils.isBlank(sql)) {

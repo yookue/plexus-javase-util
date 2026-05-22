@@ -36,12 +36,26 @@ import org.apache.commons.collections4.ListUtils;
  */
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})
 public abstract class ListUtilsWraps {
+    /**
+     * Computes the intersection of all given lists
+     *
+     * @param lists the lists to compute intersection for
+     *
+     * @return a list containing elements present in all input lists, or {@code null} if any list is empty or null
+     */
     @Nullable
     @SafeVarargs
     public static <E> List<E> intersectionAll(@Nullable List<E>... lists) {
         return intersectionAll(ArrayUtilsWraps.asList(lists));
     }
 
+    /**
+     * Computes the intersection of all lists in the collection
+     *
+     * @param lists the collection of lists to compute intersection for
+     *
+     * @return a list containing elements present in all input lists, or {@code null} if the collection is empty, any list is empty, or the result is empty
+     */
     @Nullable
     public static <E> List<E> intersectionAll(@Nullable Collection<List<E>> lists) {
         if (CollectionUtils.isEmpty(lists) || lists.stream().anyMatch(CollectionUtils::isEmpty)) {
@@ -65,6 +79,13 @@ public abstract class ListUtilsWraps {
         return CollectionUtils.isEmpty(result) ? null : result;
     }
 
+    /**
+     * Computes the union of all given collections
+     *
+     * @param collections the collections to compute union for
+     *
+     * @return a list containing all elements from all input collections, or {@code null} if the input is null or empty
+     */
     @Nullable
     @SafeVarargs
     public static <E> List<E> unionAll(@Nullable Collection<? extends E>... collections) {
@@ -72,6 +93,12 @@ public abstract class ListUtilsWraps {
     }
 
     /**
+     * Computes the union of all collections in the collection
+     *
+     * @param collections the collection of collections to compute union for
+     *
+     * @return a list containing all elements from all input collections, or {@code null} if the collection is empty or the total size is zero
+     *
      * @see org.apache.commons.collections4.ListUtils#union
      */
     @Nullable

@@ -32,11 +32,28 @@ import org.apache.commons.lang3.ObjectUtils;
  */
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue", "OptionalUsedAsFieldOrParameterType"})
 public abstract class OptionalPlainWraps {
+    /**
+     * Returns the result of applying the action to the value if present, or null otherwise
+     *
+     * @param source The optional to check
+     * @param action The function to apply to the value if present
+     *
+     * @return the result of the action, or null if optional is empty or null
+     */
     @Nullable
     public static <T, R> R getIfPresent(@Nullable Optional<T> source, @Nullable Function<T, R> action) {
         return getIfPresent(source, action, null);
     }
 
+    /**
+     * Returns the result of applying the action to the filtered value if present, or null otherwise
+     *
+     * @param source The optional to check
+     * @param action The function to apply to the value if present
+     * @param filter The predicate to filter the value, or null to skip filtering
+     *
+     * @return the result of the action, or null if optional is empty, null, or doesn't pass filter
+     */
     @Nullable
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
     public static <T, R> R getIfPresent(@Nullable Optional<T> source, @Nullable Function<T, R> action, @Nullable Predicate<? super T> filter) {
@@ -47,10 +64,23 @@ public abstract class OptionalPlainWraps {
         return filtered.map(action).orElse(null);
     }
 
+    /**
+     * Executes the action with the value if present
+     *
+     * @param source The optional to check
+     * @param action The consumer to execute with the value if present
+     */
     public static <T> void ifPresent(@Nullable Optional<T> source, @Nullable Consumer<? super T> action) {
         ifPresent(source, action, null);
     }
 
+    /**
+     * Executes the action with the filtered value if present
+     *
+     * @param source The optional to check
+     * @param action The consumer to execute with the value if present
+     * @param filter The predicate to filter the value, or null to skip filtering
+     */
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
     public static <T> void ifPresent(@Nullable Optional<T> source, @Nullable Consumer<? super T> action, @Nullable Predicate<? super T> filter) {
         if (ObjectUtils.anyNull(source, action)) {
@@ -63,6 +93,12 @@ public abstract class OptionalPlainWraps {
         }
     }
 
+    /**
+     * Executes the action if a value is present
+     *
+     * @param source The optional to check
+     * @param action The runnable to execute if value is present
+     */
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
     public static <T> void ifPresent(@Nullable Optional<T> source, @Nullable Runnable action) {
         if (ObjectUtils.allNotNull(source, action) && source.isPresent()) {
@@ -70,6 +106,13 @@ public abstract class OptionalPlainWraps {
         }
     }
 
+    /**
+     * Executes presentAction if value is present, otherwise executes absentAction
+     *
+     * @param source The optional to check
+     * @param presentAction The consumer to execute with the value if present
+     * @param absentAction The runnable to execute if value is absent
+     */
     public static <T> void ifPresentOrElse(@Nullable Optional<T> source, @Nullable Consumer<? super T> presentAction, @Nullable Runnable absentAction) {
         if (source != null && source.isPresent()) {
             if (presentAction != null) {
@@ -82,6 +125,13 @@ public abstract class OptionalPlainWraps {
         }
     }
 
+    /**
+     * Executes presentAction if value is present, otherwise executes absentAction
+     *
+     * @param source The optional to check
+     * @param presentAction The runnable to execute if value is present
+     * @param absentAction The runnable to execute if value is absent
+     */
     public static <T> void ifPresentOrElse(@Nullable Optional<T> source, @Nullable Runnable presentAction, @Nullable Runnable absentAction) {
         if (source != null && source.isPresent()) {
             if (presentAction != null) {
@@ -94,6 +144,12 @@ public abstract class OptionalPlainWraps {
         }
     }
 
+    /**
+     * Executes the action if the optional is empty or null
+     *
+     * @param source The optional to check
+     * @param action The runnable to execute if optional is empty or null
+     */
     @SuppressWarnings("OptionalAssignedToNull")
     public static void ifNotPresent(@Nullable Optional<?> source, @Nullable Runnable action) {
         if ((source == null || source.isEmpty()) && action != null) {
@@ -118,6 +174,14 @@ public abstract class OptionalPlainWraps {
         return (result instanceof Optional<?> alias) ? unwrap(alias) : result;
     }
 
+    /**
+     * Unwraps the optional and returns the value cast to the expected type
+     *
+     * @param source The optional to unwrap
+     * @param expectType The expected type to cast to
+     *
+     * @return the unwrapped value cast to the expected type, or null if optional is empty or null
+     */
     @Nullable
     public static <T> T unwrapAs(@Nullable Optional<?> source, @Nullable Class<T> expectType) {
         return ObjectUtils.anyNull(source, expectType) ? null : ObjectUtilsWraps.castAs(unwrap(source), expectType);

@@ -34,20 +34,51 @@ import org.apache.commons.lang3.StringUtils;
  */
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})
 public abstract class ResourceBundleWraps {
+    /**
+     * Gets a localized message from the resource bundle with locale lookup support
+     *
+     * @param baseName the base name of the resource bundle
+     * @param locale the locale for which to get the message
+     * @param loader the class loader to use for loading the resource bundle
+     * @param key the key of the message to retrieve
+     *
+     * @return the localized message, or {@code null} if not found
+     */
     @Nullable
     public static String getLocaleLookupMessage(@Nullable String baseName, @Nullable Locale locale, @Nullable ClassLoader loader, @Nullable String key) {
         return getLocaleLookupMessage(baseName, locale, loader, key, null);
     }
 
+    /**
+     * Gets a localized message from the resource bundle with locale lookup support and default value
+     *
+     * @param baseName the base name of the resource bundle
+     * @param locale the locale for which to get the message
+     * @param key the key of the message to retrieve
+     * @param defaultValue the default value to return if the message is not found
+     *
+     * @return the localized message, or the default value if not found
+     */
     @Nullable
     public static String getLocaleLookupMessage(@Nullable String baseName, @Nullable Locale locale, @Nullable String key, @Nullable String defaultValue) {
         return getLocaleLookupMessage(baseName, locale, null, key, defaultValue);
     }
 
     /**
-     * Returns the message from taglet/Messages properties file
+     * Gets a localized message from the resource bundle with locale lookup support
      *
-     * @return the title from taglet/Messages properties file
+     * <p>
+     * This method searches through the locale lookup list to find the message in the most appropriate locale.
+     * It tries each locale in the lookup list until a non-empty message is found.
+     * </p>
+     *
+     * @param baseName the base name of the resource bundle
+     * @param locale the locale for which to get the message
+     * @param loader the class loader to use for loading the resource bundle (can be null)
+     * @param key the key of the message to retrieve
+     * @param defaultValue the default value to return if the message is not found
+     *
+     * @return the localized message, or the default value if not found or if any required parameter is blank/null
      */
     @Nullable
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})

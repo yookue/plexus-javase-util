@@ -38,6 +38,14 @@ import cn.unikue.commonplexus.javaseutil.constant.LocaleAreaCombo;
  */
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})
 public abstract class LocalePlainWraps {
+    /**
+     * Checks if two locales have the same language
+     *
+     * @param target the target locale to check
+     * @param comparison the comparison locale to check against
+     *
+     * @return {@code true} if both locales have the same language, or both are null; {@code false} otherwise
+     */
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
     public static boolean equalsLanguage(@Nullable Locale target, @Nullable Locale comparison) {
         if (ObjectUtils.allNull(target, comparison)) {
@@ -49,6 +57,14 @@ public abstract class LocalePlainWraps {
         return StringUtils.equals(target.getLanguage(), comparison.getLanguage());
     }
 
+    /**
+     * Checks if the locale has the specified language
+     *
+     * @param locale the locale to check
+     * @param language the language to compare with
+     *
+     * @return {@code true} if the locale has the specified language, or both are null/blank; {@code false} otherwise
+     */
     public static boolean equalsLanguage(@Nullable Locale locale, @Nullable String language) {
         if (ObjectUtils.allNull(locale, language)) {
             return true;
@@ -59,6 +75,14 @@ public abstract class LocalePlainWraps {
         return StringUtils.equals(locale.getLanguage(), language);
     }
 
+    /**
+     * Checks if two locales have the same language tag
+     *
+     * @param target the target locale to check
+     * @param comparison the comparison locale to check against
+     *
+     * @return {@code true} if both locales have the same language tag, or both are null; {@code false} otherwise
+     */
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
     public static boolean equalsLanguageTag(@Nullable Locale target, @Nullable Locale comparison) {
         if (ObjectUtils.allNull(target, comparison)) {
@@ -70,6 +94,14 @@ public abstract class LocalePlainWraps {
         return StringUtils.equals(target.toLanguageTag(), comparison.toLanguageTag());
     }
 
+    /**
+     * Checks if the locale has the specified language tag
+     *
+     * @param locale the locale to check
+     * @param languageTag the language tag to compare with
+     *
+     * @return {@code true} if the locale has the specified language tag, or both are null/blank; {@code false} otherwise
+     */
     public static boolean equalsLanguageTag(@Nullable Locale locale, @Nullable String languageTag) {
         if (ObjectUtils.allNull(locale, languageTag)) {
             return true;
@@ -80,44 +112,120 @@ public abstract class LocalePlainWraps {
         return StringUtils.equals(locale.toLanguageTag(), languageTag);
     }
 
+    /**
+     * Checks if the target locale's language equals any of the comparison locales' languages
+     *
+     * @param target the target locale to check
+     * @param comparisons the comparison locales to check against
+     *
+     * @return {@code true} if the target locale's language matches any of the comparison locales, {@code false} otherwise
+     */
     public static boolean equalsAnyLanguages(@Nullable Locale target, @Nullable Locale... comparisons) {
         return equalsAnyLanguages(target, ArrayUtilsWraps.asList(comparisons));
     }
 
+    /**
+     * Checks if the locale's language equals any of the specified languages
+     *
+     * @param locale the locale to check
+     * @param languages the languages to compare with
+     *
+     * @return {@code true} if the locale's language matches any of the specified languages, {@code false} otherwise
+     */
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
     public static boolean equalsAnyLanguages(@Nullable Locale locale, @Nullable String... languages) {
         return locale != null && ArrayUtils.isNotEmpty(languages) && Arrays.stream(languages).filter(Objects::nonNull).anyMatch(item -> equalsLanguage(locale, item));
     }
 
+    /**
+     * Checks if the target locale's language equals any of the comparison locales' languages in the collection
+     *
+     * @param target the target locale to check
+     * @param comparisons the collection of comparison locales to check against
+     *
+     * @return {@code true} if the target locale's language matches any of the comparison locales, {@code false} otherwise
+     */
     public static boolean equalsAnyLanguages(@Nullable Locale target, @Nullable Collection<Locale> comparisons) {
         return target != null && CollectionPlainWraps.isNotEmpty(comparisons) && comparisons.stream().filter(Objects::nonNull).anyMatch(item -> equalsLanguage(target, item));
     }
 
+    /**
+     * Checks if the target locale's language tag equals any of the comparison locales' language tags
+     *
+     * @param target the target locale to check
+     * @param comparisons the comparison locales to check against
+     *
+     * @return {@code true} if the target locale's language tag matches any of the comparison locales, {@code false} otherwise
+     */
     public static boolean equalsAnyLanguageTags(@Nullable Locale target, @Nullable Locale... comparisons) {
         return equalsAnyLanguageTags(target, ArrayUtilsWraps.asList(comparisons));
     }
 
+    /**
+     * Checks if the locale's language tag equals any of the specified language tags
+     *
+     * @param locale the locale to check
+     * @param languageTags the language tags to compare with
+     *
+     * @return {@code true} if the locale's language tag matches any of the specified language tags, {@code false} otherwise
+     */
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
     public static boolean equalsAnyLanguageTags(@Nullable Locale locale, @Nullable String... languageTags) {
         return locale != null && ArrayUtils.isNotEmpty(languageTags) && Arrays.stream(languageTags).filter(Objects::nonNull).anyMatch(item -> equalsLanguageTag(locale, item));
     }
 
+    /**
+     * Checks if the target locale's language tag equals any of the comparison locales' language tags in the collection
+     *
+     * @param target the target locale to check
+     * @param comparisons the collection of comparison locales to check against
+     *
+     * @return {@code true} if the target locale's language tag matches any of the comparison locales, {@code false} otherwise
+     */
     public static boolean equalsAnyLanguageTags(@Nullable Locale target, @Nullable Collection<Locale> comparisons) {
         return target != null && CollectionPlainWraps.isNotEmpty(comparisons) && comparisons.stream().filter(Objects::nonNull).anyMatch(item -> equalsLanguageTag(target, item));
     }
 
+    /**
+     * Checks if the language range string is parsable
+     *
+     * @param ranges the language range string to check
+     *
+     * @return {@code true} if the language range string can be parsed, {@code false} otherwise
+     */
     public static boolean isLanguageRangeParsable(@Nullable String ranges) {
         return parseLanguageRangeQuietly(ranges) != null;
     }
 
+    /**
+     * Checks if the locale is a Chinese language locale
+     *
+     * @param target the locale to check
+     *
+     * @return {@code true} if the locale is a Chinese language locale, {@code false} otherwise
+     */
     public static boolean isChineseLanguage(@Nullable Locale target) {
         return equalsAnyLanguages(target, LocaleAreaCombo.CHINESE_LOCALES);
     }
 
+    /**
+     * Checks if the locale is a Western language locale
+     *
+     * @param target the locale to check
+     *
+     * @return {@code true} if the locale is a Western language locale, {@code false} otherwise
+     */
     public static boolean isWesternLanguage(@Nullable Locale target) {
         return equalsAnyLanguages(target, LocaleAreaCombo.WESTERN_LOCALES);
     }
 
+    /**
+     * Parses the language range string quietly without throwing exceptions
+     *
+     * @param ranges the language range string to parse
+     *
+     * @return a list of language ranges, or {@code null} if the string is blank or cannot be parsed
+     */
     @Nullable
     public static List<Locale.LanguageRange> parseLanguageRangeQuietly(@Nullable String ranges) {
         if (StringUtils.isBlank(ranges)) {

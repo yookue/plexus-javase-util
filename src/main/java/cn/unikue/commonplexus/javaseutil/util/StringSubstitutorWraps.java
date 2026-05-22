@@ -36,16 +36,47 @@ import cn.unikue.commonplexus.javaseutil.constant.CharVariantConst;
  */
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})
 public abstract class StringSubstitutorWraps {
+    /**
+     * Replaces variables in the source object using the given mappings with custom prefix and suffix
+     *
+     * @param source The source text containing variables to substitute
+     * @param mappings The map containing variable names and their replacement values
+     * @param prefix The prefix character that marks the start of a variable
+     * @param suffix The suffix character that marks the end of a variable
+     *
+     * @return the text with variables replaced, or null if source is null
+     */
     @Nullable
     public static <V> String replace(@Nullable Object source, @Nullable Map<String, V> mappings, char prefix, char suffix) {
         return replace(source, mappings, prefix, suffix, null);
     }
 
+    /**
+     * Replaces variables in the source object using the given mappings with custom prefix, suffix and lookup
+     *
+     * @param source The source text containing variables to substitute
+     * @param mappings The map containing variable names and their replacement values
+     * @param prefix The prefix character that marks the start of a variable
+     * @param suffix The suffix character that marks the end of a variable
+     * @param lookup The string lookup for additional variable resolution
+     *
+     * @return the text with variables replaced, or null if source is null
+     */
     @Nullable
     public static <V> String replace(@Nullable Object source, @Nullable Map<String, V> mappings, char prefix, char suffix, @Nullable StringLookup lookup) {
         return replace(source, mappings, CharUtils.toString(prefix), CharUtils.toString(suffix), lookup);
     }
 
+    /**
+     * Replaces variables in the source object using the given mappings with custom prefix and suffix as CharSequence
+     *
+     * @param source The source text containing variables to substitute
+     * @param mappings The map containing variable names and their replacement values
+     * @param prefix The prefix sequence that marks the start of a variable
+     * @param suffix The suffix sequence that marks the end of a variable
+     *
+     * @return the text with variables replaced, or null if source is null
+     */
     @Nullable
     public static <V> String replace(@Nullable Object source, @Nullable Map<String, V> mappings, @Nullable CharSequence prefix, @Nullable CharSequence suffix) {
         return replace(source, mappings, prefix, suffix, null);
@@ -67,26 +98,76 @@ public abstract class StringSubstitutorWraps {
         return substitutor.replace(source);
     }
 
+    /**
+     * Replaces variables in the source object using Properties with custom prefix and suffix
+     *
+     * @param source The source text containing variables to substitute
+     * @param mappings The Properties containing variable names and their replacement values
+     * @param prefix The prefix character that marks the start of a variable
+     * @param suffix The suffix character that marks the end of a variable
+     *
+     * @return the text with variables replaced, or null if source is null
+     */
     @Nullable
     public static <V> String replace(@Nullable Object source, @Nullable Properties mappings, char prefix, char suffix) {
         return replace(source, mappings, prefix, suffix, null);
     }
 
+    /**
+     * Replaces variables in the source object using Properties with custom prefix, suffix and lookup
+     *
+     * @param source The source text containing variables to substitute
+     * @param mappings The Properties containing variable names and their replacement values
+     * @param prefix The prefix character that marks the start of a variable
+     * @param suffix The suffix character that marks the end of a variable
+     * @param lookup The string lookup for additional variable resolution
+     *
+     * @return the text with variables replaced, or null if source is null
+     */
     @Nullable
     public static <V> String replace(@Nullable Object source, @Nullable Properties mappings, char prefix, char suffix, @Nullable StringLookup lookup) {
         return replace(source, mappings, CharUtils.toString(prefix), CharUtils.toString(suffix), lookup);
     }
 
+    /**
+     * Replaces variables in the source object using Properties with custom prefix and suffix as CharSequence
+     *
+     * @param source The source text containing variables to substitute
+     * @param mappings The Properties containing variable names and their replacement values
+     * @param prefix The prefix sequence that marks the start of a variable
+     * @param suffix The suffix sequence that marks the end of a variable
+     *
+     * @return the text with variables replaced, or null if source is null
+     */
     @Nullable
     public static <V> String replace(@Nullable Object source, @Nullable Properties mappings, @Nullable CharSequence prefix, @Nullable CharSequence suffix) {
         return replace(source, mappings, prefix, suffix, null);
     }
 
+    /**
+     * Replaces variables in the source object using Properties with custom prefix, suffix and lookup
+     *
+     * @param source The source text containing variables to substitute
+     * @param mappings The Properties containing variable names and their replacement values
+     * @param prefix The prefix sequence that marks the start of a variable
+     * @param suffix The suffix sequence that marks the end of a variable
+     * @param lookup The string lookup for additional variable resolution
+     *
+     * @return the text with variables replaced, or null if source is null
+     */
     @Nullable
     public static <V> String replace(@Nullable Object source, @Nullable Properties mappings, @Nullable CharSequence prefix, @Nullable CharSequence suffix, @Nullable StringLookup lookup) {
         return replace(source, PropertyPlainWraps.toStringStringMap(mappings), prefix, suffix, lookup);
     }
 
+    /**
+     * Replaces variables in angle bracket format "&lt;variable&gt;"
+     *
+     * @param source The source text containing variables to substitute
+     * @param mappings The map containing variable names and their replacement values
+     *
+     * @return the text with variables replaced, or null if source is null
+     */
     @Nullable
     public static <V> String replaceAngleBrackets(@Nullable Object source, @Nullable Map<String, V> mappings) {
         return replaceAngleBrackets(source, mappings, null);
@@ -106,6 +187,14 @@ public abstract class StringSubstitutorWraps {
         return replace(source, mappings, CharVariantConst.ANGLE_BRACKET_LEFT, CharVariantConst.ANGLE_BRACKET_RIGHT, lookup);
     }
 
+    /**
+     * Replaces variables in dollar-angle bracket format "$&lt;variable&gt;"
+     *
+     * @param source The source text containing variables to substitute
+     * @param mappings The map containing variable names and their replacement values
+     *
+     * @return the text with variables replaced, or null if source is null
+     */
     @Nullable
     public static <V> String replaceDollarAngleBrackets(@Nullable Object source, @Nullable Map<String, V> mappings) {
         return replaceDollarAngleBrackets(source, mappings, null);
@@ -125,6 +214,14 @@ public abstract class StringSubstitutorWraps {
         return replace(source, mappings, StringUtils.join(CharVariantConst.DOLLAR, CharVariantConst.ANGLE_BRACKET_LEFT), CharUtils.toString(CharVariantConst.ANGLE_BRACKET_RIGHT), lookup);
     }
 
+    /**
+     * Replaces variables in curly bracket format "{variable}"
+     *
+     * @param source The source text containing variables to substitute
+     * @param mappings The map containing variable names and their replacement values
+     *
+     * @return the text with variables replaced, or null if source is null
+     */
     @Nullable
     public static <V> String replaceCurlyBrackets(@Nullable Object source, @Nullable Map<String, V> mappings) {
         return replaceCurlyBrackets(source, mappings, null);
@@ -144,6 +241,14 @@ public abstract class StringSubstitutorWraps {
         return replace(source, mappings, CharVariantConst.CURLY_BRACKET_LEFT, CharVariantConst.CURLY_BRACKET_RIGHT, lookup);
     }
 
+    /**
+     * Replaces variables in dollar-curly bracket format "${variable}"
+     *
+     * @param source The source text containing variables to substitute
+     * @param mappings The map containing variable names and their replacement values
+     *
+     * @return the text with variables replaced, or null if source is null
+     */
     @Nullable
     public static <V> String replaceDollarCurlyBrackets(@Nullable Object source, @Nullable Map<String, V> mappings) {
         return replaceDollarCurlyBrackets(source, mappings, null);
@@ -163,6 +268,14 @@ public abstract class StringSubstitutorWraps {
         return replace(source, mappings, StringSubstitutor.DEFAULT_VAR_START, StringSubstitutor.DEFAULT_VAR_END, lookup);
     }
 
+    /**
+     * Replaces variables in square bracket format "[variable]"
+     *
+     * @param source The source text containing variables to substitute
+     * @param mappings The map containing variable names and their replacement values
+     *
+     * @return the text with variables replaced, or null if source is null
+     */
     @Nullable
     public static <V> String replaceSquareBrackets(@Nullable Object source, @Nullable Map<String, V> mappings) {
         return replaceSquareBrackets(source, mappings, null);
@@ -182,6 +295,14 @@ public abstract class StringSubstitutorWraps {
         return replace(source, mappings, CharVariantConst.SQUARE_BRACKET_LEFT, CharVariantConst.SQUARE_BRACKET_RIGHT, lookup);
     }
 
+    /**
+     * Replaces variables in dollar-square bracket format "$[variable]"
+     *
+     * @param source The source text containing variables to substitute
+     * @param mappings The map containing variable names and their replacement values
+     *
+     * @return the text with variables replaced, or null if source is null
+     */
     @Nullable
     public static <V> String replaceDollarSquareBrackets(@Nullable Object source, @Nullable Map<String, V> mappings) {
         return replaceDollarSquareBrackets(source, mappings, null);
@@ -201,6 +322,14 @@ public abstract class StringSubstitutorWraps {
         return replace(source, mappings, StringUtils.join(CharVariantConst.DOLLAR, CharVariantConst.SQUARE_BRACKET_LEFT), CharUtils.toString(CharVariantConst.SQUARE_BRACKET_RIGHT), lookup);
     }
 
+    /**
+     * Replaces variables in parenthesis format "(variable)"
+     *
+     * @param source The source text containing variables to substitute
+     * @param mappings The map containing variable names and their replacement values
+     *
+     * @return the text with variables replaced, or null if source is null
+     */
     @Nullable
     public static <V> String replaceParenthesis(@Nullable Object source, @Nullable Map<String, V> mappings) {
         return replaceParenthesis(source, mappings, null);
@@ -220,6 +349,14 @@ public abstract class StringSubstitutorWraps {
         return replace(source, mappings, CharVariantConst.PARENTHESIS_LEFT, CharVariantConst.PARENTHESIS_RIGHT, lookup);
     }
 
+    /**
+     * Replaces variables in dollar-parenthesis format "$(variable)"
+     *
+     * @param source The source text containing variables to substitute
+     * @param mappings The map containing variable names and their replacement values
+     *
+     * @return the text with variables replaced, or null if source is null
+     */
     @Nullable
     public static <V> String replaceDollarParenthesis(@Nullable Object source, @Nullable Map<String, V> mappings) {
         return replaceDollarParenthesis(source, mappings, null);

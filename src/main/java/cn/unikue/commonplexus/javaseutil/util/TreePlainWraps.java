@@ -36,11 +36,34 @@ import org.apache.commons.lang3.StringUtils;
  */
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})
 public abstract class TreePlainWraps {
+    /**
+     * Returns a tree structure that only contains the root nodes list (unsorted)
+     *
+     * @param structs The flat list of structures
+     * @param idField The name of the ID field
+     * @param pidField The name of the parent ID field
+     * @param childrenField The name of the children field
+     * @param <T> The generic type of the structure
+     *
+     * @return a tree structure with root nodes, or null if input is invalid
+     */
     @Nullable
     public static <T> List<T> sortChildrenTree(@Nullable Collection<T> structs, @Nullable String idField, @Nullable String pidField, @Nullable String childrenField) {
         return sortChildrenTree(structs, idField, pidField, childrenField, null, null, false);
     }
 
+    /**
+     * Returns a tree structure that only contains the root nodes list (sorted by field)
+     *
+     * @param structs The flat list of structures
+     * @param idField The name of the ID field
+     * @param pidField The name of the parent ID field
+     * @param childrenField The name of the children field
+     * @param sortField The name of the field to sort by
+     * @param <T> The generic type of the structure
+     *
+     * @return a sorted tree structure with root nodes, or null if input is invalid
+     */
     @Nullable
     public static <T> List<T> sortChildrenTree(@Nullable Collection<T> structs, @Nullable String idField, @Nullable String pidField, @Nullable String childrenField, @Nullable String sortField) {
         return sortChildrenTree(structs, idField, pidField, childrenField, sortField, null, true);

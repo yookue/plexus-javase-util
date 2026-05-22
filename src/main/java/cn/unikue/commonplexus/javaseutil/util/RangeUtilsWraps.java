@@ -31,11 +31,25 @@ import org.apache.commons.lang3.Range;
  */
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})
 public abstract class RangeUtilsWraps {
+    /**
+     * Checks if any of the given ranges overlap with each other
+     *
+     * @param ranges the ranges to check for overlaps
+     *
+     * @return {@code true} if any two ranges overlap, {@code false} otherwise
+     */
     @SafeVarargs
     public static <T extends Comparable<T>> boolean anyOverlap(@Nullable Range<T>... ranges) {
         return anyOverlap(ArrayUtilsWraps.asList(ranges));
     }
 
+    /**
+     * Checks if any of the given ranges in the list overlap with each other
+     *
+     * @param ranges the list of ranges to check for overlaps
+     *
+     * @return {@code true} if any two ranges overlap, {@code false} otherwise or if the list is null or has less than 2 elements
+     */
     public static <T extends Comparable<T>> boolean anyOverlap(@Nullable List<Range<T>> ranges) {
         if (ranges == null || ranges.size() < 2) {
             return false;

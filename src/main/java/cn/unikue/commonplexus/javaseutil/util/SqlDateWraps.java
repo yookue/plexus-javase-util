@@ -28,6 +28,13 @@ import jakarta.annotation.Nullable;
  */
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})
 public abstract class SqlDateWraps {
+    /**
+     * Converts a java.util.Date to java.sql.Date
+     *
+     * @param date The java.util.Date to convert, may be null
+     *
+     * @return the converted java.sql.Date, or null if input is null
+     */
     @Nullable
     public static Date ofJdkDate(@Nullable java.util.Date date) {
         return (date == null) ? null : new Date(date.getTime());

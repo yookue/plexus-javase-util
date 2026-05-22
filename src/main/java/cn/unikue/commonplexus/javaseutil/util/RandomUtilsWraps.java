@@ -76,7 +76,19 @@ public abstract class RandomUtilsWraps {
      *
      * @return a random string whose length is the number of characters specified
      */
-    public String randomAlphanumeric(final int count) {
+    /**
+     * Returns a random string whose length is the number of characters specified
+     *
+     * <p>
+     * Characters will be chosen from the set of Latin alphabetic characters (a-z, A-Z) and the digits 0-9
+     * </p>
+     *
+     * @param count The length of random string to create
+     *
+     * @return a random alphanumeric string whose length is the number of characters specified, or {@code null} if count is less than or equal to 0
+     */
+    @Nullable
+    public static String randomAlphanumeric(final int count) {
         return (count <= 0) ? null : RandomStringUtils.secure().nextAlphanumeric(count);
     }
 
@@ -97,14 +109,29 @@ public abstract class RandomUtilsWraps {
         return (minLengthInclusive < 0 || minLengthInclusive > maxLengthExclusive) ? null : RandomStringUtils.secure().nextAlphanumeric(minLengthInclusive, maxLengthExclusive);
     }
 
+    /**
+     * Returns a random character from the set of upper case and lower case letters
+     *
+     * @return a random character (either upper case or lower case)
+     */
     public static char randomChar() {
         return RandomUtils.secure().randomBoolean() ? randomCharUpper() : randomCharLower();
     }
 
+    /**
+     * Returns a random lower case character (a-z)
+     *
+     * @return a random lower case character
+     */
     public static char randomCharLower() {
         return (char) RandomUtils.secure().randomInt(97, 123);
     }
 
+    /**
+     * Returns a random upper case character (A-Z)
+     *
+     * @return a random upper case character
+     */
     public static char randomCharUpper() {
         return (char) RandomUtils.secure().randomInt(65, 91);
     }

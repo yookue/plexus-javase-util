@@ -33,22 +33,55 @@ import org.apache.commons.lang3.ObjectUtils;
  */
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})
 public abstract class TimePeriodWraps {
+    /**
+     * Calculates the period between two dates
+     *
+     * @param startDateInclusive The start date (inclusive), may be null
+     * @param endDateExclusive The end date (exclusive), may be null
+     *
+     * @return the period between the two dates, or null if either date is null
+     */
     @Nullable
     public static Period between(@Nullable Date startDateInclusive, @Nullable Date endDateExclusive) {
         return between(startDateInclusive, endDateExclusive, null);
     }
 
+    /**
+     * Calculates the period between two dates with a specific timezone
+     *
+     * @param startDateInclusive The start date (inclusive), may be null
+     * @param endDateExclusive The end date (exclusive), may be null
+     * @param zoneId The timezone to use for conversion, may be null
+     *
+     * @return the period between the two dates, or null if either date is null
+     */
     @Nullable
     public static Period between(@Nullable Date startDateInclusive, @Nullable Date endDateExclusive, @Nullable ZoneId zoneId) {
         return ObjectUtils.anyNull(startDateInclusive, endDateExclusive) ? null : between(LocalDateWraps.ofJdkDate(startDateInclusive, zoneId), LocalDateWraps.ofJdkDate(endDateExclusive, zoneId));
     }
 
+    /**
+     * Calculates the period between two LocalDate objects
+     *
+     * @param startDateInclusive The start date (inclusive), may be null
+     * @param endDateExclusive The end date (exclusive), may be null
+     *
+     * @return the period between the two dates, or null if either date is null
+     */
     @Nullable
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
     public static Period between(@Nullable LocalDate startDateInclusive, @Nullable LocalDate endDateExclusive) {
         return ObjectUtils.anyNull(startDateInclusive, endDateExclusive) ? null : Period.between(startDateInclusive, endDateExclusive);
     }
 
+    /**
+     * Calculates the period between two LocalDateTime objects by converting them to LocalDate
+     *
+     * @param startDateInclusive The start date-time (inclusive), may be null
+     * @param endDateExclusive The end date-time (exclusive), may be null
+     *
+     * @return the period between the two dates, or null if either date-time is null
+     */
     @Nullable
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
     public static Period between(@Nullable LocalDateTime startDateInclusive, @Nullable LocalDateTime endDateExclusive) {
