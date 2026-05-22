@@ -31,16 +31,41 @@ import cn.unikue.commonplexus.javaseutil.enumeration.InetProxyType;
  */
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})
 public abstract class InetProxyWraps {
+    /**
+     * Creates an HTTP proxy from the host and port
+     *
+     * @param host the proxy hostname or IP address
+     * @param port the proxy port number
+     *
+     * @return an HTTP Proxy object, or {@code null} if the host is invalid or port is invalid
+     */
     @Nullable
     public static Proxy ofHttpProxy(@Nullable String host, int port) {
         return ofProxy(host, port, InetProxyType.HTTP);
     }
 
+    /**
+     * Creates a SOCKS proxy from the host and port
+     *
+     * @param host the proxy hostname or IP address
+     * @param port the proxy port number
+     *
+     * @return a SOCKS Proxy object, or {@code null} if the host is invalid or port is invalid
+     */
     @Nullable
     public static Proxy ofSocksProxy(@Nullable String host, int port) {
         return ofProxy(host, port, InetProxyType.SOCKS);
     }
 
+    /**
+     * Creates a proxy from the host, port, and proxy type
+     *
+     * @param host the proxy hostname or IP address
+     * @param port the proxy port number
+     * @param type the proxy type (HTTP or SOCKS)
+     *
+     * @return a Proxy object, or {@code null} if the type is null or the address cannot be created
+     */
     @Nullable
     public static Proxy ofProxy(@Nullable String host, int port, @Nullable InetProxyType type) {
         if (type == null) {
@@ -56,6 +81,14 @@ public abstract class InetProxyWraps {
         };
     }
 
+    /**
+     * Creates a proxy selector from the host and port
+     *
+     * @param host the proxy hostname or IP address
+     * @param port the proxy port number
+     *
+     * @return a ProxySelector, or {@code null} if the address cannot be created
+     */
     @Nullable
     public static ProxySelector ofProxySelector(@Nullable String host, int port) {
         InetSocketAddress address = InetSocketWraps.ofSocketAddress(host, port);

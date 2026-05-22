@@ -52,11 +52,26 @@ public abstract class LatexParserWraps {
         put("\\right)", ")");    // $NON-NLS-1$ // $NON-NLS-2$
     }};
 
+    /**
+     * Parses LaTeX math expression to plain math notation
+     *
+     * @param latex the LaTeX math expression to parse
+     *
+     * @return the parsed math notation, or {@code null} if the input is blank
+     */
     @Nullable
     public static String parseLatexToMath(@Nullable String latex) {
         return parseLatexToMath(latex, null);
     }
 
+    /**
+     * Parses LaTeX math expression to plain math notation with custom keywords
+     *
+     * @param latex the LaTeX math expression to parse
+     * @param keywords additional custom keyword mappings to apply (merged with default mappings)
+     *
+     * @return the parsed math notation, or {@code null} if the input is blank
+     */
     @Nullable
     public static String parseLatexToMath(@Nullable String latex, @Nullable Map<String, String> keywords) {
         if (StringUtils.isBlank(latex)) {

@@ -30,6 +30,14 @@ import org.apache.commons.lang3.StringUtils;
  */
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})
 public abstract class InetSocketWraps {
+    /**
+     * Creates an InetSocketAddress from the host and port
+     *
+     * @param host the hostname or IP address
+     * @param port the port number (must be positive)
+     *
+     * @return an InetSocketAddress, or {@code null} if the host is blank, port is invalid, or resolution fails
+     */
     @Nullable
     public static InetSocketAddress ofSocketAddress(@Nullable String host, int port) {
         if (StringUtils.isBlank(host) || port <= 0) {

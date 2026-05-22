@@ -469,11 +469,24 @@ public abstract class ObjectUtilsWraps {
      * @param source The object that maybe instanceof {@link Map}
      * @param keyType The expected key type to check
      * @param valueType The expected value type to check
+     *
+     * @return a cast instance of the expected map, if the {@code source} object is instanceof {@link Map} and types match
+     */
+    public static <K, V> Map<K, V> castAsMap(@Nullable Object source, @Nullable Class<K> keyType, @Nullable Class<V> valueType) {
+        return castAsMap(source, keyType, valueType, null);
+    }
+
+    /**
+     * Returns a cast instance of the expected map, if the {@code source} object is instanceof {@link Map}
+     *
+     * @param source The object that maybe instanceof {@link Map}
+     * @param keyType The expected key type to check
+     * @param valueType The expected value type to check
      * @param defaultValue The default value to return if expected value is null or type mismatch
      *
      * @return a cast instance of the expected map, if the {@code source} object is instanceof {@link Map} and types match
      */
-    @SuppressWarnings({"DataFlowIssue", "RedundantSuppression", "unchecked"})
+    @SuppressWarnings("unchecked")
     public static <K, V> Map<K, V> castAsMap(@Nullable Object source, @Nullable Class<K> keyType, @Nullable Class<V> valueType, @Nullable Map<K, V> defaultValue) {
         if (ObjectUtils.anyNull(source, keyType, valueType) || !(source instanceof Map<?, ?> map)) {
             return defaultValue;
