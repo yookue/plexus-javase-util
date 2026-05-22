@@ -42,6 +42,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.BiPredicate;
 import java.util.stream.Stream;
+import jakarta.annotation.Nonnull;
 import jakarta.annotation.Nullable;
 import org.apache.commons.lang3.StringUtils;
 
@@ -54,6 +55,11 @@ import org.apache.commons.lang3.StringUtils;
  */
 @SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted", "UnusedReturnValue"})
 public abstract class FilePlainWraps {
+    private static final long KB = 1024L;
+    private static final long MB = KB * 1024L;
+    private static final long GB = MB * 1024L;
+    private static final long TB = GB * 1024L;
+
     public static boolean isHidden(@Nullable Path path) {
         if (path == null) {
             return false;
@@ -74,6 +80,36 @@ public abstract class FilePlainWraps {
         } catch (Exception ignored) {
         }
         return 0L;
+    }
+
+    public static String sizeToHumanReadable(@Nullable Path path) {
+        return sizeToHumanReadable(size(path));
+    }
+
+    /**
+     * Format bytes into a human-readable string (e.g., 1.5 GB, 256 MB, 1024 KB).
+     *
+     * @param bytes the number of bytes
+     * @return formatted string with appropriate unit, or "0 B" if bytes is 0 or negative
+     */
+    @Nonnull
+    public static String sizeToHumanReadable(long bytes) {
+        if (bytes <= 0) {
+            return "0 B";    // $NON-NLS-1$
+        }
+        if (bytes < KB) {
+            return String.format("%d B", bytes);    // $NON-NLS-1$
+        }
+        if (bytes < MB) {
+            return String.format("%.2f KB", bytes / (double) KB);    // $NON-NLS-1$
+        }
+        if (bytes < GB) {
+            return String.format("%.2f MB", bytes / (double) MB);    // $NON-NLS-1$
+        }
+        if (bytes < TB) {
+            return String.format("%.2f GB", bytes / (double) GB);    // $NON-NLS-1$
+        }
+        return String.format("%.2f TB", bytes / (double) TB);    // $NON-NLS-1$
     }
 
     @Nullable

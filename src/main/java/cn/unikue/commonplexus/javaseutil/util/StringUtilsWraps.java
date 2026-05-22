@@ -287,6 +287,18 @@ public abstract class StringUtilsWraps {
         return StringUtils.capitalize(StringUtils.lowerCase(CharSequenceWraps.toStringIgnoreNull(sequence)));
     }
 
+    /**
+     * Combine multiple lines or tabs into a single line with spaces.
+     * Replaces all line breaks and tabs with single spaces, and collapses multiple consecutive spaces into one.
+     *
+     * @param text the input text to process
+     * @return trimmed single-line string, or {@code null} if input is blank
+     */
+    @Nullable
+    public static String combineSpaceLines(@Nullable String text) {
+        return StringUtils.isBlank(text) ? null : text.replaceAll("(\\r?\\n|\\t)+", StringUtils.SPACE).replaceAll("\\s{2,}", StringUtils.SPACE).trim();    // $NON-NLS-1$ // $NON-NLS-2$
+    }
+
     public static boolean containsAll(@Nullable CharSequence sequence, @Nullable CharSequence... comparisons) {
         return containsAll(sequence, ArrayUtilsWraps.asList(comparisons));
     }
