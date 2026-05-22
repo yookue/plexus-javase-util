@@ -582,6 +582,31 @@ public abstract class MapPlainWraps {
         return (result == null) ? defaultValue : result;
     }
 
+    @Nullable
+    public static <K, V> List<V> getObjectListAs(@Nullable Map<? super K, ?> map, @Nullable K key, @Nullable Class<V> expectType) {
+        return getObjectListAs(map, key, expectType, null);
+    }
+
+    @Nullable
+    @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
+    public static <K, V> List<V> getObjectListAs(@Nullable Map<? super K, ?> map, @Nullable K key, @Nullable Class<V> expectType, @Nullable List<V> defaultValue) {
+        if (isEmpty(map) || expectType == null) {
+            return defaultValue;
+        }
+        List<?> rawList = ObjectUtilsWraps.castAsList(map.get(key));
+        if (rawList == null) {
+            return defaultValue;
+        }
+        for (Object item : rawList) {
+            if (item != null && !expectType.isInstance(item)) {
+                return defaultValue;
+            }
+        }
+        @SuppressWarnings("unchecked")
+        final List<V> result = (List<V>) rawList;
+        return result;
+    }
+
     public static <K> LocalDate getLocalDate(@Nullable Map<? super K, ?> map, @Nullable K key) {
         return getLocalDate(map, key, null);
     }

@@ -71,4 +71,68 @@ class MapPlainWrapsTest {
         List<Map<String, Object>> outcome = MapPlainWraps.sortChildrenTree(income, "id", "pid", "children");
         Assertions.assertTrue(outcome != null && outcome.size() == 1 && CollectionPlainWraps.size((Collection<?>) outcome.get(0).get("children")) == 2);
     }
+
+    @Test
+    void getObjectListAs() {
+        String methodName = StackTraceWraps.getExecutingMethodName();
+
+        // 1. Normal: map with a list of matched type
+        List<Integer> intList = new ArrayList<>();
+        intList.add(10);
+        intList.add(20);
+        Map<String, Object> map = MapPlainWraps.newHashMapWithin("ints", intList);
+        List<Integer> result = MapPlainWraps.getObjectListAs(map, "ints", Integer.class);
+        log.info("{}: normal result = {}", methodName, result);
+        Assertions.assertNotNull(result);
+        Assertions.assertEquals(2, result.size());
+        Assertions.assertEquals(10, (int) result.get(0));
+
+        // 2. Type mismatch: list contains String but expect Integer
+        List<Object> mixedList = new ArrayList<>();
+        mixedList.add("hello");
+        Map<String, Object> map2 = MapPlainWraps.newHashMapWithin("items", mixedList);
+        List<Integer> result2 = MapPlainWraps.getObjectListAs(map2, "items", Integer.class);
+        log.info("{}: type-mismatch result = {}", methodName, result2);
+        Assertions.assertNull(result2);
+
+        // 3. Type mismatch with custom default value
+        List<Integer> defaultList = new ArrayList<>();
+        defaultList.add(-1);
+        List<Integer> result3 = MapPlainWraps.getObjectListAs(map2, "items", Integer.class, defaultList);
+        log.info("{}: custom default result = {}", methodName, result3);
+        Assertions.assertSame(defaultList, result3);
+
+        // 4. Empty list
+        List<String> emptyList = new ArrayList<>();
+        Map<String, Object> map4 = MapPlainWraps.newHashMapWithin("empty", emptyList);
+        List<String> result4 = MapPlainWraps.getObjectListAs(map4, "empty", String.class);
+        log.info("{}: empty list result = {}", methodName, result4);
+        Assertions.assertNotNull(result4);
+        Assertions.assertTrue(result4.isEmpty());
+
+        // 5. Key not present
+        List<Integer> result5 = MapPlainWraps.getObjectListAs(map, "nonexistent", Integer.class);
+        log.info("{}: missing key result = {}", methodName, result5);
+        Assertions.assertNull(result5);
+
+        // 6. Null map
+        List<Integer> result6 = MapPlainWraps.getObjectListAs(null, "any", Integer.class);
+        Assertions.assertNull(result6);
+
+        // 7. Null expectType
+        List<Integer> result7 = MapPlainWraps.getObjectListAs(map, "ints", null);
+        Assertions.assertNull(result7);
+
+        // 8. Mixed null/non-null items of correct type
+        List<Integer> mixedWithNulls = new ArrayList<>();
+        mixedWithNulls.add(null);
+        mixedWithNulls.add(42);
+        Map<String, Object> map8 = MapPlainWraps.newHashMapWithin("mix", mixedWithNulls);
+        List<Integer> result8 = MapPlainWraps.getObjectListAs(map8, "mix", Integer.class);
+        log.info("{}: mixed with nulls result = {}", methodName, result8);
+        Assertions.assertNotNull(result8);
+        Assertions.assertEquals(2, result8.size());
+        Assertions.assertNull(result8.get(0));
+        Assertions.assertEquals(42, (int) result8.get(1));
+    }
 }
