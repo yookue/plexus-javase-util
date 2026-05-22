@@ -643,6 +643,62 @@ public abstract class CollectionPlainWraps {
         return isNotEmpty(collection) && collection.stream().anyMatch(item -> StringUtils.containsIgnoreCase(item, sequence));
     }
 
+    /**
+     * Returns {@code true} if any element in {@code collection} contains any of
+     * the {@code sequences} as a substring.
+     *
+     * @param collection The collection to search within
+     * @param sequences The substring sequences to look for
+     *
+     * @return {@code true} if any element contains any of the sequences
+     */
+    @SuppressWarnings("DataFlowIssue")
+    public static boolean containsAnySubstring(@Nullable Collection<? extends CharSequence> collection, @Nullable Collection<? extends CharSequence> sequences) {
+        return allNotEmpty(collection, sequences) && sequences.stream().anyMatch(item -> containsSubstring(collection, item));
+    }
+
+    /**
+     * Returns {@code true} if <b>all</b> of the {@code sequences} are found as
+     * substrings in at least one element of the {@code collection}.
+     *
+     * @param collection The collection to search within
+     * @param sequences The substring sequences to look for
+     *
+     * @return {@code true} if every sequence is found as a substring somewhere
+     */
+    @SuppressWarnings("DataFlowIssue")
+    public static boolean containsAllSubstring(@Nullable Collection<? extends CharSequence> collection, @Nullable Collection<? extends CharSequence> sequences) {
+        return allNotEmpty(collection, sequences) && sequences.stream().allMatch(item -> containsSubstring(collection, item));
+    }
+
+    /**
+     * Returns {@code true} if any element in {@code collection} contains any of
+     * the {@code sequences} as a substring, ignoring case.
+     *
+     * @param collection The collection to search within
+     * @param sequences The substring sequences to look for
+     *
+     * @return {@code true} if any element contains any of the sequences ignoring case
+     */
+    @SuppressWarnings("DataFlowIssue")
+    public static boolean containsAnySubstringIgnoreCase(@Nullable Collection<? extends CharSequence> collection, @Nullable Collection<? extends CharSequence> sequences) {
+        return allNotEmpty(collection, sequences) && sequences.stream().anyMatch(item -> containsSubstringIgnoreCase(collection, item));
+    }
+
+    /**
+     * Returns {@code true} if <b>all</b> of the {@code sequences} are found as
+     * substrings in at least one element of the {@code collection}, ignoring case.
+     *
+     * @param collection The collection to search within
+     * @param sequences The substring sequences to look for
+     *
+     * @return {@code true} if every sequence is found as a substring somewhere ignoring case
+     */
+    @SuppressWarnings("DataFlowIssue")
+    public static boolean containsAllSubstringIgnoreCase(@Nullable Collection<? extends CharSequence> collection, @Nullable Collection<? extends CharSequence> sequences) {
+        return allNotEmpty(collection, sequences) && sequences.stream().allMatch(item -> containsSubstringIgnoreCase(collection, item));
+    }
+
     public static <E> void forEach(@Nullable Collection<E> collection, @Nullable Consumer<? super E> action) {
         forEach(collection, action, null);
     }
