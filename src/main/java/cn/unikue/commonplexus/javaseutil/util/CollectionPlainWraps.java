@@ -60,21 +60,53 @@ public abstract class CollectionPlainWraps {
      */
     private static final float DEFAULT_LOAD_FACTOR = 0.75F;
 
+    /**
+     * Adds all elements from the source array to the target collection.
+     *
+     * @param target The target collection to add elements to
+     * @param sources The source elements to add
+     *
+     * @return {@code true} if the collection changed as a result of the call
+     */
     @SafeVarargs
     public static <E> boolean addAll(@Nullable Collection<? super E> target, @Nullable E... sources) {
         return addAllIf(target, null, sources);
     }
 
+    /**
+     * Adds all elements from multiple source arrays to the target collection.
+     *
+     * @param target The target collection to add elements to
+     * @param sources The source arrays containing elements to add
+     *
+     * @return {@code true} if the collection changed as a result of the call
+     */
     @SafeVarargs
     public static <E> boolean addAll(@Nullable Collection<E> target, @Nullable E[]... sources) {
         return addAllIf(target, null, sources);
     }
 
+    /**
+     * Adds all elements from the source collection to the target collection.
+     *
+     * @param target The target collection to add elements to
+     * @param source The source collection containing elements to add
+     *
+     * @return {@code true} if the collection changed as a result of the call
+     */
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
     public static <E> boolean addAll(@Nullable Collection<E> target, @Nullable Collection<? extends E> source) {
         return ObjectUtils.allNotNull(target, source) && target.addAll(source);
     }
 
+    /**
+     * Adds all elements from the source iterable to the target collection.
+     *
+     * @param target The target collection to add elements to
+     * @param source The source iterable containing elements to add
+     *
+     * @return {@code true} if the collection changed as a result of the call
+     */
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
     public static <E> boolean addAll(@Nullable Collection<E> target, @Nullable Iterable<? extends E> source) {
         if (ObjectUtils.anyNull(target, source)) {
@@ -87,11 +119,27 @@ public abstract class CollectionPlainWraps {
         return changed;
     }
 
+    /**
+     * Adds all elements from multiple source iterables to the target collection.
+     *
+     * @param target The target collection to add elements to
+     * @param sources The source iterables containing elements to add
+     *
+     * @return {@code true} if the collection changed as a result of the call
+     */
     @SafeVarargs
     public static <E> boolean addAll(@Nullable Collection<E> target, @Nullable Iterable<? extends E>... sources) {
         return addAllIf(target, null, sources);
     }
 
+    /**
+     * Adds all elements from the source iterator to the target collection.
+     *
+     * @param target The target collection to add elements to
+     * @param source The source iterator containing elements to add
+     *
+     * @return {@code true} if the collection changed as a result of the call
+     */
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
     public static <E> boolean addAll(@Nullable Collection<E> target, @Nullable Iterator<? extends E> source) {
         if (ObjectUtils.anyNull(target, source)) {
@@ -104,11 +152,27 @@ public abstract class CollectionPlainWraps {
         return changed;
     }
 
+    /**
+     * Adds all elements from multiple source iterators to the target collection.
+     *
+     * @param target The target collection to add elements to
+     * @param sources The source iterators containing elements to add
+     *
+     * @return {@code true} if the collection changed as a result of the call
+     */
     @SafeVarargs
     public static <E> boolean addAll(@Nullable Collection<E> target, @Nullable Iterator<? extends E>... sources) {
         return addAllIf(target, null, sources);
     }
 
+    /**
+     * Adds all elements from the source enumeration to the target collection.
+     *
+     * @param target The target collection to add elements to
+     * @param source The source enumeration containing elements to add
+     *
+     * @return {@code true} if the collection changed as a result of the call
+     */
     @SuppressWarnings({"DataFlowIssue", "RedundantSuppression"})
     public static <E> boolean addAll(@Nullable Collection<E> target, @Nullable Enumeration<? extends E> source) {
         if (ObjectUtils.anyNull(target, source)) {
@@ -121,6 +185,14 @@ public abstract class CollectionPlainWraps {
         return changed;
     }
 
+    /**
+     * Adds all elements from multiple source enumerations to the target collection.
+     *
+     * @param target The target collection to add elements to
+     * @param sources The source enumerations containing elements to add
+     *
+     * @return {@code true} if the collection changed as a result of the call
+     */
     @SafeVarargs
     public static <E> boolean addAll(@Nullable Collection<E> target, @Nullable Enumeration<? extends E>... sources) {
         return addAllIf(target, null, sources);
@@ -635,26 +707,68 @@ public abstract class CollectionPlainWraps {
         return isNotEmpty(collection) && collection.stream().anyMatch(item -> StringUtils.equalsIgnoreCase(item, sequence));
     }
 
+    /**
+     * Returns {@code true} if <b>all</b> of the {@code sequences} are found as
+     * exact matches in the {@code collection}.
+     *
+     * @param collection The collection to search within
+     * @param sequences The string sequences to look for
+     *
+     * @return {@code true} if every sequence is found as an exact match in the collection
+     */
+    @SuppressWarnings("DataFlowIssue")
+    public static boolean containsAllString(@Nullable Collection<? extends CharSequence> collection, @Nullable Collection<? extends CharSequence> sequences) {
+        return allNotEmpty(collection, sequences) && sequences.stream().allMatch(item -> containsString(collection, item));
+    }
+
+    /**
+     * Returns {@code true} if <b>all</b> of the {@code sequences} are found as
+     * exact matches in the {@code collection}, ignoring case.
+     *
+     * @param collection The collection to search within
+     * @param sequences The string sequences to look for
+     *
+     * @return {@code true} if every sequence is found as an exact match in the collection ignoring case
+     */
+    @SuppressWarnings("DataFlowIssue")
+    public static boolean containsAllStringIgnoreCase(@Nullable Collection<? extends CharSequence> collection, @Nullable Collection<? extends CharSequence> sequences) {
+        return allNotEmpty(collection, sequences) && sequences.stream().allMatch(item -> containsStringIgnoreCase(collection, item));
+    }
+
+    /**
+     * Returns {@code true} if any element in {@code collection} matches any of
+     * the {@code sequences} as an exact string.
+     *
+     * @param collection The collection to search within
+     * @param sequences The string sequences to look for
+     *
+     * @return {@code true} if any element matches any of the sequences
+     */
+    @SuppressWarnings("DataFlowIssue")
+    public static boolean containsAnyString(@Nullable Collection<? extends CharSequence> collection, @Nullable Collection<? extends CharSequence> sequences) {
+        return allNotEmpty(collection, sequences) && sequences.stream().anyMatch(item -> containsString(collection, item));
+    }
+
+    /**
+     * Returns {@code true} if any element in {@code collection} matches any of
+     * the {@code sequences} as an exact string, ignoring case.
+     *
+     * @param collection The collection to search within
+     * @param sequences The string sequences to look for
+     *
+     * @return {@code true} if any element matches any of the sequences ignoring case
+     */
+    @SuppressWarnings("DataFlowIssue")
+    public static boolean containsAnyStringIgnoreCase(@Nullable Collection<? extends CharSequence> collection, @Nullable Collection<? extends CharSequence> sequences) {
+        return allNotEmpty(collection, sequences) && sequences.stream().anyMatch(item -> containsStringIgnoreCase(collection, item));
+    }
+
     public static boolean containsSubstring(@Nullable Collection<? extends CharSequence> collection, @Nullable CharSequence sequence) {
         return isNotEmpty(collection) && collection.stream().anyMatch(item -> StringUtils.contains(item, sequence));
     }
 
     public static boolean containsSubstringIgnoreCase(@Nullable Collection<? extends CharSequence> collection, @Nullable CharSequence sequence) {
         return isNotEmpty(collection) && collection.stream().anyMatch(item -> StringUtils.containsIgnoreCase(item, sequence));
-    }
-
-    /**
-     * Returns {@code true} if any element in {@code collection} contains any of
-     * the {@code sequences} as a substring.
-     *
-     * @param collection The collection to search within
-     * @param sequences The substring sequences to look for
-     *
-     * @return {@code true} if any element contains any of the sequences
-     */
-    @SuppressWarnings("DataFlowIssue")
-    public static boolean containsAnySubstring(@Nullable Collection<? extends CharSequence> collection, @Nullable Collection<? extends CharSequence> sequences) {
-        return allNotEmpty(collection, sequences) && sequences.stream().anyMatch(item -> containsSubstring(collection, item));
     }
 
     /**
@@ -672,20 +786,6 @@ public abstract class CollectionPlainWraps {
     }
 
     /**
-     * Returns {@code true} if any element in {@code collection} contains any of
-     * the {@code sequences} as a substring, ignoring case.
-     *
-     * @param collection The collection to search within
-     * @param sequences The substring sequences to look for
-     *
-     * @return {@code true} if any element contains any of the sequences ignoring case
-     */
-    @SuppressWarnings("DataFlowIssue")
-    public static boolean containsAnySubstringIgnoreCase(@Nullable Collection<? extends CharSequence> collection, @Nullable Collection<? extends CharSequence> sequences) {
-        return allNotEmpty(collection, sequences) && sequences.stream().anyMatch(item -> containsSubstringIgnoreCase(collection, item));
-    }
-
-    /**
      * Returns {@code true} if <b>all</b> of the {@code sequences} are found as
      * substrings in at least one element of the {@code collection}, ignoring case.
      *
@@ -697,6 +797,34 @@ public abstract class CollectionPlainWraps {
     @SuppressWarnings("DataFlowIssue")
     public static boolean containsAllSubstringIgnoreCase(@Nullable Collection<? extends CharSequence> collection, @Nullable Collection<? extends CharSequence> sequences) {
         return allNotEmpty(collection, sequences) && sequences.stream().allMatch(item -> containsSubstringIgnoreCase(collection, item));
+    }
+
+    /**
+     * Returns {@code true} if any element in {@code collection} contains any of
+     * the {@code sequences} as a substring.
+     *
+     * @param collection The collection to search within
+     * @param sequences The substring sequences to look for
+     *
+     * @return {@code true} if any element contains any of the sequences
+     */
+    @SuppressWarnings("DataFlowIssue")
+    public static boolean containsAnySubstring(@Nullable Collection<? extends CharSequence> collection, @Nullable Collection<? extends CharSequence> sequences) {
+        return allNotEmpty(collection, sequences) && sequences.stream().anyMatch(item -> containsSubstring(collection, item));
+    }
+
+    /**
+     * Returns {@code true} if any element in {@code collection} contains any of
+     * the {@code sequences} as a substring, ignoring case.
+     *
+     * @param collection The collection to search within
+     * @param sequences The substring sequences to look for
+     *
+     * @return {@code true} if any element contains any of the sequences ignoring case
+     */
+    @SuppressWarnings("DataFlowIssue")
+    public static boolean containsAnySubstringIgnoreCase(@Nullable Collection<? extends CharSequence> collection, @Nullable Collection<? extends CharSequence> sequences) {
+        return allNotEmpty(collection, sequences) && sequences.stream().anyMatch(item -> containsSubstringIgnoreCase(collection, item));
     }
 
     public static <E> void forEach(@Nullable Collection<E> collection, @Nullable Consumer<? super E> action) {
