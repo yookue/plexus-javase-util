@@ -23,7 +23,7 @@ import lombok.ToString;
 
 
 /**
- * Enumerations of prompt reminder types
+ * Enumerations of reminder action types
  *
  * @author David Hsing
  */
@@ -31,13 +31,11 @@ import lombok.ToString;
 @Getter
 @ToString
 @SuppressWarnings("unused")
-public enum PromptReminderType implements ValueEnum<String> {
+public enum ReminderActionType implements ValueEnum<String> {
     SUCCESS("success"),    // $NON-NLS-1$
     INFO("info"),    // $NON-NLS-1$
     WARN("warn"),    // $NON-NLS-1$
-    ERROR("error"),    // $NON-NLS-1$
-    LOADING("loading"),    // $NON-NLS-1$
-    REDIRECT("redirect");    // $NON-NLS-1$
+    ERROR("error");    // $NON-NLS-1$
 
     private final String value;
 }
