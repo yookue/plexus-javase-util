@@ -89,17 +89,18 @@ public abstract class TreePlainWraps {
         if (CollectionPlainWraps.isEmpty(structs) || StringUtils.isAnyBlank(idField, pidField, childrenField)) {
             return null;
         }
-        // Build id -> struct map
+        // First pass: build the complete id -> struct map
         Map<Object, T> structMap = new HashMap<>();
+        for (T struct : structs) {
+            Object id = readProperty(struct, idField);
+            if (id != null) {
+                structMap.put(id, struct);
+            }
+        }
+        // Second pass: build parent-child relationships using the complete structMap
         Map<Object, List<T>> parentChildrenMap = new HashMap<>();
         for (T struct : structs) {
-            Object id = FieldUtilsWraps.readField(struct, idField, true);
-            if (id == null) {
-                continue;
-            }
-            structMap.put(id, struct);
-            Object pid = FieldUtilsWraps.readField(struct, pidField, true);
-            // Build parent-child relationships
+            Object pid = readProperty(struct, pidField);
             if (pid != null && structMap.containsKey(pid)) {
                 parentChildrenMap.computeIfAbsent(pid, k -> new ArrayList<>()).add(struct);
             }
@@ -107,12 +108,20 @@ public abstract class TreePlainWraps {
         // Set children field and collect root nodes
         List<T> rootList = new ArrayList<>();
         for (T struct : structs) {
-            Object id = FieldUtilsWraps.readField(struct, idField, true);
-            Object pid = FieldUtilsWraps.readField(struct, pidField, true);
-            List<T> children = FieldUtilsWraps.readFieldAs(struct, childrenField, true, List.class);
+            Object id = readProperty(struct, idField);
+            Object pid = readProperty(struct, pidField);
+            List<T> children = (List<T>) readProperty(struct, childrenField);
+            List<T> computedChildren = parentChildrenMap.get(id);
             if (children == null) {
-                children = parentChildrenMap.getOrDefault(id, Collections.emptyList());
-                FieldUtilsWraps.writeField(struct, childrenField, children, true);
+                children = computedChildren != null ? computedChildren : Collections.emptyList();
+                writeProperty(struct, childrenField, children);
+            } else if (computedChildren != null) {
+                // Merge computed children into pre-filled children (avoid duplicates)
+                for (T child : computedChildren) {
+                    if (!children.contains(child)) {
+                        children.add(child);
+                    }
+                }
             }
             if (pid == null || !structMap.containsKey(pid)) {
                 rootList.add(struct);
@@ -124,7 +133,7 @@ public abstract class TreePlainWraps {
         // Recursively sort child nodes if needed
         if (recursive) {
             for (T struct : structs) {
-                List<T> children = FieldUtilsWraps.readFieldAs(struct, childrenField, true, List.class);
+                List<T> children = (List<T>) readProperty(struct, childrenField);
                 if (children != null && !children.isEmpty()) {
                     children.sort(effectiveComparator);
                 }
@@ -148,8 +157,8 @@ public abstract class TreePlainWraps {
             return (o1, o2) -> 0;
         }
         return (o1, o2) -> {
-            Object v1 = FieldUtilsWraps.readField(o1, field, true);
-            Object v2 = FieldUtilsWraps.readField(o2, field, true);
+            Object v1 = readProperty(o1, field);
+            Object v2 = readProperty(o2, field);
             if (v1 == null && v2 == null) {
                 return 0;
             }
@@ -164,5 +173,35 @@ public abstract class TreePlainWraps {
             }
             return v1.toString().compareTo(v2.toString());
         };
+    }
+
+    /**
+     * Reads a property value from a struct, supporting both {@link Map} and bean objects.
+     */
+    @Nullable
+    @SuppressWarnings("rawtypes")
+    private static Object readProperty(@Nullable Object struct, @Nullable String fieldName) {
+        if (struct == null || StringUtils.isBlank(fieldName)) {
+            return null;
+        }
+        if (struct instanceof Map) {
+            return ((Map) struct).get(fieldName);
+        }
+        return FieldUtilsWraps.readField(struct, fieldName, true);
+    }
+
+    /**
+     * Writes a property value to a struct, supporting both {@link Map} and bean objects.
+     */
+    @SuppressWarnings({"rawtypes", "unchecked"})
+    private static void writeProperty(@Nullable Object struct, @Nullable String fieldName, @Nullable Object value) {
+        if (struct == null || StringUtils.isBlank(fieldName)) {
+            return;
+        }
+        if (struct instanceof Map) {
+            ((Map) struct).put(fieldName, value);
+            return;
+        }
+        FieldUtilsWraps.writeField(struct, fieldName, value, true);
     }
 }
