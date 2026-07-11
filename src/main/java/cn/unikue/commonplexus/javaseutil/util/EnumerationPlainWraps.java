@@ -505,7 +505,7 @@ public abstract class EnumerationPlainWraps {
      * @param enumeration the enumeration to check
      * @param index the index to validate
      *
-     * @return {@code true} if the index is valid (0 <= index < size), {@code false} otherwise
+     * @return {@code true} if the index is valid (0 &le; index &lt; size), {@code false} otherwise
      */
     public static boolean isIndexBound(@Nullable Enumeration<?> enumeration, int index) {
         return index >= 0 && index < size(enumeration);
